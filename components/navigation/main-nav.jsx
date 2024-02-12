@@ -2,6 +2,8 @@
  * main-nav.jsx
  */
 
+// "use client"
+
 import UserDropdown from "./nav-bits/user-dropdown";
 import NavItems from "./nav-bits/nav-items";
 // import SignInModal from "./nav-bits/SignInModal";
@@ -10,10 +12,11 @@ import NavItems from "./nav-bits/nav-items";
 import Link from "next/link";
 import { MobileNav } from "./mobile-nav";
 import { cn } from "@/lib/utils";
+// import { usePathname } from "next/navigation";
 
 const MainNav = ({ session }) => {
   // const router = useRouter();
-
+  // const pathname = usePathname()
   // if (pathname.includes("/admin") || pathname.includes("/summary")) {
   //   return <></>;
   // }
@@ -26,6 +29,9 @@ const MainNav = ({ session }) => {
       dark:border-gray-800 dark:shadow-none lg:w-full`,
         "sticky top-0"
         // { "bg-blue-700 text-white border-none": pathname === "/" },
+        // { "sticky top-0": pathname !== "/" }
+        // { "absolute  top-0 left": pathname !== "/" },
+
         // { "sticky top-0": pathname !== "/" }
       )}
     >
