@@ -6,6 +6,10 @@ import { createPresignedPost } from "@aws-sdk/s3-presigned-post";
 import { S3Client } from "@aws-sdk/client-s3";
 import { v4 as uuidv4 } from "uuid";
 
+import { revalidatePath } from "next/cache";
+
+import { z } from "zod";
+
 export async function createNewBlogPost() {
   try {
     const res = await prisma.folder.create({
@@ -55,24 +59,44 @@ export async function createNewUndefinedPost() {
   }
 }
 
-export async function handleLoginAction(prevState, formData) {
+export async function loginFormAction(prevState, formData) {
   try {
-    const email = formData.get("email");
-    const password = formData.get("password");
+    
+
+    const schema = z.object({
+      username: z.string().min(5),
+      username: z.string().min(5),
+    });
+    
+    
+    const parse = schema.safeParse({
+      username: formData.get("username"),
+      password: formData.get("password"),
+    });
+
+    console.log("aAS",parse)
+    if (!parse.success) {
+      return { message: "Failed to authenticate" };
+    }
+
+    const data = parse.data;
+
+    console.log(data);
 
     const res = await prisma.user.findFirst({
       where: {
-        email: email,
+        email: data.email,
       },
     });
 
     if (!res) {
-      return { ok: false, error: "Email is not in the db" };
+      return { message: "Failed to authenticate" };
     }
 
-    return { ok: true, error: "" };
+    revalidatePath("/");
+    return { message: "Authenticated succesfully!" };
   } catch (error) {
-    return { error: error };
+    return { message: "Failed to authenticate" };
   }
 }
 

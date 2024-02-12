@@ -7,13 +7,15 @@ import React from "react";
 
 import { cn } from "@/lib/utils";
 import { Boxes } from "../ui/background-boxes";
+import ContactUsMain from "./contact-us-main";
 
 export function ContactUsHero() {
   return (
-    <div className="h-96 relative w-full overflow-hidden  flex flex-col items-center justify-center bg-blue-600">
-      <div className="absolute inset-0 w-full h-full bg-blue-600  z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
+    <section className="py-[20vh] w-full rounded-md flex flex-col md:items-center md:justify-center bg-blue-600 antialiased bg-grid-white/[0.3] relative overflow-hidden">
+      {/* <div className="absolute inset-0 w-full h-full bg-blue-600  z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" /> */}
+      <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-blue-600 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
 
-      <Boxes />
+      {/* <Boxes /> */}
       <div className="space-y-2 relative z-[99] ">
         <h1 className="text-4xl text-white font-bold tracking-tighter sm:text-5xl md:text-6xl/relaxed">
           Get in Touch
@@ -23,6 +25,7 @@ export function ContactUsHero() {
               you as soon as possible.`}
         </p>
       </div>
-    </div>
+      <ContactUsMain />
+    </section>
   );
 }

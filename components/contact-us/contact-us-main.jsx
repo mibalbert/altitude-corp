@@ -9,7 +9,7 @@ import Image from "next/image";
 
 const ContactUsMain = () => {
   return (
-    <div className="relative w-full py-20   pb-52 ">
+    <div className="relative w-full py-20 ">
       {/* <Image
         width={1000}
         height={1000}
@@ -29,40 +29,42 @@ const ContactUsMain = () => {
 </div> */}
 
       <div className="z-[99] container grid md:gap-8 lg:grid-cols-12 xl:gap-12">
-        <div className="space-y-4 md:col-start-4 md:col-span-6 lg:col-start-3 lg:col-span-8 xl:col-start-4 xl:col-span-6">
-          <h1 className="text-center font-bold tracking-tighter text-2xl  text-gray-600">
+        <div className="space-y-6 md:col-start-4 md:col-span-6 lg:col-start-3 lg:col-span-8 xl:col-start-4 xl:col-span-6">
+          <h1 className="text-center font-bold tracking-tighter text-2xl  text-white">
             Contact form
           </h1>
-          <div className="grid gap-4">
-            <div className="grid gap-1.5">
-              <label
-                className="block text-sm font-semibold peer-required::after peer-required:content-['
-              *'] peer-required:pl-0.5 text-gray-600 transition-all"
-                htmlFor="name"
-              >
-                Name
-              </label>
-              <Input id="name" placeholder="Enter your name" required />
+          <div className="grid gap-5">
+            <div className="grid grid-cols-2 gap-10">
+              <div className="grid gap-1.5">
+                <label
+                  className="block text-sm font-semibold peer-required::after peer-required:content-['
+                *'] peer-required:pl-0.5 text-white transition-all"
+                  htmlFor="name"
+                >
+                  Name
+                </label>
+                <Input id="name" placeholder="Enter your name" required />
+              </div>
+              <div className="grid gap-1.5">
+                <label
+                  className="block text-sm font-semibold peer-required::after peer-required:content-['
+                *'] peer-required:pl-0.5 text-white transition-all"
+                  htmlFor="email"
+                >
+                  Email
+                </label>
+                <Input
+                  id="email"
+                  placeholder="Enter your email"
+                  required
+                  type="email"
+                />
+              </div>
             </div>
             <div className="grid gap-1.5">
               <label
                 className="block text-sm font-semibold peer-required::after peer-required:content-['
-              *'] peer-required:pl-0.5 text-gray-600 transition-all"
-                htmlFor="email"
-              >
-                Email
-              </label>
-              <Input
-                id="email"
-                placeholder="Enter your email"
-                required
-                type="email"
-              />
-            </div>
-            <div className="grid gap-1.5">
-              <label
-                className="block text-sm font-semibold peer-required::after peer-required:content-['
-              *'] peer-required:pl-0.5 text-gray-600 transition-all"
+              *'] peer-required:pl-0.5 text-white transition-all"
                 htmlFor="subject"
               >
                 Subject
@@ -76,7 +78,7 @@ const ContactUsMain = () => {
             <div className="grid gap-1.5">
               <label
                 className="block text-sm font-semibold peer-required::after peer-required:content-['
-              *'] peer-required:pl-0.5 text-gray-600 transition-all"
+              *'] peer-required:pl-0.5 text-white transition-all"
                 htmlFor="message"
               >
                 Message
@@ -87,7 +89,7 @@ const ContactUsMain = () => {
                 required
               />
             </div>
-            <Button size="lg" className="bg-blue-600">
+            <Button size="lg" className="bg-blue-900 mt-6">
               Submit
               <ArrowRightIcon className="ml-2 h-4 w-4" />
             </Button>

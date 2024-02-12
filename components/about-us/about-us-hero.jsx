@@ -11,7 +11,7 @@ import { Spotlight } from "../ui/spotlight";
 
 const AboutUsHero = () => {
   return (
-    <section className="h-[40rem] w-full rounded-md flex md:items-center md:justify-center bg-blue-600/[0.96] antialiased bg-grid-white/[0.2] relative overflow-hidden">
+    <section className="h-[40rem] w-full rounded-md flex md:items-center md:justify-center bg-blue-600 antialiased bg-dot-white/[0.6] relative overflow-hidden">
       {/* Radial gradient for the container to give a faded look */}
       <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-blue-600 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
 
