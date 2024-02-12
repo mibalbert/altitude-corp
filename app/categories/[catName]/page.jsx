@@ -1,5 +1,5 @@
 import { TPost } from "@/app/types";
-import Post from "@/components/Post";
+import Post from "@/to-be-used/post";
 
 const getPosts = async (catName) => {
   try {

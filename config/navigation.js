@@ -15,6 +15,22 @@ const navigationConfig = {
       href: "/blog",
     },
     {
+      title: "Services",
+      href: "/services",
+    },
+    {
+      title: "Resources",
+      href: "/resources",
+    },
+    {
+      title: "FAQ",
+      href: "/faq",
+    },
+    {
+      title: "About Us",
+      href: "/about-us",
+    },
+    {
       title: "Contact Us",
       href: "/contact-us",
     },
@@ -187,7 +203,7 @@ const navigationConfig = {
           href: "/admin/dashboard",
         },
         {
-          title: "Users", 
+          title: "Users",
           href: "/admin/users",
         },
         {

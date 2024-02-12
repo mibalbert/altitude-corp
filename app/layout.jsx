@@ -4,11 +4,12 @@
 
 import "./globals.css";
 import { Inter } from "next/font/google";
-import { NextAuthProvider } from "@/components/Providers";
-import { Toaster } from "react-hot-toast";
-import MainNav from "@/components/navigation/MainNav";
+import { NextAuthProvider } from "@/components/providers/session-provider";
+import { Toaster } from "sonner";
+import MainNav from "@/components/navigation/main-nav";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth-options";
+import Footer from "@/components/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,12 +25,10 @@ export default async function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <NextAuthProvider>
-          <div className="">
-            <MainNav session={session} />
-            <div>{children}</div>
-          </div>
-
-          <Toaster />
+          <Toaster position="bottom-center" />
+          <MainNav session={session} />
+          <>{children}</>
+          <Footer />
         </NextAuthProvider>
       </body>
     </html>

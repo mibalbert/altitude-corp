@@ -2,6 +2,7 @@
  * page.tsx
  */
 
+import ContactUsInsidePage from "@/components/contact-us/contact-us-inside-page";
 import {
   Hero,
   Elevator,
@@ -11,12 +12,8 @@ import {
   Reviews,
   LandingFooter,
 } from "@/components/landing-page/index";
-import { authOptions } from "@/lib/auth-options";
-import { getServerSession } from "next-auth";
 
 export default async function Home() {
-  const sess = await getServerSession(authOptions);
-
   let data;
   try {
     const res = await prisma.home.findMany();
@@ -27,13 +24,14 @@ export default async function Home() {
 
   return (
     <section className=" ">
-      <Hero session={sess} />
+      <Hero />
       <Elevator />
       <PeaceOfMind />
       <Numbers />
       <Plans />
       <Reviews />
       <LandingFooter />
+      <ContactUsInsidePage />
     </section>
   );
 }

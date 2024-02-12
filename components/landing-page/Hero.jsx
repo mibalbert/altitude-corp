@@ -2,23 +2,29 @@
  * landing-page/Hero.jsx
  */
 
-import React from "react";
-import prisma from "@/lib/prismadb";
+"use client";
 
-const Hero = async ({ session }) => {
-  const data = await prisma.user.findMany();
+import { useEffect } from "react";
+import styles from "./page.module.css";
+import GSAP from "./gsap";
+import Lenis from "@studio-freight/lenis";
+
+const Hero = () => {
+  // useEffect(() => {
+  //   const lenis = new Lenis();
+
+  //   function raf(time) {
+  //     lenis.raf(time);
+  //     requestAnimationFrame(raf);
+  //   }
+
+  //   requestAnimationFrame(raf);
+  // }, []);
 
   return (
-    <section className="h-[85vh]">
-      <div className="w-full h-full  flex items-center justify-center ">
-        {session && <pre>{JSON.stringify(session, null, 2)}</pre>}
-        {/* 
-        {session && <pre>{JSON.stringify(session, null, 2)}</pre>}
-        <div className="w-44 h-44 bg-blue-600 rounded-full">
-          {data && <pre>{JSON.stringify(data, null, 2)}</pre>}
-        </div> */}
-      </div>
-    </section>
+    <main className={styles.main}>
+      <GSAP />
+    </main>
   );
 };
 

@@ -64,43 +64,44 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-model Category {
-    id        Int     @id @default(autoincrement())
-  categName String?   @unique
-  posts   Post[]
-  // postIDs String[]
-}
-
-model Post {  
-  id        Int     @id @default(autoincrement())
-  title       String?
-  content     String?
-  imageUrl    String?
-  publicId    String?
-  categName     String?
-  category    Category? @relation(fields: [categName], references: [categName])
-  author      User?      @relation(fields: [authorEmail], references: [id])
-  authorEmail String? 
-  links       Links[]
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-
-  @@index([categName])
-  @@index([authorEmail])
-}
-
-model Links {
-  id        Int     @id @default(autoincrement())
-  Post   Post? @relation(fields: [postId], references: [id]) // A comment can have one post
-  postId Int?
-
-  @@index([postId])
-}
-
 
 model Home {
     id        Int     @id @default(autoincrement())
   heroTitle  String?  @db.LongText
   heroSub    String?  @db.LongText
   heroButton String?
+
+
+}
+
+model Folder {
+  id             Int      @id @default(autoincrement())
+  title          String?
+  userId         String?
+  icon           String?
+  posts          Post[]
+  parentFolder   Int?
+  // folders         Folder[] @relation("folders")
+  // foldersRelation Folder[] @relation("folders")
+
+}
+
+
+model Post {
+  id           String    @id @default(uuid())
+  title        String?
+  content      String?
+  coverImage   String?
+  isArchived   Boolean?
+  isPublished  Boolean
+  publicId     String?
+  folder       Folder?   @relation(fields: [folderId], references: [id], onDelete: Cascade)
+  folderId     Int?   
+  author       User?     @relation(fields: [authorEmail], references: [email])
+  authorEmail  String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([authorEmail])
+  @@index([folderId])
 }

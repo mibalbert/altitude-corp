@@ -2,7 +2,7 @@
  * admin/page.jsx
  */
 
-import Post from "@/components/Post";
+// import Post from "@/to-be-used/post";
 import Link from "next/link";
 import prisma from "@/lib/prismadb";
 
@@ -11,23 +11,24 @@ export default async function AdminHome() {
 
   return (
     <div>
-      <h1>My Posts</h1>
-
+      <h1>Here are your Posts</h1>
+{/* 
       {posts && posts.length > 0 ? (
-        posts.map((post) => (
-          <Post
-            key={post.id}
-            id={post.id}
-            author={""}
-            authorEmail={post.authorEmail}
-            date={post.createdAt}
-            thumbnail={post.imageUrl}
-            category={post.catName}
-            title={post.title}
-            content={post.content}
-            links={post.links || []}
-          />
-        ))
+        posts.map((post, idx) => {
+          // <Post
+          //   key={post.id}
+          //   id={post.id}
+          //   author={""}
+          //   authorEmail={post.authorEmail}
+          //   date={post.createdAt}
+          //   thumbnail={post.imageUrl}
+          //   category={post.catName}
+          //   title={post.title}
+          //   content={post.content}
+          //   links={post.links || []}
+          // />
+          return <div key={idx}>{post.title}</div>;
+        })
       ) : (
         <div className="py-6">
           No posts created yet.{" "}
@@ -35,7 +36,7 @@ export default async function AdminHome() {
             Create New
           </Link>
         </div>
-      )}
+      )} */}
     </div>
   );
 }

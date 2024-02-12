@@ -2,53 +2,34 @@
  * blog/page.jsx
  */
 
-import CategoriesList from "@/components/CategoriesList";
-import Post from "@/components/Post";
+import CategBlogList from "@/components/blogs-page/categ-blog-list";
+import BlogsPageHero from "@/components/blogs-page/blogs-page-hero";
+import FeaturedBlogList from "@/components/blogs-page/featuted-blog-list";
+import ALotOfBlogPosts from "@/components/blogs-page/a-lot-of-blog-posts";
+import SubscribeToNewsletter from "@/components/subscribe-to-newsletter";
 
-const getPosts = async () => {
-  try {
-    // const res = await fetch(`${process.env.NEXTAUTH_URL}/api/posts`, {
-    //   cache: "no-store",
-    // });
+{
+  /* <div>Blog</div>
+<div>Educational Content</div>
+<div>Industry analysis</div>
+<div>Newsletter SignUp</div>
+<div>-Encourage visitors to subscribe for regular updates</div>
+<div></div> */
+}
 
-    const res = await prisma.Post.findMany();
-    if (res) {
-      return res;
-    }
-    // if (res.ok) {
-    //   const posts = await res.json();
-    //   return posts;
-    // }
-  } catch (error) {
-    console.log(error);
-  }
-
-  return null;
+const Blog = () => {
+  return (
+    <section>
+      <BlogsPageHero />
+      <FeaturedBlogList />
+      <CategBlogList />
+      <ALotOfBlogPosts />
+      <div className="container">
+        <hr></hr>
+      </div>
+      <SubscribeToNewsletter />
+    </section>
+  );
 };
 
-export default async function Blog() {
-  const posts = await getPosts();
-  return (
-    <div className="w-full max-w-7xl mx-auto">
-      <CategoriesList />
-      {posts && posts.length > 0 ? (
-        posts.map((post) => (
-          <Post
-            key={post.id}
-            id={post.id}
-            author={post.author.name}
-            authorEmail={post.authorEmail}
-            date={post.createdAt}
-            thumbnail={post.imageUrl}
-            category={post.catName}
-            title={post.title}
-            content={post.content}
-            links={post.links || []}
-          />
-        ))
-      ) : (
-        <div className="py-6">No posts to display</div>
-      )}
-    </div>
-  );
-}
+export default Blog;

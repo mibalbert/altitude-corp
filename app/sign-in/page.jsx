@@ -1,4 +1,4 @@
-import SignInForm from "@/components/SignInForm";
+import SignInForm from "@/components/admin/sign-in-form";
 import { authOptions } from "@/lib/auth-options";
 import { getServerSession } from "next-auth/next";
 
