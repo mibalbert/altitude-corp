@@ -1,7 +1,5 @@
 /**
- * v0 by Vercel.
- * @see https://v0.dev/t/kPB4B2RVKv9
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
+ * forth-blog-idea.jsx
  */
 import Link from "next/link"
 import { CarouselItem, CarouselContent, CarouselPrevious, CarouselNext, Carousel } from "@/components/ui/carousel"

@@ -12,14 +12,6 @@ import Plans from "@/components/landing-page/plans";
 import Reviews from "@/components/landing-page/reviews";
 
 export default async function Home() {
-  // let data;
-  // try {
-  //   const res = await prisma.home.findMany();
-  //   if (res) data = res;
-  // } catch (error) {
-  //   console.log(error);
-  // }
-
   return (
     <section className=" ">
       <Hero />
@@ -29,7 +21,7 @@ export default async function Home() {
       <Plans />
       <Reviews />
       <LandingFooter />
-      <ContactUsInsidePage />
+      {/* <ContactUsInsidePage /> */}
     </section>
   );
 }
