@@ -1,3 +1,4 @@
+import { Activity, GitCompareArrowsIcon, Landmark } from "lucide-react";
 import React from "react";
 
 const Values = () => {
@@ -10,25 +11,26 @@ const Values = () => {
           </div>
           <div className="grid gap-4 md:grid-cols-2 lg:gap-6">
             <div className="flex items-start gap-4">
-              <AccessibilityIcon className="w-8 h-8 flex-shrink-0" />
+              <GitCompareArrowsIcon className="w-8 h-8 flex-shrink-0" />
               <div className="space-y-2">
                 <h3 className="text-xl font-bold">Accessibility</h3>
                 <p className="text-gray-500 md:text-base/relaxed lg:text-sm/relaxed xl:text-base/relaxed dark:text-gray-400">
-                  We are committed to creating a web that is open and available
-                  to all. Our dedication to accessibility ensures that everyone
-                  can experience the internet, regardless of ability.
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Maiores totam id vitae laborum eveniet voluptatum distinctio
+                  voluptatem dolorem soluta, fuga error accusamus fugit quidem?
+                  Accusamus et at excepturi praesentium magnam.
                 </p>
               </div>
             </div>
             <div className="flex items-start gap-4">
-              <SmartphoneIcon className="w-8 h-8 flex-shrink-0" />
+              <Landmark className="w-8 h-8 flex-shrink-0" />
               <div className="space-y-2">
-                <h3 className="text-xl font-bold">Innovation</h3>
+                <h3 className="text-xl font-bold">Stability</h3>
                 <p className="text-gray-500 md:text-base/relaxed lg:text-sm/relaxed xl:text-base/relaxed dark:text-gray-400">
-                  We are constantly pushing the boundaries of what is possible
-                  on the web. Our team is dedicated to innovation, always
-                  looking for new and creative ways to improve the online
-                  experience.
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Delectus suscipit maiores ut, culpa, voluptatibus similique
+                  possimus dolor non repudiandae necessitatibus eaque quidem a
+                  quis. Magni nisi laudantium quod quibusdam corporis!
                 </p>
               </div>
             </div>
@@ -37,9 +39,22 @@ const Values = () => {
               <div className="space-y-2">
                 <h3 className="text-xl font-bold">Collaboration</h3>
                 <p className="text-gray-500 md:text-base/relaxed lg:text-sm/relaxed xl:text-base/relaxed dark:text-gray-400">
-                  We believe in the power of teamwork. Collaboration is at the
-                  heart of everything we do, both internally and with our
-                  clients. By working together, we can achieve great things.
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Voluptatibus velit quasi necessitatibus nihil deserunt modi
+                  reiciendis delectus, exercitationem corrupti quibusdam facilis
+                  repudiandae vel illo quo dolorum. Placeat laborum autem sunt?
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4">
+              <Activity className="w-8 h-8 flex-shrink-0" />
+              <div className="space-y-2">
+                <h3 className="text-xl font-bold">Foresee</h3>
+                <p className="text-gray-500 md:text-base/relaxed lg:text-sm/relaxed xl:text-base/relaxed dark:text-gray-400">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Voluptatibus velit quasi necessitatibus nihil deserunt modi
+                  reiciendis delectus, exercitationem corrupti quibusdam facilis
+                  repudiandae vel illo quo dolorum. Placeat laborum autem sunt?
                 </p>
               </div>
             </div>

@@ -2,6 +2,8 @@
  * admin/edit-landing-page/page.jsx
  */
 
+import prisma from "@/lib/prismadb";
+
 const EditLandingPage = async () => {
   const data = await prisma.home.findMany({});
 

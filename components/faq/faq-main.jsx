@@ -11,7 +11,7 @@ const FAQMain = () => {
       <div className="container px-4 md:px-6 space-y-20">
         <div className="space-y-4 text-center">
           <div className="space-y-2">
-            <h1 className="text-3xl text-blue-600 font-bold tracking-tighter sm:text-4xl md:text-5xl">
+            <h1 className="text-3xl   font-bold tracking-tighter sm:text-4xl md:text-5xl">
               FAQ
             </h1>
             <p className="max-w-[600px] mx-auto text-gray-500 md:text-xl/relaxed dark:text-gray-400">
@@ -27,7 +27,7 @@ const FAQMain = () => {
         <div className="mx-auto max-w-3xl grid gap-4 md:gap-8 lg:max-w-5xl">
           <div className="border rounded-lg">
             <div className="grid items-center grid-cols-2 px-4 cursor-pointer">
-              <p className="py-4">What is your return policy?</p>
+              <p className="py-4">Lorem ipsum dolor sit amet?</p>
               {/* <ChevronDownIcon className="h-6 w-6 justify-self-end" /> */}
             </div>
             <div className="border-t px-4">
@@ -41,7 +41,7 @@ const FAQMain = () => {
           </div>
           <div className="border rounded-lg">
             <div className="grid items-center grid-cols-2 px-4 cursor-pointer">
-              <p className="py-4">Can I exchange an item?</p>
+              <p className="py-4">Lorem ipsum dolor sit amet?</p>
               {/* <ChevronDownIcon className="h-6 w-6 justify-self-end" /> */}
             </div>
             <div className="border-t px-4">
@@ -55,7 +55,7 @@ const FAQMain = () => {
           </div>
           <div className="border rounded-lg">
             <div className="grid items-center grid-cols-2 px-4 cursor-pointer">
-              <p className="py-4">How long does shipping take?</p>
+              <p className="py-4">Lorem ipsum dolor sit amet?</p>
               {/* <ChevronDownIcon className="h-6 w-6 justify-self-end" /> */}
             </div>
             <div className="border-t px-4">
@@ -69,7 +69,7 @@ const FAQMain = () => {
           </div>
           <div className="border rounded-lg">
             <div className="grid items-center grid-cols-2 px-4 cursor-pointer">
-              <p className="py-4">What payment methods do you accept?</p>
+              <p className="py-4">Lorem ipsum dolor sit amet?</p>
               {/* <ChevronDownIcon className="h-6 w-6 justify-self-end" /> */}
             </div>
             <div className="border-t px-4">

@@ -3,7 +3,7 @@ import React from "react";
 
 const LandingFooter = () => {
   return (
-    <section className="relative pt-28 pb-32 bg-indigo-600 overflow-hidden">
+    <section className="relative pt-28 pb-32 bg-blue-600 overflow-hidden">
       <Image
         width={500}
         height={500}
@@ -15,12 +15,12 @@ const LandingFooter = () => {
         <div className="flex flex-wrap -m-8">
           <div className="w-full md:w-1/2 p-8">
             <div className="lg:max-w-sm">
-              <h2 className="mb-16 text-6xl md:text-7xl text-white font-bold tracking-px-n leading-tight">
-                Start protecting your assets
+              <h2 className="mb-16 text-5xl md:text-6xl text-white font-bold tracking-px-n leading-tight">
+                Start protecting your bussiness reveneue
               </h2>
               <div className="md:inline-block">
                 <button
-                  className="py-4 px-6 w-full text-indigo-600 font-semibold rounded-xl shadow-4xl focus:ring focus:ring-indigo-300 bg-white hover:bg-gray-50 transition ease-in-out duration-200"
+                  className="py-4 px-6 w-full text-blue-600 font-semibold rounded-xl shadow-4xl focus:ring focus:ring-blue-300 bg-white hover:bg-gray-50 transition ease-in-out duration-200"
                   type="button"
                 >
                   Get A Free Quote
@@ -37,7 +37,7 @@ const LandingFooter = () => {
                       className="text-white hover:text-gray-200 font-medium leading-relaxed"
                       href="#"
                     >
-                      About
+                      Germany
                     </a>
                   </li>
                   <li className="mb-3.5">
@@ -45,7 +45,7 @@ const LandingFooter = () => {
                       className="text-white hover:text-gray-200 font-medium leading-relaxed"
                       href="#"
                     >
-                      Product
+                      United Kingdom
                     </a>
                   </li>
                   <li className="mb-3.5">
@@ -53,7 +53,7 @@ const LandingFooter = () => {
                       className="text-white hover:text-gray-200 font-medium leading-relaxed"
                       href="#"
                     >
-                      Testimonials
+                      Spain
                     </a>
                   </li>
                   <li>
@@ -61,7 +61,7 @@ const LandingFooter = () => {
                       className="text-white hover:text-gray-200 font-medium leading-relaxed"
                       href="#"
                     >
-                      Services
+                      United States
                     </a>
                   </li>
                 </ul>
@@ -73,7 +73,7 @@ const LandingFooter = () => {
                       className="text-white hover:text-gray-200 font-medium leading-relaxed"
                       href="#"
                     >
-                      Docs
+                      Italy
                     </a>
                   </li>
                   <li className="mb-3.5">
@@ -81,7 +81,7 @@ const LandingFooter = () => {
                       className="text-white hover:text-gray-200 font-medium leading-relaxed"
                       href="#"
                     >
-                      Knowledge Base
+                      Morocco
                     </a>
                   </li>
                   <li>
@@ -89,7 +89,7 @@ const LandingFooter = () => {
                       className="text-white hover:text-gray-200 font-medium leading-relaxed"
                       href="#"
                     >
-                      Insights
+                      Malaga
                     </a>
                   </li>
                 </ul>
@@ -109,7 +109,8 @@ const LandingFooter = () => {
                       className="text-white hover:text-gray-200 font-medium leading-relaxed"
                       href="#"
                     >
-                      USA
+                      {" "}
+                      Japan
                     </a>
                   </li>
                   <li>
@@ -127,7 +128,8 @@ const LandingFooter = () => {
               className="text-sm text-white text-opacity-50 font-medium leading-relaxed"
               href="https://www.pixelrocket.store"
             >
-              Want to download this free template? Visit pixelrocket.store
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+              Voluptatem quis nam tenetur itaque.
             </a>
           </div>
         </div>

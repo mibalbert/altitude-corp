@@ -5,7 +5,7 @@ const PeaceOfMind = () => {
   return (
     <section className="pt-28 pb-40 bg-white overflow-hidden">
       <div className="container px-4 mx-auto">
-        <h2 className="mb-20 text-6xl md:text-8xl xl:text-10xl font-bold font-heading tracking-px-n leading-none">
+        <h2 className="mb-20 text-4xl md:text-6xl xl:text-7xl font-bold font-heading tracking-px-n leading-none">
           Enjoy peace of mind
         </h2>
         <div className="flex flex-wrap xl:items-center -m-8 xl:-m-10">
@@ -32,7 +32,7 @@ const PeaceOfMind = () => {
               <div className="flex flex-wrap -m-8">
                 <div className="w-auto md:w-1/2 p-8">
                   <div className="md:max-w-xs">
-                    <h3 className="mb-4 text-lg text-indigo-600 font-semibold">
+                    <h3 className="mb-4 text-lg text-blue-600 font-semibold">
                       24/7 Secure Access
                     </h3>
                     <p className="text-gray-900 font-medium">
@@ -43,7 +43,7 @@ const PeaceOfMind = () => {
                 </div>
                 <div className="w-auto md:w-1/2 p-8">
                   <div className="md:max-w-xs">
-                    <h3 className="mb-4 text-lg text-indigo-600 font-semibold">
+                    <h3 className="mb-4 text-lg text-blue-600 font-semibold">
                       Access Logs
                     </h3>
                     <p className="text-gray-900 font-medium">

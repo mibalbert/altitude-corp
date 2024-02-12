@@ -55,7 +55,7 @@ const Resources = () => {
         relevant to your services.
       </div>
       <div></div> */}
-      <div className="container grid gap-4 items-center justify-center px-4 text-center md:gap-24 md:px-6">
+      <div className="container grid gap-4 items-center justify-center px-4 text-center md:gap-24 md:px-6 pb-52">
         <div className="space-y-3">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
             Resources

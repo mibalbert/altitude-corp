@@ -27,8 +27,7 @@ const AboutUsHero = () => {
               The Web. Now. Yours.
             </h1>
             <p className="mx-auto max-w-[700px] text-gray-50 md:text-xl dark:text-gray-400">
-              The platform for the future of the web. One workflow. Any
-              framework.
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore ipsum officia quas.
             </p>
           </div>
           {/* <div className="w-full max-w-sm space-y-2">

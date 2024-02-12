@@ -12,16 +12,16 @@ import Image from "next/image";
 const ServicesHero = () => {
   return (
     <section className="bg-gray-100  ">
-      <div className="max-w-screen-2xl  w-full mx-auto  py-12 md:py-24 ">
-        <div className="grid grid-cols-5 gap-20 items-center w-full h-full ">
+      <div className="max-w-screen-2xl  w-full mx-auto  py-12 md:py-24 px-12 sm:px-22 md:px-32 lg:px-5">
+        <div className="grid lg:grid-cols-5 gap-20 items-center w-full h-full ">
           <div className="space-y-6  col-span-2">
             <h1 className="text-6xl font-bold">
               Grow Professionally with the Best
             </h1>
             <p className="text-xl">
-              In a world filled with opportunities, having a mentor can make all
-              the difference. Explore why people turn to this invaluable
-              resource to unlock their potential.
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. In
+              accusamus fugiat, mollitia atque id minus veritatis minima
+              pariatur cum quasi!
             </p>
             {/* <div className="flex space-x-4">
               <Input className="w-80" placeholder="example@domain.com" />
