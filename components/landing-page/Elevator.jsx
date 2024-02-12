@@ -3,13 +3,13 @@ import React from "react";
 
 const Elevator = () => {
   return (
-    <section className="py-24 bg-indigo-600 overflow-hidden">
+    <section className="py-24 bg-blue-600 overflow-hidden">
       <div className="container px-4 mx-auto">
         <div className="flex flex-wrap -m-8">
           <div className="w-full md:w-1/2 lg:w-1/3 p-8">
             <div className="xl:pt-12">
               <h2 className="mb-7 text-6xl md:text-7xl text-white font-bold tracking-px-n leading-tight">
-                Trusted by over 50,000 users since 2014.
+                Lorem ipsum dolor sit amet 50.000 adipisicing.
               </h2>
               <p className="text-white text-opacity-80">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eu
@@ -32,13 +32,13 @@ const Elevator = () => {
                   style={{ backdropFilter: "blur(10px)" }}
                 >
                   <p className="mb-3 font-sans inline-block px-3.5 py-1.5 text-xs text-white font-semibold bg-red-500 uppercase tracking-px rounded-full">
-                    Secure
+                    Lorem
                   </p>
                   <h3 className="mb-3 text-xl font-bold font-heading">
-                    Access your digital assets from anywhere
+                    Lorem ipsum dolor sit amet.
                   </h3>
                   <p className="text-sm text-gray-600 font-semibold">
-                    4096 people are joining
+                    4096 nihil tenetur libero.
                   </p>
                 </div>
               </div>
@@ -50,7 +50,7 @@ const Elevator = () => {
                 <div className="w-full p-10">
                   <div className="md:max-w-sm">
                     <h3 className="mb-5 text-2xl text-white font-bold leading-snug">
-                      Unlimited Storage
+                      Adipisicing elit.
                     </h3>
                     <p className="text-white text-opacity-70 font-medium leading-relaxed">
                       Amet minim mollit non deserunt ullamco est sit aliqua
@@ -60,7 +60,7 @@ const Elevator = () => {
                   </div>
                 </div>
                 <div className="w-full px-10">
-                  <div className="h-px bg-indigo-500" />
+                  <div className="h-px bg-blue-500" />
                 </div>
                 <div className="w-full p-10">
                   <div className="md:max-w-sm">

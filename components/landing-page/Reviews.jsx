@@ -2,7 +2,7 @@ import React from "react";
 
 const Reviews = () => {
   return (
-    <section className="py-24 bg-white overflow-hidden">
+    <section className="pb-24 pt-10 bg-white overflow-hidden">
       <div className="container px-4 mx-auto">
         <div className="flex flex-wrap -m-8">
           <div className="w-full md:w-1/3 p-8">
@@ -80,7 +80,7 @@ const Reviews = () => {
                 </div>
               </div>
               <h3 className="mb-4 text-2xl font-semibold leading-snug">
-                <span>“An absolute revelation for security.”</span>
+                <span>“An absolute revelation for finance.”</span>
               </h3>
               <p className="text-gray-600 font-medium">Forbes Magazine</p>
             </div>
@@ -240,7 +240,7 @@ const Reviews = () => {
                 </div>
               </div>
               <h3 className="mb-4 text-2xl font-semibold leading-snug">
-                <span>“Vault makes my online life easier”</span>
+                <span>“Vault makes my overall life easier”</span>
               </h3>
               <p className="text-gray-600 font-medium">Forbes Magazine</p>
             </div>

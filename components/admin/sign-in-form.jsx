@@ -21,6 +21,7 @@ import { Button } from "@/components/ui/button";
 
 import { useFormState, useFormStatus } from "react-dom";
 import { loginFormAction } from "@/app/_actions";
+import { ArrowRightIcon } from "lucide-react";
 
 const initialState = {
   message: "",
@@ -48,8 +49,8 @@ export default function SignInBtns() {
 
   return (
     <div className="min-h-[80dvh] flex items-center justify-center">
-      <Card className="mx-auto max-w-sm pb-5">
-        <CardHeader className="space-y-1">
+      <Card className="mx-auto max-w-sm   border-none shadow-none">
+        <CardHeader className="space-y-1 py-0">
           <CardTitle className="text-2xl font-bold">Log In</CardTitle>
           <CardDescription>
             Enter your username below to log in to your account
@@ -80,6 +81,7 @@ export default function SignInBtns() {
             </p>
             <Button className="w-full" type="submit" aria-disabled={pending}>
               Log In
+              <ArrowRightIcon className="ml-2 h-4 w-4" />
             </Button>
           </form>
         </CardContent>

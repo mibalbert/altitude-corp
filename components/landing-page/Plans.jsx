@@ -4,7 +4,7 @@ const Plans = () => {
   return (
     <section className="pt-24 pb-28 bg-blueGray-50 overflow-hidden">
       <div className="container px-4 mx-auto">
-        <h2 className="mb-24 text-6xl md:text-7xl font-bold font-heading text-center tracking-px-n leading-tight md:max-w-xl mx-auto">
+        <h2 className="mb-24 text-5xl md:text-6xl font-bold font-heading text-center tracking-px-n leading-tight md:max-w-3xl mx-auto">
           Choose a plan that suits your requirements
         </h2>
         <div className="mb-24 md:max-w-6xl mx-auto">
@@ -15,7 +15,7 @@ const Plans = () => {
                 style={{ backdropFilter: "blur(46px)" }}
               >
                 <div>
-                  <span className="mb-9 inline-block text-sm text-indigo-600 font-semibold uppercase tracking-px leading-snug">
+                  <span className="mb-9 inline-block text-sm text-blue-600 font-semibold uppercase tracking-px leading-snug">
                     Basic
                   </span>
                   <h3 className="mb-1 text-4xl text-gray-900 font-bold leading-none">
@@ -56,11 +56,11 @@ const Plans = () => {
                 className="absolute bottom-0 left-1/2 transform -translate-x-1/2"
                 src="/vault-assets/images/pricing/gradient3.svg"
               /> */}
-                <h2 className="absolute -top-8 text-2xl transform skew-x-3 px-3 bg-blue-600">
+                <h2 className="absolute top-0 -left-9 text-2xl transform -skew-y-12 px-3 text-white bg-blue-600">
                   Most Popular
                 </h2>
                 <div className="relative z-10">
-                  <span className="mb-9 inline-block text-sm text-indigo-600 font-semibold uppercase tracking-px leading-snug">
+                  <span className="mb-9 inline-block text-sm text-blue-600 font-semibold uppercase tracking-px leading-snug">
                     Standard
                   </span>
                   <h3 className="mb-1 text-4xl text-gray-900 font-bold leading-none">
@@ -74,7 +74,7 @@ const Plans = () => {
                     Egestas lacus, blan dit pellentesque.
                   </p>
                   <button
-                    className="py-4 px-10 w-full text-white font-semibold rounded-xl focus:ring focus:ring-indigo-300 bg-indigo-600 hover:bg-indigo-700 transition ease-in-out duration-200"
+                    className="py-4 px-10 w-full text-white font-semibold rounded-xl focus:ring focus:ring-blue-300 bg-blue-600 hover:bg-blue-700 transition ease-in-out duration-200"
                     type="button"
                   >
                     Get Started Now
@@ -88,7 +88,7 @@ const Plans = () => {
                 style={{ backdropFilter: "blur(46px)" }}
               >
                 <div>
-                  <span className="mb-9 inline-block text-sm text-indigo-600 font-semibold uppercase tracking-px leading-snug">
+                  <span className="mb-9 inline-block text-sm text-blue-600 font-semibold uppercase tracking-px leading-snug">
                     Pro
                   </span>
                   <h3 className="mb-1 text-4xl text-gray-900 font-bold leading-none">
