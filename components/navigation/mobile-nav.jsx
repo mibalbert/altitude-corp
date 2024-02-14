@@ -40,7 +40,7 @@ export function MobileNav({ session }) {
           <span className="sr-only">Toggle Menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="right" className="pr-0  md:px-10">
+      <SheetContent side="right" className="pr-0  z-[9999] md:px-10">
         <ScrollArea className="my-4 h-[calc(100vh-8rem)] px-[26px] ">
           <>
             {sideNav &&

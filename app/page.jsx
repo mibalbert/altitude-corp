@@ -9,12 +9,14 @@ import LandingFooter from "@/components/landing-page/landing-footer";
 import Numbers from "@/components/landing-page/numbers";
 import PeaceOfMind from "@/components/landing-page/peace-of-mind";
 import Plans from "@/components/landing-page/plans";
+import { InfiniteMovingCardsDemo } from "@/components/landing-page/rev";
 import Reviews from "@/components/landing-page/reviews";
 
 export default async function Home() {
   return (
     <section className=" ">
       <Hero />
+      <InfiniteMovingCardsDemo />
       <Elevator />
       <PeaceOfMind />
       <Numbers />

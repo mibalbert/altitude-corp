@@ -12,10 +12,10 @@ import Image from "next/image";
 const ServicesHero = () => {
   return (
     <section className="bg-gray-100  ">
-      <div className="max-w-screen-2xl  w-full mx-auto  py-12 md:py-24 px-12 sm:px-22 md:px-32 lg:px-5">
+      <div className="max-w-screen-2xl  w-full mx-auto  py-12 md:py-24 px-5  sm:px-16 md:px-24 lg:px-5">
         <div className="grid lg:grid-cols-5 gap-20 items-center w-full h-full ">
-          <div className="space-y-6  col-span-2">
-            <h1 className="text-6xl font-bold">
+          <div className="space-y-6  col-span-1 lg:col-span-2">
+            <h1 className="text-5xl md:text-6xl font-bold">
               Grow Professionally with the Best
             </h1>
             <p className="text-xl">
@@ -30,8 +30,8 @@ const ServicesHero = () => {
               </Button>
             </div> */}
           </div>
-          <div className="col-span-3 ">
-            <div className="grid grid-cols-4 grid-rows-3 gap-10 w-full h-full">
+          <div className="col-span-1 lg:col-span-3 max-w-[90%] mx-auto w-full md:max-w-[100%]">
+            <div className="grid grid-cols-4 grid-rows-3 gap-2  md:gap-10 w-full h-full">
               <span className=" bg-blue-600  rounded-full"></span>
               <Image
                 width={300}

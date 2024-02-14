@@ -9,6 +9,7 @@ import { v4 as uuidv4 } from "uuid";
 import { revalidatePath } from "next/cache";
 
 import { z } from "zod";
+import { signIn } from "next-auth/react";
 
 export async function createNewBlogPost() {
   try {
@@ -59,46 +60,57 @@ export async function createNewUndefinedPost() {
   }
 }
 
-export async function loginFormAction(prevState, formData) {
-  try {
-    
+// export async function loginFormAction(formData) {
+//   try {
+//     // const schema = z.object({
+//     //   username: z.string().min(5),
+//     //   password: z.string().min(5),
+//     // });
 
-    const schema = z.object({
-      username: z.string().min(5),
-      username: z.string().min(5),
-    });
-    
-    
-    const parse = schema.safeParse({
-      username: formData.get("username"),
-      password: formData.get("password"),
-    });
+//     // const parse = schema.safeParse({
+//     //   username: formData.get("username"),
+//     //   password: formData.get("password"),
+//     // });
 
-    console.log("aAS",parse)
-    if (!parse.success) {
-      return { message: "Failed to authenticate" };
-    }
 
-    const data = parse.data;
+//     // console.log("aAS", parse);
+//     // if (!parse.success) {
+//     //   return { message: "Failed to authenticate", ok: false };
+//     // }
 
-    console.log(data);
+//     // const data = parse.data;
 
-    const res = await prisma.user.findFirst({
-      where: {
-        email: data.email,
-      },
-    });
+//     // console.log("data", data);
 
-    if (!res) {
-      return { message: "Failed to authenticate" };
-    }
+//     // const res = await prisma.user.findFirst({
+//     //   where: {
+//     //     email: data.email,
+//     //   },
+//     // });
 
-    revalidatePath("/");
-    return { message: "Authenticated succesfully!" };
-  } catch (error) {
-    return { message: "Failed to authenticate" };
-  }
-}
+//     // if (!res) {
+//     //   return { message: "Failed to authenticate", ok: false };
+//     // }
+//     const username = formData.get("username");
+//     const password = formData.get("password");
+
+//     // if (username !== "bigboss") {
+//     //   return { message: "Failed to authenticate", ok: false };
+//     // }
+
+//     const res = await signIn("credentials", {
+//       username: username,
+//       password: password,
+//     });
+
+//     console.log(res);
+//     return { message: "Failed to authenticate", ok: false };
+
+//     // return { message: "Authenticated succesfully!", ok: true };
+//   } catch (error) {
+//     return { message: "Failed to authenticate", ok: false };
+//   }
+// }
 
 // export async function getSignedFileUrl(prevState, formData) {
 //   try {

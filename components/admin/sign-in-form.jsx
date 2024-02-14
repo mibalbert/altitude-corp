@@ -19,16 +19,16 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
-import { useFormState, useFormStatus } from "react-dom";
-import { loginFormAction } from "@/app/_actions";
 import { ArrowRightIcon } from "lucide-react";
+import { Spinner } from "../spinner";
+import { toast } from "sonner";
 
-const initialState = {
-  message: "",
-};
-
-export default function SignInBtns() {
+export default function SignInForm() {
+  const [pending, setPending] = useState(false);
   const [numTries, setNumTries] = useState(0);
+  const [error, setError] = useState("");
+
+  const router = useRouter();
 
   useEffect(() => {
     if (numTries > 5) {
@@ -36,35 +36,60 @@ export default function SignInBtns() {
     }
   }, [numTries]);
 
-  const [state, handleLoginAction] = useFormState(
-    loginFormAction,
-    initialState
-  );
-  const { pending } = useFormStatus();
   useEffect(() => {
-    state?.message.length > 0
-      ? setTimeout(() => (state.message = ""), 300)
-      : null;
-  }, [state]);
+    if (error.length > 0) {
+      setTimeout(() => setError(""), 3000);
+    }
+  }, [error]);
+
+  useEffect(() => {
+    if (numTries > 5) {
+      setTimeout(() => setNumTries(""), 6000);
+    }
+  }, [numTries, setNumTries]);
+
+  const handleLoginAction = async (e) => {
+    setPending(true);
+    e.preventDefault();
+
+    console.log(e.target.email.value);
+
+    const res = await signIn("credentials", {
+      email: e.target.email.value,
+      password: e.target.password.value,
+      // callbackUrl: "/",
+      redirect: false,
+    });
+
+    if (res.error) {
+      setNumTries((state) => state + 1);
+      setError(res.error.split(": ")[1]);
+      setPending(false);
+    } else {
+      toast.success("Succesfully logged in!");
+      setPending(false);
+      router.push("/");
+    }
+  };
 
   return (
     <div className="min-h-[80dvh] flex items-center justify-center">
       <Card className="mx-auto max-w-sm   border-none shadow-none">
-        <CardHeader className="space-y-1 py-0">
+        <CardHeader className="space-y-1 pb-4">
           <CardTitle className="text-2xl font-bold">Log In</CardTitle>
           <CardDescription>
-            Enter your username below to log in to your account
+            Enter your credentials below to log in to your account
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form action={handleLoginAction} className="space-y-4">
+          <form onSubmit={handleLoginAction} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="username">Username</Label>
+              <Label htmlFor="email">Email</Label>
               <Input
-                id="username"
+                id="email"
                 // placeholder="m@example.com"
                 required
-                type="username"
+                type="email"
               />
             </div>
             <div className="space-y-2">
@@ -76,12 +101,25 @@ export default function SignInBtns() {
                 Forgot your password?
               </Link>
             </div>
-            <p aria-live="polite" role="status">
-              {state?.message}
-            </p>
-            <Button className="w-full" type="submit" aria-disabled={pending}>
-              Log In
-              <ArrowRightIcon className="ml-2 h-4 w-4" />
+            {error && (
+              <p aria-live="polite" className="text-red-400" role="status">
+                {error}
+              </p>
+            )}
+
+            <Button
+              className="w-full"
+              type="submit"
+              disabled={pending || numTries > 5}
+            >
+              {pending ? (
+                <Spinner />
+              ) : (
+                <>
+                  Log In
+                  <ArrowRightIcon className="ml-2 h-4 w-4" />
+                </>
+              )}
             </Button>
           </form>
         </CardContent>

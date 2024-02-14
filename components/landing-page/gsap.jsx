@@ -1,8 +1,10 @@
 /**
- * components/landing-page/gsap.jsx
+ * gsap.jsx
  */
 
-import { useEffect, useRef } from "react";
+"use client";
+
+import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
@@ -10,126 +12,390 @@ import Image from "next/image";
 gsap.registerPlugin(ScrollTrigger);
 
 const GSAP = () => {
-  const container = useRef(null);
-  const imagesRef = useRef([]);
-  const title1 = useRef(null);
+  const mainRef = useRef(null);
+  const titleRef = useRef(null);
+  const skyRef = useRef(null);
+  const mountBgRef = useRef(null);
+  const mountMgRef = useRef(null);
+  const cloud2Ref = useRef(null);
+  const mountFgRef = useRef(null);
+  const cloud1Ref = useRef(null);
+  const cloud3Ref = useRef(null);
 
-  useEffect(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: container.current,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: true,
-      },
+  useLayoutEffect(() => {
+    gsap.set(".main", {
+      position: "fixed",
+      background: "#fff",
+      width: "100%",
+      maxWidth: "1200px",
+      height: "100%",
+      top: 0,
+      left: "50%",
+      x: "-50%",
     });
 
-    tl.to(title1.current, { y: 1000 }, 0)
-      .to(imagesRef.current[1], { y: -250 }, 0)
-      .to(imagesRef.current[2], { y: -455 }, 0)
-      .to(imagesRef.current[3], { y: -355 }, 0)
-      .to(imagesRef.current[4], { y: -455 }, 0)
-      .to(imagesRef.current[5], { y: -555 }, 0)
-      .to(imagesRef.current[6], { y: -655 }, 0)
-      .to(imagesRef.current[7], { y: -455 }, 0)
-      .to(imagesRef.current[8], { y: 755 }, 0)
-      .to(imagesRef.current[8], { y: -555 }, 0);
+    gsap.set(".scrollDist", {
+      width: "100%",
+      height: "200%",
+    });
 
-    return () => {
-      // Clean up the animation
-      tl.kill(); // or tl.revert();
-    };
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: ".scrollDist",
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 1,
+        },
+      })
+      .fromTo(".logo", { y: 0 }, { y: 1200 }, 0)
+      .fromTo(".sky", { y: 0 }, { y: -200 }, 0)
+      .fromTo(".cloud1", { y: 100 }, { y: -800 }, 0)
+      .fromTo(".cloud2", { y: 100 }, { y: -500 }, 0)
+      .fromTo(".cloud3", { y: 100 }, { y: -650 }, 0)
+      .fromTo(".mountBg", { y: 0 }, { y: -100 }, 0)
+      .fromTo(".mountMg", { y: 0 }, { y: -250 }, 0)
+      .fromTo(".mountFg", { y: 0 }, { y: -500 }, 0)
+      .fromTo(".rectang", { y: 0 }, { y: -200 }, 0);
+    // .fromTo(".title2",{ opacity: 0 }, { opacity: 1, y: 500 }, 0);
   }, []);
 
   return (
-    <div ref={container} className="relative h-[150vh] overflow-hidden">
-      <div className="flex justify-center relative">
-        <div
-          ref={(el) => (imagesRef.current[0] = el)}
-          className="absolute top-0 left-0 w-full h-screen bg-blue-600"
-        >
-          {/* <Image
-            class="sky"
-            src="https://assets.codepen.io/721952/sky.jpg"
-            // width="1200"
-            // height="590"
-            alt="img1"
-            fill
-          /> */}
+    <div className="bg-white pt-32 bg-dot-blue-600/[0.7] relative ">
+      <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+      <div
+        ref={mainRef}
+        className="h-[120vh]  rounded-xl bg-blue-600   relative  w-full max-w-[1500px] mx-auto bg-dot-white/[0.6]"
+      >
+        <div className="absolute pointer-events-none rounded-xl inset-0 flex items-center justify-center dark:bg-black bg-blue-600 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+
+        {/* <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+        <mask id="m">
+          <g className="cloud1" ref={cloud1Ref}>
+            <rect fill="#fff" width="100%" height="801" y="799" />
+            <Image
+              src="https://assets.codepen.io/721952/cloud1Mask.jpg"
+              width="1200"
+              height="800"
+              alt="cloud1"
+            />
+          </g>
+        </mask> */}
+        {/* <Image
+          className="theCloud absolute -z-10"
+          src="https://assets.codepen.io/721952/cloud1Mask.jpg"
+          width="1200"
+          height="800"
+          alt="cloud1"
+        />
+        <div className="absolute top-0 left-0 w-full max-w-[1200px] h-full max-h-[800px] bg-blue-600 z-10"></div> */}
+
+        {/* <Image
+          className="sky absolute"
+          src="https://assets.codepen.io/721952/sky.jpg"
+          width="1200"
+          height="590"
+          alt="sky"
+          ref={skyRef}
+        /> */}
+
+        {/* <div className="rectang absolute z-[99] 2xl:-left-[5%] w-[100%] 2xl:w-[110%] h-[54vh] bottom-0 bg-white blur-xl "></div> */}
+        <div className="absolute z-[99] rounde-b-xl w-full h-[43vh] bottom-0 bg-white  ">
+          {/* <div className="absolute z-[99] rounde-b-xl w-full h-[43vh] bottom-0 bg-white bg-dot-blue-600/[0.6]"> */}
+          {/* <div className="absolute pointer-events-none rounded-xl inset-0 flex items-center justify-center dark:bg-black bg-white  [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div> */}
         </div>
-        <div
-          ref={(el) => (imagesRef.current[1] = el)}
-          className="absolute top-[50vh] left-0 transform -translate-y-1/2 w-full h-[30vh] lg:top-[30vh] lg:w-[90vw] lg:h-[90vh] z-10"
-        >
+        {/* <div className="logo absolute z-[8] w-[40vw] h-[30vh] top-[15%] left-1/2 transform -translate-x-1/2 -translate-y-[15%]">
           <Image
-            class="mountBg"
-            src="https://assets.codepen.io/721952/mountBg.png"
-            alt="img2"
-            className="object-contain"
+            className="object-contain object-center"
+            src="/logo-transparent.svg"
+            // width={350}
+            // height={200}
             fill
+            alt="logo"
           />
+        </div> */}
+        <div className="logo absolute z-[8] top-[16%] left-1/2 transform -translate-x-1/2 -translate-y-[16%]">
+          <h1 className="text-7xl font-extrabold text-center  text-white">
+            ALTITUDE CORP
+          </h1>
+          <h3 className="text-4xl font-semibold text-center text-gray-200">
+            CLIMB HIGHER
+          </h3>
         </div>
-        <div
-          ref={(el) => (imagesRef.current[2] = el)}
-          className="absolute lg:top-[30vh] left-0 lg:w-[77vw] lg:h-[90vh] z-10"
-        >
-          <Image
-            class="mountMg"
-            src="https://assets.codepen.io/721952/mountMg.png"
-            className="object-contain"
-            alt="img3"
-            fill
-          />
-        </div>
-        <div
-          ref={(el) => (imagesRef.current[4] = el)}
-          className="absolute lg:top-[30vh] right-0 lg:w-[80vw] lg:h-[90vh] z-20"
-        >
-          <Image
-            class="mountFg"
-            src="https://assets.codepen.io/721952/mountFg.png"
-            className="object-contain"
-            alt="img5"
-            fill
-          />
-        </div>
-        <div
-          ref={(el) => (imagesRef.current[5] = el)}
-          className="absolute lg:top-[40vh] left-0 w-full lg:h-[100vh] z-50"
-        >
-          <Image
-            class="cloud1"
-            src="https://assets.codepen.io/721952/cloud1.png"
-            className="object-contain"
-            alt="img6"
-            fill
-          />
-        </div>
-        <div
-          ref={(el) => (imagesRef.current[6] = el)}
-          className="absolute lg:top-[60vh] left-0 w-full lg:h-[90vh] z-50"
-        >
-          <Image
-            class="cloud3"
-            src="https://assets.codepen.io/721952/cloud3.png"
-            className="object-contain"
-            alt="img"
-            fill
-          />
-        </div>
-        <div
-          ref={title1}
-          className="absolute text-5xl font-bold text-black z-0 -top-[15vh]"
-        >
+        <Image
+          className="mountBg absolute z-[5]"
+          src="https://assets.codepen.io/721952/mountBg.png"
+          width="1500"
+          height="800"
+          alt="mountBg"
+          ref={mountBgRef}
+        />
+        <Image
+          className="mountMg absolute z-[10]"
+          src="https://assets.codepen.io/721952/mountMg.png"
+          width="1500"
+          height="800"
+          alt="mountMg"
+          ref={mountMgRef}
+        />
+        <Image
+          className="cloud2 absolute z-[21]"
+          src="https://assets.codepen.io/721952/cloud2.png"
+          width="1500"
+          height="800"
+          alt="cloud2"
+          ref={cloud2Ref}
+        />
+        <Image
+          className="mountFg absolute z-[12]"
+          src="https://assets.codepen.io/721952/mountFg.png"
+          width="1500"
+          height="800"
+          alt="mountFg"
+          ref={mountFgRef}
+        />
+        <Image
+          className="cloud1 absolute z-[23]"
+          src="https://assets.codepen.io/721952/cloud1.png"
+          width="1500"
+          height="800"
+          alt="cloud1"
+          ref={cloud1Ref}
+        />
+        <Image
+          className="cloud3 absolute z-[24]"
+          src="https://assets.codepen.io/721952/cloud3.png"
+          width="1500"
+          height="800"
+          alt="cloud3"
+          ref={cloud3Ref}
+        />
+        {/* <h1
+        ref={titleRef}
+        className="title text-7xl font-extrabold leading-tight text-center"
+      > */}
+        {/* <h1 className="title absolute z-[8] text-7xl font-extrabold leading-tight top-[20%] left-1/2 transform -translate-x-1/2 -translate-y-[20%] ">
+        EXPLORE
+      </h1> */}
+        {/* <h1 className="title2 absolute z-[100] text-7xl text-blue-600 font-extrabold leading-tight bottom-[35%] left-1/2 transform -translate-x-1/2 -translate-y-[35%] ">
           EXPLORE
-        </div>
-        <div className="absolute bottom-0 left-0 w-full h-[60vh] lg:h-[40vh] bg-gradient-b from-transparent  via-white to-white"></div>
-        <div className="absolute bottom-0 left-0 w-full h-[40vh] lg:h-[40vh] flex items-center justify-center text-3xl font-bold">
-          Nothing we cannot face.
-        </div>
+        </h1> */}
+        <h3 className="absolute z-[100] text-xl text-blue-800 text-center font-extrabold leading-tight bottom-[10%] left-1/2 transform -translate-x-1/2 -translate-y-[10%] ">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa nesciunt
+          dolorum fugiat!
+        </h3>
       </div>
     </div>
   );
 };
 
 export default GSAP;
+
+function ArrowRightIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M5 12h14" />
+      <path d="m12 5 7 7-7 7" />
+    </svg>
+  );
+}
+
+// /**
+//  * components/landing-page/gsap.jsx
+//  */
+
+// import { useEffect, useRef } from "react";
+// import gsap from "gsap";
+// import { ScrollTrigger } from "gsap/ScrollTrigger";
+// import Image from "next/image";
+
+// gsap.registerPlugin(ScrollTrigger);
+
+// const main = userRef(nu)
+
+// <div class="main">
+//   <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+//     <mask id="m">
+//       <g class="cloud1">
+//         <rect fill="#fff" width="100%" height="801" y="799" />
+//         <image xlink:href="https://assets.codepen.io/721952/cloud1Mask.jpg" width="1200" height="800"/>
+//       </g>
+//     </mask>
+
+//     <image class="sky" xlink:href="https://assets.codepen.io/721952/sky.jpg"  width="1200" height="590" />
+//     <image class="mountBg" xlink:href="https://assets.codepen.io/721952/mountBg.png" width="1200" height="800"/>
+//     <image class="mountMg" xlink:href="https://assets.codepen.io/721952/mountMg.png" width="1200" height="800"/>
+//     <image class="cloud2" xlink:href="https://assets.codepen.io/721952/cloud2.png" width="1200" height="800"/>
+//     <image class="mountFg" xlink:href="https://assets.codepen.io/721952/mountFg.png" width="1200" height="800"/>
+//     <image class="cloud1" xlink:href="https://assets.codepen.io/721952/cloud1.png" width="1200" height="800"/>
+//     <image class="cloud3" xlink:href="https://assets.codepen.io/721952/cloud3.png" width="1200" height="800"/>
+//     <text fill="#fff" x="350" y="200">EXPLORE</text>
+//     <polyline class="arrow" fill="#fff" points="599,250 599,289 590,279 590,282 600,292 610,282 610,279 601,289 601,250" />
+
+//     <g mask="url(#m)">
+//       <rect fill="#fff" width="100%" height="100%" />
+//       <text x="350" y="200" fill="#162a43">FURTHER</text>
+//     </g>
+
+//     <rect id="arrowBtn" width="100" height="100" opacity="0" x="550" y="220" style="cursor:pointer"/>
+//   </svg>
+// </div>
+
+// const GSAP = () => {
+//   const container = useRef(null);
+//   const imagesRef = useRef([]);
+//   const title1 = useRef(null);
+
+//   useEffect(() => {
+//     const tl = gsap.timeline({
+//       scrollTrigger: {
+//         trigger: container.current,
+//         start: "top bottom",
+//         end: "bottom top",
+//         scrub: true,
+//       },
+//     });
+
+//     tl.to(title1.current, { y: 1000 }, 0)
+//       .to(imagesRef.current[1], { y: -250 }, 0)
+//       .to(imagesRef.current[2], { y: -255 }, 0)
+//       .to(imagesRef.current[3], { y: -255 }, 0)
+//       .to(imagesRef.current[4], { y: -255 }, 0)
+//       .to(imagesRef.current[5], { y: -255 }, 0)
+//       .to(imagesRef.current[6], { y: -255 }, 0)
+//       .to(imagesRef.current[7], { y: -255 }, 0)
+//       .to(imagesRef.current[8], { y: 755 }, 0)
+//       .to(imagesRef.current[8], { y: -255 }, 0);
+
+//     return () => {
+//       // Clean up the animation
+//       tl.kill(); // or tl.revert();
+//     };
+//   }, []);
+
+//   return (
+//     <div ref={container} className="relative h-[150vh]  overflow-hidden">
+//       <div className="max-w-[1200px] w-full h-full mx-auto">
+//         <div
+//           ref={title1}
+//           className="absolute text-5xl font-bold text-black z-0 -top-[15vh]"
+//         >
+//           EXPLORE
+//         </div>
+//         {/* <div
+//         ref={(el) => (imagesRef.current[0] = el)}
+//         className="absolute top-0 left-0 w-full h-screen bg-blue-600"
+//       ></div> */}
+//         <div
+//           ref={(el) => (imagesRef.current[0] = el)}
+//           // className="absolute top-0 left-0 w-full h-screen bg-blue-600"
+//         >
+//           <Image
+//             class="sky"
+//             src="https://assets.codepen.io/721952/sky.jpg"
+//             width="1200"
+//             height="590"
+//             alt="img1"
+//           />
+//         </div>
+//         <div
+//           ref={(el) => (imagesRef.current[1] = el)}
+//           style={{ position: "absolute",  }}
+//           // className="absolute top-[50vh] left-0 transform -translate-y-1/2 w-full h-[30vh] lg:top-[70vh] lg:w-[90vw] lg:h-[90vh] z-10"
+//           // className="absolute"
+//         >
+//           <Image
+//             class="mountBg"
+//             src="https://assets.codepen.io/721952/mountBg.png"
+//             alt="img2"
+//             width="1200"
+//             height="800"
+//             className="object-contain"
+//             // fill
+//           />
+//         </div>
+//         <div
+//           ref={(el) => (imagesRef.current[2] = el)}
+//           // className="absolute lg:top-[30vh] left-0 lg:w-[77vw] lg:h-[90vh] z-10"
+//           // className="absolute"
+//           style={{ position: "absolute" }}
+//         >
+//           <Image
+//             class="mountMg"
+//             src="https://assets.codepen.io/721952/mountMg.png"
+//             width="1200"
+//             height="800"
+//             alt="img3"
+//             className="object-contain"
+//             // fill
+//           />
+//         </div>
+//         <div
+//           ref={(el) => (imagesRef.current[4] = el)}
+//           // className="absolute lg:top-[30vh] right-0 lg:w-[80vw] lg:h-[90vh] z-20"
+//           // className="absolute"
+//           style={{ position: "absolute" }}
+//         >
+//           <Image
+//             class="mountFg"
+//             src="https://assets.codepen.io/721952/mountFg.png"
+//             width="1200"
+//             height="800"
+//             alt="img5"
+//             className="object-contain"
+//             // fill
+//           />
+//         </div>
+//         <div
+//           ref={(el) => (imagesRef.current[5] = el)}
+//           // className="absolute lg:top-[40vh] left-0 w-full lg:h-[100vh] z-50"
+//           // className="absolute"
+//           style={{ position: "absolute" }}
+//         >
+//           <Image
+//             class="cloud1"
+//             src="https://assets.codepen.io/721952/cloud1.png"
+//             alt="img6"
+//             width="1200"
+//             height="800"
+//             className="object-contain"
+//             // fill
+//           />
+//         </div>
+//         <div
+//           ref={(el) => (imagesRef.current[6] = el)}
+//           // className="absolute lg:top-[60vh] left-0 w-full lg:h-[90vh] z-50"
+//           // className="absolute"
+//           style={{ position: "absolute" }}
+//         >
+//           <Image
+//             class="cloud3"
+//             src="https://assets.codepen.io/721952/cloud3.png"
+//             alt="img"
+//             width="1200"
+//             height="800"
+//             className="object-contain"
+//             // fill
+//           />
+//         </div>
+//         <div className="absolute bottom-0 left-0 w-full h-[60vh] lg:h-[40vh] bg-gradient-b from-transparent  via-white to-white"></div>
+//         <div className="absolute bottom-0 left-0 w-full h-[40vh] lg:h-[40vh] flex items-center justify-center text-3xl font-bold">
+//           Nothing we cannot face.
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default GSAP;

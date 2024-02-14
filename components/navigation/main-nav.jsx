@@ -24,7 +24,7 @@ const MainNav = ({ session }) => {
 
   if (pathname.includes("/sign-in")) {
     return (
-      <section className="lg:px-20 lg:pt-10">
+      <section className="px-5 pt-10 lg:px-20 lg:pt-10">
         <Link href={"/"} className="flex items-center">
           <ArrowLeft className="h-4 w-4 mr-2 " />
           Back
@@ -39,10 +39,10 @@ const MainNav = ({ session }) => {
         `dark:supports-backdrop-blur:bg-black/30 supports-backdrop-blur:bg-white/30 
      z-[999] m-0 flex h-14 items-center border-b border-gray-200/30 p-0 shadow-gray-100/70 shadow-sm backdrop-blur-md
       dark:border-gray-800 dark:shadow-none lg:w-full`,
-        "sticky top-0",
-        {
-          "bg-blue-600 text-white shadow-none border-b-0": pathname === "/",
-        }
+        "sticky top-0"
+        // {
+        //   "bg-blue-600 text-white shadow-none border-b-0": pathname === "/",
+        // }
         // {
         //   "bg-[url('https://assets.codepen.io/721952/sky.jpg')] bg-cover bg-center":
         //     pathname === "/",
@@ -60,7 +60,7 @@ const MainNav = ({ session }) => {
             Logo
           </Link>
         </div>
-        <div className="hidden items-center space-x-4 lg:flex">
+        <div className="hidden h-full space-x-4 items-center lg:flex">
           <NavItems session={session} />
           {session?.user ? (
             <UserDropdown session={session} />
