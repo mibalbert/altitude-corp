@@ -56,8 +56,8 @@ export default function SignInForm() {
     const res = await signIn("credentials", {
       email: e.target.email.value,
       password: e.target.password.value,
-      // callbackUrl: "/",
-      redirect: false,
+      callbackUrl: "/admin",
+      // redirect: false,
     });
 
     if (res.error) {
@@ -67,7 +67,8 @@ export default function SignInForm() {
     } else {
       toast.success("Succesfully logged in!");
       setPending(false);
-      router.replace("/admin");
+      router.push("/admin");
+      // router.replace("/admin");
       // redirect("/admin");
     }
   };
