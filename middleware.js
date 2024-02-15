@@ -28,16 +28,16 @@ export default withAuth(
     //     new URL("/", req.url),
     //   );
     // }
-    if (
-      req.nextUrl.pathname.startsWith("/admin") &&
-      req.nextauth.token?.role !== "ADMIN"
-    ) {
-      return NextResponse.redirect(
-        //Use this type of url if you want to extract the error message and display it
-        // new URL("/auth/signIn?error=You_Are_Not_Authorized!&message2=Sign_In_with_the_proper_credentials_to_gain_access", req.url)
-        new URL("/", req.url),
-      );
-    }
+    // if (
+    //   req.nextUrl.pathname.startsWith("/admin") &&
+    //   req.nextauth.token?.role !== "ADMIN"
+    // ) {
+    //   return NextResponse.redirect(
+    //     //Use this type of url if you want to extract the error message and display it
+    //     // new URL("/auth/signIn?error=You_Are_Not_Authorized!&message2=Sign_In_with_the_proper_credentials_to_gain_access", req.url)
+    //     new URL("/", req.url),
+    //   );
+    // }
     return null;
   },
   {
