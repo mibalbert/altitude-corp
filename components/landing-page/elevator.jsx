@@ -3,7 +3,7 @@ import React from "react";
 
 const Elevator = () => {
   return (
-    <section className="py-24 bg-blue-600 overflow-hidden">
+    <section className="py-[10rem] bg-blue-600 overflow-hidden">
       <div className="container px-4 mx-auto">
         <div className="flex flex-wrap -m-8">
           <div className="w-full md:w-1/2 lg:w-1/3 p-8">

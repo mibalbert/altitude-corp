@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
-export default function CreatePost() {
+const CreatePost = () => {
   const router = useRouter();
   const handleCreateNewBlogPost = async () => {
     const res = await createNewBlogPost();
@@ -26,4 +26,6 @@ export default function CreatePost() {
       <Button onClick={handleCreateNewBlogPost}>Create a new Blog Post</Button>
     </div>
   );
-}
+};
+
+export default CreatePost;

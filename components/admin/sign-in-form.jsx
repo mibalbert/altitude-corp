@@ -22,6 +22,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRightIcon } from "lucide-react";
 import { Spinner } from "../spinner";
 import { toast } from "sonner";
+import { revalidatePath } from "next/cache";
 
 export default function SignInForm() {
   const [pending, setPending] = useState(false);
@@ -52,8 +53,6 @@ export default function SignInForm() {
     setPending(true);
     e.preventDefault();
 
-    console.log(e.target.email.value);
-
     const res = await signIn("credentials", {
       email: e.target.email.value,
       password: e.target.password.value,
@@ -68,7 +67,8 @@ export default function SignInForm() {
     } else {
       toast.success("Succesfully logged in!");
       setPending(false);
-      router.push("/");
+      router.replace("/admin");
+      // redirect("/admin");
     }
   };
 

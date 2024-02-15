@@ -16,11 +16,10 @@ const Editor = ({ onChange, initialContent, editable }) => {
   // const { edgestore } = useEdgeStore();
 
   const handleUpload = async (file) => {
-    const response = await edgestore.publicFiles.upload({
-      file,
-    });
-
-    return response.url;
+    // const response = await edgestore.publicFiles.upload({
+    //   file,
+    // });
+    // return response.url;
   };
 
   const editor = useBlockNote({

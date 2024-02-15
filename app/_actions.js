@@ -11,6 +11,65 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { signIn } from "next-auth/react";
 
+export async function changeVisibility(postId, changeTo) {
+  try {
+    const changeToFormated = await json.parse(changeTo);
+    console.log("SADASDS", changeToFormated);
+    // const res = await prisma.post.update({
+    //   where: {
+    //     id: postId,
+    //   },
+    //   data: {
+    //     isVisible: changeToFormated,
+    //   },
+    // });
+    // if (res) {
+    return { message: "Visibility changed", ok: true };
+    // }
+  } catch (error) {
+    return { message: error, ok: false };
+  }
+}
+
+export async function createPostUnderFolder(parentFolderId) {
+  try {
+    const res = await prisma.post.create({
+      data: {
+        title: "Untitled",
+        folderId: folderId,
+      },
+    });
+
+    console.log(res);
+    // if(res){
+    return {
+      postId: res.id,
+      message: "Successfuly created post with title Untitled",
+      ok: true,
+    };
+    // }
+  } catch (error) {
+    return { message: error, ok: false };
+  }
+}
+export async function createFolder(parentFolderId) {
+  try {
+    if (!parentFolderId) {
+      const newFolder = await prisma.folder.create({
+        data: {
+          title: "Untiled",
+        },
+      });
+      return {
+        url: `/admin/folders/${newFolder.id}`,
+        message: "New Untitled Folder created",
+        ok: true,
+      };
+    }
+  } catch (error) {
+    return { message: error, ok: false };
+  }
+}
 export async function createNewBlogPost() {
   try {
     const res = await prisma.folder.create({
@@ -27,11 +86,30 @@ export async function createNewBlogPost() {
       },
     });
 
-    return { ok: true, url: `/admin/blog-posts/${res.id}/${op.id}` };
+    return { ok: true, url: `/admin/posts/${op.id}` };
   } catch (error) {
     return "Error";
   }
 }
+
+export async function getFoldersData(parentFolder) {
+  try {
+    const data = await prisma.folder.findMany({
+      where: { parentFolder },
+      include: {
+        posts: true,
+      },
+      orderBy: {
+        title: "asc", // Sort folders by title in ascending order
+      },
+    });
+
+    return { data: data, message: "Success", ok: true };
+  } catch (error) {
+    return { message: error, ok: false };
+  }
+}
+
 export async function getFolders() {
   try {
     const res = await prisma.folder.findMany();
@@ -71,7 +149,6 @@ export async function createNewUndefinedPost() {
 //     //   username: formData.get("username"),
 //     //   password: formData.get("password"),
 //     // });
-
 
 //     // console.log("aAS", parse);
 //     // if (!parse.success) {

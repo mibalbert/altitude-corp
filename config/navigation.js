@@ -173,16 +173,36 @@ const navigationConfig = {
     //   href: "/",
     // },
     {
-      title: "Home",
+      title: "Dashboard",
       href: "/admin",
+    },
+    {
+      title: "Home",
+      href: "/",
     },
     {
       title: "Blog",
       href: "/blog",
     },
     {
-      title: "+Post",
-      href: "/admin/create-post",
+      title: "Services",
+      href: "/services",
+    },
+    {
+      title: "Resources",
+      href: "/resources",
+    },
+    {
+      title: "FAQ",
+      href: "/faq",
+    },
+    {
+      title: "About Us",
+      href: "/about-us",
+    },
+    {
+      title: "Contact Us",
+      href: "/contact-us",
     },
   ],
   adminSideNav: [

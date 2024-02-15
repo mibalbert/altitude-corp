@@ -50,12 +50,12 @@ const GSAP = () => {
       })
       .fromTo(".logo", { y: 0 }, { y: 1200 }, 0)
       .fromTo(".sky", { y: 0 }, { y: -200 }, 0)
-      .fromTo(".cloud1", { y: 100 }, { y: -800 }, 0)
-      .fromTo(".cloud2", { y: 100 }, { y: -500 }, 0)
-      .fromTo(".cloud3", { y: 100 }, { y: -650 }, 0)
+      .fromTo(".cloud1", { y: 0 }, { y: -600 }, 0)
+      .fromTo(".cloud2", { y: 0 }, { y: -400 }, 0)
+      .fromTo(".cloud3", { y: 0 }, { y: -550 }, 0)
       .fromTo(".mountBg", { y: 0 }, { y: -100 }, 0)
-      .fromTo(".mountMg", { y: 0 }, { y: -250 }, 0)
-      .fromTo(".mountFg", { y: 0 }, { y: -500 }, 0)
+      .fromTo(".mountMg", { y: 0 }, { y: -300 }, 0)
+      .fromTo(".mountFg", { y: 0 }, { y: -230 }, 0)
       .fromTo(".rectang", { y: 0 }, { y: -200 }, 0);
     // .fromTo(".title2",{ opacity: 0 }, { opacity: 1, y: 500 }, 0);
   }, []);
