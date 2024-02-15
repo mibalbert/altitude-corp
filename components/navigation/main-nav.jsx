@@ -37,7 +37,7 @@ const MainNav = ({ session }) => {
     <section
       className={cn(
         `dark:supports-backdrop-blur:bg-black/30 supports-backdrop-blur:bg-white/30 
-     z-[999] m-0 flex h-14 items-center border-b border-gray-200/30 p-0 shadow-gray-100/70 shadow-sm backdrop-blur-md
+     z-[999] m-0 flex h-14 items-center   p-0 shadow-gray-500/30 shadow-sm backdrop-blur-md
       dark:border-gray-800 dark:shadow-none lg:w-full`,
         "sticky top-0"
         // {

@@ -8,6 +8,7 @@ import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
+import { useMediaQuery } from "usehooks-ts";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,7 +23,12 @@ const GSAP = () => {
   const cloud1Ref = useRef(null);
   const cloud3Ref = useRef(null);
 
+  
+  // const isMobile = useMediaQuery("(max-width: 768px)");
+  
   useLayoutEffect(() => {
+    
+
     gsap.set(".main", {
       position: "fixed",
       background: "#fff",
@@ -48,7 +54,7 @@ const GSAP = () => {
           scrub: 1,
         },
       })
-      .fromTo(".logo", { y: 0 }, { y: 1200 }, 0)
+      .fromTo(".logo", { y: 0 }, { y:  1200 }, 0)
       .fromTo(".sky", { y: 0 }, { y: -200 }, 0)
       .fromTo(".cloud1", { y: 0 }, { y: -600 }, 0)
       .fromTo(".cloud2", { y: 0 }, { y: -400 }, 0)
@@ -61,11 +67,11 @@ const GSAP = () => {
   }, []);
 
   return (
-    <div className="bg-white pt-32 bg-dot-blue-600/[0.7] relative ">
+    <div className="bg-white pt-20    lg:pt-32 bg-dot-blue-600/[0.7] relative ">
       <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
       <div
         ref={mainRef}
-        className="h-[120vh]  rounded-xl bg-blue-600   relative  w-full max-w-[1500px] mx-auto bg-dot-white/[0.6]"
+        className="h-[120vh] rounded-xl bg-blue-600 pt-[45vh]  lg:pt-32 md:pt-0   relative  w-full max-w-[1600px] mx-auto bg-dot-white/[0.6]"
       >
         <div className="absolute pointer-events-none rounded-xl inset-0 flex items-center justify-center dark:bg-black bg-blue-600 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
 
@@ -100,10 +106,9 @@ const GSAP = () => {
         /> */}
 
         {/* <div className="rectang absolute z-[99] 2xl:-left-[5%] w-[100%] 2xl:w-[110%] h-[54vh] bottom-0 bg-white blur-xl "></div> */}
-        <div className="absolute z-[99] rounde-b-xl w-full h-[43vh] bottom-0 bg-white  ">
-          {/* <div className="absolute z-[99] rounde-b-xl w-full h-[43vh] bottom-0 bg-white bg-dot-blue-600/[0.6]"> */}
-          {/* <div className="absolute pointer-events-none rounded-xl inset-0 flex items-center justify-center dark:bg-black bg-white  [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div> */}
-        </div>
+        <div className="absolute z-[99] rounde-b-xl w-full h-[50vh] lg:h-[43vh] bottom-0 bg-white  "></div>
+        {/* <div className="absolute z-[99] rounde-b-xl w-full h-[43vh] bottom-0 bg-white bg-dot-blue-600/[0.6]"> */}
+        {/* <div className="absolute pointer-events-none rounded-xl inset-0 flex items-center justify-center dark:bg-black bg-white  [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div> */}
         {/* <div className="logo absolute z-[8] w-[40vw] h-[30vh] top-[15%] left-1/2 transform -translate-x-1/2 -translate-y-[15%]">
           <Image
             className="object-contain object-center"
@@ -115,17 +120,17 @@ const GSAP = () => {
           />
         </div> */}
         <div className="logo absolute z-[8] top-[16%] left-1/2 transform -translate-x-1/2 -translate-y-[16%]">
-          <h1 className="text-7xl font-extrabold text-center  text-white">
+          <h1 className="text-5xl lg:text-7xl font-extrabold text-center  text-white">
             ALTITUDE CORP
           </h1>
-          <h3 className="text-4xl font-semibold text-center text-gray-200">
+          <h3 className=" text-2xl lg:text-4xl font-semibold text-center text-gray-200">
             CLIMB HIGHER
           </h3>
         </div>
         <Image
           className="mountBg absolute z-[5]"
           src="https://assets.codepen.io/721952/mountBg.png"
-          width="1500"
+          width="1600"
           height="800"
           alt="mountBg"
           ref={mountBgRef}
@@ -133,7 +138,7 @@ const GSAP = () => {
         <Image
           className="mountMg absolute z-[10]"
           src="https://assets.codepen.io/721952/mountMg.png"
-          width="1500"
+          width="1600"
           height="800"
           alt="mountMg"
           ref={mountMgRef}
@@ -141,7 +146,7 @@ const GSAP = () => {
         <Image
           className="cloud2 absolute z-[21]"
           src="https://assets.codepen.io/721952/cloud2.png"
-          width="1500"
+          width="1600"
           height="800"
           alt="cloud2"
           ref={cloud2Ref}
@@ -149,7 +154,7 @@ const GSAP = () => {
         <Image
           className="mountFg absolute z-[12]"
           src="https://assets.codepen.io/721952/mountFg.png"
-          width="1500"
+          width="1600"
           height="800"
           alt="mountFg"
           ref={mountFgRef}
@@ -157,7 +162,7 @@ const GSAP = () => {
         <Image
           className="cloud1 absolute z-[23]"
           src="https://assets.codepen.io/721952/cloud1.png"
-          width="1500"
+          width="1600"
           height="800"
           alt="cloud1"
           ref={cloud1Ref}
@@ -165,7 +170,7 @@ const GSAP = () => {
         <Image
           className="cloud3 absolute z-[24]"
           src="https://assets.codepen.io/721952/cloud3.png"
-          width="1500"
+          width="1600"
           height="800"
           alt="cloud3"
           ref={cloud3Ref}
