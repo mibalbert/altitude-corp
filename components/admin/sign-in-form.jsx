@@ -56,8 +56,8 @@ export default function SignInForm() {
     const res = await signIn("credentials", {
       email: e.target.email.value,
       password: e.target.password.value,
-      callbackUrl: "/admin",
-      // redirect: false,
+      // callbackUrl: "/admin",
+      redirect: false,
     });
 
     if (res.error) {
