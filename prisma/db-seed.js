@@ -16,7 +16,9 @@ async function seed() {
 
     const homeData = {
       heroTitle: "ALTITUDE CORP",
-      heroSubtitle: "CLIMB HIGHER" 
+      heroSubtitle: "CLIMB HIGHER",
+      heroQuote:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa nesciunt dolorum fugiat!",
     };
 
     await prisma.home.create({

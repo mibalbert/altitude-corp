@@ -12,7 +12,7 @@ import { useMediaQuery } from "usehooks-ts";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const GSAP = () => {
+const GSAP = ({ data }) => {
   const mainRef = useRef(null);
   const titleRef = useRef(null);
   const skyRef = useRef(null);
@@ -23,12 +23,9 @@ const GSAP = () => {
   const cloud1Ref = useRef(null);
   const cloud3Ref = useRef(null);
 
-  
   // const isMobile = useMediaQuery("(max-width: 768px)");
-  
-  useLayoutEffect(() => {
-    
 
+  useLayoutEffect(() => {
     gsap.set(".main", {
       position: "fixed",
       background: "#fff",
@@ -54,7 +51,7 @@ const GSAP = () => {
           scrub: 1,
         },
       })
-      .fromTo(".logo", { y: 0 }, { y:  1200 }, 0)
+      .fromTo(".logo", { y: 0 }, { y: 1200 }, 0)
       .fromTo(".sky", { y: 0 }, { y: -200 }, 0)
       .fromTo(".cloud1", { y: 0 }, { y: -600 }, 0)
       .fromTo(".cloud2", { y: 0 }, { y: -400 }, 0)
@@ -74,57 +71,14 @@ const GSAP = () => {
         className="h-[120vh] rounded-xl bg-blue-600 pt-[45vh]  lg:pt-32 md:pt-0   relative  w-full max-w-[1500px] mx-auto bg-dot-white/[0.6]"
       >
         <div className="absolute pointer-events-none rounded-xl inset-0 flex items-center justify-center dark:bg-black bg-blue-600 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
-
-        {/* <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
-        <mask id="m">
-          <g className="cloud1" ref={cloud1Ref}>
-            <rect fill="#fff" width="100%" height="801" y="799" />
-            <Image
-              src="https://assets.codepen.io/721952/cloud1Mask.jpg"
-              width="1200"
-              height="800"
-              alt="cloud1"
-            />
-          </g>
-        </mask> */}
-        {/* <Image
-          className="theCloud absolute -z-10"
-          src="https://assets.codepen.io/721952/cloud1Mask.jpg"
-          width="1200"
-          height="800"
-          alt="cloud1"
-        />
-        <div className="absolute top-0 left-0 w-full max-w-[1200px] h-full max-h-[800px] bg-blue-600 z-10"></div> */}
-
-        {/* <Image
-          className="sky absolute"
-          src="https://assets.codepen.io/721952/sky.jpg"
-          width="1200"
-          height="590"
-          alt="sky"
-          ref={skyRef}
-        /> */}
-
-        {/* <div className="rectang absolute z-[99] 2xl:-left-[5%] w-[100%] 2xl:w-[110%] h-[54vh] bottom-0 bg-white blur-xl "></div> */}
         <div className="absolute z-[99] rounde-b-xl w-full h-[50vh] lg:h-[43vh] bottom-0 bg-white  "></div>
-        {/* <div className="absolute z-[99] rounde-b-xl w-full h-[43vh] bottom-0 bg-white bg-dot-blue-600/[0.6]"> */}
-        {/* <div className="absolute pointer-events-none rounded-xl inset-0 flex items-center justify-center dark:bg-black bg-white  [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div> */}
-        {/* <div className="logo absolute z-[8] w-[40vw] h-[30vh] top-[15%] left-1/2 transform -translate-x-1/2 -translate-y-[15%]">
-          <Image
-            className="object-contain object-center"
-            src="/logo-transparent.svg"
-            // width={350}
-            // height={200}
-            fill
-            alt="logo"
-          />
-        </div> */}
+
         <div className="logo absolute z-[8] top-[16%] left-1/2 transform -translate-x-1/2 -translate-y-[16%]">
           <h1 className="text-5xl lg:text-7xl font-extrabold text-center  text-white">
-            ALTITUDE CORP
+            {data?.heroTitle}
           </h1>
           <h3 className=" text-2xl lg:text-4xl font-semibold text-center text-gray-200">
-            CLIMB HIGHER
+            {data?.heroSubtitle}
           </h3>
         </div>
         <Image

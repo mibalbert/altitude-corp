@@ -11,6 +11,7 @@ import Image from "next/image";
 import { useMediaQuery } from "usehooks-ts";
 import { changeHeroTitle } from "@/app/actions/edit-web-pages/edit-home/_home-actions";
 import { Check, Timer } from "lucide-react";
+import Contenteditable from "./content-editable-component";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -27,6 +28,8 @@ const GSAP = ({ data }) => {
   const mountFgRef = useRef(null);
   const cloud1Ref = useRef(null);
   const cloud3Ref = useRef(null);
+
+  console.log(data.heroTitle);
 
   // const isMobile = useMediaQuery("(max-width: 768px)");
 
@@ -71,7 +74,7 @@ const GSAP = ({ data }) => {
   const handleTitleChange = async (e) => {
     setIsTitleChanging(true);
 
-    const res = await changeHeroTitle(data.id, e.target.value);
+    const res = await changeHeroTitle(data[0].id, e.target.value);
     if (res.ok) {
       console.log(res.message);
     }
@@ -80,7 +83,7 @@ const GSAP = ({ data }) => {
   const handleSubtitleChange = async (e) => {
     setIsSubtitleChanging(true);
 
-    const res = await changeHeroTitle(data.id, e.target.value);
+    const res = await changeHeroTitle(data[0].id, e.target.value);
     if (res.ok) {
       console.log(res.message);
     }
@@ -92,37 +95,37 @@ const GSAP = ({ data }) => {
       <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
       <div
         ref={mainRef}
-        className="h-[120vh] rounded-xl bg-blue-600 pt-[45vh]  lg:pt-32 md:pt-0   relative  w-full max-w-[1500px] mx-auto bg-dot-white/[0.6]"
+        className="h-[120vh]  rounded-xl bg-blue-600 pt-[45vh]  lg:pt-32 md:pt-0   relative  w-full max-w-[1500px] mx-auto bg-dot-white/[0.6]"
       >
         <div className="absolute pointer-events-none rounded-xl inset-0 flex items-center justify-center dark:bg-black bg-blue-600 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
         <div className="absolute z-[99] rounde-b-xl w-full h-[50vh] lg:h-[43vh] bottom-0 bg-white  "></div>
 
         <div className="logo absolute z-[89] w-auto flex flex-col  justify-center top-[16%] left-1/2 transform -translate-x-1/2 -translate-y-[16%]">
           <div className="relative ">
-            <div className="absolute right-3 top-3">
-              {isTitleChanging ? (
+            {/* <div className="absolute right-3 top-3"> */}
+              {/* {isTitleChanging ? (
                 <Timer className="h-4 w-4" />
               ) : (
                 <Check className="h-4 w-4" />
               )}
-            </div>
-            <input
-              className="peer w-auto h-full max-w-2xl bg-transparent text-center text-white font-extrabold outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2  text-5xl lg:text-7xl px-3 py-2.5 rounded-lg border-blue-gray-200 focus:border-gray-900"
-              defaultValue={data?.heroTitle}
+            </div> */}
+            <Contenteditable
+              // className="peer w-auto h-full max-w-2xl bg-transparent text-center text-white font-extrabold outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2  text-5xl lg:text-7xl px-3 py-2.5 rounded-lg border-blue-gray-200 focus:border-gray-900"
+              value={data?.heroTitle}
               onChange={handleTitleChange}
             />
           </div>
-          <div className="relative mx-auto">
-            <div className="absolute right-3 top-3">
+          <div className="relative mx-auto  text-2xl lg:text-4xl font-semibold text-center text-gray-200 ">
+            {/* <div className="absolute right-3 top-3">
               {isSubtitleChanging ? (
                 <Timer className="h-4 w-4" />
               ) : (
                 <Check className="h-4 w-4" />
               )}
-            </div>
-            <input
-              className="peer  w-auto h-full  bg-transparent text-2xl lg:text-4xl font-semibold text-center text-gray-200  outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2   px-3 py-2.5 rounded-lg border-blue-gray-200 focus:border-gray-900"
-              defaultValue={data?.heroSubtitle}
+            </div> */}
+            <Contenteditable
+              // className="peer  w-auto h-full  bg-transparent text-2xl lg:text-4xl font-semibold text-center text-gray-200  outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2   px-3 py-2.5 rounded-lg border-blue-gray-200 focus:border-gray-900"
+              value={data?.heroSubtitle}
               onChange={handleSubtitleChange}
             />
           </div>
@@ -175,20 +178,15 @@ const GSAP = ({ data }) => {
           alt="cloud3"
           ref={cloud3Ref}
         />
-        {/* <h1
-        ref={titleRef}
-        className="title text-7xl font-extrabold leading-tight text-center"
-      > */}
-        {/* <h1 className="title absolute z-[8] text-7xl font-extrabold leading-tight top-[20%] left-1/2 transform -translate-x-1/2 -translate-y-[20%] ">
-        EXPLORE
-      </h1> */}
-        {/* <h1 className="title2 absolute z-[100] text-7xl text-blue-600 font-extrabold leading-tight bottom-[35%] left-1/2 transform -translate-x-1/2 -translate-y-[35%] ">
-          EXPLORE
-        </h1> */}
-        <h3 className="absolute z-[100] text-xl text-blue-800 text-center font-extrabold leading-tight bottom-[10%] left-1/2 transform -translate-x-1/2 -translate-y-[10%] ">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa nesciunt
-          dolorum fugiat!
-        </h3>
+
+        <div className="absolute z-[1000] bottom-[10%] left-1/2 transform -translate-x-1/2 -translate-y-[10%] text-xl text-blue-800  text-center font-extrabold leading-tight  ">
+          <Contenteditable
+            value={data?.heroTitle}
+            onChange={(updatedContent) => {
+              console.log("first", updatedContent);
+            }}
+          />
+        </div>
       </div>
     </div>
   );
