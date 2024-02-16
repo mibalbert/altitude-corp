@@ -9,7 +9,7 @@ import Image from "next/image";
 
 const ContactUsMain = () => {
   return (
-    <div className="relative w-full py-20 ">
+    <div className="relative w-full py-10 ">
       {/* <Image
         width={1000}
         height={1000}

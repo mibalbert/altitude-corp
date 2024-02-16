@@ -1,32 +1,121 @@
 "use server";
 
-import { useRouter } from "next/navigation";
 import prisma from "@/lib/prismadb";
-import { createPresignedPost } from "@aws-sdk/s3-presigned-post";
-import { S3Client } from "@aws-sdk/client-s3";
-import { v4 as uuidv4 } from "uuid";
-
 import { revalidatePath } from "next/cache";
 
-import { z } from "zod";
-import { signIn } from "next-auth/react";
-
-export async function changeVisibility(postId, changeTo) {
+export async function savePostCoverImageUrl(postId, url) {
   try {
-    const changeToFormated = await json.parse(changeTo);
-    console.log("SADASDS", changeToFormated);
+    const res = await prisma.post.update({
+      where: {
+        id: postId,
+      },
+      data: {
+        coverImage: url,
+      },
+    });
+
+    if (res) {
+      revalidatePath(`/admin/posts/${postId}`);
+      return {
+        message: "Success",
+        ok: true,
+      };
+    }
+    return { message: "Failed to upload file", ok: false };
+  } catch (error) {
+    return { message: "Error", ok: false };
+  }
+}
+
+export async function getData(postId) {
+  try {
+    const data = await prisma.post.findFirst({
+      where: {
+        id: postId,
+      },
+    });
+    if (data) {
+      return { data: data, message: "success", ok: true };
+    }
+    return { message: "Error", ok: false };
+  } catch (error) {
+    console.log(error);
+    return { message: "Error", ok: false };
+  }
+}
+
+export async function savePostTitleChange(postId, newTitle) {
+  try {
+    console.log("postId", postId);
+    console.log("newTitle", newTitle);
+
+    const res = await prisma.post.update({
+      where: {
+        id: postId,
+      },
+      data: {
+        title: newTitle,
+      },
+    });
+    if (res) {
+      revalidatePath(`/admin/posts/${postId}`);
+      return { isPublished: res.isPublished, message: "Success", ok: true };
+    }
+    return { message: "Failes", ok: false };
+  } catch (error) {
+    return { message: "Error", ok: false };
+  }
+}
+
+export async function savePostContentChange(postId, data) {
+  try {
     // const res = await prisma.post.update({
     //   where: {
     //     id: postId,
     //   },
     //   data: {
-    //     isVisible: changeToFormated,
+    //     content: data,
     //   },
     // });
-    // if (res) {
-    return { message: "Visibility changed", ok: true };
-    // }
+    const res = await prisma.post.update({
+      where: {
+        id: postId,
+      },
+      data: {
+        content: data,
+      },
+    });
+    console.log("The res", res);
+    if (res) {
+      // return "Success";
+      revalidatePath(`/admin/posts/${postId}`);
+      return JSON.stringify({ message: "Data saved", ok: true });
+    }
+    // return "Failed"
+    return JSON.stringify({ message: "Error saving the data", ok: false });
   } catch (error) {
+    return "Error";
+    // return { message: error, ok: false };
+  }
+}
+export async function changeVisibility(postId, changeTo) {
+  try {
+    const res = await prisma.post.update({
+      where: {
+        id: postId,
+      },
+      data: {
+        isPublished: !changeTo,
+      },
+    });
+
+    if (res) {
+      revalidatePath(`/admin/posts/${postId}`);
+      return { message: "Visibility changed", ok: true };
+    }
+    return { message: "Error", ok: false };
+  } catch (error) {
+    console.log(error);
     return { message: error, ok: false };
   }
 }

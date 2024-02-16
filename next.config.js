@@ -2,6 +2,7 @@
 const nextConfig = {
   images: {
     domains: [
+      "mongo-blog.s3.eu-central-1.amazonaws.com",
       "images.pexels.com",
       "avatars.githubusercontent.com",
       "lh3.googleusercontent.com",

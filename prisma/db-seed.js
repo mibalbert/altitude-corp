@@ -12,6 +12,16 @@ async function seed() {
     await prisma.user.deleteMany({});
     await prisma.folder.deleteMany({});
     await prisma.post.deleteMany({});
+    await prisma.home.deleteMany({});
+
+    const homeData = {
+      heroTitle: "ALTITUDE CORP",
+      heroSubtitle: "CLIMB HIGHER" 
+    };
+
+    await prisma.home.create({
+      data: homeData,
+    });
 
     // Create a hashed password using bcrypt
     const hashedPassword = await bcrypt.hash("123456", 10);
@@ -73,7 +83,7 @@ async function seed() {
       {
         title: "Post 1",
         content: `[]`,
-        coverImage: "cover_image_1.jpg",
+        coverImage: "",
         isArchived: false,
         isPublished: true,
         publicId: "public_id_1",
@@ -83,7 +93,7 @@ async function seed() {
       {
         title: "Post 2",
         content: `[]`,
-        coverImage: "cover_image_2.jpg",
+        coverImage: "",
         isArchived: false,
         isPublished: true,
         publicId: "public_id_2",
@@ -93,7 +103,7 @@ async function seed() {
       {
         title: "Post 3",
         content: `[]`,
-        coverImage: "cover_image_3.jpg",
+        coverImage: "",
         isArchived: true,
         isPublished: false,
         publicId: null,
@@ -103,7 +113,7 @@ async function seed() {
       {
         title: "Post 4",
         content: `[]`,
-        coverImage: "cover_image_4.jpg",
+        coverImage: "",
         isArchived: false,
         isPublished: true,
         publicId: "public_id_4",
@@ -113,7 +123,7 @@ async function seed() {
       {
         title: "Post 5",
         content: `[]`,
-        coverImage: "cover_image_5.jpg",
+        coverImage: "",
         isArchived: false,
         isPublished: true,
         publicId: "public_id_5",

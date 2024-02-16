@@ -110,16 +110,21 @@ export const Folder = ({ folder, level }) => {
   return (
     <div
       className="flex flex-col"
-      style={{ paddingLeft: `${level * 12 + 25}px` }}
+      // style={{ paddingLeft: `${level * 12 + 25}px` }}
+
+      // style={{ paddingLeft: `${(level - 1) * 12 + 25}px` }}
     >
-      <div className="flex items-center gap-1">
+      <div
+        className="flex items-center gap-1"
+        // style={{ paddingLeft: `${level * 12 + 25}px` }}
+      >
         <button onClick={toggleCollapse} className="flex items-center px-2">
           <span>
             {folder.posts.length > 0 ? (
               collapsed ? (
                 <ChevronRight />
               ) : (
-                <ChevronUp />
+                <ChevronDown />
               )
             ) : null}
           </span>
@@ -135,14 +140,15 @@ export const Folder = ({ folder, level }) => {
       {!collapsed && (
         <div
           className="flex flex-col"
-          style={{ paddingLeft: `${(level - 1) * 12 + 25}px` }}
+          // style={{ paddingLeft: `${(level + 1) * 12 + 25}px` }}
         >
           {sortedPosts.map((post) => (
             <>
               <Link
                 key={post.id}
                 href={`/admin/posts/${post.id}`}
-                className="border px-3"
+                // style={{ paddingLeft: `${(level + 1) * 12 + 25}px` }}
+                className="border px-3  line-clamp-1"
               >
                 {post.title}
               </Link>

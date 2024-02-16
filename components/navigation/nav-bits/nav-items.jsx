@@ -8,14 +8,51 @@ import { getNavigationConfig } from "@/config/navigation";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { ChevronsUpDown } from "lucide-react";
+
 // pathname={pathname}
 // const NavItems = ({ session, pathname }) => {
 const NavItems = ({ session }) => {
   const { topNav } = getNavigationConfig(session?.user?.role ?? "GUEST");
   const pathname = usePathname();
 
-  if (session?.user?.role === "USER" && pathname.startsWith("/user/")) {
-    return;
+  // if (session?.user?.role === "USER" && pathname.startsWith("/user/")) {
+  //   return;
+  // }
+
+  if (session?.user) {
+    return (
+      <section className="flex items-center divide-x ">
+        <Link href={"/admin"} className="text-sm px-2   ">
+          Dashboard
+        </Link>
+        <DropdownMenu>
+          <DropdownMenuTrigger className="text-sm flex px-2  items-center gap-1">
+            Website Pages
+            <ChevronsUpDown className="h-4 w-4" />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="z-[9999]">
+            {/* <DropdownMenuLabel>{session.user.email}</DropdownMenuLabel> */}
+            <DropdownMenuItem asChild>
+              <Link href={"/"}>Home</Link>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem asChild>
+              <Link href={"/services"}>Services</Link>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </section>
+    );
   }
 
   return (

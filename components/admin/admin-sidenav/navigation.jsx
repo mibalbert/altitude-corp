@@ -13,7 +13,7 @@ import {
   Search,
   Settings,
 } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useSearch } from "@/hooks/use-search";
 import { useMediaQuery } from "usehooks-ts";
@@ -25,6 +25,7 @@ import { toast } from "sonner";
 import { useAdminSideNav } from "@/hooks/use-admin-sidebar";
 import { Button } from "@/components/ui/button";
 import CreateFolderButton from "./create-folder-button";
+import WebsitePages from "./website-pages";
 
 export const Navigation = ({ children }) => {
   const settings = useSettings();
@@ -32,7 +33,13 @@ export const Navigation = ({ children }) => {
   const isMobile = useMediaQuery("(max-width: 768px)");
   const sidebarRef = useRef(null);
 
-  useEffect(() => {
+  const pathname = usePathname();
+
+  const isOpen = useAdminSideNav((state) => state.isOpen);
+  const onOpen = useAdminSideNav((state) => state.onOpen);
+  const onClose = useAdminSideNav((state) => state.onClose);
+
+  useLayoutEffect(() => {
     if (isMobile) {
       onClose;
     } else {
@@ -40,60 +47,56 @@ export const Navigation = ({ children }) => {
     }
   }, [isMobile]);
 
-  const isOpen = useAdminSideNav((state) => state.isOpen);
-  const onOpen = useAdminSideNav((state) => state.onOpen);
-  const onClose = useAdminSideNav((state) => state.onClose);
-
   const handleCreate = () => {};
 
   return (
     <>
-      {!isOpen ? (
-        <aside
-          ref={sidebarRef}
-          className={cn(
-            `transition-all ease-in-out duration-300
-            group/sidebar h-full min-h-[calc(100vh-3.5rem)] bg-secondary overflow-y-auto relative pt-12 border-r flex w-60 flex-col z-[99999]`,
-            // isResetting && "transition-all ease-in-out duration-300",
-            isMobile && "w-0"
-          )}
-        >
-          <div
-            onClick={onOpen}
-            role="button"
+      {!pathname.startsWith("/admin/preview") ? (
+        !isOpen ? (
+          <aside
+            ref={sidebarRef}
             className={cn(
-              "h-6 w-6 text-muted-foreground rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600 absolute top-3 right-2   group-hover/sidebar:opacity-100 transition"
-              // isMobile && "opacity-100"
+              `transition-all ease-in-out duration-300 overflow-hidden sticky top-16
+            group/sidebar h-full min-h-[calc(100vh-3.5rem)] bg-secondary overflow-y-auto  pt-12   flex w-60 flex-col z-[99]`,
+              // isResetting && "transition-all ease-in-out duration-300",
+              isMobile && "w-0"
             )}
           >
-            <ChevronsLeft className="h-6 w-6" />
-          </div>
-          <div>
-            <Item
-              label="Search"
-              icon={Search}
-              isSearch
-              onClick={search.onOpen}
-            />
+            <div
+              onClick={onOpen}
+              role="button"
+              className={cn(
+                "h-6 w-6 text-muted-foreground rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600 absolute top-3 right-2   group-hover/sidebar:opacity-100 transition"
+                // isMobile && "opacity-100"
+              )}
+            >
+              <ChevronsLeft className="h-6 w-6" />
+            </div>
+            <div>
+              <WebsitePages />
+              <hr className="my-4 w-[80%]" />
+              <Item
+                label="Search"
+                icon={Search}
+                isSearch
+                onClick={search.onOpen}
+              />
+            </div>
+            <div className="mt-4 h-full">
+              <FoldersAndFiles />
+            </div>
             <CreateFolderButton />
-            {/* <Item label="Settings" icon={Settings} onClick={settings.onOpen} /> */}
-            {/* <Item onClick={handleCreate} label="New folder" icon={PlusCircle} /> */}
+          </aside>
+        ) : (
+          <div className="relative h-full pt-3 px-2">
+            <MenuIcon
+              role="button"
+              onClick={onClose}
+              className="h-6 w-6 text-muted-foreground"
+            />
           </div>
-          <div className="mt-4 h-full">
-            <FoldersAndFiles />
-            {/* {children} */}
-            {/* <Item onClick={handleCreate} icon={Plus} label="Create a page" /> */}
-          </div>
-        </aside>
-      ) : (
-        <div className="relative h-full pt-3 px-2">
-          <MenuIcon
-            role="button"
-            onClick={onClose}
-            className="h-6 w-6 text-muted-foreground"
-          />
-        </div>
-      )}
+        )
+      ) : null}
     </>
   );
 };

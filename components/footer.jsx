@@ -10,23 +10,12 @@ import { usePathname } from "next/navigation";
 export default function Footer() {
   const pathname = usePathname();
 
-  if (pathname.includes("/admin") || pathname.includes("/sign-in")) {
-    return <></>;
-  }
-
-  if (
-    !pathname.startsWith("/blog") ||
-    !pathname.startsWith("/contact-us") ||
-    !pathname.startsWith("/services") ||
-    !pathname.startsWith("/about-us") ||
-    !pathname.startsWith("/faq") ||
-    !pathname.startsWith("/resources")
-  ) {
+  if (pathname.includes("/admin") && !pathname.includes("/admin/preview")) {
     return <></>;
   }
 
   return (
-    <footer className="pb-16 text-white bg-blue-600 overflow-hidden">
+    <footer className="pb-16 text-white bg-blue-600 overflow-hidden p-20">
       {/* <div className="mx-auto w-full max-w-screen-2xl  py-16  lg:px-12 sm:px-6 px-4"> */}
       <div className="grid grid-cols-3  md:gap-8 gap-4">
         <div className="col-span-3 md:col-span-2 lg:col-span-1 flex flex-col flex-shrink-0 pr-10">

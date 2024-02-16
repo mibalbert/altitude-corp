@@ -5,20 +5,36 @@
 "use client";
 
 import { changeVisibility } from "@/app/_actions";
+import { cn } from "@/lib/utils";
+import { ArrowDownToLine, ArrowUpToLine } from "lucide-react";
 import { revalidatePath } from "next/cache";
-import React from "react";
+import { useRouter } from "next/navigation";
+import React, { useLayoutEffect, useState } from "react";
 import { toast } from "sonner";
 
-const Publish = ({ postId, isPublished }) => {
-  const handleChangePublishing = async () => {
- 
+const Publish = ({ className, postId, isPublished }) => {
+  const handleChangePublish = async () => {
     const res = await changeVisibility(postId, isPublished);
-    toast.success(res.message);
+    if (res.ok) {
+      toast.success(res.message);
+    } else {
+      toast.error("Error");
+    }
   };
 
   return (
-    <button onClick={handleChangePublishing}>
-      {!isPublished ? "Publish" : "Unpublish"}
+    <button onClick={handleChangePublish} className={cn("text-md", className)}>
+      {isPublished ? (
+        <div className="flex items-center gap-1">
+          <ArrowDownToLine className="h-4 w-4" />
+          Unpublish
+        </div>
+      ) : (
+        <div className="flex items-center gap-1">
+          <ArrowUpToLine className="h-4 w-4" />
+          Publish
+        </div>
+      )}
     </button>
   );
 };

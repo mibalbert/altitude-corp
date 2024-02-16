@@ -11,7 +11,7 @@ import ContactUsMain from "./contact-us-main";
 
 export function ContactUsHero() {
   return (
-    <section className="py-[20vh] w-full rounded-md flex flex-col md:items-center md:justify-center bg-blue-600 antialiased bg-grid-white/[0.3] relative overflow-hidden">
+    <section className="py-[10vh] w-full rounded-md flex flex-col md:items-center md:justify-center bg-blue-600 antialiased bg-grid-white/[0.3] relative overflow-hidden">
       {/* <div className="absolute inset-0 w-full h-full bg-blue-600  z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" /> */}
       <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-blue-600 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
 

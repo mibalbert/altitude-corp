@@ -1,6 +1,7 @@
 import { createFolder } from "@/app/_actions";
 import { cn } from "@/lib/utils";
 import { Plus, PlusCircleIcon } from "lucide-react";
+import { revalidateTag } from "next/cache";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { toast } from "sonner";
@@ -12,6 +13,7 @@ const CreateFolderButton = () => {
       const res = await createFolder();
       if (res.ok) {
         toast.success(res.message);
+
         router.push(res.url);
       }
     } catch (error) {

@@ -4,39 +4,76 @@
 
 "use client";
 
-import { useTheme } from "next-themes";
-import { BlockNoteEditor, PartialBlock } from "@blocknote/core";
 import { BlockNoteView, useBlockNote } from "@blocknote/react";
 import "@blocknote/react/style.css";
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import { savePostContentChange, savePostCoverImageUrl } from "@/app/_actions";
+import { cn } from "@/lib/utils";
+import { Check, Timer } from "lucide-react";
+import { useSavingStatus } from "@/hooks/use-admin-saving-status";
 
-// import { useEdgeStore } from "@/lib/edgestore";
+const Editor = ({ postId, initialContent }) => {
+  const setIsSaved = useSavingStatus((state) => state.setIsSaved);
 
-const Editor = ({ onChange, initialContent, editable }) => {
-  const { resolvedTheme } = useTheme();
-  // const { edgestore } = useEdgeStore();
+  function debounce(func, timeout = 300) {
+    let timer;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        func.apply(this, args);
+      }, timeout);
+    };
+  }
+
+  const saveInput = debounce(async (data) => {
+    const stringifiedData = JSON.stringify(data);
+
+    setIsSaved(false);
+    const res = await savePostContentChange(postId, stringifiedData);
+    console.log(res);
+    if (res.ok) {
+      console.log(res.ok);
+    }
+    setIsSaved(true); // Move this line here
+  });
+
+  const onEditorContentChange = (editor) => {
+    saveInput(editor.topLevelBlocks);
+  };
 
   const handleUpload = async (file) => {
-    // const response = await edgestore.publicFiles.upload({
-    //   file,
-    // });
-    // return response.url;
+    // setIsUploading(true);
+    var data = new FormData();
+    data.append("file", file);
+    data.append("folderName", "blog");
+
+    const res = await fetch("/api/s3-upload", {
+      method: "POST",
+      body: data,
+    });
+
+    const response = await res.json();
+
+    return response.url;
   };
 
   const editor = useBlockNote({
-    editable,
+    editable: true,
     initialContent: initialContent ? JSON.parse(initialContent) : undefined,
-    onEditorContentChange: (editor) => {
-      // onChange(JSON.stringify(editor.topLevelBlocks, null, 2));
-    },
+    onEditorContentChange: onEditorContentChange,
     uploadFile: handleUpload,
   });
 
   return (
     <div>
+      <div className="w-full flex items-center   ">
+        <h3>Content</h3>
+      </div>
       <BlockNoteView
         editor={editor}
-        theme={resolvedTheme === "dark" ? "dark" : "light"}
-        // theme={"dark"}
+        theme={"light"}
+        className="border border-dashed rounded-xl transform transition-all duration-100 border-gray-300 py-5 hover:outline-none  hover:border-solid hover:border-gray-500 hover:ring-gray-500 hover:ring-1 "
       />
     </div>
   );

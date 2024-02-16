@@ -14,7 +14,7 @@ import Reviews from "@/components/landing-page/reviews";
 
 export default async function Home() {
   return (
-    <section className=" ">
+    <section className="">
       <Hero />
       <InfiniteMovingCardsDemo />
       <Elevator />

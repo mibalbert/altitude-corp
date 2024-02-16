@@ -7,28 +7,29 @@
 import { getFoldersData } from "@/app/_actions";
 import { Folder } from "./folder";
 import { useLayoutEffect, useState } from "react";
+import { useParams } from "next/navigation";
 
 const RecursiveFolders = ({ parentFolder = null, level = 0 }) => {
   const [folders, setFolders] = useState([]);
+  const params = useParams();
+
   useLayoutEffect(() => {
     const getData = async () => {
       const data = await getFoldersData(parentFolder);
       setFolders(data.data);
     };
     getData();
-  }, [parentFolder]);
+  }, [parentFolder, params.folderId]);
 
   return (
-    <div className="flex items-center justify-center w-60 h-full  ">
+    <div className="w-60  px-5 h-full overflow-auto ">
       <div>
         {folders.length === 0 ? (
           <p></p>
         ) : (
-          
           folders.map((folder, idx) => (
             <div key={idx}>
               <Folder folder={folder} level={level} />
-              
             </div>
           ))
         )}

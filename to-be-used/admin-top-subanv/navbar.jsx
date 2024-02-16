@@ -8,7 +8,7 @@ import { MenuIcon } from "lucide-react";
 // import { Id } from "@/convex/_generated/dataModel";
 
 import { Title } from "./title";
-import { Banner } from "../post/banner";
+import { Banner } from "../../components/admin/post/banner";
 import { Menu } from "./menu";
 import { Publish } from "./publish";
 

@@ -64,15 +64,26 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-
 model Home {
-    id        Int     @id @default(autoincrement())
-  heroTitle  String?  @db.LongText
-  heroSub    String?  @db.LongText
-  heroButton String?
-
-
+  id            Int       @id @default(autoincrement())
+  heroTitle     String?  
+  heroSubtitle  String?  
+  heroButton    String?
+  heroQuote     String?   @db.Text
+  reviews       Review[]  @relation("HomeToReview")
+  
 }
+
+model Review {
+  id            Int       @id @default(autoincrement())
+  author        String?
+  home          Home?     @relation("HomeToReview", fields: [homeId], references: [id])
+  homeId        Int?
+
+  @@index([homeId])
+}
+
+
 
 model Folder {
   id             Int      @id @default(autoincrement())
@@ -90,7 +101,7 @@ model Folder {
 model Post {
   id           String    @id @default(uuid())
   title        String?
-  content      String?
+  content      String? @db.Text
   coverImage   String?
   isArchived   Boolean?
   isPublished  Boolean

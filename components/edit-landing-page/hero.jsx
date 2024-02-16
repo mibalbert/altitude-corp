@@ -3,6 +3,7 @@
  */
 
 import GSAP from "./gsap";
+import prisma from "@/lib/prismadb";
 
 const Hero = async () => {
   const data = await prisma.home.findMany();

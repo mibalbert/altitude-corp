@@ -42,7 +42,7 @@ export function MobileNav({ session }) {
       </SheetTrigger>
       <SheetContent side="right" className="pr-0  z-[9999] md:px-10">
         <ScrollArea className="my-4 h-[calc(100vh-8rem)] px-[26px] ">
-          <>
+          {/* <>
             {sideNav &&
               sideNav?.map((item, idx) => {
                 return (
@@ -58,11 +58,18 @@ export function MobileNav({ session }) {
                   </div>
                 );
               })}
-          </>
-          <hr className="my-10"></hr>
+          </> */}
           <>
-            <div className="flex flex-col  space-y-3 w-full ">
-              <h2 className="text-xl text-gray-200">Webite Pages</h2>
+            <div className="flex flex-col  space-y-3 w-full pt-10 ">
+              <div className="">
+                <h1 className="text-xl  font-extrabold  text-white">
+                  ALTITUDE CORP
+                </h1>
+                <h3 className=" text-md  font-semibold text-blue-600">
+                  CLIMB HIGHER
+                </h3>
+              </div>
+              <hr className="my-10"></hr>
               {topNav?.map((item, idx) => {
                 return (
                   // <Link
