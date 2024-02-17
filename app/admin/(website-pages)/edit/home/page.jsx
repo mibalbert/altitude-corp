@@ -10,6 +10,7 @@ import PeaceOfMind from "@/components/edit-landing-page/peace-of-mind";
 import Plans from "@/components/edit-landing-page/plans";
 import { InfiniteMovingCardsDemo } from "@/components/edit-landing-page/rev";
 import Reviews from "@/components/edit-landing-page/reviews";
+import prisma from "@/lib/prismadb";
 import Link from "next/link";
 import React from "react";
 
