@@ -2,6 +2,7 @@
  * landing-page/Hero.jsx
  */
 
+import prisma from "@/lib/prismadb";
 import GSAP from "./gsap";
 
 const Hero = async () => {

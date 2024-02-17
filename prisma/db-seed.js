@@ -19,6 +19,11 @@ async function seed() {
       heroSubtitle: "CLIMB HIGHER",
       heroQuote:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa nesciunt dolorum fugiat!",
+      elevatorTitle: "Lorem ipsum dolor sit amet 50.000 adipisicing.",
+      elevatorSubtitle: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eu
+      condimentum purus turpis vitae gravida iaculis id quisque
+      nullam. Rhoncus, adipiscing mattis.`,
+      
     };
 
     await prisma.home.create({

@@ -74,17 +74,28 @@ export async function changeHeroQuote(homeId, newQuote) {
   }
 }
 
+export async function changeElevatorTitle(homeId, newElevatorTitle) {
+  try {
+    const res = await prisma.home.update({
+      where: {
+        id: homeId,
+      },
+      data: {
+        elevatorTitle: newElevatorTitle,
+      },
+    });
 
-// class="input" 
-//   role="textbox" 
-//   contenteditable
+    if (res) {
+      revalidatePath("/admin/edit/home");
+      return { message: "Success", ok: true };
+    }
 
-
-
-
-
-
-
+    return { message: "Error", ok: false };
+  } catch (error) {
+    console.log("the errorr", error);
+    return { message: "Error", ok: false };
+  }
+}
 
 // <div className="absolute  min-w-[40%] h-auto bottom-[10%] left-1/2 transform -translate-x-1/2 -translate-y-[10%] z-[99]">
 // <div className="absolute right-3 top-3">

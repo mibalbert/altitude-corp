@@ -71,7 +71,9 @@ model Home {
   heroButton    String?
   heroQuote     String?   @db.Text
   reviews       Review[]  @relation("HomeToReview")
-  
+  elevatorTitle String?   @db.Text
+  elevatorSubtitle String?   @db.Text
+
 }
 
 model Review {

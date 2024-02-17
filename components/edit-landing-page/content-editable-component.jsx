@@ -2,6 +2,8 @@
  * components/admin/edit-landing-page/content-editable-components.jsx
  */
 
+"use client";
+
 import { useEffect, useRef } from "react";
 
 export default function Contenteditable(props) {

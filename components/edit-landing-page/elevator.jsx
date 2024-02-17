@@ -1,21 +1,71 @@
-import Image from "next/image";
-import React from "react";
+/**
+ * components/edit-landing-page/elevator.jsx
+ */
 
-const Elevator = () => {
+"use client";
+
+import Image from "next/image";
+import React, { useState } from "react";
+import Contenteditable from "./content-editable-component";
+import { changeElevatorTitle } from "@/app/actions/edit-web-pages/edit-home/_home-actions";
+
+const Elevator = ({ data }) => {
+  const [elevatorTitle, setElevatorTitle] = useState(data?.elevatorTitle);
+  const [elevatorSubtitle, setElevatorSubtitle] = useState(data?.elevatorSubtitle);
+
+  function debounce(func, timeout = 300) {
+    let timer;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        func.apply(this, args);
+      }, timeout);
+    };
+  }
+  const debounceChangeElevatorTitle = debounce(async (e) => {
+    const res = await changeElevatorTitle(data.id, e);
+    if (res.ok) {
+      console.log(res.message);
+    }
+  });
+  const debounceChangeElevatorSubtitle = debounce(async (e) => {
+    const res = await changeElevatorSubtitle(data.id, e);
+    if (res.ok) {
+      console.log(res.message);
+    }
+  });
+
+  const handleElevatorTitleChange = (e) => {
+    // setIsTitleChanging(true);
+    setElevatorTitle(e);
+    debounceChangeElevatorTitle(e);
+    // setIsTitleChanging(false);
+  };
+  const handleElevatorSubtitleChange = (e) => {
+    // setIsTitleChanging(true);
+    setElevatorSubtitle(e);
+    debounceChangeElevatorSubtitle(e);
+    // setIsTitleChanging(false);
+  };
+
   return (
     <section className="py-[10rem] bg-blue-600 overflow-hidden">
       <div className="container px-4 mx-auto">
         <div className="flex flex-wrap -m-8">
           <div className="w-full md:w-1/2 lg:w-1/3 p-8">
             <div className="xl:pt-12">
-              <h2 className="mb-7 text-6xl md:text-7xl text-white font-bold tracking-px-n leading-tight">
-                Lorem ipsum dolor sit amet 50.000 adipisicing.
-              </h2>
-              <p className="text-white text-opacity-80">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eu
-                condimentum purus turpis vitae gravida iaculis id quisque
-                nullam. Rhoncus, adipiscing mattis.
-              </p>
+              <div className="mb-7 text-6xl md:text-7xl text-white font-bold tracking-px-n leading-tight">
+                <Contenteditable
+                  value={elevatorTitle}
+                  onChange={handleElevatorTitleChange}
+                />
+              </div>
+              <div className="text-white text-opacity-80">
+                <Contenteditable
+                  value={elevatorSubtitle}
+                  onChange={handleElevatorSubtitleChange}
+                />
+              </div>
             </div>
           </div>
           <div className="w-full md:w-1/2 lg:w-1/3 p-8">

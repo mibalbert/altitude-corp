@@ -9,14 +9,19 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { useMediaQuery } from "usehooks-ts";
-import { changeHeroTitle } from "@/app/actions/edit-web-pages/edit-home/_home-actions";
+import {
+  changeHeroSubtitle,
+  changeHeroTitle,
+} from "@/app/actions/edit-web-pages/edit-home/_home-actions";
 import { Check, Timer } from "lucide-react";
 import Contenteditable from "./content-editable-component";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const GSAP = ({ data }) => {
-  const [isTitleChanging, setIsTitleChanging] = useState(false);
+  const [title, setTitle] = useState(data?.heroTitle);
+  const [subtitle, setSubtitle] = useState(data?.heroSubtitle);
+  const [quoute, setQuote] = useState(data?.heroQuote);
   const [isSubtitleChanging, setIsSubtitleChanging] = useState(false);
 
   const mainRef = useRef(null);
@@ -71,23 +76,54 @@ const GSAP = ({ data }) => {
     // .fromTo(".title2",{ opacity: 0 }, { opacity: 1, y: 500 }, 0);
   }, []);
 
-  const handleTitleChange = async (e) => {
-    setIsTitleChanging(true);
+  function debounce(func, timeout = 300) {
+    let timer;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        func.apply(this, args);
+      }, timeout);
+    };
+  }
 
-    const res = await changeHeroTitle(data[0].id, e.target.value);
+  const debounceChangeTitle = debounce(async (e) => {
+    const res = await changeHeroTitle(data.id, e);
     if (res.ok) {
       console.log(res.message);
     }
-    setIsTitleChanging(false);
+  });
+  const debounceChangeSubtitle = debounce(async (e) => {
+    const res = await changeHeroSubtitle(data.id, e);
+    if (res.ok) {
+      console.log(res.message);
+    }
+  });
+  const debounceChangeQuote = debounce(async (e) => {
+    const res = await changeHeroSubtitle(data.id, e);
+    if (res.ok) {
+      console.log(res.message);
+    }
+  });
+
+  const handleTitleChange = (e) => {
+    // setIsTitleChanging(true);
+    setTitle(e);
+    debounceChangeTitle(e);
+    // setIsTitleChanging(false);
   };
-  const handleSubtitleChange = async (e) => {
-    setIsSubtitleChanging(true);
 
-    const res = await changeHeroTitle(data[0].id, e.target.value);
-    if (res.ok) {
-      console.log(res.message);
-    }
-    setIsSubtitleChanging(false);
+  const handleSubtitleChange = (e) => {
+    // setIsSubtitleChanging(true);
+    setSubtitle(e);
+    debounceChangeSubtitle(e);
+    // setIsSubtitleChanging(false);
+  };
+
+  const handleQuoteChange = (e) => {
+    // setIsSubtitleChanging(true);
+    setQuote(e);
+    debounceChangeQuote(e);
+    // setIsSubtitleChanging(false);
   };
 
   return (
@@ -100,34 +136,12 @@ const GSAP = ({ data }) => {
         <div className="absolute pointer-events-none rounded-xl inset-0 flex items-center justify-center dark:bg-black bg-blue-600 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
         <div className="absolute z-[99] rounde-b-xl w-full h-[50vh] lg:h-[43vh] bottom-0 bg-white  "></div>
 
-        <div className="logo absolute z-[89] w-auto flex flex-col  justify-center top-[16%] left-1/2 transform -translate-x-1/2 -translate-y-[16%]">
-          <div className="relative ">
-            {/* <div className="absolute right-3 top-3"> */}
-              {/* {isTitleChanging ? (
-                <Timer className="h-4 w-4" />
-              ) : (
-                <Check className="h-4 w-4" />
-              )}
-            </div> */}
-            <Contenteditable
-              // className="peer w-auto h-full max-w-2xl bg-transparent text-center text-white font-extrabold outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2  text-5xl lg:text-7xl px-3 py-2.5 rounded-lg border-blue-gray-200 focus:border-gray-900"
-              value={data?.heroTitle}
-              onChange={handleTitleChange}
-            />
+        <div className="logo absolute z-[89] top-[16%] w-full flex flex-col items-center ">
+          <div className="text-center text-white font-extrabold text-5xl lg:text-7xl w-auto">
+            <Contenteditable value={title} onChange={handleTitleChange} />
           </div>
-          <div className="relative mx-auto  text-2xl lg:text-4xl font-semibold text-center text-gray-200 ">
-            {/* <div className="absolute right-3 top-3">
-              {isSubtitleChanging ? (
-                <Timer className="h-4 w-4" />
-              ) : (
-                <Check className="h-4 w-4" />
-              )}
-            </div> */}
-            <Contenteditable
-              // className="peer  w-auto h-full  bg-transparent text-2xl lg:text-4xl font-semibold text-center text-gray-200  outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2   px-3 py-2.5 rounded-lg border-blue-gray-200 focus:border-gray-900"
-              value={data?.heroSubtitle}
-              onChange={handleSubtitleChange}
-            />
+          <div className="text-2xl lg:text-4xl font-semibold text-center text-gray-200  w-auto">
+            <Contenteditable value={subtitle} onChange={handleSubtitleChange} />
           </div>
         </div>
         <Image
@@ -180,39 +194,14 @@ const GSAP = ({ data }) => {
         />
 
         <div className="absolute z-[1000] bottom-[10%] left-1/2 transform -translate-x-1/2 -translate-y-[10%] text-xl text-blue-800  text-center font-extrabold leading-tight  ">
-          <Contenteditable
-            value={data?.heroTitle}
-            onChange={(updatedContent) => {
-              console.log("first", updatedContent);
-            }}
-          />
+          <Contenteditable value={quoute} onChange={handleQuoteChange} />
         </div>
       </div>
     </div>
   );
 };
 
-export default GSAP;
-
-function ArrowRightIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M5 12h14" />
-      <path d="m12 5 7 7-7 7" />
-    </svg>
-  );
-}
+export default GSAP; 
 
 // /**
 //  * components/landing-page/gsap.jsx

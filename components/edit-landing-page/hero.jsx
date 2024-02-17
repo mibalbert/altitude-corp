@@ -5,12 +5,11 @@
 import GSAP from "./gsap";
 import prisma from "@/lib/prismadb";
 
-const Hero = async () => {
-  const data = await prisma.home.findMany();
-
+const Hero = async ({data}) => {
+  
   return (
     <main>
-      <GSAP data={data[0]} />
+      <GSAP data={data} />
     </main>
   );
 };

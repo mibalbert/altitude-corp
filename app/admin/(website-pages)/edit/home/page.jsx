@@ -13,15 +13,17 @@ import Reviews from "@/components/edit-landing-page/reviews";
 import Link from "next/link";
 import React from "react";
 
-const EditHome = () => {
+const EditHome = async () => {
+  const data = await prisma.home.findMany();
+
   return (
     <div className="p-4 pb-44">
       <div>asdnaksjdn</div>
 
       <div className="px-5 pb-5 border-2 border-dashed border-gray-300 rounded-xl">
-        <Hero />
+        <Hero data={data[0]} />
         <InfiniteMovingCardsDemo />
-        <Elevator />
+        <Elevator data={data[0]} />
         <PeaceOfMind />
         <Numbers />
         <Plans />
