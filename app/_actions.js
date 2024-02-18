@@ -1,7 +1,7 @@
 "use server";
 
 import prisma from "@/lib/prismadb";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 export async function savePostCoverImageUrl(postId, url) {
   try {
@@ -125,20 +125,26 @@ export async function createPostUnderFolder(parentFolderId) {
     const res = await prisma.post.create({
       data: {
         title: "Untitled",
-        folderId: folderId,
+        folderId: parentFolderId,
+        isPublished: false,
       },
     });
 
-    console.log(res);
-    // if(res){
+    if (res) {
+      // revalidatePath(`/admin/posts/${res.id}`);
+      revalidateTag("collection");
+      return {
+        url: `/admin/posts/${res.id}`,
+        message: "Successfuly created post with title Untitled",
+        ok: true,
+      };
+    }
     return {
-      postId: res.id,
-      message: "Successfuly created post with title Untitled",
-      ok: true,
+      message: "Could not create new post",
+      ok: false,
     };
-    // }
   } catch (error) {
-    return { message: error, ok: false };
+    return { message: "Could not create new post", ok: false };
   }
 }
 export async function createFolder(parentFolderId) {
@@ -155,6 +161,17 @@ export async function createFolder(parentFolderId) {
         ok: true,
       };
     }
+    const newFolder = await prisma.folder.create({
+      data: {
+        parentFolder: parentFolderId,
+        title: "Untiled",
+      },
+    });
+    return {
+      url: `/admin/folders/${newFolder.id}`,
+      message: "New Untitled Folder created",
+      ok: true,
+    };
   } catch (error) {
     return { message: error, ok: false };
   }
@@ -226,6 +243,46 @@ export async function createNewUndefinedPost() {
     return "Error";
   }
 }
+
+export async function deletePost(postId, postTitle, currentPath) {
+  try {
+    const { folderId } = await prisma.post.findFirst({
+      where: {
+        id: postId,
+      },
+    });
+
+    const res = await prisma.post.delete({
+      where: {
+        id: postId,
+      },
+    });
+    if (res) {
+      revalidatePath(currentPath);
+      return {
+        url: `/admin/folders/${folderId}`,
+        message: `Successfully deleted ${postTitle}`,
+        ok: true,
+      };
+    }
+    return {
+      message: `Successfully deleted ${postTitle}`,
+      ok: false,
+    };
+  } catch (error) {
+    return {
+      message: `Could not deleted ${postTitle}`,
+      ok: false,
+    };
+  }
+}
+// export async function createNewUndefinedPost() {
+//   try {
+//     return "abda123";
+//   } catch (error) {
+//     return "Error";
+//   }
+// }
 
 // export async function loginFormAction(formData) {
 //   try {

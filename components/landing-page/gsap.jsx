@@ -140,8 +140,7 @@ const GSAP = ({ data }) => {
           EXPLORE
         </h1> */}
         <h3 className="absolute z-[100] text-xl text-blue-800 text-center font-extrabold leading-tight bottom-[10%] left-1/2 transform -translate-x-1/2 -translate-y-[10%] ">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa nesciunt
-          dolorum fugiat!
+          {data?.heroQuote}
         </h3>
       </div>
     </div>
@@ -169,6 +168,19 @@ function ArrowRightIcon(props) {
     </svg>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // /**
 //  * components/landing-page/gsap.jsx

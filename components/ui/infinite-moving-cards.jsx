@@ -73,7 +73,6 @@ export const InfiniteMovingCards = ({
         className={cn(
           " flex min-w-full shrink-0 gap-4 py-4 w-max flex-nowrap",
           start && "animate-scroll ",
-          // pauseOnHover && "hover:[animation-play-state:paused]"
           pauseOnHover && "hover:[animation-play-state:paused]"
         )}
       >
@@ -84,8 +83,9 @@ export const InfiniteMovingCards = ({
               background:
                 "linear-gradient(180deg, var(--blue-600), var(--blue-700)",
             }}
-            key={item.name}
+            key={item.author}
           >
+            
             <blockquote>
               <div
                 aria-hidden="true"
@@ -96,11 +96,11 @@ export const InfiniteMovingCards = ({
               </span>
               <div className="relative z-20 mt-6 flex flex-row items-center">
                 <span className="flex flex-col gap-1">
-                  <span className=" text-sm leading-[1.6] text-gray-400 font-normal">
-                    {item.name}
+                  <span className=" text-sm leading-[1.6] text-gray-200 font-normal">
+                    {item.author}
                   </span>
-                  <span className=" text-sm leading-[1.6] text-gray-400 font-normal">
-                    {item.title}
+                  <span className=" text-sm leading-[1.6] text-gray-200 font-normal">
+                    {item.company}
                   </span>
                 </span>
               </div>

@@ -4,7 +4,7 @@
 
 "use client";
 
-import { getFoldersData } from "@/app/_actions";
+// import { getFoldersData } from "@/app/_actions";
 import { Folder } from "./folder";
 import { useLayoutEffect, useState } from "react";
 import { useParams } from "next/navigation";
@@ -13,20 +13,32 @@ const RecursiveFolders = ({ parentFolder = null, level = 0 }) => {
   const [folders, setFolders] = useState([]);
   const params = useParams();
 
+  console.log(params);
   useLayoutEffect(() => {
     const getData = async () => {
-      const data = await getFoldersData(parentFolder);
-      setFolders(data.data);
+      const res = await fetch(
+        "/api/get-folders-data",
+        {
+          method: "POST",
+          body: JSON.stringify({ folderId: parentFolder }),
+        },
+        { cache: "no-store" }
+      );
+      const data = await res.json();
+      console.log(data);
+      setFolders(data.folders);
     };
     getData();
-  }, [parentFolder, params.folderId]);
+  }, [parentFolder, params]);
 
   return (
     <div className="w-60  px-5 h-full overflow-auto ">
       <div>
+        {/* {folders.data.length === 0 ? ( */}
         {folders.length === 0 ? (
           <p></p>
         ) : (
+          // folders.data.map((folder, idx) => (
           folders.map((folder, idx) => (
             <div key={idx}>
               <Folder folder={folder} level={level} />

@@ -1,6 +1,15 @@
-import React from "react";
+/**
+ * components/admin/editor-mode/edit-landing-page/plans.jsx
+ */
 
-const Plans = () => {
+"use client";
+
+import React, { useState } from "react";
+
+const Plans = ({ data }) => {
+  const [plansTitle, setPlansTitle] = useState(data?.plansTitle || "");
+  // const [plansTitle, setPlansTitle] = useState(data?.plansTitle || "");
+
   return (
     <section className="pt-24 pb-28 bg-blueGray-50 overflow-hidden">
       <div className="container px-4 mx-auto">

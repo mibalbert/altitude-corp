@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-const Elevator = () => {
+const Elevator = ({ data }) => {
   return (
     <section className="py-[10rem] bg-blue-600 overflow-hidden">
       <div className="container px-4 mx-auto">
@@ -9,12 +9,10 @@ const Elevator = () => {
           <div className="w-full md:w-1/2 lg:w-1/3 p-8">
             <div className="xl:pt-12">
               <h2 className="mb-7 text-6xl md:text-7xl text-white font-bold tracking-px-n leading-tight">
-                Lorem ipsum dolor sit amet 50.000 adipisicing.
+                {data.elevatorTitle}
               </h2>
               <p className="text-white text-opacity-80">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eu
-                condimentum purus turpis vitae gravida iaculis id quisque
-                nullam. Rhoncus, adipiscing mattis.
+                {data.elevatorSubtitle}
               </p>
             </div>
           </div>

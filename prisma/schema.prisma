@@ -65,26 +65,78 @@ model VerificationToken {
 }
 
 model Home {
-  id            Int       @id @default(autoincrement())
-  heroTitle     String?  
-  heroSubtitle  String?  
-  heroButton    String?
-  heroQuote     String?   @db.Text
-  reviews       Review[]  @relation("HomeToReview")
-  elevatorTitle String?   @db.Text
+  id               Int       @id @default(autoincrement())
+  heroTitle        String?  
+  heroSubtitle     String?  
+  heroButton       String?
+  heroQuote        String?   @db.Text
+  reviews          Review[]  @relation("HomeToReview")
+  elevatorTitle    String?   
   elevatorSubtitle String?   @db.Text
+  elevatorFirstCompTitle String?   
+  elevatorFirstCompDesc String?   @db.Text
+  elevatorSecCompTitle String?   
+  elevatorSecCompDesc String?   @db.Text
+  peaceOfMindTitle String?  
+  peaceOfMindDesc String? @db.Text
+  peaceOfMindFirstCompTitle String? 
+  peaceOfMindFirstCompDesc String? 
+  peaceOfMindSecCompTitle String? 
+  peaceOfMindSecCompDesc String? 
+  numbersTitle String?
+  numbersDesc String? @db.Text
+  numbersFirstCompTitle String? 
+  numbersFirstCompNumbers String?
+  numbersFirstCompDesc String?
+  numbersSecCompTitle String?
+  numbersSecCompNumbers String?
+  numbersSecCompDesc String?
+  numbersThirdCompTitle String?
+  numbersThirdCompNumbers String?
+  numbersThirdCompDesc String?
+  stepsTitle String?
+  stepsDesc String? @db.Text
+  stepsFirstCompTitle String?
+  stepsFirstCompDesc String?
+  stepsSecCompTitle String?
+  stepsSecCompDesc String?
+  stepsThirdCompTitle String?
+  stepsThirdCompDesc String?
+  landingFooterTitle String?
+  landingFooterDesc String? @db.Text
+  landingFooterButton String? 
+  landingFooterItem1 String?
+  landingFooterItem2 String?
+  landingFooterItem3 String?
+  landingFooterItem4 String?
+  landingFooterItem5 String?
+  landingFooterItem6 String?
+  landingFooterItem7 String?
+  landingFooterItem8 String?
+  landingFooterItem9 String?
+  landingFooterItem10 String?
 
 }
 
+model BlogPage {
+  id               Int       @id @default(autoincrement())
+  blogPageTitle        String?  
+  blogPageSubtitle     String?  @db.Text
+  blogPageLatestTitle String?
+  blogPageLatestSubtitle String?
+
+
+}
 model Review {
   id            Int       @id @default(autoincrement())
   author        String?
+  quote String?   @db.Text
+  company String?
   home          Home?     @relation("HomeToReview", fields: [homeId], references: [id])
   homeId        Int?
 
   @@index([homeId])
 }
-
 
 
 model Folder {

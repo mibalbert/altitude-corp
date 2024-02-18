@@ -26,6 +26,7 @@ import { useAdminSideNav } from "@/hooks/use-admin-sidebar";
 import { Button } from "@/components/ui/button";
 import CreateFolderButton from "./create-folder-button";
 import WebsitePages from "./website-pages";
+import Link from "next/link";
 
 export const Navigation = ({ children }) => {
   const settings = useSettings();
@@ -73,8 +74,10 @@ export const Navigation = ({ children }) => {
               <ChevronsLeft className="h-6 w-6" />
             </div>
             <div>
-              <WebsitePages />
-              <hr className="my-4 w-[80%]" />
+              <Link href={"/admin"}>Dashboard</Link>
+            </div>
+            <hr className="my-4 w-[80%]" />
+            <div>
               <Item
                 label="Search"
                 icon={Search}
@@ -83,9 +86,14 @@ export const Navigation = ({ children }) => {
               />
             </div>
             <div className="mt-4 h-full">
+              {/* {children} */}
               <FoldersAndFiles />
+              <CreateFolderButton />
             </div>
-            <CreateFolderButton />
+            <hr className="my-4 w-[80%]" />
+            <div>
+              <WebsitePages />
+            </div>
           </aside>
         ) : (
           <div className="relative h-full pt-3 px-2">

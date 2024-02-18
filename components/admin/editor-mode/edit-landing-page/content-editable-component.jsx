@@ -22,6 +22,8 @@ export default function Contenteditable(props) {
       onInput={(event) => {
         props.onChange(event.target.textContent);
       }}
+      // className="border border-dashed  rounded-lg line-clamp-3"
+      className="border border-dashed  rounded-lg "
     />
   );
 }

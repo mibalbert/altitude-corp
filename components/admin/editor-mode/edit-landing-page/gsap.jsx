@@ -10,6 +10,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { useMediaQuery } from "usehooks-ts";
 import {
+  changeHeroQuote,
   changeHeroSubtitle,
   changeHeroTitle,
 } from "@/app/actions/edit-web-pages/edit-home/_home-actions";
@@ -19,9 +20,9 @@ import Contenteditable from "./content-editable-component";
 gsap.registerPlugin(ScrollTrigger);
 
 const GSAP = ({ data }) => {
-  const [title, setTitle] = useState(data?.heroTitle);
-  const [subtitle, setSubtitle] = useState(data?.heroSubtitle);
-  const [quoute, setQuote] = useState(data?.heroQuote);
+  const [title, setTitle] = useState(data?.heroTitle || "");
+  const [subtitle, setSubtitle] = useState(data?.heroSubtitle || "");
+  const [quoute, setQuote] = useState(data?.heroQuote || "");
   const [isSubtitleChanging, setIsSubtitleChanging] = useState(false);
 
   const mainRef = useRef(null);
@@ -99,7 +100,7 @@ const GSAP = ({ data }) => {
     }
   });
   const debounceChangeQuote = debounce(async (e) => {
-    const res = await changeHeroSubtitle(data.id, e);
+    const res = await changeHeroQuote(data.id, e);
     if (res.ok) {
       console.log(res.message);
     }
@@ -127,7 +128,7 @@ const GSAP = ({ data }) => {
   };
 
   return (
-    <div className="bg-white pt-20    relative ">
+    <div className="bg-white pt-20  relative ">
       <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
       <div
         ref={mainRef}
@@ -201,7 +202,7 @@ const GSAP = ({ data }) => {
   );
 };
 
-export default GSAP; 
+export default GSAP;
 
 // /**
 //  * components/landing-page/gsap.jsx
