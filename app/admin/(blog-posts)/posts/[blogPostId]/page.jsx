@@ -9,7 +9,6 @@ import prisma from "@/lib/prismadb";
 import React from "react";
 import dynamic from "next/dynamic";
 import { SingleImageDropzone } from "@/components/admin/admin-blog-post/single-image-dropzone";
-import { redirect } from "next/navigation";
 
 const BlogPost = async ({ params }) => {
   const PostEditor = dynamic(
@@ -23,10 +22,6 @@ const BlogPost = async ({ params }) => {
       id: params.blogPostId,
     },
   });
-
-  if (!data) {
-    redirect("/admin");
-  }
 
   return (
     <section className="pb-32 pt-3 px-5">
