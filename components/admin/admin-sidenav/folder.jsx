@@ -50,9 +50,7 @@ export const Folder = ({ folder, level }) => {
 
   const handleCreateFolder = async (e) => {
     e.preventDefault();
-
     const res = await createFolder(folder.id);
-
     if (res.ok) {
       toast.success(res.message);
       router.push(res.url);
@@ -60,11 +58,9 @@ export const Folder = ({ folder, level }) => {
   };
 
   const handleCreatePostUnderFolder = async () => {
-    // console.log(folder.id);
     const res = await createPostUnderFolder(folder.id);
     if (res.ok) {
-      
-      router.replace(res.url);
+      router.push(res.url);
       toast.success(res.message);
     }
   };

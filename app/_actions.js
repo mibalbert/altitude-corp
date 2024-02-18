@@ -223,27 +223,7 @@ export async function getFolders() {
   } catch (error) {
     return "Error";
   }
-}
-export async function getFoldersByParentId(parentFolderId) {
-  try {
-    const res = await prisma.folder.findMany({
-      where: {
-        parentFolderId: parentFolderId,
-      },
-    });
-    return res;
-  } catch (error) {
-    return "Error";
-  }
-}
-export async function createNewUndefinedPost() {
-  try {
-    return "abda123";
-  } catch (error) {
-    return "Error";
-  }
-}
-
+} 
 export async function deletePost(postId, postTitle, currentPath) {
   try {
     const { folderId } = await prisma.post.findFirst({

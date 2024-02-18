@@ -8,7 +8,6 @@ import UnderNav from "@/components/admin/admin-blog-post/undernav";
 import prisma from "@/lib/prismadb";
 import React from "react";
 import dynamic from "next/dynamic";
-import { SingleImageDropzone } from "@/components/admin/admin-blog-post/single-image-dropzone";
 
 const BlogPost = async ({ params }) => {
   const PostEditor = dynamic(

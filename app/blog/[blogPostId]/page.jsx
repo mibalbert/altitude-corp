@@ -21,6 +21,8 @@ const BlogPost = async ({ params }) => {
     },
   });
 
+  // console.log(first)
+
   if (!data) {
     return (
       <div className="min-h-[90vh] h-full w-full flex items-center justify-center">
