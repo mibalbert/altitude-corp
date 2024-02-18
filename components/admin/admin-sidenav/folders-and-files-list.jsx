@@ -32,7 +32,7 @@ const RecursiveFolders = ({ parentFolder = null, level = 0 }) => {
   }, [parentFolder, params]);
 
   return (
-    <div className="w-60  px-5 h-full overflow-auto ">
+    <div className="w-52 h-full overflow-auto ">
       <div>
         {/* {folders.data.length === 0 ? ( */}
         {folders.length === 0 ? (

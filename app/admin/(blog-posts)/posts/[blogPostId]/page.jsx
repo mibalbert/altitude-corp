@@ -8,6 +8,7 @@ import UnderNav from "@/components/admin/admin-blog-post/undernav";
 import prisma from "@/lib/prismadb";
 import React from "react";
 import dynamic from "next/dynamic";
+import NewContentEditable from "@/components/admin/editor-mode/edit-landing-page/new-content-editable";
 
 const BlogPost = async ({ params }) => {
   const PostEditor = dynamic(
@@ -30,6 +31,8 @@ const BlogPost = async ({ params }) => {
         coverImage={data.coverImage}
         padding={true}
       />
+
+      <NewContentEditable />
 
       <section className="w-full py-5 ">
         <div className=" max-w-4xl mx-auto w-full">

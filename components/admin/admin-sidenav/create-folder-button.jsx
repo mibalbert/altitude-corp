@@ -26,7 +26,7 @@ const CreateFolderButton = () => {
       type="button"
       onClick={handleCreateFolder}
       className={cn(
-        "flex items-center w-full gap-2  min-h-[27px] text-sm py-1 px-3  text-muted-foreground font-medium active:bg-primary/5 active:text-primary"
+        "flex items-center my-2 rounded-lg  gap-2 border w-52 min-h-[27px] text-sm py-2 px-3 hover:bg-gray-100 text-muted-foreground font-medium active:bg-primary/5 active:text-primary"
       )}
     >
       <PlusCircleIcon className="h-4 w-4 shrink-0 text-muted-foreground/50" />

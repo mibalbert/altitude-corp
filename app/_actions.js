@@ -223,7 +223,7 @@ export async function getFolders() {
   } catch (error) {
     return "Error";
   }
-} 
+}
 export async function deletePost(postId, postTitle, currentPath) {
   try {
     const { folderId } = await prisma.post.findFirst({
@@ -256,6 +256,50 @@ export async function deletePost(postId, postTitle, currentPath) {
     };
   }
 }
+export async function deleteFolder(folderId, folderTitle, currentPath) {
+  try {
+    const { parentFolder } = await prisma.folder.findMany({
+      where: {
+        parentFolder: folderId,
+      },
+    });
+
+    //Delete all child posts
+    parentFolder?.map(async (el) => {
+      await prisma.post.deleteMany({
+        where: {
+          folderId: el.id,
+        },
+      });
+    });
+
+    await prisma.folder.deleteMany({
+      where: {
+        parentFolder: folderId,
+      },
+    });
+    if (res) {
+      revalidatePath(currentPath);
+      return {
+        url: `/admin/folders/${folderId}`,
+        message: `Successfully deleted ${folderTitle} and the containing posts`,
+        ok: true,
+      };
+    }
+    return {
+      message: `Successfully deleted ${postTitle}`,
+      ok: false,
+    };
+  } catch (error) {
+    return {
+      message: `Could not deleted ${postTitle}`,
+      ok: false,
+    };
+  }
+}
+
+
+
 // export async function createNewUndefinedPost() {
 //   try {
 //     return "abda123";

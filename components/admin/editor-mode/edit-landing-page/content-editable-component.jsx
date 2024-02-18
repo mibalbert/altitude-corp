@@ -4,6 +4,7 @@
 
 "use client";
 
+import { cn } from "@/lib/utils";
 import { useEffect, useRef } from "react";
 
 export default function Contenteditable(props) {
@@ -22,8 +23,12 @@ export default function Contenteditable(props) {
       onInput={(event) => {
         props.onChange(event.target.textContent);
       }}
-      // className="border border-dashed  rounded-lg line-clamp-3"
-      className="border border-dashed  rounded-lg "
+      onKeyDown={(event) => {
+        if (event.key === "Enter") {
+          console.log(event);
+        }
+      }}
+      className={cn("border border-dashed  rounded-lg", props.className)}
     />
   );
 }

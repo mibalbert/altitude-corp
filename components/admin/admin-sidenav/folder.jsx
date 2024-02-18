@@ -10,6 +10,7 @@ import { useState } from "react";
 import {
   createFolder,
   createPostUnderFolder,
+  deleteFolder,
   deletePost,
 } from "../../../app/_actions";
 import { usePathname, useRouter } from "next/navigation";
@@ -24,6 +25,7 @@ import {
   ChevronDown,
   ChevronRight,
   ChevronUp,
+  File,
   Minus,
   MoreHorizontal,
   MoreVertical,
@@ -34,6 +36,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import RecursiveFolders from "./folders-and-files-list";
 import PostTitle from "../admin-blog-post/post-title";
+import { cn } from "@/lib/utils";
 
 export const Folder = ({ folder, level }) => {
   const [collapsed, setCollapsed] = useState(true);
@@ -66,58 +69,64 @@ export const Folder = ({ folder, level }) => {
   };
 
   return (
-    <div
-      className="flex flex-col"
-      // style={{ paddingLeft: `${level * 12 + 25}px` }}
-
-      // style={{ paddingLeft: `${(level - 1) * 12 + 25}px` }}
-    >
-      <div
-        className="flex items-center justify-between gap-1"
-        // style={{ paddingLeft: `${level * 12 + 25}px` }}
-      >
-        <button onClick={toggleCollapse} className="flex items-center">
-          <span>
-            {/* {folder.posts.length > 0 ? ( */}
-            {collapsed ? <ChevronRight /> : <ChevronDown />}
-          </span>
+    <div className="flex flex-col ">
+      <div className="grid grid-cols-5 items-center justify-center  gap-2 p-1  w-52  my-1 hover:bg-slate-50 rounded-lg">
+        <button
+          onClick={toggleCollapse}
+          className="col-span-1 flex items-center justify-center hover:bg-slate-200 w-full py-1.5 h-full rounded-md"
+        >
+          {collapsed ? (
+            <ChevronRight className="flex items-center justify-center w-5 h-5 " />
+          ) : (
+            <ChevronDown className="flex w-5 h-5 items-center justify-center " />
+          )}
         </button>
-        <Link href={`/admin/folders/${folder.id}`} className=" ">
-          <span>{folder.title}</span>
+        <Link href={`/admin/folders/${folder.id}`} className="col-span-3">
+          {folder.title}
         </Link>
-        {/* <span>ASD</span> */}
-        <DropIt handleCreateFolder={handleCreateFolder} />
+        <DropIt
+          handleCreateFolder={handleCreateFolder}
+          className="col-span-1"
+        />
       </div>
-
       {!collapsed && (
         <div
-          className="flex flex-col"
-          // style={{ paddingLeft: `${(level + 1) * 12 + 25}px` }}
+          className="flex flex-col "
+          style={{ paddingLeft: `${(level + 1) * 12 + 25}px` }}
         >
           {sortedPosts.map((post, idx) => (
-            <div key={idx} className="flex items-center  justify-between">
+            <div
+              key={idx}
+              className="grid grid-cols-5 items-center justify-center  my-0.5 p-1  gap-2 hover:bg-slate-50 rounded-lg"
+            >
+              <div className=" flex items-center justify-center col-span-1">
+                <File className="w-4 h-4 " />
+              </div>
               <Link
                 key={post.id}
                 href={`/admin/posts/${post.id}`}
-                // style={{ paddingLeft: `${(level + 1) * 12 + 25}px` }}
-                className="border px-3  line-clamp-1"
+                className=" flex items-center  line-clamp-1 text-nowrap  col-span-3 py-1.5  rounded-lg"
               >
                 {post.title}
               </Link>
-              <DropItPost
-                router={router}
-                postId={post.id}
-                postTitle={post.title}
-              />
+              <div className="col-span-1">
+                <DropItPost
+                  // className={"col-span-1"}
+                  router={router}
+                  postId={post.id}
+                  postTitle={post.title}
+                />
+              </div>
             </div>
           ))}
           <button
             type="button"
             onClick={handleCreatePostUnderFolder}
-            className="border rounded-md px-2"
+            className="border  px-2 py-1.5 mt-1 mb-4 hover:bg-slate-100 my-0.5 rounded-lg"
           >
             + Post
           </button>
+
           <RecursiveFolders parentFolder={folder.id} level={level + 1} />
         </div>
       )}
@@ -125,7 +134,68 @@ export const Folder = ({ folder, level }) => {
   );
 };
 
-const DropItPost = ({ postId, postTitle, currentPath }) => {
+const DropIt = ({
+  handleCreateFolder,
+  folderId,
+  folderTitle,
+  currentPath,
+  className,
+}) => {
+  const handleDeleteFolder = async () => {
+    //Create pop up asking the user if they are sure
+    const res = await deleteFolder(folderId, folderTitle, currentPath);
+    if (res.ok) {
+      router.push(res.url);
+      toast.success(res.message);
+    } else {
+      toast.error(res.message);
+    }
+  };
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger
+        className={cn(
+          "z-[101] flex items-center justify-center p-1.5 hover:bg-slate-200 rounded-md",
+          className
+        )}
+      >
+        <MoreVertical className="h-4 w-4 text-muted-foreground" />
+      </DropdownMenuTrigger>
+      <DropdownMenuContent
+        className="w-32   z-[102]"
+        align="start"
+        side="bottom"
+        forceMount
+      >
+        <DropdownMenuItem>
+          <div
+            type="button"
+            onClick={handleCreateFolder}
+            className="px-2 flex items-center gap-1"
+          >
+            <Plus className="w-5 h-5" />
+            <span>Folder</span>
+          </div>
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <div
+            type="button"
+            onClick={handleDeleteFolder}
+            className="px-2 flex items-center gap-1"
+          >
+            <Minus className="w-5 h-5" />
+            <span>Delete Folder</span>
+          </div>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <div className="text-xs text-muted-foreground p-2">Last edited at:</div>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+};
+
+const DropItPost = ({ postId, postTitle, currentPath, className }) => {
   const handleDeletePost = async () => {
     const res = await deletePost(postId, postTitle, currentPath);
     if (res.ok) {
@@ -137,69 +207,29 @@ const DropItPost = ({ postId, postTitle, currentPath }) => {
   };
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="z-[101]">
-        {/* <div
-        role="button"
-        className="h-full ml-auto rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600"
-      > */}
-        <MoreVertical className="h-4 w-4 text-muted-foreground" />
-        {/* </div> */}
+      <DropdownMenuTrigger
+        className={cn(
+          "z-[101]  flex items-center p-1.5 rounded-md justify-center hover:bg-slate-200",
+          className
+        )}
+      >
+        <MoreVertical className="h-4 w-4 " />
       </DropdownMenuTrigger>
       <DropdownMenuContent
-        className="w-60   z-[102]"
+        className="w-32   z-[102]"
         align="start"
-        side="right"
+        side="bottom"
         forceMount
       >
-        {/* <DropdownMenuItem onClick={onArchive}> */}
         <DropdownMenuItem>
-          <button
+          <div
             type="button"
             onClick={handleDeletePost}
-            className="border rounded-md px-2 flex items-center gap-1"
+            className="px-2 flex items-center gap-1"
           >
-            <Minus className="w-4 h-4" />
+            <Minus className="w-5 h-5" />
             <span>Delete</span>
-          </button>
-        </DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <div className="text-xs text-muted-foreground p-2">Last edited at:</div>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
-};
-const DropIt = ({ handleCreateFolder }) => {
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger className="z-[101]">
-        {/* <div
-        role="button"
-        className="h-full ml-auto rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600"
-      > */}
-        <MoreVertical className="h-4 w-4 text-muted-foreground" />
-        {/* </div> */}
-      </DropdownMenuTrigger>
-      <DropdownMenuContent
-        className="w-60   z-[102]"
-        align="start"
-        side="right"
-        forceMount
-      >
-        {/* <DropdownMenuItem onClick={onArchive}> */}
-        <DropdownMenuItem>
-          <form onSubmit={handleCreateFolder}>
-            <button
-              type="submit"
-              className="border rounded-md px-2 flex items-center gap-1"
-            >
-              <Plus className="w-4 h-4" />
-              <span>Folder</span>
-            </button>
-          </form>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <Trash className="h-4 w-4 mr-2" />
-          Delete
+          </div>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <div className="text-xs text-muted-foreground p-2">Last edited at:</div>

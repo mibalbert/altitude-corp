@@ -6,6 +6,7 @@
 
 import {
   ChevronsLeft,
+  Home,
   MenuIcon,
   Plus,
   PlusCircle,
@@ -57,8 +58,8 @@ export const Navigation = ({ children }) => {
           <aside
             ref={sidebarRef}
             className={cn(
-              `transition-all ease-in-out duration-300 overflow-hidden sticky top-16
-            group/sidebar h-full min-h-[calc(100vh-3.5rem)] bg-secondary overflow-y-auto  pt-12   flex w-60 flex-col z-[99]`,
+              `transition-all ease-in-out duration-300 overflow-hidden sticky top-16 pb-32
+            group/sidebar h-full  min-h-[calc(100vh-3.5rem)] bg-secondary overflow-y-auto  pt-16   flex w-60 flex-col z-[99]`,
               // isResetting && "transition-all ease-in-out duration-300",
               isMobile && "w-0"
             )}
@@ -74,23 +75,25 @@ export const Navigation = ({ children }) => {
               <ChevronsLeft className="h-6 w-6" />
             </div>
             <div>
-              <Link href={"/admin"}>Dashboard</Link>
+              <Link href={"/admin"} className="flex items-center gap-2">
+                <Home className="h-4 w-4" /> Dashboard
+              </Link>
             </div>
-            <hr className="my-4 w-[80%]" />
-            <div>
+            <hr className="my-4 w-52" />
+            {/* <div>
               <Item
                 label="Search"
                 icon={Search}
                 isSearch
                 onClick={search.onOpen}
               />
-            </div>
-            <div className="mt-4 h-full">
+            </div> */}
+            <div className="mt-4 h-full overflow-y-auto max-h-[50vh]">
               {/* {children} */}
               <FoldersAndFiles />
               <CreateFolderButton />
             </div>
-            <hr className="my-4 w-[80%]" />
+            <hr className="my-4 w-52" />
             <div>
               <WebsitePages />
             </div>

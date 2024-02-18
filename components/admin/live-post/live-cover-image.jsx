@@ -19,7 +19,9 @@ const LiveCoverImage = ({ coverImage }) => {
             priority
           />
         </div>
-      ) : null}
+      ) : (
+        <div className="py-10"></div>
+      )}
     </>
   );
 };
