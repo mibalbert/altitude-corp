@@ -4,6 +4,7 @@
 
 "use client";
 
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -19,10 +20,19 @@ export default function Footer() {
   }
 
   return (
-    <footer class="bg-white">
+    <footer
+      class={cn("bg-white", {
+        "bg-blue-600 text-gray-100": pathname.includes("/contact-us"),
+      })}
+    >
       <div class="mx-auto max-w-screen-xl px-4 pb-8 pt-16 sm:px-6 lg:px-8">
         <div class="mx-auto max-w-md">
-          <strong class="block text-center text-xl font-bold text-gray-900 sm:text-3xl">
+          <strong
+            class={cn(
+              "block text-center text-xl font-bold text-gray-900 sm:text-3xl",
+              { " text-gray-100": pathname.includes("/contact-us") }
+            )}
+          >
             Want us to email you with the latest blockbuster news?
           </strong>
 

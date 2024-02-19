@@ -4,7 +4,7 @@ import React from "react";
 const MissionStatement = () => {
   return (
     <>
-      <section className="w-full py-12 md:py-24 lg:py-32">
+      <section className="w-full py-12  pt-40">
         <div className="container px-4 md:px-6">
           <div className="grid items-center gap-6 lg:grid-cols-[1fr_500px] lg:gap-12 xl:grid-cols-[1fr_550px]">
             <div className="flex flex-col justify-center space-y-4">
@@ -34,7 +34,7 @@ const MissionStatement = () => {
           </div>
         </div>
       </section>
-      <section className="w-full py-12 md:py-24 lg:py-32">
+      <section className="w-full py-12 ">
         <div className="container px-4 md:px-6">
           <div className="grid items-center gap-6 lg:grid-cols-[500px_1fr] lg:gap-12 xl:grid-cols-[550px_1fr]">
             <Image

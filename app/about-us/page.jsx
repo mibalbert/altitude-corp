@@ -12,14 +12,17 @@ import React from "react";
 //   <div>Vision for clients</div>
 // </section>
 
-const AboutUs = () => {
+const AboutUs = async () => {
+  const data = await prisma.servicesPage.findMany({});
+
   return (
     <>
       <AboutUsHero />
       <MissionStatement />
       <Values />
       <ClientsVision />
-      <ContactUsInsidePage />
+      <ContactUsServices data={data[0]} />
+      {/* <ContactUsInsidePage /> */}
     </>
   );
 };
