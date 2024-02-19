@@ -7,6 +7,7 @@ import BlogsPageHero from "@/components/blogs-page/blogs-page-hero";
 import FeaturedBlogList from "@/components/blogs-page/featured-blog-list";
 import ALotOfBlogPosts from "@/components/blogs-page/explore-posts";
 import SubscribeToNewsletter from "@/components/blogs-page/subscribe-to-newsletter";
+import prisma from "@/lib/prismadb";
 
 {
   /* <div>Blog</div>
