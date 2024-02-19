@@ -118,15 +118,7 @@ model Home {
 
 }
 
-model BlogPage {
-  id               Int       @id @default(autoincrement())
-  blogPageTitle        String?  
-  blogPageSubtitle     String?  @db.Text
-  blogPageLatestTitle String?
-  blogPageLatestSubtitle String?
 
-
-}
 model Review {
   id            Int       @id @default(autoincrement())
   author        String?
@@ -138,6 +130,90 @@ model Review {
   @@index([homeId])
 }
 
+model BlogPage {
+  id               Int       @id @default(autoincrement())
+  blogPageTitle        String?  
+  blogPageSubtitle     String?  @db.Text
+  blogPageLatestTitle    String?
+  blogPageLatestSubtitle  String?
+  blogPageExploreTitle    String?
+  blogPageExploreSubtitle    String? @db.Text
+  blogPageSubscribeTitle     String?
+  blogPageSubscribeSubtitle       String?
+  blogPageSubscribeMinSubtitle    String? 
+
+}
+
+model ServicesPage {
+  id               Int       @id @default(autoincrement())
+  servicesPageHeroTitle        String?  
+  servicesPageHeroSubtitle     String?  @db.Text
+  servicesPageLetUsHelpTitle    String?
+  servicesPageLetUsHelpSubtitle  String?
+  servicesPageLetUsHelpService1Title  String?
+  servicesPageLetUsHelpService1Desc  String?
+  servicesPageLetUsHelpService2Title  String?
+  servicesPageLetUsHelpService2Desc  String?
+  servicesPageLetUsHelpService3Title  String?
+  servicesPageLetUsHelpService3Desc  String?
+  servicesPageStepsBadge    String?
+  servicesPageStepsTitle    String?
+  servicesPageSteps1Badge    String?
+  servicesPageSteps1Title    String?
+  servicesPageSteps1Subtitle    String? @db.Text
+  servicesPageSteps2Badge    String?
+  servicesPageSteps2Title    String?
+  servicesPageSteps2Subtitle    String? @db.Text
+  servicesPageSteps3Badge    String?
+  servicesPageSteps3Title    String?
+  servicesPageSteps3Subtitle    String? @db.Text
+  servicesPageSteps4Badge    String?
+  servicesPageSteps4Title    String?
+  servicesPageSteps4Subtitle    String? @db.Text
+  servicesPageSteps5Badge    String?
+  servicesPageSteps5Title    String?
+  servicesPageSteps5Subtitle    String? @db.Text
+  servicesPageContactUsTitle     String?
+  servicesPageContactUsSubtitle       String?
+  servicesPageContactUsMinTitle    String? 
+  servicesPageContactUsMinSubtitle    String? @db.Text
+
+}
+
+model FaqPage {
+  id             Int      @id @default(autoincrement())
+  faqPageTitle       String?  
+  faqPageSubtitle    String?
+  faqPageHelpEmail    String?
+  faqPageQuestion1Title    String?  @db.Text
+  faqPageQuestion1Subtitle String?  @db.Text
+  faqPageQuestion2Title    String?  @db.Text
+  faqPageQuestion2Subtitle String?  @db.Text 
+  faqPageQuestion3Title    String?  @db.Text
+  faqPageQuestion3Subtitle String?  @db.Text
+  faqPageQuestion4Title    String?  @db.Text
+  faqPageQuestion4Subtitle String?  @db.Text
+  faqPageQuestion5Title    String?  @db.Text
+  faqPageQuestion5Subtitle String?  @db.Text
+}
+
+// model QA {
+//   id              Int      @id @default(autoincrement())
+//   faq             FaqPage?    @relation(fields: [faqId], references: [id])
+//   faqId           Int?
+//   qAPageQuestion1    String?  @db.Text
+//   qAPageQuestion1Answ String?  @db.Text
+//   qAPageQuestion2    String?  @db.Text
+//   qAPageQuestion2Answ String?  @db.Text 
+//   qAPageQuestion3    String?  @db.Text
+//   qAPageQuestion3Answ String?  @db.Text
+//   qAPageQuestion4    String?  @db.Text
+//   qAPageQuestion4Answ String?  @db.Text
+//   qAPageQuestion5    String?  @db.Text
+//   qAPageQuestion5Answ String?  @db.Text
+
+//   @@index([faqId])
+// }
 
 model Folder {
   id             Int      @id @default(autoincrement())

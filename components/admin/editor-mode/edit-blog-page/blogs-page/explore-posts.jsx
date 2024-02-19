@@ -2,22 +2,65 @@
  * components/blogs-page/a-lot-of-blog-posts.jsx
  */
 
+"use client";
+
+import {
+  changeBlogPageExploreSubtitle,
+  changeBlogPageExploreTitle,
+} from "@/app/actions/edit-web-pages/edit-blogs-page/_blogs-actions";
+import { debounce } from "lodash";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import Contenteditable from "../../edit-landing-page/content-editable-component";
 
-const ALotOfBlogPosts = () => {
+const ALotOfBlogPosts = ({ data }) => {
+  const [blogPageExploreTitle, setBlogPageExploreTitle] = useState(
+    data?.blogPageExploreTitle || ""
+  );
+  const [blogPageExploreSubtitle, setBlogPageExploreSubtitle] = useState(
+    data?.blogPageExploreSubtitle || ""
+  );
+
+  const debounceChangeBlogPageExploreTitle = debounce(async (e) => {
+    const res = await changeBlogPageExploreTitle(data.id, e);
+    if (res.ok) {
+      console.log(res.message);
+    }
+  }, 300);
+  const debounceChangeBlogPageExploreSubtitle = debounce(async (e) => {
+    const res = await changeBlogPageExploreSubtitle(data.id, e);
+    if (res.ok) {
+      console.log(res.message);
+    }
+  }, 300);
+
+  const handleBlogPageExploreTitleChange = (e) => {
+    setBlogPageExploreTitle(e);
+    debounceChangeBlogPageExploreTitle(e);
+  };
+  const handleBlogPageExploreSubtitleChange = (e) => {
+    setBlogPageExploreSubtitle(e);
+    debounceChangeBlogPageExploreSubtitle(e);
+  };
+
   return (
     <section className="container px-4 md:px-6">
       <div className="px-4 py-6 md:px-6 md:py-12 lg:py-16 xl:py-20">
         <div className="space-y-4">
           <div className="space-y-2">
             <h1 className="text-3xl font-bold tracking-tight sm:text-4xl xl:text-5xl">
-              The Daily Digest
+              <Contenteditable
+                value={blogPageExploreTitle}
+                onChange={handleBlogPageExploreTitleChange}
+              />
             </h1>
-            <p className="text-gray-500 dark:text-gray-400">
-              The latest and greatest news from around the world. Your one-stop
-              shop for all things interesting.
-            </p>
+            <div className="text-gray-500 dark:text-gray-400">
+              <Contenteditable
+                value={blogPageExploreSubtitle}
+                onChange={handleBlogPageExploreSubtitleChange}
+              />
+            </div>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             <div>

@@ -2,24 +2,69 @@
  * components/services/services-hero.jsx
  */
 
+"use client";
+
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { AvatarImage, Avatar } from "@/components/ui/avatar";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
+import Contenteditable from "../edit-landing-page/content-editable-component";
+import {
+  changeServicesPageHeroSubtitle,
+  changeServicesPageHeroTitle,
+} from "@/app/actions/edit-web-pages/edit-services-page/_services-actions";
+import { debounce } from "lodash";
 
 const ServicesHero = ({ data }) => {
-  console.log(data?.servicesPageHeroTitle);
+  const [servicesPageHeroTitle, setServicesPageHeroTitle] = useState(
+    data?.servicesPageHeroTitle || ""
+  );
+  const [servicesPageHeroSubtitle, setServicesPageHeroSubtitle] = useState(
+    data?.servicesPageHeroSubtitle || ""
+  );
+
+  const debounceChangeServicesPageHeroTitle = debounce(async (e) => {
+    const res = await changeServicesPageHeroTitle(data.id, e);
+    if (res.ok) {
+      console.log(res.message);
+    }
+  }, 300);
+  const debounceChangeServicesPageHeroSubtitle = debounce(async (e) => {
+    const res = await changeServicesPageHeroSubtitle(data.id, e);
+    if (res.ok) {
+      console.log(res.message);
+    }
+  }, 300);
+
+  const handleservicesPageHeroTitleChange = (e) => {
+    setServicesPageHeroTitle(e);
+    debounceChangeServicesPageHeroTitle(e);
+  };
+
+  const handleservicesPageHeroSubtitleChange = (e) => {
+    setServicesPageHeroSubtitle(e);
+    debounceChangeServicesPageHeroSubtitle(e);
+  };
+
   return (
     <section className="bg-gray-100  ">
       <div className="max-w-screen-2xl  w-full mx-auto  py-12 md:py-24 px-5  sm:px-16 md:px-24 lg:px-5">
         <div className="grid lg:grid-cols-5 gap-20 items-center w-full h-full ">
           <div className="space-y-6  col-span-1 lg:col-span-2">
             <h1 className="text-5xl md:text-6xl font-bold">
-              {data?.servicesPageHeroTitle}
+              <Contenteditable
+                value={servicesPageHeroTitle}
+                onChange={handleservicesPageHeroTitleChange}
+              />{" "}
             </h1>
-            <p className="text-xl">{data?.servicesPageHeroSubtitle}</p>
+            <div className="text-xl">
+              <Contenteditable
+                value={servicesPageHeroSubtitle}
+                onChange={handleservicesPageHeroSubtitleChange}
+              />{" "}
+            </div>
             {/* <div className="flex space-x-4">
               <Input className="w-80" placeholder="example@domain.com" />
               <Button variant="secondary">

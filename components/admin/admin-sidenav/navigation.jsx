@@ -88,7 +88,7 @@ export const Navigation = ({ children }) => {
                 onClick={search.onOpen}
               />
             </div> */}
-            <div className="mt-4 h-full overflow-y-auto max-h-[50vh]">
+            <div className="mt-4 h-full ">
               {/* {children} */}
               <FoldersAndFiles />
               <CreateFolderButton />

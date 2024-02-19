@@ -19,6 +19,7 @@ const UnderNav = ({ data }) => {
             <Dot className={"text-green-600 h-8 w-8"} />
             Live
             <ArrowUpRight className="h-4 w-4" />
+            {/* <a href="/">Jp</a> */}
           </Link>
         ) : (
           <div className="flex items-center   px-1.5">

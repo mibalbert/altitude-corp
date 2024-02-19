@@ -28,7 +28,10 @@ export default function Contenteditable(props) {
           console.log(event);
         }
       }}
-      className={cn("border border-dashed  rounded-lg", props.className)}
+      className={cn(
+        "border border-dashed border-gray-500  rounded-lg",
+        props.className
+      )}
     />
   );
 }

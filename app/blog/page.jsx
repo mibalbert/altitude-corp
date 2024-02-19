@@ -2,11 +2,11 @@
  * blog/page.jsx
  */
 
-import CategBlogList from "@/components/blogs-page/categ-blog-list";
+import CategBlogList from "@/components/blogs-page/latest-in";
 import BlogsPageHero from "@/components/blogs-page/blogs-page-hero";
-import FeaturedBlogList from "@/components/blogs-page/featuted-blog-list";
-import ALotOfBlogPosts from "@/components/blogs-page/a-lot-of-blog-posts";
-import SubscribeToNewsletter from "@/components/subscribe-to-newsletter";
+import FeaturedBlogList from "@/components/blogs-page/featured-blog-list";
+import ALotOfBlogPosts from "@/components/blogs-page/explore-posts";
+import SubscribeToNewsletter from "@/components/blogs-page/subscribe-to-newsletter";
 
 {
   /* <div>Blog</div>
@@ -17,17 +17,19 @@ import SubscribeToNewsletter from "@/components/subscribe-to-newsletter";
 <div></div> */
 }
 
-const Blog = () => {
+const Blog = async () => {
+  const data = await prisma.blogPage.findMany();
+
   return (
     <section>
-      <BlogsPageHero />
-      <FeaturedBlogList />
-      <CategBlogList />
-      <ALotOfBlogPosts />
+      <BlogsPageHero data={data[0]} />
+      <FeaturedBlogList data={data[0]} />
+      <CategBlogList data={data[0]} />
+      <ALotOfBlogPosts data={data[0]} />
       <div className="container">
         <hr></hr>
       </div>
-      <SubscribeToNewsletter />
+      <SubscribeToNewsletter data={data[0]} />
     </section>
   );
 };

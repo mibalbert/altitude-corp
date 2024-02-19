@@ -14,6 +14,8 @@ async function seed() {
     await prisma.post.deleteMany({});
     await prisma.home.deleteMany({});
     await prisma.blogPage.deleteMany({});
+    await prisma.servicesPage.deleteMany({});
+    await prisma.faqPage.deleteMany({});
 
     const homeData = {
       heroTitle: "ALTITUDE CORP",
@@ -133,10 +135,90 @@ async function seed() {
         "Discover a world of baking delights, culinary adventures, and more.",
       blogPageLatestTitle: "Here are our latest posts",
       blogPageLatestSubtitle: "Explore the unknown",
+      blogPageExploreTitle: "Explore more",
+      blogPageExploreSubtitle:
+        "The latest and greatest news from around the world. Your one-stop shop for all things interesting.",
+      blogPageSubscribeTitle: "Subscribe to our Newsletter",
+      blogPageSubscribeSubtitle:
+        "Stay updated with our latest news and product releases.",
+      blogPageSubscribeMinSubtitle: "Subscribe now to receive our newsletter.",
     };
 
     await prisma.blogPage.createMany({
       data: blogPageData,
+    });
+
+    const servicesPageData = {
+      servicesPageHeroTitle: "Grow Professionally with the Best",
+      servicesPageHeroSubtitle:
+        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. In accusamus fugiat, mollitia atque id minus veritatis minima pariatur cum quasi!",
+      servicesPageLetUsHelpTitle: "Let Us Help You",
+      servicesPageLetUsHelpSubtitle:
+        "Our team is ready to help you achieve your goals. We provide expert advice and professional services to take your business to the next level.",
+      servicesPageLetUsHelpService1Title: "Service One",
+      servicesPageLetUsHelpService1Desc: "Description of service one.",
+      servicesPageLetUsHelpService2Title: "Service Two",
+      servicesPageLetUsHelpService2Desc: "Description of service two.",
+      servicesPageLetUsHelpService3Title: "Service Three",
+      servicesPageLetUsHelpService3Desc: "Description of service three.",
+      servicesPageStepsBadge: "Embrace the Process",
+      servicesPageStepsTitle: "Enhancing User Experience Through Our Process",
+      servicesPageSteps1Badge: "Step 1",
+      servicesPageSteps1Title: "Initial Consultation",
+      servicesPageSteps1Subtitle:
+        "We start by understanding your vision and requirements to lay the foundation for a successful project.",
+      servicesPageSteps2Badge: "Step 2",
+      servicesPageSteps2Title: "Project Planning",
+      servicesPageSteps2Subtitle:
+        "Our experts meticulously plan every aspect of your project, ensuring that we are aligned with your goals and objectives.",
+      servicesPageSteps3Badge: "Step 3",
+      servicesPageSteps3Title: "Execution",
+      servicesPageSteps3Subtitle:
+        "With careful attention to detail, we bring your ideas to life, leveraging the latest technologies and best practices.",
+      servicesPageSteps4Badge: "Step 4",
+      servicesPageSteps4Title: "Quality Assurance",
+      servicesPageSteps4Subtitle:
+        "We conduct rigorous testing and quality assurance processes to ensure that your project meets the highest standards.",
+      servicesPageSteps5Badge: "Step 5",
+      servicesPageSteps5Title: "Delivery",
+      servicesPageSteps5Subtitle:
+        "Discover how we deliver exceptional results by following a structured and tailored approach. Our process is meticulously crafted to be efficient, effective, and customized to meet the distinct requirements of every project.",
+      servicesPageContactUsTitle: "Let's Build Something Amazing Together",
+      servicesPageContactUsSubtitle:
+        "We are committed to providing our clients with the highest level of service and expertise. If you have a project in mind, we would love to hear from you.",
+      servicesPageContactUsMinTitle: "Get in Touch",
+      servicesPageContactUsMinSubtitle:
+        "We're here to help! Fill out the form below and we'll get back to you as soon as possible.",
+    };
+
+    await prisma.servicesPage.createMany({
+      data: servicesPageData,
+    });
+
+    const faqPageData = {
+      faqPageTitle: "FAQ",
+      faqPageSubtitle:
+        "Got a question? We've got answers. If you have some other questions, feel free to send us an email to",
+      faqPageHelpEmail: "example@gamail.com",
+      faqPageQuestion1Title: "Lorem ipsum dolor sit amet?",
+      faqPageQuestion1Subtitle:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      faqPageQuestion2Title: "Lorem ipsum dolor sit amet?",
+      faqPageQuestion2Subtitle:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      faqPageQuestion3Title: "Lorem ipsum dolor sit amet?",
+      faqPageQuestion3Subtitle:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      faqPageQuestion4Title: "Lorem ipsum dolor sit amet?",
+      faqPageQuestion4Subtitle:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      faqPageQuestion5Title: "Lorem ipsum dolor sit amet?",
+      faqPageQuestion5Subtitle:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    };
+
+    await prisma.faqPage.create({
+      data: faqPageData,
     });
 
     // Create a hashed password using bcrypt

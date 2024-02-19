@@ -2,21 +2,66 @@
  * component/blogs-page/categ-blog-list.jsx
  */
 
+"use client";
+
+import { debounce } from "lodash";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import Contenteditable from "../../edit-landing-page/content-editable-component";
+import {
+  changeBlogPageLatestSubtitle,
+  changeBlogPageLatestTitle,
+} from "@/app/actions/edit-web-pages/edit-blogs-page/_blogs-actions";
 
-const CategBlogList = () => {
+const CategBlogList = ({ data }) => {
+  const [blogPageLatestTitle, setBlogPageLatestTitle] = useState(
+    data?.blogPageLatestTitle || ""
+  );
+  const [blogPageLatestSubtitle, setBlogPageLatestSubtitle] = useState(
+    data?.blogPageLatestSubtitle || ""
+  );
+
+  const debounceChangeBlogPageLatestTitle = debounce(async (e) => {
+    const res = await changeBlogPageLatestTitle(data.id, e);
+    if (res.ok) {
+      console.log(res.message);
+    }
+  }, 300);
+  const debounceChangeBlogPageLatestSubtitle = debounce(async (e) => {
+    const res = await changeBlogPageLatestSubtitle(data.id, e);
+    if (res.ok) {
+      console.log(res.message);
+    }
+  }, 300);
+
+  const handleBlogPageLatestTitleChange = (e) => {
+    setBlogPageLatestTitle(e);
+    debounceChangeBlogPageLatestTitle(e);
+  };
+
+  const handleBlogPageLatestSubtitleChange = (e) => {
+    setBlogPageLatestSubtitle(e);
+    debounceChangeBlogPageLatestSubtitle(e);
+  };
+
   return (
     <section className="container px-4 md:px-6">
       <div className="px-4 py-6 md:px-6 md:py-12 xl:py-16">
         <div className="space-y-6">
           <div className="space-y-2">
             <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Tag: Adventure
+              <Contenteditable
+                value={blogPageLatestTitle}
+                onChange={handleBlogPageLatestTitleChange}
+              />
             </h1>
-            <p className="text-gray-500 dark:text-gray-400">
-              Explore the unknown
-            </p>
+            <div className="text-gray-500 dark:text-gray-400">
+              <Contenteditable
+                value={blogPageLatestSubtitle}
+                onChange={handleBlogPageLatestSubtitleChange}
+              />{" "}
+            </div>
           </div>
           <div className="grid items-start gap-6 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3">
             <div className="space-y-2">

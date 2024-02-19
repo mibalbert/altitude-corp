@@ -4,6 +4,7 @@
 
 import LiveCoverImage from "@/components/admin/live-post/live-cover-image";
 import LiveTitle from "@/components/admin/live-post/live-title";
+import prisma from "@/lib/prismadb";
 import dynamic from "next/dynamic";
 import React from "react";
 
@@ -23,13 +24,13 @@ const BlogPost = async ({ params }) => {
 
   // console.log(first)
 
-  if (!data) {
-    return (
-      <div className="min-h-[90vh] h-full w-full flex items-center justify-center">
-        Sorry This post: is not available / was deleted{" "}
-      </div>
-    );
-  }
+  // if (!data) {
+  //   return (
+  //     <div className="min-h-[90vh] h-full w-full flex items-center justify-center">
+  //       Sorry This post: is not available / was deleted{" "}
+  //     </div>
+  //   );
+  // }
 
   return (
     <section className="pb-[60vh]">

@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 export default function NewContentEditable(props) {
   const contentEditableRef = useRef(null);
+  const [html, setHtml] = useState("");
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
@@ -15,26 +16,26 @@ export default function NewContentEditable(props) {
       const pNode = node.parentNode;
 
       let tag = pNode.nodeName.toUpperCase();
-      if (event.ctrlKey) {
-        tag = prompt("Enter tag name", "div");
-      } else {
-        switch (tag) {
-          case "P":
-            tag = "BR";
-            break;
-          case "DIV":
-            tag = "p";
-            break;
-          case "SPAN":
-            tag = "span";
-            break;
-          case "BR":
-            tag = null;
-            break;
-          default:
-            tag = "BR";
-        }
+      // if (event.ctrlKey) {
+      //   tag = prompt("Enter tag name", "div");
+      // } else {
+      switch (tag) {
+        case "P":
+          tag = "BR";
+          break;
+        case "DIV":
+          tag = "p";
+          break;
+        case "SPAN":
+          tag = "span";
+          break;
+        case "BR":
+          tag = null;
+          break;
+        default:
+          tag = "BR";
       }
+      // }
 
       const el = document.createElement(tag);
 
@@ -59,7 +60,8 @@ export default function NewContentEditable(props) {
 
       event.stopPropagation();
     }
-
+    // console.log(contentEditableRef.current.innerHTML);
+    setHtml(contentEditableRef.current.innerHTML);
     // props.onChange(contentEditableRef.current.innerHTML);
   };
 
@@ -71,9 +73,10 @@ export default function NewContentEditable(props) {
         contentEditable="true"
         ref={contentEditableRef}
         onKeyDown={handleKeyDown}
-        dangerouslySetInnerHTML={{ __html: props.value }}
-      />
-      <div ></div>
+      ></div>
+      <div dangerouslySetInnerHTML={{ __html: html }}></div>
+      {/* </div */}
+      {/* <div></div> */}
     </>
   );
 }
