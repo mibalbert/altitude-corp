@@ -21,8 +21,8 @@ import ServicesNewHero from "@/components/services/services-new-hero";
 
 const Services = async () => {
   const data = await prisma.servicesPage.findMany({});
-  const op = await prisma.post.findMany();
-  console.log(op);
+  // const op = await prisma.post.findMany();
+  // console.log(op);
   return (
     <>
       {/* <ServicesNewHero  /> */}
