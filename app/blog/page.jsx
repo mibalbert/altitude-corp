@@ -21,11 +21,11 @@ import FreeResources from "@/components/blogs-page/free-resources";
 
 const Blog = async () => {
   const data = await prisma.blogPage.findMany();
-  const featuredPosts = await prisma.featuredPosts.findMany();
+  // const featuredPosts = await prisma.featuredPosts.findMany();
   return (
     <section>
       <BlogsPageHero data={data[0]} />
-      <FeaturedBlogList featuredPosts={featuredPosts} data={data[0]} />
+      <FeaturedBlogList  data={data[0]} />
       <CategBlogList data={data[0]} />
       <ALotOfBlogPosts data={data[0]} />
       <div className="container">
