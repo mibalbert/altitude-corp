@@ -39,7 +39,7 @@ const RecursiveFolders = ({ parentFolder = null, level = 0 }) => {
           <p></p>
         ) : (
           // folders.data.map((folder, idx) => (
-          folders.map((folder, idx) => (
+          folders?.map((folder, idx) => (
             <div key={idx}>
               <Folder folder={folder} level={level} />
             </div>
