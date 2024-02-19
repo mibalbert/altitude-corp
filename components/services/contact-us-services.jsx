@@ -3,25 +3,34 @@
  */
 
 import { ArrowRightIcon } from "lucide-react";
-import { Button } from "../../../ui/button";
-import { Input } from "../../../ui/input";
-import { Label } from "../../../ui/label";
-import { Textarea } from "../../../ui/textarea";
+import { Button } from "../ui/button";
+import { Textarea } from "../ui/textarea";
+import { Label } from "../ui/label";
+import { Input } from "../ui/input";
 
 const ContactUsServices = ({ data }) => {
   return (
-    <section className="w-full py-12 md:py-24 pb-52 ">
-      <div className="container grid grid-cols-2 divide-x    gap-4 px-4  md:px-6 lg:gap-10">
-        <div className=" col-span-1 space-y-2   ">
-          <h2 className="text-3xl font-bold text-blue-600 tracking-tighter sm:text-4xl md:text-5xl">
+    <section className="w-full py-12  ">
+      <div className="container grid grid-cols-2     gap-4 px-4  md:px-6 lg:gap-20">
+        <div className=" col-span-1 space-y-5 ">
+          <h2 className="text-3xl font-bold pb-10 text-blue-600 tracking-tighter sm:text-4xl md:text-5xl">
             {data?.servicesPageContactUsTitle}
           </h2>
-          <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-            {data?.servicesPageContactUsSubitle}
+          <p className="max-w-xl text-gray-500 md:text-xl/relaxed lg:text-md/relaxed xl:text-md/relaxed dark:text-gray-400">
+            {/* {data?.servicesPageContactUsSubitle} */}
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi
+            fuga est beatae porro magnam pariatur recusandae aliquam tempora
+            inventore quibusdam harum, blanditiis quas!
+          </p>
+          <p className="max-w-xl text-gray-500 md:text-xl/relaxed lg:text-md/relaxed xl:text-md/relaxed dark:text-gray-400">
+            {/* {data?.servicesPageContactUsSubitle} */}
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi
+            fuga est beatae porro magnam pariatur recusandae aliquam tempora
+            inventore quibusdam harum, blanditiis quas!
           </p>
         </div>
 
-        <div className="col-span-1 flex flex-col justify-center space-y-4 max-w-2xl w-full px-5 mx-auto pb-52">
+        <div className="col-span-1 flex flex-col justify-center space-y-4 max-w-2xl w-full px-5 mx-auto pb-32">
           <div className="space-y-2">
             <h1 className="text-2xl font-bold tracking-tighter sm:text-3xl md:text-4xl/none">
               {data?.servicesPageContactUsMinTitle}

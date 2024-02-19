@@ -12,11 +12,11 @@
  * services/page.jsx
  */
 
-import ContactUsServices from "@/components/admin/editor-mode/edit-services-page/contact-us-services";
 import Steps from "@/components/services/steps";
 import ServicesHero from "@/components/services/services-hero";
 import ServicesLetUsHelp from "@/components/services/services-let-us-help";
 import prisma from "@/lib/prismadb";
+import ContactUsServices from "@/components/services/contact-us-services";
 
 const Services = async () => {
   const data = await prisma.servicesPage.findMany({});
