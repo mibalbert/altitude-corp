@@ -4,7 +4,7 @@ import React from "react";
 
 const FAQ = () => {
   return (
-    <section className="pb-52">
+    <section className="">
       {/* <div>FAQ</div>
       <div>
         General questions: Adress common inquires about services, how i work,
