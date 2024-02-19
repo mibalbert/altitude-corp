@@ -221,6 +221,16 @@ async function seed() {
       data: faqPageData,
     });
 
+
+    
+
+
+
+
+
+
+
+
     // Create a hashed password using bcrypt
     const hashedPassword = await bcrypt.hash("123456", 10);
 

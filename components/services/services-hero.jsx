@@ -8,11 +8,15 @@ import { AvatarImage, Avatar } from "@/components/ui/avatar";
 
 import React from "react";
 import Image from "next/image";
+import SvgAnimation from "./svg-animation";
 
 const ServicesHero = ({ data }) => {
   console.log(data?.servicesPageHeroTitle);
   return (
-    <section className="bg-gray-100  ">
+    <section className="relative">
+      {/* <div className="absolute top-0 left-0 w-full  h-[90vh] z-50">
+        <SvgAnimation />
+      </div> */}
       <div className="max-w-screen-2xl  w-full mx-auto  py-12 md:py-24 px-5  sm:px-16 md:px-24 lg:px-5">
         <div className="grid lg:grid-cols-5 gap-20 items-center w-full h-full ">
           <div className="space-y-6  col-span-1 lg:col-span-2">

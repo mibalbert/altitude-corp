@@ -17,12 +17,15 @@ import ServicesHero from "@/components/services/services-hero";
 import ServicesLetUsHelp from "@/components/services/services-let-us-help";
 import prisma from "@/lib/prismadb";
 import ContactUsServices from "@/components/services/contact-us-services";
+import ServicesNewHero from "@/components/services/services-new-hero";
 
 const Services = async () => {
   const data = await prisma.servicesPage.findMany({});
-
+  const op = await prisma.post.findMany();
+  console.log(op);
   return (
     <>
+      {/* <ServicesNewHero  /> */}
       <ServicesHero data={data[0]} />
       <ServicesLetUsHelp data={data[0]} />
       <Steps data={data[0]} />

@@ -41,20 +41,29 @@ export const Navigation = ({ children }) => {
   const onOpen = useAdminSideNav((state) => state.onOpen);
   const onClose = useAdminSideNav((state) => state.onClose);
 
-  useLayoutEffect(() => {
-    if (isMobile) {
-      onClose;
-    } else {
-      onOpen;
-    }
-  }, [isMobile]);
+
+  // useLayoutEffect(() => {
+  //   if (isMobile) {
+  //     onClose;
+  //   } else {
+  //     onOpen;
+  //   }
+  // }, [isMobile]);
+
+  // useLayoutEffect(() => {
+  //   if (isMobile) {
+  //     onClose;
+  //   } else {
+  //     onOpen;
+  //   }
+  // }, [isMobile]);
 
   const handleCreate = () => {};
 
   return (
     <>
       {!pathname.startsWith("/admin/preview") ? (
-        !isOpen ? (
+        !isOpen || !isMobile ? (
           <aside
             ref={sidebarRef}
             className={cn(
@@ -88,7 +97,7 @@ export const Navigation = ({ children }) => {
                 onClick={search.onOpen}
               />
             </div> */}
-            <div className="mt-4 h-full ">
+            <div className=" h-full ">
               {/* {children} */}
               <FoldersAndFiles />
               <CreateFolderButton />
@@ -99,7 +108,7 @@ export const Navigation = ({ children }) => {
             </div>
           </aside>
         ) : (
-          <div className="relative h-full pt-3 px-2">
+          <div className="absolute top-2 left-0 ">
             <MenuIcon
               role="button"
               onClick={onClose}

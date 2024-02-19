@@ -70,7 +70,7 @@ export const Folder = ({ folder, level }) => {
 
   return (
     <div className="flex flex-col ">
-      <div className="grid grid-cols-5 items-center justify-center  gap-2 p-1  w-52  my-1 hover:bg-slate-50 rounded-lg">
+      <div className="grid grid-cols-5 items-center justify-center  gap-2 p-1  w-52   hover:bg-slate-50 rounded-lg">
         <button
           onClick={toggleCollapse}
           className="col-span-1 flex items-center justify-center hover:bg-slate-200 w-full py-1.5 h-full rounded-md"
@@ -87,17 +87,18 @@ export const Folder = ({ folder, level }) => {
         <DropIt
           handleCreateFolder={handleCreateFolder}
           className="col-span-1"
+          handleCreatePostUnderFolder={handleCreatePostUnderFolder}
         />
       </div>
       {!collapsed && (
         <div
           className="flex flex-col "
-          style={{ paddingLeft: `${(level + 1) * 12 + 25}px` }}
+          style={{ paddingLeft: `${(level - 1) * 12 + 25}px` }}
         >
           {sortedPosts.map((post, idx) => (
             <div
               key={idx}
-              className="grid grid-cols-5 items-center justify-center  my-0.5 p-1  gap-2 hover:bg-slate-50 rounded-lg"
+              className="grid grid-cols-5 items-center justify-center   p-1  gap-2 hover:bg-slate-50 rounded-lg"
             >
               <div className=" flex items-center justify-center col-span-1">
                 <File className="w-4 h-4 " />
@@ -105,7 +106,7 @@ export const Folder = ({ folder, level }) => {
               <Link
                 key={post.id}
                 href={`/admin/posts/${post.id}`}
-                className=" flex items-center  line-clamp-1 text-nowrap  col-span-3 py-1.5  rounded-lg"
+                className=" flex items-center  line-clamp-1 text-nowrap  col-span-3 py-1  rounded-lg"
               >
                 {post.title}
               </Link>
@@ -119,13 +120,6 @@ export const Folder = ({ folder, level }) => {
               </div>
             </div>
           ))}
-          <button
-            type="button"
-            onClick={handleCreatePostUnderFolder}
-            className="border  px-2 py-1.5 mt-1 mb-4 hover:bg-slate-100 my-0.5 rounded-lg"
-          >
-            + Post
-          </button>
 
           <RecursiveFolders parentFolder={folder.id} level={level + 1} />
         </div>
@@ -140,6 +134,7 @@ const DropIt = ({
   folderTitle,
   currentPath,
   className,
+  handleCreatePostUnderFolder,
 }) => {
   const handleDeleteFolder = async () => {
     //Create pop up asking the user if they are sure
@@ -163,7 +158,7 @@ const DropIt = ({
         <MoreVertical className="h-4 w-4 text-muted-foreground" />
       </DropdownMenuTrigger>
       <DropdownMenuContent
-        className="w-32   z-[102]"
+        className="w-50 z-[102]"
         align="start"
         side="bottom"
         forceMount
@@ -171,11 +166,21 @@ const DropIt = ({
         <DropdownMenuItem>
           <div
             type="button"
+            onClick={handleCreatePostUnderFolder}
+            className="px-2 flex items-center gap-1"
+          >
+            <Plus className="w-4 h-4" />
+            <span>New Post</span>
+          </div>
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <div
+            type="button"
             onClick={handleCreateFolder}
             className="px-2 flex items-center gap-1"
           >
-            <Plus className="w-5 h-5" />
-            <span>Folder</span>
+            <Plus className="w-4 h-4" />
+            <span>New Folder</span>
           </div>
         </DropdownMenuItem>
         <DropdownMenuItem>
@@ -184,7 +189,7 @@ const DropIt = ({
             onClick={handleDeleteFolder}
             className="px-2 flex items-center gap-1"
           >
-            <Minus className="w-5 h-5" />
+            <Minus className="w-4 h-4" />
             <span>Delete Folder</span>
           </div>
         </DropdownMenuItem>

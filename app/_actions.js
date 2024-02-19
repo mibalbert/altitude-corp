@@ -122,14 +122,17 @@ export async function changeVisibility(postId, changeTo) {
 
 export async function createPostUnderFolder(parentFolderId) {
   try {
+
+    console.log("fiaskjdn", parentFolderId)
     const res = await prisma.post.create({
       data: {
         title: "Untitled",
-        folderId: parentFolderId,
+        folderId: +parentFolderId,
         isPublished: false,
       },
     });
-
+    console.log(res)
+    
     if (res) {
       // revalidatePath(`/admin/posts/${res.id}`);
       revalidateTag("collection");
@@ -144,6 +147,7 @@ export async function createPostUnderFolder(parentFolderId) {
       ok: false,
     };
   } catch (error) {
+    console.log(error)
     return { message: "Could not create new post", ok: false };
   }
 }

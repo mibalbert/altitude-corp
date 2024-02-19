@@ -8,6 +8,7 @@ import MissionStatement from "@/components/about-us/mission-statement";
 import Values from "@/components/about-us/values";
 import ContactUsInsidePage from "@/components/contact-us/contact-us-inside-page";
 import ContactUsServices from "@/components/services/contact-us-services";
+import prisma from "@/lib/prismadb";
 import Image from "next/image";
 import React from "react";
 // <section>

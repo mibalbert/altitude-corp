@@ -46,3 +46,16 @@
   transform: rotate(15deg);
   transform-origin: center center;
 }
+
+
+
+/* .main:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("http://ashleydutton.co.uk/assets/images/noise.png");
+  opacity: 0.5;
+} */

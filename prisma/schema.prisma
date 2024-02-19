@@ -243,6 +243,15 @@ model Post {
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
 
+  featuredPost       FeaturedPost?   @relation(fields: [featuredPostId], references: [id], onDelete: Cascade)
+  featuredPostId     Int?   
+
   @@index([authorEmail])
+  @@index([featuredPostId])
   @@index([folderId])
+}
+
+model FeaturedPost {
+  id             Int      @id @default(autoincrement())
+  posts         Post[]
 }

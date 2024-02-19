@@ -12,7 +12,10 @@ import {
 } from "@/components/ui/carousel";
 import Image from "next/image";
 
-const FeaturedBlogList = () => {
+const FeaturedBlogList = ({data}) => {
+
+  
+
   return (
     <div className="bg-gray-100 dark:bg-gray-850">
       <div className="container px-4 md:px-6 pb-32">

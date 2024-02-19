@@ -182,7 +182,7 @@ const Steps = ({ data }) => {
     if (res.ok) {
       console.log(res.message);
     }
- }, 0);
+  }, 0);
   const handleServicesPageStepsBadgeChange = (e) => {
     setServicesPageStepsBadge(e);
     debounceChangeServicesPageStepsBadge(e);
@@ -256,7 +256,7 @@ const Steps = ({ data }) => {
   };
 
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32">
+    <section className="w-full py-12 md:py-24  ">
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-4 ">
           <div className="space-y-2 text-center">
@@ -274,8 +274,10 @@ const Steps = ({ data }) => {
             </h2>
             <p className="max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400"></p>
           </div>
-          <section className="w-full py-12 md:py-24">
-            <div className="flex flex-col gap-4">
+          <section className="w-full grid grid-cols-4 gap-10   py-12 md:py-24">
+            <div className="col-span-1 border-r-2 border-blue-400 boreder-rounde"></div>
+
+            <div className="flex flex-col gap-10 col-span-3 ">
               <div className="space-y-2">
                 <div className="inline-block rounded-lg bg-blue-500 px-3 py-1 text-sm text-gray-50 dark:bg-blue-400 dark:text-gray-900">
                   <Contenteditable
@@ -283,7 +285,7 @@ const Steps = ({ data }) => {
                     onChange={handleServicesPageSteps1BadgeChange}
                   />{" "}
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-2xl">
                   <Contenteditable
                     value={servicesPageSteps1Title}
                     onChange={handleServicesPageSteps1TitleChange}
@@ -303,7 +305,7 @@ const Steps = ({ data }) => {
                     onChange={handleServicesPageSteps2BadgeChange}
                   />{" "}
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-2xl">
                   <Contenteditable
                     value={servicesPageSteps2Title}
                     onChange={handleServicesPageSteps2TitleChange}
@@ -323,7 +325,7 @@ const Steps = ({ data }) => {
                     onChange={handleServicesPageSteps3BadgeChange}
                   />{" "}
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-2xl">
                   <Contenteditable
                     value={servicesPageSteps3Title}
                     onChange={handleServicesPageSteps3TitleChange}
@@ -343,7 +345,7 @@ const Steps = ({ data }) => {
                     onChange={handleServicesPageSteps4BadgeChange}
                   />{" "}
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-2xl">
                   <Contenteditable
                     value={servicesPageSteps4Title}
                     onChange={handleServicesPageSteps4TitleChange}
@@ -363,7 +365,7 @@ const Steps = ({ data }) => {
                     onChange={handleServicesPageSteps5BadgeChange}
                   />{" "}
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-2xl">
                   <Contenteditable
                     value={servicesPageSteps5Title}
                     onChange={handleServicesPageSteps5TitleChange}
