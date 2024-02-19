@@ -8,6 +8,7 @@ import FeaturedBlogList from "@/components/blogs-page/featured-blog-list";
 import ALotOfBlogPosts from "@/components/blogs-page/explore-posts";
 import SubscribeToNewsletter from "@/components/blogs-page/subscribe-to-newsletter";
 import prisma from "@/lib/prismadb";
+import FreeResources from "@/components/blogs-page/free-resources";
 
 {
   /* <div>Blog</div>
@@ -31,6 +32,8 @@ const Blog = async () => {
         <hr></hr>
       </div>
       <SubscribeToNewsletter data={data[0]} />
+      <FreeResources />
+      <div class="sun"></div>
     </section>
   );
 };

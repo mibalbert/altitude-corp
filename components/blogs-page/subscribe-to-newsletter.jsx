@@ -9,8 +9,8 @@ import Link from "next/link";
 const SubscribeToNewsletter = ({ data }) => {
   return (
     <>
-      <section className="w-full py-12 md:py-24 lg:py-32">
-        <div className="container grid items-center gap-4 px-4 md:px-6 pb-32">
+      <section className="w-full py-12 md:py-24  ">
+        <div className="container grid items-center gap-4 px-4 md:px-6  ">
           <div className="space-y-3">
             <h2 className="text-4xl font-bold tracking-tighter md:text-6xl/relaxed text-blue-500">
               {data?.blogPageSubscribeTitle}

@@ -39,7 +39,8 @@ const MainNav = ({ session }) => {
         `dark:supports-backdrop-blur:bg-black/30 supports-backdrop-blur:bg-white/30 
      z-[999] m-0 flex h-14 items-center   p-0 shadow-gray-500/30 shadow-sm backdrop-blur-md
       dark:border-gray-800 dark:shadow-none lg:w-full`,
-        "sticky top-0"
+        "sticky top-0",
+        { "bg-blue-600 text-white": pathname.includes("/contact-us") }
         // {
         //   "bg-blue-600 text-white shadow-none border-b-0": pathname === "/",
         // }

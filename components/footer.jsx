@@ -59,7 +59,12 @@ export default function Footer() {
 
         <div class="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-32">
           <div class="mx-auto max-w-sm lg:max-w-none">
-            <p class="mt-4 text-center text-gray-500 lg:text-left lg:text-lg">
+            <p
+              class={cn(
+                "mt-4 text-center text-gray-500 lg:text-left lg:text-lg",
+                { " text-gray-100": pathname.includes("/contact-us") }
+              )}
+            >
               Lorem ipsum, dolor sit amet consectetur adipisicing elit.
               Praesentium natus quod eveniet aut perferendis distinctio iusto
               repudiandae, provident velit earum?
@@ -67,7 +72,10 @@ export default function Footer() {
 
             <div class="mt-6 flex justify-center gap-4 lg:justify-start">
               <a
-                class="text-gray-700 transition hover:text-gray-700/75"
+                class={cn("text-gray-700 transition hover:text-gray-700/75", {
+                  " text-gray-100  hover:text-gray-100/70":
+                    pathname.includes("/contact-us"),
+                })}
                 href="#"
                 target="_blank"
                 rel="noreferrer"
@@ -89,7 +97,10 @@ export default function Footer() {
               </a>
 
               <a
-                class="text-gray-700 transition hover:text-gray-700/75"
+                class={cn("text-gray-700 transition hover:text-gray-700/75", {
+                  " text-gray-100  hover:text-gray-100/70":
+                    pathname.includes("/contact-us"),
+                })}
                 href="#"
                 target="_blank"
                 rel="noreferrer"
@@ -111,7 +122,10 @@ export default function Footer() {
               </a>
 
               <a
-                class="text-gray-700 transition hover:text-gray-700/75"
+                class={cn("text-gray-700 transition hover:text-gray-700/75", {
+                  " text-gray-100  hover:text-gray-100/70":
+                    pathname.includes("/contact-us"),
+                })}
                 href="#"
                 target="_blank"
                 rel="noreferrer"
@@ -129,7 +143,10 @@ export default function Footer() {
               </a>
 
               <a
-                class="text-gray-700 transition hover:text-gray-700/75"
+                class={cn("text-gray-700 transition hover:text-gray-700/75", {
+                  " text-gray-100  hover:text-gray-100/70":
+                    pathname.includes("/contact-us"),
+                })}
                 href="#"
                 target="_blank"
                 rel="noreferrer"
@@ -159,7 +176,13 @@ export default function Footer() {
               <ul class="mt-6 space-y-1">
                 <li>
                   <a
-                    class="text-gray-700 transition hover:text-gray-700/75"
+                    class={cn(
+                      "text-gray-700 transition hover:text-gray-700/75",
+                      {
+                        " text-gray-100  hover:text-gray-100/70":
+                          pathname.includes("/contact-us"),
+                      }
+                    )}
                     href="#"
                   >
                     {" "}
@@ -169,7 +192,13 @@ export default function Footer() {
 
                 <li>
                   <a
-                    class="text-gray-700 transition hover:text-gray-700/75"
+                    class={cn(
+                      "text-gray-700 transition hover:text-gray-700/75",
+                      {
+                        " text-gray-100  hover:text-gray-100/70":
+                          pathname.includes("/contact-us"),
+                      }
+                    )}
                     href="#"
                   >
                     Data modeling
@@ -178,7 +207,13 @@ export default function Footer() {
 
                 <li>
                   <a
-                    class="text-gray-700 transition hover:text-gray-700/75"
+                    class={cn(
+                      "text-gray-700 transition hover:text-gray-700/75",
+                      {
+                        " text-gray-100  hover:text-gray-100/70":
+                          pathname.includes("/contact-us"),
+                      }
+                    )}
                     href="#"
                   >
                     Research
@@ -187,7 +222,13 @@ export default function Footer() {
 
                 <li>
                   <a
-                    class="text-gray-700 transition hover:text-gray-700/75"
+                    class={cn(
+                      "text-gray-700 transition hover:text-gray-700/75",
+                      {
+                        " text-gray-100  hover:text-gray-100/70":
+                          pathname.includes("/contact-us"),
+                      }
+                    )}
                     href="#"
                   >
                     Industry standards
@@ -202,7 +243,13 @@ export default function Footer() {
               <ul class="mt-6 space-y-1">
                 <li>
                   <a
-                    class="text-gray-700 transition hover:text-gray-700/75"
+                    class={cn(
+                      "text-gray-700 transition hover:text-gray-700/75",
+                      {
+                        " text-gray-100  hover:text-gray-100/70":
+                          pathname.includes("/contact-us"),
+                      }
+                    )}
                     href="#"
                   >
                     {" "}
@@ -212,7 +259,13 @@ export default function Footer() {
 
                 <li>
                   <a
-                    class="text-gray-700 transition hover:text-gray-700/75"
+                    class={cn(
+                      "text-gray-700 transition hover:text-gray-700/75",
+                      {
+                        " text-gray-100  hover:text-gray-100/70":
+                          pathname.includes("/contact-us"),
+                      }
+                    )}
                     href="#"
                   >
                     {" "}
@@ -222,7 +275,13 @@ export default function Footer() {
 
                 <li>
                   <a
-                    class="text-gray-700 transition hover:text-gray-700/75"
+                    class={cn(
+                      "text-gray-700 transition hover:text-gray-700/75",
+                      {
+                        " text-gray-100  hover:text-gray-100/70":
+                          pathname.includes("/contact-us"),
+                      }
+                    )}
                     href="#"
                   >
                     {" "}
@@ -232,7 +291,13 @@ export default function Footer() {
 
                 <li>
                   <a
-                    class="text-gray-700 transition hover:text-gray-700/75"
+                    class={cn(
+                      "text-gray-700 transition hover:text-gray-700/75",
+                      {
+                        " text-gray-100  hover:text-gray-100/70":
+                          pathname.includes("/contact-us"),
+                      }
+                    )}
                     href="#"
                   >
                     {" "}
@@ -248,7 +313,13 @@ export default function Footer() {
               <ul class="mt-6 space-y-1">
                 <li>
                   <a
-                    class="text-gray-700 transition hover:text-gray-700/75"
+                    class={cn(
+                      "text-gray-700 transition hover:text-gray-700/75",
+                      {
+                        " text-gray-100  hover:text-gray-100/70":
+                          pathname.includes("/contact-us"),
+                      }
+                    )}
                     href="#"
                   >
                     {" "}
@@ -258,7 +329,13 @@ export default function Footer() {
 
                 <li>
                   <a
-                    class="text-gray-700 transition hover:text-gray-700/75"
+                    class={cn(
+                      "text-gray-700 transition hover:text-gray-700/75",
+                      {
+                        " text-gray-100  hover:text-gray-100/70":
+                          pathname.includes("/contact-us"),
+                      }
+                    )}
                     href="#"
                   >
                     {" "}
@@ -268,7 +345,13 @@ export default function Footer() {
 
                 <li>
                   <a
-                    class="text-gray-700 transition hover:text-gray-700/75"
+                    class={cn(
+                      "text-gray-700 transition hover:text-gray-700/75",
+                      {
+                        " text-gray-100  hover:text-gray-100/70":
+                          pathname.includes("/contact-us"),
+                      }
+                    )}
                     href="#"
                   >
                     {" "}
@@ -286,11 +369,17 @@ export default function Footer() {
             <br />
             <a
               href="#"
-              class="text-gray-700 underline transition hover:text-gray-700/75"
+              class={cn("text-gray-700 transition hover:text-gray-700/75", {
+                " text-gray-100  hover:text-gray-100/70":
+                  pathname.includes("/contact-us"),
+              })}
             ></a>
             <a
               href="#"
-              class="text-gray-700 underline transition hover:text-gray-700/75"
+              class={cn("text-gray-700 transition hover:text-gray-700/75", {
+                " text-gray-100  hover:text-gray-100/70":
+                  pathname.includes("/contact-us"),
+              })}
             >
               ALTITUDE CORP
             </a>
