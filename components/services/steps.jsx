@@ -17,14 +17,14 @@ const Steps = () => {
             <p className="max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400"></p>
           </div>
           <section className="w-full grid grid-cols-4 gap-10   py-12 md:py-24">
-            <div className="col-span-1 border-r-2 border-blue-600"></div>
+            <div className="col-span-1 border-r-2 border-blue-400 boreder-rounde"></div>
 
             <div className="flex flex-col gap-10 col-span-3 ">
               <div className="space-y-2">
                 <div className="inline-block rounded-lg bg-blue-500 px-3 py-1 text-sm text-gray-50 dark:bg-blue-400 dark:text-gray-900">
                   Step 1
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-2xl">
                   Initial Consultation
                 </h2>
                 <p className="text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
@@ -36,7 +36,7 @@ const Steps = () => {
                 <div className="inline-block rounded-lg bg-blue-500 px-3 py-1 text-sm text-gray-50 dark:bg-blue-400 dark:text-gray-900">
                   Step 2
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-2xl">
                   Project Planning
                 </h2>
                 <p className="text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
@@ -48,7 +48,7 @@ const Steps = () => {
                 <div className="inline-block rounded-lg bg-blue-500 px-3 py-1 text-sm text-gray-50 dark:bg-blue-400 dark:text-gray-900">
                   Step 3
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-2xl">
                   Execution
                 </h2>
                 <p className="text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
@@ -60,7 +60,7 @@ const Steps = () => {
                 <div className="inline-block rounded-lg bg-blue-500 px-3 py-1 text-sm text-gray-50 dark:bg-blue-400 dark:text-gray-900">
                   Step 4
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-2xl">
                   Quality Assurance
                 </h2>
                 <p className="text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
@@ -72,7 +72,7 @@ const Steps = () => {
                 <div className="inline-block rounded-lg bg-blue-500 px-3 py-1 text-sm text-gray-50 dark:bg-blue-400 dark:text-gray-900">
                   Step 5
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-2xl">
                   Delivery
                 </h2>
                 <p className="text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
