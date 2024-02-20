@@ -46,6 +46,11 @@ const resources = [
   },
 ];
 
+export const metadata = {
+  title: "ALTITUDE CORP | Resouces",
+  description: "Best company to help you grow",
+};
+
 const Resources = () => {
   return (
     <section className="w-full py-12 md:py-24 lg:py-32">

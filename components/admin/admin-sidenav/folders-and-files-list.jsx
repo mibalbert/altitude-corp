@@ -13,7 +13,6 @@ const RecursiveFolders = ({ parentFolder = null, level = 0 }) => {
   const [folders, setFolders] = useState([]);
   const params = useParams();
 
-  console.log(params);
   useLayoutEffect(() => {
     const getData = async () => {
       const res = await fetch(
@@ -30,6 +29,8 @@ const RecursiveFolders = ({ parentFolder = null, level = 0 }) => {
     };
     getData();
   }, [parentFolder, params]);
+
+  console.log(folders)
 
   return (
     <div className="w-52 h-full overflow-auto overflow-y-auto max-h-[50vh]  ">

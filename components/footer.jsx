@@ -21,14 +21,17 @@ export default function Footer() {
 
   return (
     <footer
-      class={cn("bg-white", {
+      className={cn("bg-white", {
         "bg-blue-600 text-gray-100": pathname.includes("/contact-us"),
       })}
     >
-      <div class="mx-auto max-w-screen-xl px-4 pb-8 pt-16 sm:px-6 lg:px-8">
-        <div class="mx-auto max-w-md">
+      <div className="py-10">
+        <div className="sun"></div>
+      </div>
+      <div className="mx-auto max-w-screen-xl px-4 pb-8 pt-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-md">
           <strong
-            class={cn(
+            className={cn(
               "block text-center text-xl font-bold text-gray-900 sm:text-3xl",
               { " text-gray-100": pathname.includes("/contact-us") }
             )}
@@ -36,31 +39,32 @@ export default function Footer() {
             Want us to email you with the latest blockbuster news?
           </strong>
 
-          <form class="mt-6">
-            <div class="relative max-w-lg">
-              <label class="sr-only" for="email">
+          <form className="mt-6">
+            <div className="relative max-w-lg">
+              <label className="sr-only" for="email">
                 {" "}
                 Email{" "}
               </label>
 
               <input
-                class="w-full rounded-full border-gray-200 bg-gray-100 p-4 pe-32 text-sm font-medium"
+                className="w-full rounded-full border-gray-200 bg-gray-100 p-4 pe-32 text-sm font-medium"
                 id="email"
                 type="email"
                 placeholder="john@doe.com"
               />
 
-              <button class="absolute end-1 top-1/2 -translate-y-1/2 rounded-full bg-blue-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-blue-700">
+              <button className="absolute end-1 top-1/2 -translate-y-1/2 rounded-full bg-blue-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-blue-700">
                 Subscribe
               </button>
             </div>
           </form>
         </div>
 
-        <div class="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-32">
-          <div class="mx-auto max-w-sm lg:max-w-none">
+        <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-32">
+          <div className="mx-auto max-w-sm lg:max-w-none">
+            <h1 className="text-3xl font-bold">ALTITUDE CORP</h1>
             <p
-              class={cn(
+              className={cn(
                 "mt-4 text-center text-gray-500 lg:text-left lg:text-lg",
                 { " text-gray-100": pathname.includes("/contact-us") }
               )}
@@ -70,20 +74,23 @@ export default function Footer() {
               repudiandae, provident velit earum?
             </p>
 
-            <div class="mt-6 flex justify-center gap-4 lg:justify-start">
+            <div className="mt-6 flex justify-center gap-4 lg:justify-start">
               <a
-                class={cn("text-gray-700 transition hover:text-gray-700/75", {
-                  " text-gray-100  hover:text-gray-100/70":
-                    pathname.includes("/contact-us"),
-                })}
+                className={cn(
+                  "text-gray-700 transition hover:text-gray-700/75",
+                  {
+                    " text-gray-100  hover:text-gray-100/70":
+                      pathname.includes("/contact-us"),
+                  }
+                )}
                 href="#"
                 target="_blank"
                 rel="noreferrer"
               >
-                <span class="sr-only"> Facebook </span>
+                <span className="sr-only"> Facebook </span>
 
                 <svg
-                  class="h-6 w-6"
+                  className="h-6 w-6"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                   aria-hidden="true"
@@ -97,18 +104,21 @@ export default function Footer() {
               </a>
 
               <a
-                class={cn("text-gray-700 transition hover:text-gray-700/75", {
-                  " text-gray-100  hover:text-gray-100/70":
-                    pathname.includes("/contact-us"),
-                })}
+                className={cn(
+                  "text-gray-700 transition hover:text-gray-700/75",
+                  {
+                    " text-gray-100  hover:text-gray-100/70":
+                      pathname.includes("/contact-us"),
+                  }
+                )}
                 href="#"
                 target="_blank"
                 rel="noreferrer"
               >
-                <span class="sr-only"> Instagram </span>
+                <span className="sr-only"> Instagram </span>
 
                 <svg
-                  class="h-6 w-6"
+                  className="h-6 w-6"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                   aria-hidden="true"
@@ -122,18 +132,21 @@ export default function Footer() {
               </a>
 
               <a
-                class={cn("text-gray-700 transition hover:text-gray-700/75", {
-                  " text-gray-100  hover:text-gray-100/70":
-                    pathname.includes("/contact-us"),
-                })}
+                className={cn(
+                  "text-gray-700 transition hover:text-gray-700/75",
+                  {
+                    " text-gray-100  hover:text-gray-100/70":
+                      pathname.includes("/contact-us"),
+                  }
+                )}
                 href="#"
                 target="_blank"
                 rel="noreferrer"
               >
-                <span class="sr-only"> Twitter </span>
+                <span className="sr-only"> Twitter </span>
 
                 <svg
-                  class="h-6 w-6"
+                  className="h-6 w-6"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                   aria-hidden="true"
@@ -143,18 +156,21 @@ export default function Footer() {
               </a>
 
               <a
-                class={cn("text-gray-700 transition hover:text-gray-700/75", {
-                  " text-gray-100  hover:text-gray-100/70":
-                    pathname.includes("/contact-us"),
-                })}
+                className={cn(
+                  "text-gray-700 transition hover:text-gray-700/75",
+                  {
+                    " text-gray-100  hover:text-gray-100/70":
+                      pathname.includes("/contact-us"),
+                  }
+                )}
                 href="#"
                 target="_blank"
                 rel="noreferrer"
               >
-                <span class="sr-only"> GitHub </span>
+                <span className="sr-only"> GitHub </span>
 
                 <svg
-                  class="h-6 w-6"
+                  className="h-6 w-6"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                   aria-hidden="true"
@@ -169,14 +185,14 @@ export default function Footer() {
             </div>
           </div>
 
-          <div class="grid grid-cols-1 gap-8 text-center lg:grid-cols-3 lg:text-left">
+          <div className="grid grid-cols-1 gap-8 text-center lg:grid-cols-3 lg:text-left">
             <div>
-              <strong class="font-medium text-gray-900"> Services </strong>
+              <strong className="font-medium text-gray-900"> Services </strong>
 
-              <ul class="mt-6 space-y-1">
+              <ul className="mt-6 space-y-1">
                 <li>
                   <a
-                    class={cn(
+                    className={cn(
                       "text-gray-700 transition hover:text-gray-700/75",
                       {
                         " text-gray-100  hover:text-gray-100/70":
@@ -192,7 +208,7 @@ export default function Footer() {
 
                 <li>
                   <a
-                    class={cn(
+                    className={cn(
                       "text-gray-700 transition hover:text-gray-700/75",
                       {
                         " text-gray-100  hover:text-gray-100/70":
@@ -207,7 +223,7 @@ export default function Footer() {
 
                 <li>
                   <a
-                    class={cn(
+                    className={cn(
                       "text-gray-700 transition hover:text-gray-700/75",
                       {
                         " text-gray-100  hover:text-gray-100/70":
@@ -222,7 +238,7 @@ export default function Footer() {
 
                 <li>
                   <a
-                    class={cn(
+                    className={cn(
                       "text-gray-700 transition hover:text-gray-700/75",
                       {
                         " text-gray-100  hover:text-gray-100/70":
@@ -238,12 +254,12 @@ export default function Footer() {
             </div>
 
             <div>
-              <strong class="font-medium text-gray-900"> About </strong>
+              <strong className="font-medium text-gray-900"> About </strong>
 
-              <ul class="mt-6 space-y-1">
+              <ul className="mt-6 space-y-1">
                 <li>
                   <a
-                    class={cn(
+                    className={cn(
                       "text-gray-700 transition hover:text-gray-700/75",
                       {
                         " text-gray-100  hover:text-gray-100/70":
@@ -259,7 +275,7 @@ export default function Footer() {
 
                 <li>
                   <a
-                    class={cn(
+                    className={cn(
                       "text-gray-700 transition hover:text-gray-700/75",
                       {
                         " text-gray-100  hover:text-gray-100/70":
@@ -275,7 +291,7 @@ export default function Footer() {
 
                 <li>
                   <a
-                    class={cn(
+                    className={cn(
                       "text-gray-700 transition hover:text-gray-700/75",
                       {
                         " text-gray-100  hover:text-gray-100/70":
@@ -291,7 +307,7 @@ export default function Footer() {
 
                 <li>
                   <a
-                    class={cn(
+                    className={cn(
                       "text-gray-700 transition hover:text-gray-700/75",
                       {
                         " text-gray-100  hover:text-gray-100/70":
@@ -308,12 +324,12 @@ export default function Footer() {
             </div>
 
             <div>
-              <strong class="font-medium text-gray-900"> Support </strong>
+              <strong className="font-medium text-gray-900"> Support </strong>
 
-              <ul class="mt-6 space-y-1">
+              <ul className="mt-6 space-y-1">
                 <li>
                   <a
-                    class={cn(
+                    className={cn(
                       "text-gray-700 transition hover:text-gray-700/75",
                       {
                         " text-gray-100  hover:text-gray-100/70":
@@ -329,7 +345,7 @@ export default function Footer() {
 
                 <li>
                   <a
-                    class={cn(
+                    className={cn(
                       "text-gray-700 transition hover:text-gray-700/75",
                       {
                         " text-gray-100  hover:text-gray-100/70":
@@ -345,7 +361,7 @@ export default function Footer() {
 
                 <li>
                   <a
-                    class={cn(
+                    className={cn(
                       "text-gray-700 transition hover:text-gray-700/75",
                       {
                         " text-gray-100  hover:text-gray-100/70":
@@ -363,20 +379,20 @@ export default function Footer() {
           </div>
         </div>
 
-        <div class="mt-16 border-t border-gray-100 pt-8">
-          <p class="text-center text-xs/relaxed text-gray-500">
+        <div className="mt-16 border-t border-gray-100 pt-8">
+          <p className="text-center text-xs/relaxed text-gray-500">
             © Company 2024. All rights reserved.
             <br />
             <a
               href="#"
-              class={cn("text-gray-700 transition hover:text-gray-700/75", {
+              className={cn("text-gray-700 transition hover:text-gray-700/75", {
                 " text-gray-100  hover:text-gray-100/70":
                   pathname.includes("/contact-us"),
               })}
             ></a>
             <a
               href="#"
-              class={cn("text-gray-700 transition hover:text-gray-700/75", {
+              className={cn("text-gray-700 transition hover:text-gray-700/75", {
                 " text-gray-100  hover:text-gray-100/70":
                   pathname.includes("/contact-us"),
               })}
@@ -410,21 +426,21 @@ export default function Footer() {
 //   }
 
 //   return (
-//     <footer className="pb-16 text-white bg-blue-600 overflow-hidden p-20">
-//       {/* <div className="mx-auto w-full max-w-screen-2xl  py-16  lg:px-12 sm:px-6 px-4"> */}
-//       <div className="grid grid-cols-3  w-full md:gap-8 gap-4  mx-auto">
-//         <div className="col-span-3 md:col-span-2 lg:col-span-1 flex flex-col flex-shrink-0 pr-10">
-//           <div className="dark:text-white text-4xl font-semibold">
+//     <footer classNameName="pb-16 text-white bg-blue-600 overflow-hidden p-20">
+//       {/* <div classNameName="mx-auto w-full max-w-screen-2xl  py-16  lg:px-12 sm:px-6 px-4"> */}
+//       <div classNameName="grid grid-cols-3  w-full md:gap-8 gap-4  mx-auto">
+//         <div classNameName="col-span-3 md:col-span-2 lg:col-span-1 flex flex-col flex-shrink-0 pr-10">
+//           <div classNameName="dark:text-white text-4xl font-semibold">
 //             Logo & Comp
 //           </div>
-//           <p className="mt-4">
+//           <p classNameName="mt-4">
 //             Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
 //             dignissimos, eaque quibusdam omnis nobis consequatur eligendi,
 //           </p>
-//           <div className="flex items-center gap-x-4 mt-12">
+//           <div classNameName="flex items-center gap-x-4 mt-12">
 //             <button
 //               aria-label="instagram"
-//               className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 opacity-50 w-8 h-8 flex-shrink-0 bg-gray-800 cursor-pointer hover:bg-gray-700 rounded-full flex items-center justify-center"
+//               classNameName="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 opacity-50 w-8 h-8 flex-shrink-0 bg-gray-800 cursor-pointer hover:bg-gray-700 rounded-full flex items-center justify-center"
 //             >
 //               <svg
 //                 width="18"
@@ -443,7 +459,7 @@ export default function Footer() {
 //             </button>
 //             <button
 //               aria-label="linked-in"
-//               className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 opacity-50 w-8 h-8 flex-shrink-0 bg-gray-800 cursor-pointer hover:bg-gray-700 rounded-full flex items-center justify-center"
+//               classNameName="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 opacity-50 w-8 h-8 flex-shrink-0 bg-gray-800 cursor-pointer hover:bg-gray-700 rounded-full flex items-center justify-center"
 //             >
 //               <svg
 //                 width="18"
@@ -462,7 +478,7 @@ export default function Footer() {
 //             </button>
 //             <button
 //               aria-label="twitter"
-//               className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 opacity-50 w-8 h-8 flex-shrink-0 bg-gray-800 cursor-pointer hover:bg-gray-700 rounded-full flex items-center justify-center"
+//               classNameName="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 opacity-50 w-8 h-8 flex-shrink-0 bg-gray-800 cursor-pointer hover:bg-gray-700 rounded-full flex items-center justify-center"
 //             >
 //               <svg
 //                 width="16"
@@ -481,7 +497,7 @@ export default function Footer() {
 //             </button>
 //             <button
 //               aria-label="youtube"
-//               className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 opacity-50 w-8 h-8 flex-shrink-0 bg-gray-800 cursor-pointer hover:bg-gray-700 rounded-full flex items-center justify-center"
+//               classNameName="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 opacity-50 w-8 h-8 flex-shrink-0 bg-gray-800 cursor-pointer hover:bg-gray-700 rounded-full flex items-center justify-center"
 //             >
 //               <svg
 //                 width="18"
@@ -500,91 +516,91 @@ export default function Footer() {
 //             </button>
 //           </div>
 //         </div>
-//         <div className="col-span-3 md:col-span-2 lg:col-span-1 sm:ml-0 ml-8 flex gap-8  lg:gap-14 xl:gap-20">
-//           <div className="">
-//             <h2 className="text-2xl font-semibold leading-4  dark:text-white">
+//         <div classNameName="col-span-3 md:col-span-2 lg:col-span-1 sm:ml-0 ml-8 flex gap-8  lg:gap-14 xl:gap-20">
+//           <div classNameName="">
+//             <h2 classNameName="text-2xl font-semibold leading-4  dark:text-white">
 //               Company
 //             </h2>
-//             <div className="flex flex-col">
+//             <div classNameName="flex flex-col">
 //               <Link
 //                 href=""
-//                 className="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6  dark:text-white cursor-pointer"
+//                 classNameName="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6  dark:text-white cursor-pointer"
 //               >
 //                 Blog
 //               </Link>
 //               <Link
 //                 href=""
-//                 className="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6  dark:text-white cursor-pointer"
+//                 classNameName="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6  dark:text-white cursor-pointer"
 //               >
 //                 Pricing
 //               </Link>
 //               <Link
 //                 href=""
-//                 className="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6  dark:text-white cursor-pointer"
+//                 classNameName="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6  dark:text-white cursor-pointer"
 //               >
 //                 About Us
 //               </Link>
 //               <Link
 //                 href=""
-//                 className="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6  dark:text-white cursor-pointer"
+//                 classNameName="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6  dark:text-white cursor-pointer"
 //               >
 //                 Contact us
 //               </Link>
 //               <Link
 //                 href=""
-//                 className="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6  dark:text-white cursor-pointer"
+//                 classNameName="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6  dark:text-white cursor-pointer"
 //               >
 //                 Testimonials
 //               </Link>
 //             </div>
 //           </div>
 //           <div>
-//             <h2 className="text-2xl font-semibold leading-4  dark:text-white">
+//             <h2 classNameName="text-2xl font-semibold leading-4  dark:text-white">
 //               Support
 //             </h2>
-//             <div className="flex flex-col">
+//             <div classNameName="flex flex-col">
 //               <Link
 //                 href=""
-//                 className="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6  dark:text-white cursor-pointer"
+//                 classNameName="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6  dark:text-white cursor-pointer"
 //               >
 //                 Legal policy
 //               </Link>
 //               <Link
 //                 href=""
-//                 className="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6  dark:text-white cursor-pointer"
+//                 classNameName="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6  dark:text-white cursor-pointer"
 //               >
 //                 Status policy
 //               </Link>
 //               <Link
 //                 href=""
-//                 className="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6  dark:text-white cursor-pointer"
+//                 classNameName="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6  dark:text-white cursor-pointer"
 //               >
 //                 Privacy policy
 //               </Link>
 //               <Link
 //                 href=""
-//                 className="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6  dark:text-white cursor-pointer"
+//                 classNameName="focus:outline-none focus:underline hover:text-gray-500 text-base leading-4 mt-6  dark:text-white cursor-pointer"
 //               >
 //                 Terms of service
 //               </Link>
 //             </div>
 //           </div>
-//           <div className="col-span-3 md:col-span-2 lg:col-span-1 mt-10 lg:block hidden">
-//             <label className="text-xl font-medium leading-5  dark:text-white">
+//           <div classNameName="col-span-3 md:col-span-2 lg:col-span-1 mt-10 lg:block hidden">
+//             <label classNameName="text-xl font-medium leading-5  dark:text-white">
 //               Get updates
 //             </label>
-//             <div className="cursor-pointer flex items-center justify-between border border-gray-800 dark:border-white mt-4">
+//             <div classNameName="cursor-pointer flex items-center justify-between border border-gray-800 dark:border-white mt-4">
 //               <input
 //                 type="text"
-//                 className="text-base leading-4 p-4 w-full focus:outline-none  dark:text-white dark:placeholder-white dark:bg-gray-900 dark:border-white placeholder-gray-800"
+//                 classNameName="text-base leading-4 p-4 w-full focus:outline-none  dark:text-white dark:placeholder-white dark:bg-gray-900 dark:border-white placeholder-gray-800"
 //                 placeholder="Enter your email"
 //               />
 //               <button
 //                 aria-label="send"
-//                 className="mr-4 fill-current  hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800"
+//                 classNameName="mr-4 fill-current  hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800"
 //               >
 //                 <svg
-//                   className="dark:text-white dark:hover:text-gray-200"
+//                   classNameName="dark:text-white dark:hover:text-gray-200"
 //                   width="16"
 //                   height="17"
 //                   viewBox="0 0 16 17"
@@ -601,22 +617,22 @@ export default function Footer() {
 //           </div>
 //         </div>
 
-//         <div className="mt-10 lg:hidden">
-//           <label className="text-xl font-medium leading-5  dark:text-white">
+//         <div classNameName="mt-10 lg:hidden">
+//           <label classNameName="text-xl font-medium leading-5  dark:text-white">
 //             Get updates
 //           </label>
-//           <div className="flex items-center justify-between border border-gray-800 dark:border-white mt-4">
+//           <div classNameName="flex items-center justify-between border border-gray-800 dark:border-white mt-4">
 //             <input
 //               type="text"
-//               className="text-base leading-4 p-4 relative z-0 w-full focus:outline-none  placeholder-gray-800 dark:text-white dark:placeholder-white dark:border-white dark:bg-gray-900"
+//               classNameName="text-base leading-4 p-4 relative z-0 w-full focus:outline-none  placeholder-gray-800 dark:text-white dark:placeholder-white dark:border-white dark:bg-gray-900"
 //               placeholder="Enter your email"
 //             />
 //             <button
 //               aria-label="send"
-//               className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 cursor-pointer mr-4 relative z-40"
+//               classNameName="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 cursor-pointer mr-4 relative z-40"
 //             >
 //               <svg
-//                 className="fill-current  hover:text-gray-500 dark:text-white dark:hover:text-gray-200"
+//                 classNameName="fill-current  hover:text-gray-500 dark:text-white dark:hover:text-gray-200"
 //                 width="16"
 //                 height="17"
 //                 viewBox="0 0 16 17"
@@ -632,9 +648,9 @@ export default function Footer() {
 //           </div>
 //         </div>
 //       </div>
-//       {/* <div className="text-center pt-20">akljsdnkajsdnjasnd</div> */}
-//       <div className="pt-14">
-//         <p className="text-sm leading-none mt-4 text-center dark:text-white">
+//       {/* <div classNameName="text-center pt-20">akljsdnkajsdnjasnd</div> */}
+//       <div classNameName="pt-14">
+//         <p classNameName="text-sm leading-none mt-4 text-center dark:text-white">
 //           Copyright © 2024 Company / All rights reserved
 //         </p>
 //       </div>

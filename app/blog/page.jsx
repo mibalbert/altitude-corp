@@ -19,6 +19,11 @@ import FreeResources from "@/components/blogs-page/free-resources";
 <div></div> */
 }
 
+export const metadata = {
+  title: "ALTITUDE CORP | Blog",
+  description: "Best company to help you grow",
+};
+
 const Blog = async () => {
   const data = await prisma.blogPage.findMany();
   // const featuredPosts = await prisma.featuredPosts.findMany();
@@ -33,7 +38,6 @@ const Blog = async () => {
       </div>
       <SubscribeToNewsletter data={data[0]} />
       <FreeResources />
-      <div class="sun"></div>
     </section>
   );
 };

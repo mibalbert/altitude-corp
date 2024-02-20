@@ -8,6 +8,11 @@ import Steps from "@/components/admin/editor-mode/edit-services-page/steps";
 import ContactUsServices from "@/components/admin/editor-mode/edit-services-page/contact-us-services";
 import prisma from "@/lib/prismadb";
 
+export const metadata = {
+  title: "ALTITUDE CORP | Admin",
+  description: "Best company to help you grow",
+};
+
 const EditServices = async () => {
   const data = await prisma.servicesPage.findMany({});
 

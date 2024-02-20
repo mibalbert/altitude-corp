@@ -29,7 +29,7 @@ import CreateFolderButton from "./create-folder-button";
 import WebsitePages from "./website-pages";
 import Link from "next/link";
 
-export const Navigation = ({ children }) => {
+export const Navigation = () => {
   const settings = useSettings();
   const search = useSearch();
   const isMobile = useMediaQuery("(max-width: 768px)");

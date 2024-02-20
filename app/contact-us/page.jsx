@@ -6,6 +6,11 @@ import { ContactUsHero } from "@/components/contact-us/contact-us-hero";
 import ContactUsMain from "@/components/contact-us/contact-us-main";
 import React from "react";
 
+export const metadata = {
+  title: "ALTITUDE CORP | Contact-us",
+  description: "Best company to help you grow",
+};
+
 const ContactUs = () => {
   return (
     <section>

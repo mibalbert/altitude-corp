@@ -19,6 +19,13 @@ import prisma from "@/lib/prismadb";
 import ContactUsServices from "@/components/services/contact-us-services";
 import ServicesNewHero from "@/components/services/services-new-hero";
 
+
+
+export const metadata = {
+  title: "ALTITUDE CORP | Services",
+  description: "Best company to help you grow",
+};
+
 const Services = async () => {
   const data = await prisma.servicesPage.findMany({});
   // const op = await prisma.post.findMany();

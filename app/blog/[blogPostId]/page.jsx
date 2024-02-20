@@ -8,6 +8,11 @@ import prisma from "@/lib/prismadb";
 import dynamic from "next/dynamic";
 import React from "react";
 
+export const metadata = {
+  title: "ALTITUDE CORP | Blog-Post",
+  description: "Best company to help you grow",
+};
+
 const BlogPost = async ({ params }) => {
   const LiveEditor = dynamic(
     () => import("../../../components/admin/live-post/live-editor"),

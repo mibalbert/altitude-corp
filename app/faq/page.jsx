@@ -2,6 +2,11 @@ import FAQMain from "@/components/faq/faq-main";
 import { BackgroundGradientAnimationDemo } from "@/components/gradient-backround";
 import React from "react";
 
+export const metadata = {
+  title: "ALTITUDE CORP | FAQ",
+  description: "Best company to help you grow",
+};
+
 const FAQ = () => {
   return (
     <section className="">

@@ -14,6 +14,12 @@ import Reviews from "@/components/landing-page/reviews";
 import TheSteps from "@/components/landing-page/the-steps";
 import prisma from "@/lib/prismadb";
 
+export const metadata = {
+  title: "ALTITUDE CORP | Home",
+  description: "Best company to help you grow",
+};
+
+
 export default async function Home() {
   const data = await prisma.home.findMany({
     include: {
