@@ -38,6 +38,7 @@ import RecursiveFolders from "./folders-and-files-list";
 import PostTitle from "../admin-blog-post/post-title";
 import { cn } from "@/lib/utils";
 import { useMediaQuery } from "usehooks-ts";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export const Folder = ({ folder, level }) => {
   const [collapsed, setCollapsed] = useState(true);

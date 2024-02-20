@@ -43,7 +43,7 @@ export const Navigation = () => {
   //   } else {
   //     setToOpen;
   //   }
-  // }, [isMobile]);
+  // }, [isMobile, setToClosed, setToOpen]);
 
   return (
     <>
@@ -55,7 +55,7 @@ export const Navigation = () => {
               `transition-all ease-in-out duration-300 overflow-hidden sticky top-16 pb-32
             group/sidebar h-full  min-h-[calc(100vh-3.5rem)] bg-secondary overflow-y-auto  pt-16   flex w-60 flex-col z-[99]`,
               // isResetting && "transition-all ease-in-out duration-300",
-              { "w-full px-5": isMobile }
+              { "w-full px-5 absolute top-14 left-0 bg-white z-50": isMobile }
             )}
           >
             <div
@@ -73,8 +73,7 @@ export const Navigation = () => {
                 <Home className="h-4 w-4" /> Dashboard
               </Link>
             </div>
-            <hr className={cn("my-4 w-52",   { "w-full ": isMobile }
-               )} />
+            <hr className={cn("my-4 w-52", { "w-full ": isMobile })} />
             <div className=" h-full   ">
               <FoldersAndFiles
                 className={cn(
@@ -89,18 +88,17 @@ export const Navigation = () => {
                 )}
               />
             </div>
-            <hr className={cn("my-4 w-52",   { "w-full ": isMobile }
-               )} />
+            <hr className={cn("my-4 w-52", { "w-full ": isMobile })} />
             <div>
               <WebsitePages />
             </div>
           </aside>
         ) : (
-          <div className="sticky w-full h-7 top-14">
+          <div className=" absolute w-full h-7 top-14 left-0">
             <MenuIcon
               role="button"
               onClick={setToOpen}
-              className="h-6 w-6 mr-3  text-muted-foreground"
+              className="h-6 w-6 sticky top-24  text-muted-foreground"
             />
           </div>
         )
