@@ -3,14 +3,11 @@
  */
 
 import prisma from "@/lib/prismadb";
-import { revalidateTag } from "next/cache";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
   try {
     const { folderId } = await req.json();
-
-    console.log("ASDASDASD", folderId);
 
     const data = await prisma.folder.findMany({
       where: {
@@ -24,14 +21,19 @@ export async function POST(req) {
       },
     });
     if (data) {
-      revalidateTag("collection");
       return NextResponse.json(
         { folders: data, message: "Success", ok: true },
         { status: 200 }
       );
     }
-    return NextResponse.json({ message: "Success", ok: true }, { status: 200 });
+    return NextResponse.json(
+      { message: "Success", ok: false },
+      { status: 404 }
+    );
   } catch (error) {
-    return NextResponse.json({ message: "Request Failed" }, { status: 400 });
+    return NextResponse.json(
+      { message: "Request Failed", ok: false },
+      { status: 400 }
+    );
   }
 }
