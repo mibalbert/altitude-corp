@@ -10,6 +10,9 @@ import MainNav from "@/components/navigation/main-nav";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth-options";
 import Footer from "@/components/footer";
+import { Analytics } from '@vercel/analytics/react';
+
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,6 +33,7 @@ export default async function RootLayout({ children }) {
           <>{children}</>
           <Footer />
         </NextAuthProvider>
+        <Analytics />
       </body>
     </html>
   );

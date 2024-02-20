@@ -5,7 +5,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const CategBlogList = ({ data }) => {
+const LatestPostsIn = ({ data }) => {
   return (
     <section className="container px-4 md:px-6">
       <div className="px-4 py-6 md:px-6 md:py-12 xl:py-16">
@@ -143,4 +143,4 @@ const CategBlogList = ({ data }) => {
   );
 };
 
-export default CategBlogList;
+export default LatestPostsIn;

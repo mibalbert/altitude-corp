@@ -2,7 +2,7 @@
  * blog/page.jsx
  */
 
-import CategBlogList from "@/components/blogs-page/latest-in";
+import LatestPostsIn from "@/components/blogs-page/latest-in";
 import BlogsPageHero from "@/components/blogs-page/blogs-page-hero";
 import FeaturedBlogList from "@/components/blogs-page/featured-blog-list";
 import ALotOfBlogPosts from "@/components/blogs-page/explore-posts";
@@ -26,18 +26,25 @@ export const metadata = {
 
 const Blog = async () => {
   const data = await prisma.blogPage.findMany();
-  // const featuredPosts = await prisma.featuredPosts.findMany();
+  const blogPosts = await prisma.post.findMany();
+
+  const featuredBlogPosts = blogPosts.filter((el) => {
+    el.isFeatured;
+  });
+
+  const latestBlogPosts = blogPosts.sort((a, b) => a.createdAt - b.createdAt);
+
   return (
     <section>
       <BlogsPageHero data={data[0]} />
-      <FeaturedBlogList  data={data[0]} />
-      <CategBlogList data={data[0]} />
-      <ALotOfBlogPosts data={data[0]} />
+      <FeaturedBlogList data={data[0]} featuredBlogPosts={featuredBlogPosts} />
+      <LatestPostsIn data={data[0]} latestPostsIn={latestBlogPosts} />
+      <ALotOfBlogPosts data={data[0]} blogPosts={blogPosts} />
       <div className="container">
         <hr></hr>
       </div>
       <SubscribeToNewsletter data={data[0]} />
-      <FreeResources />
+      <FreeResources data={data[0]} />
     </section>
   );
 };
