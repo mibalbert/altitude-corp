@@ -4,16 +4,7 @@
 
 "use client";
 
-import {
-  ChevronsLeft,
-  Home,
-  MenuIcon,
-  Plus,
-  PlusCircle,
-  PlusCircleIcon,
-  Search,
-  Settings,
-} from "lucide-react";
+import { ChevronsLeft, Home, MenuIcon } from "lucide-react";
 import { useLayoutEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useSearch } from "@/hooks/use-search";
@@ -21,10 +12,7 @@ import { useMediaQuery } from "usehooks-ts";
 import { cn } from "@/lib/utils";
 import FoldersAndFiles from "./folders-and-files-list";
 import { useSettings } from "@/hooks/use-settings";
-import { Item } from "./item";
-import { toast } from "sonner";
 import { useAdminSideNav } from "@/hooks/use-admin-sidebar";
-import { Button } from "@/components/ui/button";
 import CreateFolderButton from "./create-folder-button";
 import WebsitePages from "./website-pages";
 import Link from "next/link";
@@ -38,81 +26,81 @@ export const Navigation = () => {
   const pathname = usePathname();
 
   const isOpen = useAdminSideNav((state) => state.isOpen);
-  const onOpen = useAdminSideNav((state) => state.onOpen);
-  const onClose = useAdminSideNav((state) => state.onClose);
-
+  const setToOpen = useAdminSideNav((state) => state.setToOpen);
+  const setToClosed = useAdminSideNav((state) => state.setToClosed);
 
   // useLayoutEffect(() => {
   //   if (isMobile) {
-  //     onClose;
+  //     setToClosed;
   //   } else {
-  //     onOpen;
+  //     setToOpen;
   //   }
   // }, [isMobile]);
 
   // useLayoutEffect(() => {
   //   if (isMobile) {
-  //     onClose;
+  //     setToClosed;
   //   } else {
-  //     onOpen;
+  //     setToOpen;
   //   }
   // }, [isMobile]);
-
-  const handleCreate = () => {};
 
   return (
     <>
       {!pathname.startsWith("/admin/preview") ? (
-        !isOpen || !isMobile ? (
+        isOpen ? (
           <aside
             ref={sidebarRef}
             className={cn(
               `transition-all ease-in-out duration-300 overflow-hidden sticky top-16 pb-32
             group/sidebar h-full  min-h-[calc(100vh-3.5rem)] bg-secondary overflow-y-auto  pt-16   flex w-60 flex-col z-[99]`,
               // isResetting && "transition-all ease-in-out duration-300",
-              isMobile && "w-0"
+              { "w-full px-5": isMobile }
             )}
           >
             <div
-              onClick={onOpen}
+              onClick={setToClosed}
               role="button"
               className={cn(
-                "h-6 w-6 text-muted-foreground rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600 absolute top-3 right-2   group-hover/sidebar:opacity-100 transition"
+                "h-6 w-6 text-muted-foreground rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600 absolute top-3 right-2 group-hover/sidebar:opacity-100 transition"
                 // isMobile && "opacity-100"
               )}
             >
               <ChevronsLeft className="h-6 w-6" />
             </div>
             <div>
-              <Link href={"/admin"} className="flex items-center gap-2">
+              <Link href={"/admin"} className="flex items-center gap-2 px-3">
                 <Home className="h-4 w-4" /> Dashboard
               </Link>
             </div>
-            <hr className="my-4 w-52" />
-            {/* <div>
-              <Item
-                label="Search"
-                icon={Search}
-                isSearch
-                onClick={search.onOpen}
+            <hr className={cn("my-4 w-52",   { "w-full ": isMobile }
+               )} />
+            <div className=" h-full   ">
+              <FoldersAndFiles
+                className={cn(
+                  "w-54 h-full overflow-auto overflow-y-auto max-h-[50vh]",
+                  { "w-full ": isMobile }
+                )}
               />
-            </div> */}
-            <div className=" h-full ">
-              {/* {children} */}
-              <FoldersAndFiles />
-              <CreateFolderButton />
+              <CreateFolderButton
+                className={cn(
+                  "flex items-center my-2 rounded-lg  gap-2 border w-52 min-h-[27px] text-sm py-2 px-3 hover:bg-gray-100 text-muted-foreground font-medium active:bg-primary/5 active:text-primary",
+                  { "w-full ": isMobile }
+                )}
+              />
             </div>
-            <hr className="my-4 w-52" />
+            <hr className={cn("my-4 w-52",   { "w-full ": isMobile }
+               )} />
             <div>
               <WebsitePages />
             </div>
           </aside>
         ) : (
-          <div className="absolute top-2 left-0 ">
+          <div className="sticky w-full h-7 top-14">
             <MenuIcon
               role="button"
-              onClick={onClose}
-              className="h-6 w-6 text-muted-foreground"
+              onClick={setToOpen}
+              className="h-6 w-6 mr-3  text-muted-foreground"
             />
           </div>
         )

@@ -55,7 +55,15 @@ const MainNav = ({ session }) => {
         // { "sticky top-0": pathname !== "/" }
       )}
     >
-      <div className=" flex h-full w-full items-center max-w-screen-2xl mx-auto md:px-7 justify-between ">
+      <div
+        className={cn(
+          " flex h-full w-full items-center md:px-10  justify-between ",
+          {
+            "w-full max-w-screen-2xl mx-auto md:px-7":
+              !pathname.startsWith("/admin"),
+          }
+        )}
+      >
         <div className="flex items-center">
           <Link href="/" className="text-lg font-bold pl-3">
             Logo

@@ -6,7 +6,7 @@
 
 import Link from "next/link";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import {
   createFolder,
   createPostUnderFolder,
@@ -37,11 +37,14 @@ import { toast } from "sonner";
 import RecursiveFolders from "./folders-and-files-list";
 import PostTitle from "../admin-blog-post/post-title";
 import { cn } from "@/lib/utils";
+import { useMediaQuery } from "usehooks-ts";
 
 export const Folder = ({ folder, level }) => {
   const [collapsed, setCollapsed] = useState(true);
   const pathname = usePathname();
   const router = useRouter();
+
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   const toggleCollapse = () => {
     setCollapsed(!collapsed);
@@ -70,7 +73,12 @@ export const Folder = ({ folder, level }) => {
 
   return (
     <div className="flex flex-col ">
-      <div className="grid grid-cols-5 items-center justify-center  gap-2 p-1  w-52   hover:bg-slate-50 rounded-lg">
+      <div
+        className={cn(
+          "grid grid-cols-5 items-center justify-center  gap-2 p-1  w-52   hover:bg-gray-100 rounded-lg",
+          { "w-full": isMobile }
+        )}
+      >
         <button
           onClick={toggleCollapse}
           className="col-span-1 flex items-center justify-center hover:bg-slate-200 w-full py-1.5 h-full rounded-md"
@@ -92,38 +100,77 @@ export const Folder = ({ folder, level }) => {
       </div>
       {!collapsed && (
         <div
-          className="flex flex-col "
+          className="flex flex-col    "
           style={{ paddingLeft: `${(level - 1) * 12 + 25}px` }}
         >
           {sortedPosts.map((post, idx) => (
-            <div
-              key={idx}
-              className="grid grid-cols-5 items-center justify-center   p-1  gap-2 hover:bg-slate-50 rounded-lg"
-            >
-              <div className=" flex items-center justify-center col-span-1">
-                <File className="w-4 h-4 " />
-              </div>
-              <Link
-                key={post.id}
-                href={`/admin/posts/${post.id}`}
-                className=" flex items-center  line-clamp-1 text-nowrap  col-span-3 py-1  rounded-lg"
+            <Suspense key={idx} fallback={ItemSkeleton}>
+              <div
+                className={cn(
+                  "grid grid-cols-5 items-center justify-center  w-52  p-1  gap-2 hover:bg-gray-100 rounded-lg",
+                  { "w-full": isMobile }
+                )}
               >
-                {post.title}
-              </Link>
-              <div className="col-span-1">
-                <DropItPost
-                  // className={"col-span-1"}
-                  router={router}
-                  postId={post.id}
-                  postTitle={post.title}
-                />
+                <div className=" flex items-center justify-center col-span-1">
+                  <File className="w-4 h-4 " />
+                </div>
+                <Link
+                  key={post.id}
+                  href={`/admin/posts/${post.id}`}
+                  className=" flex items-center  line-clamp-1 text-nowrap  col-span-3 py-1  rounded-lg"
+                >
+                  {post.title}
+                </Link>
+                <div className="col-span-1">
+                  <DropItPost
+                    // className={"col-span-1"}
+                    router={router}
+                    postId={post.id}
+                    postTitle={post.title}
+                  />
+                </div>
               </div>
-            </div>
+            </Suspense>
           ))}
-
+          <div
+            type="button"
+            onClick={handleCreatePostUnderFolder}
+            className="grid grid-cols-5 items-center justify-center   p-1  gap-2   hover:cursor-pointer hover:bg-gray-100 rounded-lg "
+          >
+            <div className=" flex items-center justify-center col-span-1">
+              <Plus className="w-4 h-4 " />
+            </div>
+            <div className="col-span-3">Post</div>
+            <div className="col-span-1"></div>
+          </div>
           <RecursiveFolders parentFolder={folder.id} level={level + 1} />
         </div>
       )}
+    </div>
+  );
+};
+
+{
+  /* <div>
+              <Item
+                label="Search"
+                icon={Search}
+                isSearch
+                onClick={search.onOpen}
+              />
+            </div> */
+}
+
+const ItemSkeleton = () => {
+  return (
+    <div
+      // style={{
+      //   paddingLeft: level ? `${level * 12 + 25}px` : "12px",
+      // }}
+      className="flex gap-x-2 py-1 px-2"
+    >
+      <Skeleton className="h-4 w-4" />
+      <Skeleton className="h-4 w-[30%]" />
     </div>
   );
 };

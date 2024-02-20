@@ -74,7 +74,7 @@ const GSAP = ({ data }) => {
         <div className="absolute z-[99] rounde-b-xl w-full h-[50vh] lg:h-[43vh] bottom-0 bg-white  "></div>
 
         <div className="logo absolute z-[8] top-[16%] left-1/2 transform -translate-x-1/2 -translate-y-[16%]">
-          <h1 className="text-5xl lg:text-7xl font-extrabold text-center  text-white">
+          <h1 className="text-5xl lg:text-8xl whitespace-nowrap font-extrabold text-center  text-white">
             {data?.heroTitle}
           </h1>
           <h3 className=" text-2xl lg:text-4xl font-semibold text-center text-gray-200">
@@ -168,19 +168,6 @@ function ArrowRightIcon(props) {
     </svg>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // /**
 //  * components/landing-page/gsap.jsx
