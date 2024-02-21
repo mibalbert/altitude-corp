@@ -17,11 +17,11 @@ const HeroFramer = ({ data }) => {
   });
   const transformTextY = useTransform(scrollYProgress, [0, 1], [-250, 800]);
 
-  const textY = useSpring(transformTextY, {
-    stiffness: 10,
-    damping: 4,
-    restDelta: 0.001,
-  });
+  // const textY = useSpring(transformTextY, {
+  //   stiffness: 10,
+  //   damping: 4,
+  //   restDelta: 0.001,
+  // });
 
   return (
     <div className="bg-white pt-20    lg:pt-32   mb-44 ">
@@ -34,7 +34,7 @@ const HeroFramer = ({ data }) => {
       >
         <div className="relative w-full h-full">
           <motion.div
-            style={{ y: textY, x: "-50%" }}
+            style={{ y: transformTextY, x: "-50%" }}
             className="z-10  absolute     left-1/2  "
           >
             <h1 className="text-5xl lg:text-8xl whitespace-nowrap font-extrabold text-center  text-white">
