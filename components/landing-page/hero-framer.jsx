@@ -15,7 +15,14 @@ const HeroFramer = ({ data }) => {
     target: mainRef,
     offset: ["start end", "end start"],
   });
-  const transformTextY = useTransform(scrollYProgress, [0, 1], [-250, 800]);
+
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
+  const transformTextY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    isMobile ? [-100, 500] : [-250, 800]
+  );
 
   // const textY = useSpring(transformTextY, {
   //   stiffness: 10,
@@ -24,20 +31,23 @@ const HeroFramer = ({ data }) => {
   // });
 
   return (
-    <div className="bg-white pt-20    lg:pt-32   mb-44 ">
+    <div className="bg-white pt-20    lg:pt-32   mb-12 md:mb-44 ">
       {/* <div className="absolute pointer-events-none  top-32 inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div> */}
       <div
         ref={mainRef}
-        className="w-full h-[100vh] overflow-hidden   rounded-xl bg-blue-600   max-w-[1500px] mx-auto bg-dot-white/[0.6]"
+        className="w-full h-[70vh] md:h-[100vh] overflow-hidden   rounded-xl bg-blue-600   max-w-[1500px] mx-auto bg-dot-white/[0.6]"
 
         // className="h-[120vh] rounded-xl bg-blue-600   lg:pt-32 md:pt-0     w-full max-w-[1500px] mx-auto bg-dot-white/[0.6]"
       >
-        <div className="relative w-full h-full">
+        <div className="relative w-full h-full ">
           <motion.div
-            style={{ y: transformTextY, x: "-50%" }}
+            style={{
+              y: transformTextY,
+              x: "-50%",
+            }}
             className="z-10  absolute     left-1/2  "
           >
-            <h1 className="text-5xl lg:text-8xl whitespace-nowrap font-extrabold text-center  text-white">
+            <h1 className="text-4xl md:text-5xl lg:text-8xl whitespace-nowrap font-extrabold text-center  text-white">
               {data?.heroTitle}
             </h1>
             <h3 className=" text-2xl lg:text-4xl font-semibold text-center text-gray-200">
@@ -45,57 +55,57 @@ const HeroFramer = ({ data }) => {
             </h3>
           </motion.div>
 
-          <div className="relative flex top-0 left-0 w-full h-full">
-            <div className="absolute">
+          <div className="relative flex bottom-0 left-0 w-full h-full">
+            <div className="absolute bottom-0">
               <Image
                 alt="mountBg"
                 src={`https://assets.codepen.io/721952/mountBg.png`}
-                className=" object-contain object-center"
+                className=" object-contain object-bottom"
                 width={1500}
                 height={800}
               />
             </div>
-            <div className="absolute">
+            <div className="absolute bottom-0">
               <Image
                 alt="mountMg"
                 src={`https://assets.codepen.io/721952/mountMg.png`}
-                className=" object-contain object-center"
+                className=" object-contain object-bottom"
                 width={1500}
                 height={800}
               />
             </div>
-            <div className="absolute">
+            <div className="absolute bottom-0">
               <Image
                 alt="cloud2."
                 src={`https://assets.codepen.io/721952/cloud2.png`}
-                className=" object-contain object-center"
+                className=" object-contain object-bottom"
                 width={1500}
                 height={800}
               />
             </div>
-            <div className="absolute">
+            <div className="absolute bottom-0">
               <Image
                 alt="mountFg"
                 src={`https://assets.codepen.io/721952/mountFg.png`}
-                className=" object-contain object-center"
+                className=" object-contain object-bottom"
                 width={1500}
                 height={800}
               />
             </div>
-            <div className="absolute">
+            <div className="absolute bottom-0">
               <Image
                 alt="cloud1."
                 src={`https://assets.codepen.io/721952/cloud1.png`}
-                className="object-contain object-center z-50"
+                className="object-contain object-bottom z-50"
                 width={1500}
                 height={800}
               />
             </div>
-            <div className="absolute">
+            <div className="absolute bottom-0">
               <Image
                 alt="cloud3."
                 src={`https://assets.codepen.io/721952/cloud3.png`}
-                className=" object-contain object-center z-[99]"
+                className=" object-contain object-bottom z-[99]"
                 width={1500}
                 height={800}
               />
