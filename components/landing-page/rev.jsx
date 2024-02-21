@@ -11,8 +11,11 @@ export function InfiniteMovingReviewCards({ reviews }) {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   return (
-    <>
-      <div className="h-[30rem] lg:h-[45rem]   w-full mx-auto lg:mb-20   flex flex-col antialiased bg-white   items-center justify-center relative overflow-hidden">
+    <div className="py-20 space-y-10">
+      <h1 className="text-2xl md:text-3xl lg:text-4xl whitespace-nowrap font-extrabold text-center  text-blue-600">
+        What our customers say?
+      </h1>
+      <div className="h-[30rem] lg:h-auto   w-full mx-auto     flex flex-col antialiased bg-white   items-center justify-center relative overflow-hidden">
         <InfiniteMovingCards
           items={reviews}
           direction="right"
@@ -24,6 +27,6 @@ export function InfiniteMovingReviewCards({ reviews }) {
           speed={isMobile ? "fast" : "slow"}
         />
       </div>
-    </>
+    </div>
   );
 }

@@ -25,7 +25,7 @@ const Hero = ({ data }) => {
   );
 
   return (
-    <div className="bg-white pt-20  lg:pt-32   lg:mb-12 md:mb-44 ">
+    <div className="bg-white pt-20  lg:pt-32   lg:mb-12 ">
       <div
         ref={mainRef}
         className="w-full h-[70vh] md:h-[100vh] overflow-hidden   rounded-xl bg-blue-600   max-w-[1600px] mx-auto bg-dot-white/[0.6]"
