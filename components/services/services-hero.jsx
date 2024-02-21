@@ -31,8 +31,17 @@ const ServicesHero = ({ data }) => {
               </Button>
             </div> */}
           </div>
-          <div className="col-span-1 lg:col-span-3 max-w-[90%] mx-auto w-full md:max-w-[100%]">
-            <div className="grid grid-cols-4 grid-rows-3 gap-2  md:gap-10 w-full h-full">
+          <div className=" col-span-1 lg:col-span-3 max-w-[90%] mx-auto w-full md:max-w-[100%]">
+            <div className="relative w-full h-full flex items-center justify-center">
+              <Image
+                src={"/placeholder.svg"}
+                alt="placeholder"
+                width={500}
+                height={500}
+                className="object-contain"
+              />
+            </div>
+            {/* <div className="grid grid-cols-4 grid-rows-3 gap-2  md:gap-10 w-full h-full">
               <span className=" bg-blue-600  rounded-full"></span>
               <Image
                 width={300}
@@ -83,7 +92,7 @@ const ServicesHero = ({ data }) => {
                 src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/97ef9643-5202-41aa-80f0-ceeabccdd099"
                 alt=""
               />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

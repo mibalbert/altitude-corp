@@ -14,6 +14,8 @@ import { MobileNav } from "./mobile-nav";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
+import { Icons } from "../ui/incons";
+import Image from "next/image";
 
 const MainNav = ({ session }) => {
   // const router = useRouter();
@@ -65,8 +67,17 @@ const MainNav = ({ session }) => {
         )}
       >
         <div className="flex items-center">
-          <Link href="/" className="text-lg font-bold pl-3">
-            Logo
+          <Link
+            href="/"
+            className="text-lg font-bold pl-3 h-full sm:w-16 relative "
+          >
+            <Image
+              src={"/logo/logo-no-text.png"}
+              alt={"logo"}
+              width={100}
+              height={50}
+              className="object-cover object-center "
+            />
           </Link>
         </div>
         <div className="hidden h-full space-x-4 items-center lg:flex">

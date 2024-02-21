@@ -18,17 +18,45 @@
   background-color: #a0a0a0; /* Dark grayish color */
   border-radius: 10px; /* Make it round */
 }
+/* 
+.logo {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin: 30px auto;
+  background: url("/logo/logo-no-text.png") no-repeat center center;
+  background-size: contain;
+}
 
-.sun {
+.logo::after {
+  position: absolute;
+  left: -100px;
+  bottom: -30px;
+  display: block;
+  content: "";
+  width: 380px;
+  height: 150px;
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.3) 70%,
+    rgba(233, 144, 70, 0.2) 100%
+  );
+  backdrop-filter: blur(20px);
+  border-radius: 50%;
+  transform: rotate(15deg);
+  transform-origin: center center;
+} */
+
+/* .sun {
   position: relative;
   width: 200px;
   height: 200px;
   margin: 30px auto;
   border-radius: 50%;
   background: linear-gradient(0deg, #2563eb 12%, #38bdf8 100%);
-}
+} */
 
-.sun::after {
+/* .sun::after {
   position: absolute;
   left: -100px;
   bottom: -60px;
@@ -46,8 +74,7 @@
   transform: rotate(15deg);
   transform-origin: center center;
 }
-
-
+ */
 
 /* .main:before {
   content: "";

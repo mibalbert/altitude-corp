@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 export const InfiniteMovingCards = ({
   items,
   direction = "left",
-  speed = "fast",
+  speed = "normal",
   pauseOnHover = true,
   className,
 }) => {
@@ -63,11 +63,13 @@ export const InfiniteMovingCards = ({
     <div
       ref={containerRef}
       className={cn(
-        // "scroller relative z-20  w-full overflow-hidden  [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
+        // "scroller relative z-20  w-full overflow-hidden  [mask-image:linear-gradient-to-r from-transparent via-white/20 to-transparent)]",
         "scroller relative z-20  w-full overflow-hidden ",
         className
       )}
     >
+      <div className="absolute top-0 left-0 w-[10%] h-full bg-gradient-to-r from-white/50 to-transparent z-50 "></div>
+      <div className="absolute top-0 right-0 w-[10%] h-full bg-gradient-to-l from-white/50 to-transparent z-50 "></div>
       <ul
         ref={scrollerRef}
         className={cn(
@@ -78,14 +80,13 @@ export const InfiniteMovingCards = ({
       >
         {items.map((item, idx) => (
           <li
-            className="w-[350px] max-w-full relative rounded-2xl border border-b-0 flex-shrink-0 border-blue-700 px-8 py-6 md:w-[450px]"
+            className="w-[350px] shadow-lg my-3 shadow-gray-600 max-w-full min-h-[250px] relative rounded-2xl border border-b-0 flex-shrink-0 border-blue-700 px-8 py-6 md:w-[450px]"
             style={{
               background:
                 "linear-gradient(180deg, var(--blue-600), var(--blue-700)",
             }}
             key={item.author}
           >
-            
             <blockquote>
               <div
                 aria-hidden="true"

@@ -18,8 +18,8 @@ import ServicesLetUsHelp from "@/components/services/services-let-us-help";
 import prisma from "@/lib/prismadb";
 import ContactUsServices from "@/components/services/contact-us-services";
 import ServicesNewHero from "@/components/services/services-new-hero";
-
-
+import ServicesHeroWithWaves from "@/components/services/services-hero-with-waves";
+import MyWebGLComponent from "@/components/animations/water";
 
 export const metadata = {
   title: "ALTITUDE CORP | Services",
@@ -32,7 +32,8 @@ const Services = async () => {
   // console.log(op);
   return (
     <>
-      {/* <ServicesNewHero  /> */}
+      <MyWebGLComponent />
+      {/* <ServicesHeroWithWaves data={data[0]} /> */}
       <ServicesHero data={data[0]} />
       <ServicesLetUsHelp data={data[0]} />
       <Steps data={data[0]} />

@@ -3,15 +3,23 @@
  */
 
 import { ContactUsHero } from "@/components/contact-us/contact-us-hero";
-import ContactUsMain from "@/components/contact-us/contact-us-main";
+// import ContactUsScene from "@/components/contact-us/contact-us-scene";
 import React from "react";
+import dynamic from "next/dynamic";
 
-export const metadata = {
-  title: "ALTITUDE CORP | Contact-us",
-  description: "Best company to help you grow",
-};
+// export const metadata = {
+//   title: "ALTITUDE CORP | Contact-us",
+//   description: "Best company to help you grow",
+// };
 
 const ContactUs = () => {
+  const ContactUsScene = dynamic(
+    () => import("../../components/contact-us/contact-us-scene"),
+    {
+      ssr: false,
+    }
+  );
+
   return (
     <section>
       {/* <div>ContactUs</div>
@@ -20,6 +28,8 @@ const ContactUs = () => {
         Offer for consultation : Highligth the availabliity of free initial
         consultation{" "}
       </div> */}
+      {/* <ContactUsHeroWithAnimation /> */}
+      <ContactUsScene />
       <ContactUsHero />
       {/* <ContactUsMain /> */}
     </section>

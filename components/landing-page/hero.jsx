@@ -3,6 +3,7 @@
  */
 
 import GSAP from "./gsap";
+import HeroFramer from "./hero-framer";
 
 const Hero = async ({ data }) => {
   return (
@@ -34,8 +35,9 @@ const Hero = async ({ data }) => {
           <div className="col-span-16 lg:px-grid-col">
             <div className="relative flex rounded bg-gradient-to-b from-gray-100 to-gray-200 p-2 shadow-xl shadow-black/10">
               <div className="w-full rounded-xs border"> */}
-                <GSAP data={data} />
-              {/* </div>
+      {/* <GSAP data={data} /> */}
+      <HeroFramer data={data} />
+      {/* </div>
               <div className="absolute inset-2 z-3 rounded-xs shadow-[inset_0_4px_8px_rgba(0,0,0,.1),0_-1px_2px_rgba(0,0,0,.2),0_1px_2px_rgba(255,255,255,1)]"></div>
             </div>
           </div>

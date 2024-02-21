@@ -152,26 +152,14 @@ export const Icons = {
     </svg>
   ),
   logoTransparent: (props) => (
-    <svg role="img" viewBox="0 0 1280 1024" {...props}>
+    <svg  viewBox="0 0 128 124" {...props}>
       <g transform="matrix(1 0 0 1 640 512)" id="background-logo">
         <rect
-          style={{
-            stroke: "none",
-            strokeWidth: 0,
-            strokeDasharray: "none",
-            strokeLinecap: "butt",
-            strokeDashoffset: 0,
-            strokeLinejoin: "miter",
-            strokeMiterlimit: 4,
-            fill: "rgb(0,0,0)",
-            fillRule: "nonzero",
-            opacity: 1,
-          }}
-          paintOrder="stroke"
+          fill="rgb(0,0,0)"
+          fillRule="nonzero"
+          opacity="1"
           x="-640"
           y="-512"
-          rx="0"
-          ry="0"
           width="1280"
           height="1024"
         />
@@ -180,7 +168,7 @@ export const Icons = {
         transform="matrix(1.9211538461538462 0 0 1.9211538461538462 640.6756640432858 399.89977638008634)"
         id="logo-logo"
       >
-        <g style="" paintOrder="stroke">
+        <g paintOrder="stroke">
           <g transform="matrix(0.028444471663161882 0 0 0.028444471663161882 0 0)">
             <linearGradient
               id="SVGID_1_2_179839"
@@ -191,30 +179,14 @@ export const Icons = {
               x2="6324.24"
               y2="-534.81"
             >
-              <stop
-                offset="0%"
-                style={{ stopColor: "rgb(17,97,167)", stopOpacity: 1 }}
-              />
-              <stop
-                offset="100%"
-                style={{ stopColor: "rgb(83,166,238)", stopOpacity: 1 }}
-              />
+              <stop offset="0%" stopColor="rgb(17,97,167)" stopOpacity="1" />
+              <stop offset="100%" stopColor="rgb(83,166,238)" stopOpacity="1" />
             </linearGradient>
             <path
-              style={{
-                stroke: "none",
-                strokeWidth: 1,
-                strokeDasharray: "none",
-                strokeLinecap: "butt",
-                strokeDashoffset: 0,
-                strokeLinejoin: "miter",
-                strokeMiterlimit: 4,
-                fill: "url(#SVGID_1_2_179839)",
-                fillRule: "evenodd",
-                opacity: 1,
-              }}
-              paintOrder="stroke"
-              transform=" translate(-5138.99, -2064.35)"
+              fill="url(#SVGID_1_2_179839)"
+              fillRule="evenodd"
+              opacity="1"
+              transform="translate(-5138.99, -2064.35)"
               d="M 2640.82 1487.91 L 3253.4900000000002 2100.58 L 2640.82 1643.04 L 2028.15 2100.58 L 2640.82 1487.9099999999999 z M 3306.34 2153.42 L 3308.55 2155.63 L 1335.4600000000003 4128.72 L 2.2737367544323206e-13 4128.72 L 1975.3000000000002 2153.42 L 2357.5 2011.66 L 2331.64 2149.09 L 2529.44 2040.2500000000002 L 2640.81 2228.65 L 2752.18 2040.25 L 2949.98 2149.09 L 2924.12 2011.66 L 3306.3199999999997 2153.42 z M 9610.25 2808.79 L 10222.93 3421.46 L 9610.25 2963.92 L 8997.58 3421.46 L 9610.25 2808.79 z M 10275.77 3474.3 L 10277.98 3476.51 L 9625.77 4128.72 L 8290.32 4128.72 L 8944.74 3474.3 L 9326.94 3332.54 L 9301.08 3469.97 L 9498.88 3361.1299999999997 L 9610.25 3549.5399999999995 L 9721.62 3361.1299999999997 L 9919.42 3469.97 L 9893.56 3332.54 L 10275.76 3474.3 z M 8785.33 1975.65 L 9453.06 2643.37 L 7967.709999999999 4128.719999999999 L 6632.259999999999 4128.719999999999 L 8785.33 1975.6499999999992 z M 7947.44 1155.48 L 8560.109999999999 1768.15 L 7947.439999999999 1310.61 L 7334.77 1768.15 L 7947.44 1155.4799999999996 z"
             />
           </g>
