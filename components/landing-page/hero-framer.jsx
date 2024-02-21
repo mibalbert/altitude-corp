@@ -16,34 +16,12 @@ const HeroFramer = ({ data }) => {
     offset: ["start end", "end start"],
   });
   const transformTextY = useTransform(scrollYProgress, [0, 1], [-250, 800]);
-  // const transformCenterMountainY = useTransform(
-  //   scrollYProgress,
-  //   [0, 1],
-  //   [0, 100]
-  // );
-  // const transformLeftMountainY = useTransform(
-  //   scrollYProgress,
-  //   [0, 1],
-  //   [0, -220]
-  // );
-  // const transformCenterMountainY = useTransform(scrollYProgress, [0, 1], [0, 700]);
 
-  // const textY = useSpring(transformTextY, {
-  //   stiffness: 50,
-  //   damping: 30,
-  //   restDelta: 0.001,
-  // });
-
-  // const centerMountainY = useSpring(transformCenterMountainY, {
-  //   stiffness: 50,
-  //   damping: 30,
-  //   restDelta: 0.001,
-  // });
-  // const leftMountainY = useSpring(transformLeftMountainY, {
-  //   stiffness: 30,
-  //   damping: 30,
-  //   restDelta: 0.001,
-  // });
+  const textY = useSpring(transformTextY, {
+    stiffness: 10,
+    damping: 4,
+    restDelta: 0.001,
+  });
 
   return (
     <div className="bg-white pt-20    lg:pt-32   mb-44 ">
@@ -56,7 +34,7 @@ const HeroFramer = ({ data }) => {
       >
         <div className="relative w-full h-full">
           <motion.div
-            style={{ y: transformTextY, x: "-50%" }}
+            style={{ y: textY, x: "-50%" }}
             className="z-10  absolute     left-1/2  "
           >
             <h1 className="text-5xl lg:text-8xl whitespace-nowrap font-extrabold text-center  text-white">
@@ -108,7 +86,7 @@ const HeroFramer = ({ data }) => {
               <Image
                 alt="cloud1."
                 src={`https://assets.codepen.io/721952/cloud1.png`}
-                className=" object-contain object-center"
+                className="object-contain object-center z-50"
                 width={1500}
                 height={800}
               />
@@ -117,7 +95,7 @@ const HeroFramer = ({ data }) => {
               <Image
                 alt="cloud3."
                 src={`https://assets.codepen.io/721952/cloud3.png`}
-                className=" object-contain object-center"
+                className=" object-contain object-center z-[99]"
                 width={1500}
                 height={800}
               />
