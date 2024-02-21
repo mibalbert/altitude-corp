@@ -327,7 +327,9 @@ const MyWebGLComponent = () => {
       />
       <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/3 z-50 flex max-h-[200px] h-full gap-5 items-end ">
         <div className="flex flex-col justify-end text-white ">
-          <div className="text-8xl font-bold ">Services</div>
+          <h1 className="text-4xl md:text-5xl lg:text-8xl whitespace-nowrap font-extrabold text-center  text-white">
+            Services
+          </h1>
           <div className="text-2xl">Here to guide you to success</div>
         </div>
         <Image
