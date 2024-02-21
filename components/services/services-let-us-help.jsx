@@ -8,7 +8,7 @@ import React from "react";
 const ServicesLetUsHelp = ({ data }) => {
   return (
     <section className="w-full py-12 md:py-24 lg:py-32">
-      <div className="space-y-2 container  mx-auto">
+      <div className="space-y-2 container  mx-auto text-center">
         <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
           {data?.servicesPageLetUsHelpTitle}
         </h2>
@@ -16,7 +16,7 @@ const ServicesLetUsHelp = ({ data }) => {
           {data?.servicesPageLetUsHelpSubtitle}
         </p>
       </div>
-      <div className="grid w-full grid-cols-1 items-stretch justify-center md:grid-cols-3">
+      <div className="grid w-full grid-cols-1  max-w-screen-2xl justify-center md:grid-cols-3">
         <div className="mx-auto flex w-full items-center justify-center gap-8  p-4 sm:p-8">
           <Image
             alt="Service 1"

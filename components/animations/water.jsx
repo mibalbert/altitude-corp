@@ -4,6 +4,7 @@
 
 "use client";
 
+import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
@@ -175,7 +176,8 @@ const MyWebGLComponent = () => {
       fogNear: 1,
       fogFar: 3,
       // fogColor: "#bfdbfe",
-      fogColor: "#e0f2fe",
+      // fogColor: "#e0f2fe",
+      fogColor: "#60a5fa",
     };
 
     /**
@@ -316,15 +318,25 @@ const MyWebGLComponent = () => {
   }, []);
 
   return (
-    <div className="relative h-[80vh]">
-      <div className="absolute pointer-events-none  inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+    <div className="relative ">
+      {/* <div className="absolute pointer-events-none  inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div> */}
 
       <canvas
         ref={canvasRef}
-        className="webgl absolute top-0 left-0 w-full h-full max-h-[80vh] z-0"
+        className="webgl  w-full mx-auto h-full max-h-[700px] max-w-[1600px] rounded-xl mt-32 z-0"
       />
-      <div className="absolute text-7xl font-bold text-white top-1/2 left-1/2 transoform -translate-x-1/2 -translate-y-1/2 z-50">
-        Services
+      <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/3 z-50 flex max-h-[200px] h-full gap-5 items-end ">
+        <div className="flex flex-col justify-end text-white ">
+          <div className="text-8xl font-bold ">Services</div>
+          <div className="text-2xl">Here to guide you to success</div>
+        </div>
+        <Image
+          src={"/lighthouse.svg"}
+          width={70}
+          height={170}
+          alt="lighthouse"
+          className="object-contain pb-1.5 fill-white text-white"
+        />
       </div>
     </div>
   );

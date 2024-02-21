@@ -59,7 +59,7 @@ const MainNav = ({ session }) => {
     >
       <div
         className={cn(
-          " flex h-full w-full items-center md:px-10  justify-between ",
+          " flex h-full w-full items-center pl-3 pr-2 md:px-10  justify-between ",
           {
             "w-full max-w-screen-2xl mx-auto md:px-7":
               !pathname.startsWith("/admin"),
@@ -69,7 +69,7 @@ const MainNav = ({ session }) => {
         <div className="flex items-center">
           <Link
             href="/"
-            className="text-lg font-bold pl-3 h-full sm:w-16 relative "
+            className="text-lg font-bold w-16 h-full sm:w-16 relative "
           >
             <Image
               src={"/logo/logo-no-text.png"}

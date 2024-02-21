@@ -51,7 +51,7 @@ export const InfiniteMovingCards = ({
   const getSpeed = () => {
     if (containerRef.current) {
       if (speed === "fast") {
-        containerRef.current.style.setProperty("--animation-duration", "20s");
+        containerRef.current.style.setProperty("--animation-duration", "10s");
       } else if (speed === "normal") {
         containerRef.current.style.setProperty("--animation-duration", "40s");
       } else {
@@ -80,7 +80,7 @@ export const InfiniteMovingCards = ({
       >
         {items.map((item, idx) => (
           <li
-            className="w-[350px] shadow-lg my-3 shadow-gray-600 max-w-full min-h-[250px] relative rounded-2xl border border-b-0 flex-shrink-0 border-blue-700 px-8 py-6 md:w-[450px]"
+            className="w-[350px] shadow-lg my-3 shadow-gray-600 max-w-full  min-h-[200px] relative rounded-2xl border border-b-0 flex-shrink-0 border-blue-700 px-8 py-6 md:w-[450px]"
             style={{
               background:
                 "linear-gradient(180deg, var(--blue-600), var(--blue-700)",
