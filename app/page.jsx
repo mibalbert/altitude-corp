@@ -28,7 +28,7 @@ export default async function Home() {
   });
 
   return (
-    <section className="">
+    <section className="bg-white pt-16  xl:pt-20 ">
       <Hero data={data[0]} />
       <InfiniteMovingReviewCards reviews={data[0].reviews} />
       <Elevator data={data[0]} />

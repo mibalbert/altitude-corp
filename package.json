@@ -41,7 +41,7 @@
     "clsx": "^2.1.0",
     "cmdk": "^0.2.1",
     "crypto": "^1.0.1",
-    "embla-carousel-react": "^8.0.0-rc22",
+    "embla-carousel-react": "^8.0.0-rc23",
     "encoding": "^0.1.13",
     "framer-motion": "^11.0.3",
     "gsap": "^3.12.5",

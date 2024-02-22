@@ -59,7 +59,7 @@ const MainNav = ({ session }) => {
     >
       <div
         className={cn(
-          " flex h-full w-full items-center pl-3 pr-2 md:px-10  justify-between ",
+          " flex h-full w-full items-center pl-3 pr-2 md:px-10 lg:px-12 justify-between ",
           {
             "w-full max-w-screen-2xl mx-auto md:px-7":
               !pathname.startsWith("/admin"),

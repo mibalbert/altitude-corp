@@ -150,7 +150,7 @@ const fragmentShaderSource = `
                                   }
 `; // Your fragment shader source
 
-const MyWebGLComponent = () => {
+const Waves = () => {
   const canvasRef = useRef(null);
   // const [isHovering, setIsHovering] = useState(false);
 
@@ -170,9 +170,10 @@ const MyWebGLComponent = () => {
       // fogFar: 3,
       // fogColor: isHovering ? "#e0f2fe" : "#bfdbfe",
       // waveDepthColor: "#1e40af",
-      waveDepthColor: "#1d4ed8",
+      // waveDepthColor: "#1d4ed8",
+      waveDepthColor: "#2563eb",
       // waveSurfaceColor: "#60a5fa",
-      waveSurfaceColor: "#dbeafe",
+      waveSurfaceColor: "#eff6ff",
       fogNear: 1,
       fogFar: 3,
       // fogColor: "#bfdbfe",
@@ -188,28 +189,28 @@ const MyWebGLComponent = () => {
 
     // Scene
     const scene = new THREE.Scene();
-    scene.fog = new THREE.Fog(
-      debugObject.fogColor,
-      debugObject.fogNear,
-      debugObject.fogFar
-    );
-    scene.background = new THREE.Color(debugObject.fogColor);
+    // scene.fog = new THREE.Fog(
+    //   debugObject.fogColor,
+    //   debugObject.fogNear,
+    //   debugObject.fogFar
+    // );
+    // scene.background = new THREE.Color(debugObject.fogColor);
 
     /**
      * Object
      */
-    const waterGeometry = new THREE.PlaneGeometry(12, 12, 512, 512);
+    const waterGeometry = new THREE.PlaneGeometry(12, 12, 152, 152);
 
     // Material
     const waterMaterial = new THREE.ShaderMaterial({
       vertexShader: vertexShaderSource,
       fragmentShader: fragmentShaderSource,
       transparent: true,
-      fog: true,
+      fog: false,
       uniforms: {
         uTime: { value: 0 },
         uMouse: { value: new THREE.Vector2() },
-        uBigWavesElevation: { value: 0.11 },
+        uBigWavesElevation: { value: 0.1 },
         uBigWavesFrequency: { value: new THREE.Vector2(4, 2) },
         uBigWaveSpeed: { value: 0.75 },
         // Small Waves
@@ -265,13 +266,13 @@ const MyWebGLComponent = () => {
       0.1,
       100
     );
-    camera.position.set(1, 1, 1);
+    camera.position.set(1, 0.3, 1);
     scene.add(camera);
     // Controls
     const controls = new OrbitControls(camera, canvas);
     controls.enableDamping = true;
     // Disable vertical movement
-    controls.minPolarAngle = controls.maxPolarAngle = Math.PI / 3;
+    controls.minPolarAngle = controls.maxPolarAngle = Math.PI / 2.51;
 
     // Disable zooming
     controls.enableZoom = false;
@@ -284,6 +285,7 @@ const MyWebGLComponent = () => {
      */
     const renderer = new THREE.WebGLRenderer({
       canvas: canvas,
+      alpha: true, // so png background is transparent
     });
     renderer.setSize(sizes.width, sizes.height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -318,30 +320,35 @@ const MyWebGLComponent = () => {
   }, []);
 
   return (
-    <div className="relative ">
+    <div className="lg:mb-12  px-3 sm:px-8 lg:px-12">
       {/* <div className="absolute pointer-events-none  inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div> */}
 
-      <canvas
-        ref={canvasRef}
-        className="webgl  w-full mx-auto h-full max-h-[700px] max-w-[1600px] rounded-xl mt-32 z-0"
-      />
-      <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/3 z-50 flex max-h-[200px] h-full gap-5 items-end ">
-        <div className="flex flex-col justify-end text-white ">
-          <h1 className="text-4xl md:text-5xl lg:text-8xl whitespace-nowrap font-extrabold text-center  text-white">
-            Services
-          </h1>
-          <div className="text-2xl">Here to guide you to success</div>
+      <div className="w-full h-[75vh] overflow-hidden relative    rounded-md bg-blue-600   max-w-[1600px] mx-auto bg-dot-white/[0.6]">
+        <div className="absolute pointer-events-none  inset-0 flex items-center justify-center   bg-gradient-to-t from-transparent   to-blue-600 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+
+        <canvas ref={canvasRef} className="webgl w-full h-full" />
+        <div className="flex xl:hidden absolute top-0 left-0 w-full h-full z-50"></div>
+
+        <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/4 z-50 flex lg:max-h-[200px] h-full gap-2 lg:gap-5 lg:items-end ">
+          <div className="flex flex-col justify-center lg:justify-end  w-full max-w-[90%]">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl 2xl:text-8xl whitespace-nowrap font-extrabold text-center  text-white">
+              Services{" "}
+            </h1>
+            <h3 className=" text-2xl lg:text-4xl font-semibold text-center text-gray-200">
+              Here to guide you to success
+            </h3>
+          </div>
+          <Image
+            src={"/lighthouse.svg"}
+            width={70}
+            height={170}
+            alt="lighthouse"
+            className="object-contain pb-1.5 fill-white text-white"
+          />
         </div>
-        <Image
-          src={"/lighthouse.svg"}
-          width={70}
-          height={170}
-          alt="lighthouse"
-          className="object-contain pb-1.5 fill-white text-white"
-        />
       </div>
     </div>
   );
 };
 
-export default MyWebGLComponent;
+export default Waves;

@@ -21,14 +21,14 @@ const Hero = ({ data }) => {
   const transformTextY = useTransform(
     scrollYProgress,
     [0, 1],
-    isMobile ? [-100, 500] : [0, 600]
+    isMobile ? [-100, 500] : [-100, 400]
   );
 
   return (
-    <div className="bg-white pt-20  lg:pt-32   lg:mb-12 ">
+    <div className="lg:mb-12 px-3 sm:px-8 lg:px-12">
       <div
         ref={mainRef}
-        className="w-full h-[70vh] md:h-[100vh] overflow-hidden   rounded-xl bg-blue-600   max-w-[1600px] mx-auto bg-dot-white/[0.6]"
+        className="w-full h-[75vh] overflow-hidden   rounded-xl bg-blue-600   max-w-[1600px] mx-auto bg-dot-white/[0.6]"
 
         // className="h-[120vh] rounded-xl bg-blue-600   lg:pt-32 md:pt-0     w-full max-w-[1600px] mx-auto bg-dot-white/[0.6]"
       >
@@ -41,7 +41,7 @@ const Hero = ({ data }) => {
             }}
             className="z-10  absolute     left-1/2  "
           >
-            <h1 className="text-4xl md:text-5xl lg:text-8xl whitespace-nowrap font-extrabold text-center  text-white">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl 2xl:text-8xl whitespace-nowrap font-extrabold text-center  text-white">
               {data?.heroTitle}
             </h1>
             <h3 className=" text-2xl lg:text-4xl font-semibold text-center text-gray-200">
@@ -50,7 +50,7 @@ const Hero = ({ data }) => {
           </motion.div>
 
           <div className="relative flex bottom-0 left-0 pt-10 w-full h-full">
-            <div className="absolute -bottom-[200px]">
+            <div className="absolute bottom-0   lg:-bottom-[200px]">
               <Image
                 alt="mountBg"
                 src={`https://assets.codepen.io/721952/mountBg.png`}
@@ -59,7 +59,7 @@ const Hero = ({ data }) => {
                 height={600}
               />
             </div>
-            <div className="absolute -bottom-[200px]">
+            <div className="absolute bottom-0  lg:-bottom-[200px]">
               <Image
                 alt="mountMg"
                 src={`https://assets.codepen.io/721952/mountMg.png`}
@@ -68,7 +68,7 @@ const Hero = ({ data }) => {
                 height={600}
               />
             </div>
-            <div className="absolute -bottom-[200px]">
+            <div className="absolute bottom-0  lg:-bottom-[200px]">
               <Image
                 alt="cloud2."
                 src={`https://assets.codepen.io/721952/cloud2.png`}
@@ -77,7 +77,7 @@ const Hero = ({ data }) => {
                 height={600}
               />
             </div>
-            <div className="absolute -bottom-[200px]">
+            <div className="absolute bottom-0  lg:-bottom-[200px]">
               <Image
                 alt="mountFg"
                 src={`https://assets.codepen.io/721952/mountFg.png`}
@@ -86,7 +86,7 @@ const Hero = ({ data }) => {
                 height={600}
               />
             </div>
-            <div className="absolute -bottom-[200px]">
+            <div className="absolute bottom-0  lg:-bottom-[200px]">
               <Image
                 alt="cloud1."
                 src={`https://assets.codepen.io/721952/cloud1.png`}
@@ -95,7 +95,7 @@ const Hero = ({ data }) => {
                 height={600}
               />
             </div>
-            <div className="absolute -bottom-[200px]">
+            <div className="absolute bottom-0  lg:-bottom-[200px]">
               <Image
                 alt="cloud3."
                 src={`https://assets.codepen.io/721952/cloud3.png`}
