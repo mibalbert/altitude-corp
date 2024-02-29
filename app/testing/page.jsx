@@ -1,10 +1,20 @@
-import MyWebGLComponent from '@/components/animations/water'
-import React from 'react'
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
 
-const page = () => {
+const TestingComponent = dynamic(() => import("./testing"), { ssr: false });
+
+const Testing = () => {
   return (
-    <div><MyWebGLComponent /></div>
-  )
-}
+    <div className="h-[60vh] border-b ">
+      <Suspense fallback={<Loading />}>
+        <TestingComponent />
+      </Suspense>
+    </div>
+  );
+};
 
-export default page
+export default Testing;
+
+function Loading() {
+  return <div>Loading...</div>;
+}

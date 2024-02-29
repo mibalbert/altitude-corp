@@ -8,7 +8,7 @@ const Elevator = ({ data }) => {
         <div className="flex flex-wrap -m-8">
           <div className="w-full md:w-1/2 lg:w-1/3 p-8">
             <div className="xl:pt-12">
-              <h2 className="mb-7 text-6xl md:text-7xl text-white font-bold tracking-px-n leading-tight">
+              <h2 className="mb-7 text-3xl md:text-4xl xl:text-5xl text-white font-bold tracking-px-n leading-tight">
                 {data.elevatorTitle}
               </h2>
               <p className="text-white text-opacity-80">
@@ -43,8 +43,23 @@ const Elevator = ({ data }) => {
             </div>
           </div>
           <div className="w-full md:w-1/2 lg:w-1/3 p-8">
-            <div className="flex flex-wrap h-full xl:pb-12">
+            <div className="flex flex-wrap h-full ">
               <div className="flex flex-wrap self-end -m-10">
+                <div className="w-full p-10">
+                  <div className="md:max-w-sm">
+                    <h3 className="mb-5 text-2xl text-white font-bold leading-snug">
+                      Adipisicing elit.
+                    </h3>
+                    <p className="text-white text-opacity-70 font-medium leading-relaxed">
+                      Amet minim mollit non deserunt ullamco est sit aliqua
+                      dolor do amet sint. Velit officia consequat duis enim
+                      velit mollit.
+                    </p>
+                  </div>
+                </div>
+                <div className="w-full px-10">
+                  <div className="h-px bg-blue-500" />
+                </div>
                 <div className="w-full p-10">
                   <div className="md:max-w-sm">
                     <h3 className="mb-5 text-2xl text-white font-bold leading-snug">

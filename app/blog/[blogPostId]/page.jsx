@@ -38,10 +38,10 @@ const BlogPost = async ({ params }) => {
   // }
 
   return (
-    <section className="pb-[60vh]">
-      <LiveCoverImage coverImage={data.coverImage} />
+    <section className="pb-[10vh] pt-10">
+      {/* <LiveCoverImage coverImage={data.coverImage} />
       <LiveTitle title={data.title} />
-      <hr className="my-5 w-full max-w-2xl mx-auto" />
+      <hr className="my-5 w-full max-w-2xl mx-auto" /> */}
       <LiveEditor content={data.content} />
     </section>
   );

@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  transpilePackages: ["three"],
   images: {
     domains: [
+      "resend.com",
       "mongo-blog.s3.eu-central-1.amazonaws.com",
       "images.pexels.com",
       "avatars.githubusercontent.com",

@@ -5,7 +5,9 @@
 import ContactUsInsidePage from "@/components/contact-us/contact-us-inside-page";
 import Elevator from "@/components/landing-page/elevator";
 import Hero from "@/components/landing-page/hero";
+import HomeLatestPosts from "@/components/landing-page/home-latest-posts";
 import LandingFooter from "@/components/landing-page/landing-footer";
+import NewHero from "@/components/landing-page/new-hero";
 import Numbers from "@/components/landing-page/numbers";
 import PeaceOfMind from "@/components/landing-page/peace-of-mind";
 import Plans from "@/components/landing-page/plans";
@@ -29,7 +31,9 @@ export default async function Home() {
 
   return (
     <section className="bg-white pt-16  xl:pt-20 ">
-      <Hero data={data[0]} />
+      {/* <Hero data={data[0]} /> */}
+      <NewHero />
+      <HomeLatestPosts  />
       <InfiniteMovingReviewCards reviews={data[0].reviews} />
       <Elevator data={data[0]} />
       <PeaceOfMind data={data[0]} />

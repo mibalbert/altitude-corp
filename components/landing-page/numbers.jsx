@@ -12,8 +12,8 @@ const Numbers = () => {
         src="/vault-assets/images/numbers/gradient2.svg"
       />
       <div className="relative z-10 container px-4 mx-auto">
-        <div className="mb-20 border-b border-white border-opacity-10">
-          <h2 className="pb-20 text-5xl md:text-6xl xl:text-7xl text-white font-bold tracking-px-n leading-none md:max-w-3xl">
+        <div className="mb-16 border-b border-white border-opacity-30">
+          <h2 className="pb-16 text-3xl md:text-4xl xl:text-5xl text-white font-bold tracking-px-n leading-none md:max-w-3xl">
             Suscipit sunt facilis aliquam.
           </h2>
         </div>
@@ -22,7 +22,7 @@ const Numbers = () => {
             <p className="mb-6 text-gray-200 font-semibold leading-normal">
               Satisfied Clients
             </p>
-            <h3 className="mb-4 text-4xl md:text-5xl xl:text-6xl text-white font-bold tracking-px-n leading-none">
+            <h3 className="mb-4 text-3xl md:text-4xl xl:text-5xl text-white font-bold tracking-px-n leading-none">
               84,900
             </h3>
             <p className="text-gray-300 font-medium leading-relaxed md:w-56">
@@ -33,7 +33,7 @@ const Numbers = () => {
             <p className="mb-6 text-gray-200 font-semibold leading-normal">
               Libero sunt
             </p>
-            <h3 className="mb-4 text-4xl md:text-5xl xl:text-6xl text-white font-bold tracking-px-n leading-none">
+            <h3 className="mb-4 text-3xl md:text-4xl xl:text-5xl text-white font-bold tracking-px-n leading-none">
               3.2M+
             </h3>
             <p className="text-gray-300 font-medium leading-relaxed md:w-56">
@@ -44,7 +44,7 @@ const Numbers = () => {
             <p className="mb-6 text-gray-200 font-semibold leading-normal">
               Customer Reviews
             </p>
-            <h3 className="mb-4 text-4xl md:text-5xl xl:text-6xl text-white font-bold tracking-px-n leading-none">
+            <h3 className="mb-4 text-3xl md:text-4xl xl:text-5xl text-white font-bold tracking-px-n leading-none">
               21,394
             </h3>
             <p className="text-gray-300 font-medium leading-relaxed md:w-56">

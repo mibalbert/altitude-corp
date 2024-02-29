@@ -21,26 +21,30 @@ const BlogPost = async ({ params }) => {
     where: {
       id: params.blogPostId,
     },
+    include: {
+      folder: true,
+    },
   });
 
+
   return (
-    <section className="pb-32 pt-3 px-5">
+    <section className="pb-[10vh] pt-3 px-5">
       <UnderNav data={data} />
-      <PostCoverImage
+      {/* <PostCoverImage
         postId={params.blogPostId}
         coverImage={data.coverImage}
         padding={true}
-      />
+      /> */}
 
-      <NewContentEditable />
+      {/* <NewContentEditable /> */}
 
-      <section className="w-full py-5 ">
+      {/* <section className="w-full py-5 ">
         <div className=" max-w-4xl mx-auto w-full">
           <PostTitle postId={params.blogPostId} initialTitle={data.title} />
         </div>
-      </section>
+      </section> */}
       <section className="w-full py-5 ">
-        <div className="max-w-3xl mx-auto w-full">
+        <div className="w-full max-w-2xl mx-auto ">
           <PostEditor
             postId={params.blogPostId}
             initialContent={data.content}

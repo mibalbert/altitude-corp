@@ -5,7 +5,7 @@ const PeaceOfMind = () => {
   return (
     <section className="pt-28 pb-40 bg-white overflow-hidden">
       <div className="container px-4 mx-auto">
-        <h2 className="mb-20 text-4xl md:text-6xl xl:text-7xl font-bold font-heading tracking-px-n leading-none">
+        <h2 className="mb-20 text-3xl md:text-4xl xl:text-5xl font-bold font-heading tracking-px-n leading-none">
           Enjoy peace of mind
         </h2>
         <div className="flex flex-wrap xl:items-center -m-8 xl:-m-10">

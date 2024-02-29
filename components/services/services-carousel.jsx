@@ -1,7 +1,8 @@
 /**
  *
  */
-import * as React from "react";
+
+"use client";
 
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -12,71 +13,71 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
+import { createRef, useRef } from "react";
 
-export default function CarouselSize() {
+const ServicesCarousel = ({ servicesData }) => {
+  const refs = useRef(Array.from({ length: 6 }, () => createRef()));
+
+  const executeScroll = (index) => {
+    refs.current[index]?.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+      inline: "nearest",
+    });
+  };
+
   return (
-    <Carousel
-      opts={{
-        align: "start",
-        dragFree: true,
-        loog: true,
-      }}
-      className="w-full max-w-[80%] 2xl:max-w-screen-2xl mx-auto my-20 px-20"
-    >
-      <CarouselContent>
-        {Array.from({ length: 6 }).map((_, index) => (
-          <CarouselItem
+    <>
+      <Carousel
+        opts={{
+          align: "start",
+          // dragFree: true,
+          // skipSnaps: true,
+          loog: false,
+          // containScroll: true,
+        }}
+        className="w-[90%] 2xl:max-w-screen-2xl mx-auto my-20 "
+      >
+        <CarouselContent>
+          {Array.from({ length: 6 }).map((_, index) => (
+            <CarouselItem
+              key={index}
+              className={cn(
+                // "md:basis-1/2 lg:basis-1/4   lg:hover:basis-1/3 hover:cursor-pointer   transition-all duration-700"
+                "md:basis-1/2 lg:basis-1/4 "
+              )}
+            >
+              <div className="p-1">
+                <Card
+                  className="rounded-none"
+                  onClick={() => executeScroll(index)}
+                >
+                  <CardContent className="h-[50vh] hover:bg-blue-600 active:bg-blue-500 text-white flex aspect-square items-center justify-center p-6  transition-all duration-500">
+                    <span className="text-3xl font-semibold">{index + 1}</span>
+                  </CardContent>
+                </Card>
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious className="-top-10 left-0" />
+        <CarouselNext className="-top-10 left-10" />
+      </Carousel>
+      <div className="">
+        {servicesData.map((_, index) => (
+          <div
             key={index}
-            className={cn(
-              "md:basis-1/2 lg:basis-1/4   lg:hover:basis-1/3 hover:cursor-pointer   transition-all duration-700"
-            )}
+            ref={refs.current[index]}
+            className="h-[40vh] bg-orange-500"
           >
-            <div className="p-1">
-              <Card className="">
-                <CardContent className="h-[50vh] active:bg-blue-600 flex aspect-square items-center justify-center p-6">
-                  <span className="text-3xl font-semibold">{index + 1}</span>
-                </CardContent>
-              </Card>
-            </div>
-          </CarouselItem>
+            JKASBDKJASBDJKB
+          </div>
         ))}
-      </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
-    </Carousel>
+      </div>
+    </>
   );
-}
-
-// "use client";
-
-// import React from "react";
-// import useEmblaCarousel from "embla-carousel-react";
-
-// const EmblaCarousel = () => {
-//   const SLIDE_COUNT = 16;
-//   const options = { dragFree: true, containScroll: "trimSnaps" };
-//   const slides = Array.from(Array(SLIDE_COUNT).keys());
-//   const [emblaRef] = useEmblaCarousel(options);
-
-//   return (
-//     <div className="relative h-auto w-full overflow-hidden py-5">
-//       <div className="embla relative flex h-auto w-full gap-10" ref={emblaRef}>
-//         <div className="embla__container relative mx-2 flex h-auto touch-pan-y items-center gap-16 py-10 pb-32">
-//           {slides.map((el, idx) => (
-//             <div
-//               key={idx}
-//               className="embla__slide w-full max-w-[40%] rounded-lg border border-dashed border-neutral-300  hover:cursor-pointer  active:cursor-grabbing"
-//             >
-//               asdmasnda
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default EmblaCarousel;
+};
+export default ServicesCarousel;
 
 // /**
 //  *

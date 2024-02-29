@@ -3,7 +3,7 @@ import React from "react";
 
 const LandingFooter = () => {
   return (
-    <section className="relative pt-28 pb-32 bg-blue-600 overflow-hidden">
+    <section className="relative pt-28 pb-32 bg-blue-600 overflow-hidden px-8 md:px-10">
       <Image
         width={500}
         height={500}
@@ -13,9 +13,9 @@ const LandingFooter = () => {
       />
       <div className="relative z-10 container px-4 mx-auto">
         <div className="flex flex-wrap -m-8">
-          <div className="w-full md:w-1/2 p-8">
+          <div className="w-full sm:w-1/2 xl:w-2/3">
             <div className="lg:max-w-sm">
-              <h2 className="mb-16 text-5xl md:text-6xl text-white font-bold tracking-px-n leading-tight">
+              <h2 className="mb-16 text-3xl md:text-4xl lg:text-5xl text-white font-bold tracking-px-n leading-tight">
                 Start protecting your bussiness reveneue
               </h2>
               <div className="md:inline-block">
@@ -28,7 +28,7 @@ const LandingFooter = () => {
               </div>
             </div>
           </div>
-          <div className="w-full md:w-1/2 p-8">
+          <div className="w-full sm:w-1/2 xl:w-1/3">
             <div className="flex flex-wrap -m-8 mb-10">
               <div className="w-full sm:w-1/3 p-8">
                 <ul>

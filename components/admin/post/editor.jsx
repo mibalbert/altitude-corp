@@ -66,16 +66,11 @@ const Editor = ({ postId, initialContent }) => {
   });
 
   return (
-    <div>
-      <div className="w-full flex items-center   ">
-        <h3>Content</h3>
-      </div>
-      <BlockNoteView
-        editor={editor}
-        theme={"light"}
-        className="border border-dashed rounded-xl transform transition-all duration-100 border-gray-300 py-5 hover:outline-none  hover:border-solid hover:border-gray-500 hover:ring-gray-500 hover:ring-1 "
-      />
-    </div>
+    <BlockNoteView
+      editor={editor}
+      theme={"light"}
+      className="border border-dashed rounded-xl transform transition-all duration-100 border-gray-300 py-5 hover:outline-none  hover:border-solid hover:border-gray-500 hover:ring-gray-500 hover:ring-1 "
+    />
   );
 };
 

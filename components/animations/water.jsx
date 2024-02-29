@@ -8,6 +8,8 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useMediaQuery } from "usehooks-ts";
 
 const vertexShaderSource = `
                             #include <fog_pars_vertex>
@@ -154,6 +156,21 @@ const Waves = () => {
   const canvasRef = useRef(null);
   // const [isHovering, setIsHovering] = useState(false);
 
+  const mainRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: mainRef,
+    offset: ["start end", "end start"],
+  });
+
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
+  const transformTextY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    isMobile ? [-100, 500] : [-100, 400]
+  );
+
   useEffect(() => {
     /**
      * Debug
@@ -272,7 +289,7 @@ const Waves = () => {
     const controls = new OrbitControls(camera, canvas);
     controls.enableDamping = true;
     // Disable vertical movement
-    controls.minPolarAngle = controls.maxPolarAngle = Math.PI / 2.51;
+    controls.minPolarAngle = controls.maxPolarAngle = Math.PI / 2.37;
 
     // Disable zooming
     controls.enableZoom = false;
@@ -323,28 +340,40 @@ const Waves = () => {
     <div className="lg:mb-12  px-3 sm:px-8 lg:px-12">
       {/* <div className="absolute pointer-events-none  inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div> */}
 
-      <div className="w-full h-[75vh] overflow-hidden relative    rounded-md bg-blue-600   max-w-[1600px] mx-auto bg-dot-white/[0.6]">
-        <div className="absolute pointer-events-none  inset-0 flex items-center justify-center   bg-gradient-to-t from-transparent   to-blue-600 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+      <div
+        ref={mainRef}
+        className="w-full h-[75vh] overflow-hidden     rounded-md bg-blue-600   max-w-[1600px] mx-auto bg-dot-white/[0.6]"
+      >
+        <div className="relative w-full h-full">
+          <div className="absolute pointer-events-none  inset-0 flex items-center justify-center   bg-gradient-to-t from-transparent   to-blue-600 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
 
-        <canvas ref={canvasRef} className="webgl w-full h-full" />
-        <div className="flex xl:hidden absolute top-0 left-0 w-full h-full z-50"></div>
-
-        <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/4 z-50 flex lg:max-h-[200px] h-full gap-2 lg:gap-5 lg:items-end ">
-          <div className="flex flex-col justify-center lg:justify-end  w-full max-w-[90%]">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl 2xl:text-8xl whitespace-nowrap font-extrabold text-center  text-white">
-              Services{" "}
-            </h1>
-            <h3 className=" text-2xl lg:text-4xl font-semibold text-center text-gray-200">
-              Here to guide you to success
-            </h3>
-          </div>
-          <Image
-            src={"/lighthouse.svg"}
-            width={70}
-            height={170}
-            alt="lighthouse"
-            className="object-contain pb-1.5 fill-white text-white"
+          <canvas
+            ref={canvasRef}
+            className="webgl relative w-full h-full z-50"
           />
+          <div className="flex xl:hidden absolute top-0 left-0 w-full h-full z-50"></div>
+
+          <motion.div
+            style={{ y: transformTextY, x: "-50%" }}
+            className="z-10  absolute  left-1/2 top-0  flex"
+            // className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/3 z-0 flex lg:max-h-[200px] h-full gap-2 lg:gap-5 lg:items-end "
+          >
+            <div className="flex flex-col justify-center lg:justify-end  w-full max-w-[90%]">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl 2xl:text-8xl whitespace-nowrap font-extrabold text-center  text-white">
+                Services{" "}
+              </h1>
+              <h3 className=" text-2xl lg:text-4xl font-semibold text-center text-gray-200">
+                Here to guide you to success
+              </h3>
+            </div>
+            <Image
+              src={"/lighthouse.svg"}
+              width={70}
+              height={170}
+              alt="lighthouse"
+              className="object-contain pb-1.5 fill-white text-white"
+            />
+          </motion.div>
         </div>
       </div>
     </div>

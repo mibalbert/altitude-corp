@@ -5,7 +5,7 @@
 import React from "react";
 import Image from "next/image";
 
-const ServicesHero = ({ data }) => {
+const ServicesSecSection = ({ data }) => {
   return (
     <section className="relative">
       <div className="max-w-screen-xl  w-full mx-auto  py-12 md:py-24 px-5  sm:px-16 md:px-24 lg:px-5">
@@ -33,4 +33,4 @@ const ServicesHero = ({ data }) => {
   );
 };
 
-export default ServicesHero;
+export default ServicesSecSection;

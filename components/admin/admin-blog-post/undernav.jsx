@@ -12,7 +12,17 @@ import SavedStatus from "../post/saved-status";
 const UnderNav = ({ data }) => {
   return (
     <div className="py-3 w-full flex items-center justify-between lg:px-10">
-      <SavedStatus />
+      {/* <SavedStatus /> */}
+      <div className="w-full  flex items-center gap-1  ">
+        <Link href={"/admin"}>Home</Link>
+        <span>/</span>
+        <Link href={`/admin/folders/${data.folder.id}`} className="">
+          {data.folder.title}
+        </Link>
+        <span>/</span>
+        <span className="line-clamp-1">{data.id}</span>
+      </div>
+
       <div className="flex items-center divide-x">
         {data.isPublished ? (
           <Link href={`/blog/${data.id}`} className="flex items-center px-1.5">
