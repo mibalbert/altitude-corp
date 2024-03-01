@@ -33,6 +33,10 @@
     "@react-three/drei": "^9.99.4",
     "@react-three/fiber": "^8.15.16",
     "@react-three/postprocessing": "^2.16.0",
+    "@splinetool/loader": "^1.0.55",
+    "@splinetool/r3f-spline": "^1.0.2",
+    "@splinetool/react-spline": "^2.2.6",
+    "@splinetool/runtime": "^1.0.55",
     "@studio-freight/lenis": "^1.0.34",
     "@vercel/analytics": "^1.2.1",
     "@vercel/speed-insights": "^1.0.10",
@@ -78,6 +82,7 @@
     "eslint-config-next": "latest",
     "postcss": "latest",
     "prisma": "^5.3.1",
+    "r3f-perf": "^7.1.2",
     "tailwindcss": "latest"
   }
 }

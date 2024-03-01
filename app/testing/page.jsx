@@ -1,20 +1,19 @@
-import dynamic from "next/dynamic";
-import { Suspense } from "react";
+/**
+ * testing/page.jsx
+ */
 
-const TestingComponent = dynamic(() => import("./testing"), { ssr: false });
+import dynamic from "next/dynamic";
+const TestingComp = dynamic(() => import("./testing"), { ssr: false });
 
 const Testing = () => {
   return (
-    <div className="h-[60vh] border-b ">
-      <Suspense fallback={<Loading />}>
-        <TestingComponent />
-      </Suspense>
-    </div>
+    <>
+      <div className="h-[70vh] border-b ">
+        <TestingComp />
+      </div>
+      <div className="h-[140vh]"></div>
+    </>
   );
 };
 
 export default Testing;
-
-function Loading() {
-  return <div>Loading...</div>;
-}
