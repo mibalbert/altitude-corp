@@ -1,10 +1,9 @@
 /**
  * testing.jsx
  */
-
 "use client";
 
-import { RGBELoader } from "three-stdlib";
+import * as THREE from "three";
 import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber";
 import {
   Center,
@@ -16,121 +15,13 @@ import {
   PerspectiveCamera,
   Text,
   useMatcapTexture,
+  AccumulativeShadows,
+  RandomizedLight,
 } from "@react-three/drei";
 
 import { angleToRadians } from "@/lib/utils";
-import { Suspense, useEffect, useRef, useState } from "react";
-import { AmbientLight } from "three";
-
-import { Perf } from "r3f-perf";
-
-const Sphere = ({ position }) => {
-  return (
-    <mesh position={position}>
-      <sphereGeometry args={[5, 5, 5]} />
-      <meshLambertMaterial color={"orange"} />
-    </mesh>
-  );
-};
-
-const Ground = ({ props }) => {
-  return (
-    <>
-      <mesh
-        {...props}
-        position={[0, -2, -20]}
-        rotation={[-angleToRadians(90), 0, 0]}
-        receiveShadow
-      >
-        <planeGeometry args={[70, 55]} />
-        <meshLambertMaterial />
-      </mesh>
-
-      {/* <Perf /> */}
-    </>
-  );
-};
-
-const DinamicControls = () => {
-  const orbitControlsRef = useRef(null);
-
-  // useFrame((state) => {
-  //   if (!!orbitControlsRef.current) {
-  //     const { x, y } = state.mouse;
-  //     orbitControlsRef.current.setAzimuthalAngle(-x * angleToRadians(5));
-  //     // orbitControlsRef.current.setPolarAngle((y + 1) * angleToRadians(-90));
-  //     orbitControlsRef.current.update();
-  //   }
-  // });
-  return (
-    <OrbitControls
-      // enableRotate={false}
-      ref={orbitControlsRef}
-      // enableZoom={false}
-      // minPolarAngle={angleToRadians(95)}
-      // maxPolarAngle={angleToRadians(95)}
-      enablePan={false}
-      dampingFactor={1}
-    />
-  );
-};
-
-const TheText = () => {
-  const [matcapTexture] = useMatcapTexture("CB4E88_F99AD6_F384C3_ED75B9");
-  const ref = useRef();
-
-  const { width: w, height: h } = useThree((state) => state.viewport);
-
-  const materialProps = {
-    thickness: 5,
-    roughness: 0,
-    clearcoat: 1,
-    clearcoatRoughness: 0,
-    transmission: 1,
-    ior: 1.25,
-    envMapIntensity: 25,
-    color: "#ffffff",
-    attenuationTint: "#ffe79e",
-    attenuationDistance: 0,
-  };
-
-  // const [heights, setHeights] = useState([]);
-  // const startingPosition = 5;
-  // const { viewport } = useThree();
-
-  // useEffect(() => {
-  //   console.log("heights updated:", heights);
-  // }, [heights, viewport]);
-
-  return (
-    <Text3D
-      // {...props}
-      position={[0, 0, -10]}
-      // scale={[-1, 1, 1]}
-      // anchorX="center"
-      // anchorY="top"
-      // fontSize={viewport.width / 100}
-      // position={[0, startingPosition - offset, 1]}
-      // maxWidth={viewport.width / 3}
-      ref={ref}
-      scale={3}
-      // size={w / 9}
-      // maxWidth={[-w / 5, -h * 2, 3]}
-      font={"/fonts/helvetiker_regular.typeface.json"}
-      curveSegments={24}
-      brevelSegments={1}
-      bevelEnabled
-      bevelSize={0.08}
-      bevelThickness={0.03}
-      height={1}
-      lineHeight={0.9}
-      letterSpacing={0.3}
-    >
-      {`ALTITUDE`}
-      <meshMatcapMaterial color="white" matcap={matcapTexture} />
-    </Text3D>
-  );
-};
+import { Suspense } from "react";
+import { useControls } from "leva";
 
 const Fallback = () => {
   return (
@@ -143,26 +34,173 @@ const Fallback = () => {
 const TestingComp = () => {
   return (
     <Suspense fallback={<Fallback />}>
-      <Canvas frameloop="demand" shadows gl={{ preserveDrawingBuffer: true }}>
-        <PerspectiveCamera makeDefault position={[0, 6, 15]} />
-        <Center>
+      <Canvas shadows camera={{ position: [0, 0, 4.5], fov: 50 }}>
+        <group position={[0, -0.65, 0]}>
           <TheText />
-        </Center>
-        <DinamicControls />
-        <Sphere position={[-10, 0, -10]} />
-        <Sphere position={[10, 0, -10]} />
-        <Sphere position={[4, 0, -20]} />
-
-        <Ground position={[0, -5, -20]} />
-
-        <ambientLight />
-        <Environment preset="sunset" resolution={32} />
+          <AccumulativeShadows
+            temporal
+            frames={30}
+            color="purple"
+            colorBlend={0.5}
+            opacity={1}
+            scale={39}
+            alphaTest={0.85}
+            // position={[0,0,-10]}
+          >
+            <RandomizedLight
+              amount={8}
+              radius={5}
+              ambient={0.5}
+              position={[5, 3, 2]}
+              bias={0.001}
+            />
+          </AccumulativeShadows>
+        </group>
+        <Env />
+        <OrbitControls />
       </Canvas>
     </Suspense>
   );
 };
 
+function TheText() {
+  return (
+    <Center top>
+      {/* <mesh castShadow>
+        <sphereGeometry args={[0.75, 64, 64]} />
+        <meshStandardMaterial metalness={1} roughness={roughness} />
+      </mesh> */}
+
+      <Text3D castShadow font={"/fonts/helvetiker_regular.typeface.json"}>
+        ALTITUDE
+        {/* <meshStandardMaterial metalness={1} roughness={roughness} /> */}
+        <meshPhysicalMaterial
+          visible
+          transparent
+          opacity={1}
+          depthTest
+          depthWrite
+          side={THREE.FrontSide}
+          color={"#2563EB"}
+          emisive={0x00000}
+          roughness={1}
+          metalness={0.4}
+          flatShading={false}
+          clearcoat={1}
+          clearcoatRoughness={0.4}
+        />
+      </Text3D>
+    </Center>
+  );
+}
+
+function Env() {
+  return <Environment preset={"sunset"} background blur={0.8} />;
+}
+
 export default TestingComp;
+
+// const Ground = ({ props }) => {
+//   return (
+//     <>
+//       <mesh
+//         // {...props}
+//         position={[0, -2, -20]}
+//         rotation={[-angleToRadians(90), 0, 0]}
+//         receiveShadow
+//       >
+//         <planeGeometry args={[70, 55]} />
+//         <meshLambertMaterial />
+//       </mesh>
+
+//       {/* <Perf /> */}
+//     </>
+//   );
+// };
+
+// const DinamicControls = () => {
+//   const orbitControlsRef = useRef(null);
+
+//   // useFrame((state) => {
+//   //   if (!!orbitControlsRef.current) {
+//   //     const { x, y } = state.mouse;
+//   //     orbitControlsRef.current.setAzimuthalAngle(-x * angleToRadians(5));
+//   //     // orbitControlsRef.current.setPolarAngle((y + 1) * angleToRadians(-90));
+//   //     orbitControlsRef.current.update();
+//   //   }
+//   // });
+//   return (
+//     <OrbitControls
+//       // enableRotate={false}
+//       ref={orbitControlsRef}
+//       // enableZoom={false}
+//       // minPolarAngle={angleToRadians(95)}
+//       // maxPolarAngle={angleToRadians(95)}
+//       enablePan={false}
+//       dampingFactor={1}
+//     />
+//   );
+// };
+
+// const TheText = ({ props }) => {
+//   const [matcapTexture] = useMatcapTexture("CB4E88_F99AD6_F384C3_ED75B9");
+//   const ref = useRef();
+
+//   const { width: w, height: h } = useThree((state) => state.viewport);
+
+//   const materialProps = {
+//     thickness: 5,
+//     roughness: 0,
+//     clearcoat: 1,
+//     clearcoatRoughness: 0,
+//     transmission: 1,
+//     ior: 1.25,
+//     envMapIntensity: 25,
+//     color: "#ffffff",
+//     attenuationTint: "#ffe79e",
+//     attenuationDistance: 0,
+//   };
+
+//   // const [heights, setHeights] = useState([]);
+//   // const startingPosition = 5;
+//   // const { viewport } = useThree();
+
+//   // useEffect(() => {
+//   //   console.log("heights updated:", heights);
+//   // }, [heights, viewport]);
+
+//   return (
+//     <Text3D
+//       // {...props}
+//       castShadow
+//       receiveShadow
+//       position={[0, -0.3, -10]}
+//       // scale={[-1, 1, 1]}
+//       // anchorX="center"
+//       // anchorY="top"
+//       // fontSize={viewport.width / 100}
+//       // position={[0, startingPosition - offset, 1]}
+//       // maxWidth={viewport.width / 3}
+//       ref={ref}
+//       scale={3}
+//       // size={w / 9}
+//       // maxWidth={[-w / 5, -h * 2, 3]}
+//       font={"/fonts/helvetiker_regular.typeface.json"}
+//       curveSegments={14}
+//       brevelSegments={1}
+//       bevelEnabled
+//       bevelSize={0.08}
+//       bevelThickness={0.03}
+//       height={1}
+//       lineHeight={0.9}
+//       letterSpacing={0.3}
+//     >
+//       {`ALTITUDE`}
+//       <meshLambertMaterial color="white" />
+//       {/* <meshMatcapMaterial color="white" matcap={matcapTexture} /> */}
+//     </Text3D>
+//   );
+// };
 
 // const TheText = ({ ...props }) => {
 //   const texture = useLoader(
