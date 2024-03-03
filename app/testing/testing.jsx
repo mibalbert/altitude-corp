@@ -10,18 +10,22 @@ import {
   Text3D,
   Environment,
   OrbitControls,
-  MeshTransmissionMaterial,
-  MeshPhysicalMaterial,
-  PerspectiveCamera,
-  Text,
-  useMatcapTexture,
   AccumulativeShadows,
   RandomizedLight,
+  MeshTransmissionMaterial,
+  Float,
 } from "@react-three/drei";
 
+import { MeshDistortMaterial, useTexture } from "@react-three/drei";
+import { easing } from "maath";
 import { angleToRadians } from "@/lib/utils";
-import { Suspense } from "react";
+import { Suspense, useRef, useState } from "react";
 import { useControls } from "leva";
+
+// import img from "./  parallax/cloud1Mask.png";
+
+import img from "../../public/parallax/cloud1Mask.png";
+import { Vector3 } from "three";
 
 const Fallback = () => {
   return (
@@ -31,10 +35,40 @@ const Fallback = () => {
   );
 };
 
+const vec = new Vector3();
+function Rig() {
+  return useFrame(({ camera, mouse }) => {
+    vec.set(mouse.x * 2, mouse.y * 2, camera.position.z);
+    camera.position.lerp(vec, 0.025);
+    camera.lookAt(0, 0, 0);
+  });
+}
+
 const TestingComp = () => {
   return (
     <Suspense fallback={<Fallback />}>
       <Canvas shadows camera={{ position: [0, 0, 4.5], fov: 50 }}>
+        {/* <Rig /> */}
+        <TheImage
+          url="/hero/mountBg.webp"
+          position={[0, 6.7, -22]}
+          args={[17, 14, 1, 1]}
+        />
+        <TheImage
+          url="/hero/mountFg.webp"
+          position={[3, 7.5, -20]}
+          args={[26, 16, 1, 1]}
+        />
+        <TheImage
+          url="/hero/mountMg.webp"
+          position={[-3, 7.5, -21]}
+          args={[26, 16, 1, 1]}
+        />
+        {/* <TheImage
+          url="https://assets.codepen.io/721952/mountBg.png"
+          position={[5, 4, -10]}
+        /> */}
+        <TheFloatingText />
         <group position={[0, -0.65, 0]}>
           <TheText />
           <AccumulativeShadows
@@ -57,11 +91,70 @@ const TestingComp = () => {
           </AccumulativeShadows>
         </group>
         <Env />
-        <OrbitControls />
+        <DinamicControls />
       </Canvas>
     </Suspense>
   );
 };
+
+export default TestingComp;
+
+const DinamicControls = ({ props }) => {
+  // const vec = new Vector3()
+  const orbitControlsRef = useRef(null);
+
+  //  useFrame(({ camera, mouse }) => {
+  //   vec.set(mouse.x * 2, mouse.y * 2, camera.position.z)
+  //   camera.position.lerp(vec, 0.025)
+  //   camera.lookAt(0, 0, 0)
+  // })
+  useFrame((state) => {
+    if (!!orbitControlsRef.current) {
+      const { x, y } = state.mouse;
+      orbitControlsRef.current.setAzimuthalAngle(-x * angleToRadians(5));
+      // orbitControlsRef.current.setPolarAngle((y + 1) * angleToRadians(-90));
+      orbitControlsRef.current.update();
+    }
+  });
+  return (
+    <OrbitControls
+      enableRotate={false}
+      ref={orbitControlsRef}
+      enableZoom={false}
+      minPolarAngle={angleToRadians(95)}
+      maxPolarAngle={angleToRadians(95)}
+      enablePan={false}
+      dampingFactor={0.1}
+    />
+  );
+};
+
+function TheFloatingText() {
+  return (
+    <Float
+      speed={0.5} // Animation speed, defaults to 1
+      rotationIntensity={1} // XYZ rotation intensity, defaults to 1
+      floatIntensity={0.3} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
+      floatingRange={[0.1, 1]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
+    >
+      <Text3D
+        position={[0, 10, -23]}
+        scale={0.71}
+        castShadow
+        font={"/fonts/helvetiker_regular.typeface.json"}
+        // bevelEnabled
+        // letterSpacing={0.3}
+        // height={0.25}
+        // bevelSize={0.05}
+        // bevelSegments={10}
+        // curveSegments={128}
+        // bevelThickness={0.05}
+      >
+        Climb Higher <meshBasicMaterial color={"black"} />
+      </Text3D>{" "}
+    </Float>
+  );
+}
 
 function TheText() {
   return (
@@ -71,10 +164,21 @@ function TheText() {
         <meshStandardMaterial metalness={1} roughness={roughness} />
       </mesh> */}
 
-      <Text3D castShadow font={"/fonts/helvetiker_regular.typeface.json"}>
+      <Text3D
+        castShadow
+        font={"/fonts/helvetiker_regular.typeface.json"}
+        bevelEnabled
+        // scale={5}
+        // letterSpacing={-0.03}
+        height={0.25}
+        bevelSize={0.05}
+        bevelSegments={10}
+        curveSegments={128}
+        bevelThickness={0.04}
+      >
         ALTITUDE
         {/* <meshStandardMaterial metalness={1} roughness={roughness} /> */}
-        <meshPhysicalMaterial
+        {/* <meshPhysicalMaterial
           visible
           transparent
           opacity={1}
@@ -88,6 +192,15 @@ function TheText() {
           flatShading={false}
           clearcoat={1}
           clearcoatRoughness={0.4}
+        /> */}
+        <MeshTransmissionMaterial
+          samples={16}
+          resolution={512}
+          anisotropicBlur={0.1}
+          thickness={0.4}
+          roughness={0.6}
+          toneMapped={true}
+          color={"#60a5fa"}
         />
       </Text3D>
     </Center>
@@ -98,7 +211,57 @@ function Env() {
   return <Environment preset={"sunset"} background blur={0.8} />;
 }
 
-export default TestingComp;
+function TheImage({ url, args, ...props }) {
+  const ref = useRef();
+  const [hovered, hover] = useState(false);
+  const [clicked, click] = useState(false);
+  const texture = useTexture(url);
+
+  // useFrame((state, delta) => {
+  // easing.damp(
+  //   ref.current.material,
+  //   "distort",
+  //   hovered ? 0.32 : 0,
+  //   0.25,
+  //   delta
+  // );
+  // easing.damp(ref.current.material, "speed", hovered ? 4 : 0, 0.25, delta);
+  // easing.dampE(
+  //   ref.current.rotation,
+  //   clicked ? [0, 0, Math.PI / 2] : [0, 0, 0],
+  //   0.5,
+  //   delta
+  // );
+  // easing.damp3(ref.current.scale, hovered ? 1.1 : 1, 0.25, delta);
+  // easing.dampC(
+  //   ref.current.material.color,
+  //   hovered ? "#93c5fd" : "white",
+  //   0.25,
+  //   delta
+  // );
+  // });
+
+  return (
+    // <Center top>
+    <mesh
+      ref={ref}
+      onClick={(e) => (e.stopPropagation(), click(!clicked))}
+      onPointerOver={(e) => (e.stopPropagation(), hover(true))}
+      onPointerOut={(e) => (e.stopPropagation(), hover(false))}
+      {...props}
+    >
+      <planeGeometry args={args} />
+      {/* <MeshDistortMaterial
+        map={texture}
+        transparent={true}
+        speed={2}
+        toneMapped={false}
+      /> */}
+      <meshBasicMaterial map={texture} transparent={true} toneMapped={false} />
+    </mesh>
+    // </Center>
+  );
+}
 
 // const Ground = ({ props }) => {
 //   return (
@@ -341,8 +504,8 @@ export default TestingComp;
 //     //     "href",
 //     //     document
 //     //       .querySelector("canvas")
-//     //       .toDataURL("image/png")
-//     //       .replace("image/png", "image/octet-stream")
+//     //       .toDataURL("TheImage/png")
+//     //       .replace("TheImage/png", "TheImage/octet-stream")
 //     //   );
 //     //   link.click();
 //     // }),
