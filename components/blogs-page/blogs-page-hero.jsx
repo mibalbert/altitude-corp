@@ -3,20 +3,23 @@
  */
 
 import React from "react";
+import EditableBlogTitle from "../edit/blog/title";
 
-const BlogsPageHero = ({ data }) => {
+const BlogsPageHero = ({ data, editable }) => {
   return (
-    <section className="bg-gray-100 dark:bg-gray-850">
-      <div className="py-12 md:py-16 lg:py-20 xl:py-24">
-        <div className="container px-4 md:px-6">
-          <div className="text-center space-y-4">
-            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-5xl lg:text-6xl/none">
+    <section className=" text-white">
+      <div className="container px-4 md:px-6">
+        <div className="text-center space-y-2">
+          {!editable ? (
+            <span className="text-4xl font-bold tracking-tighter font-serif text-center p-0 m-0 sm:text-5xl md:text-5xl lg:text-6xl bg-transparent ">
               {data?.blogPageTitle}
-            </h1>
-            <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-              {data?.blogPageSubtitle}
-            </p>
-          </div>
+            </span>
+          ) : (
+            <EditableBlogTitle data={data} />
+          )}
+          <pre className="mx-auto max-w-[700px] text-gray-200 md:text-xl ">
+            {data?.blogPageSubtitle}
+          </pre>
         </div>
       </div>
     </section>

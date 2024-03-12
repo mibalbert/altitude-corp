@@ -9,6 +9,8 @@ import ALotOfBlogPosts from "@/components/blogs-page/explore-posts";
 import SubscribeToNewsletter from "@/components/blogs-page/subscribe-to-newsletter";
 import prisma from "@/lib/prismadb";
 import FreeResources from "@/components/blogs-page/free-resources";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth-options";
 
 {
   /* <div>Blog</div>
@@ -24,7 +26,7 @@ export const metadata = {
   description: "Best company to help you grow",
 };
 
-const Blog = async () => {
+const Blog = async ({ searchParams }) => {
   const data = await prisma.blogPage.findMany();
   const blogPosts = await prisma.post.findMany();
 
@@ -34,10 +36,18 @@ const Blog = async () => {
 
   const latestBlogPosts = blogPosts.sort((a, b) => a.createdAt - b.createdAt);
 
+  const session = await getServerSession(authOptions);
+  const isEditable = session?.user.role === "ADMIN";
+
   return (
     <section>
-      <BlogsPageHero data={data[0]} />
-      <FeaturedBlogList data={data[0]} featuredBlogPosts={featuredBlogPosts} />
+      <div className="bg-gradient-to-br from-blue-400 from-[10%] via-blue-600 via-[40%] to-blue-500 to-[95%]  py-32 space-y-20">
+        <BlogsPageHero
+          data={data[0]}
+          editable={isEditable && searchParams.editorMode}
+        />
+        <FeaturedBlogList data={featuredBlogPosts} />
+      </div>
       <LatestPostsIn data={data[0]} latestPostsIn={latestBlogPosts} />
       <ALotOfBlogPosts data={data[0]} blogPosts={blogPosts} />
       <div className="container">

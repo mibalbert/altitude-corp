@@ -16,7 +16,7 @@ export function ContactUsHero() {
       <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-blue-600 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
 
       {/* <Boxes /> */}
-      <div className="space-y-2 relative z-[99] ">
+      <div className="space-y-2 relative z-[99]  text-center px-8">
         <h1 className="text-4xl text-white font-bold tracking-tighter sm:text-5xl md:text-6xl/relaxed">
           Get in Touch
         </h1>

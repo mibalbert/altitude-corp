@@ -11,17 +11,17 @@ export default function Contenteditable(props) {
   const contentEditableRef = useRef(null);
 
   useEffect(() => {
-    if (contentEditableRef.current.textContent !== props.value) {
-      contentEditableRef.current.textContent = props.value;
+    if (contentEditableRef.current.innerText !== props.value) {
+      contentEditableRef.current.innerText = props.value;
     }
   });
 
   return (
-    <div
+    <span
       contentEditable="true"
       ref={contentEditableRef}
-      onInput={(event) => {
-        props.onChange(event.target.textContent);
+      onBlur={(event) => {
+        props.onChange(event.target.innerText);
       }}
       onKeyDown={(event) => {
         if (event.key === "Enter") {
@@ -29,7 +29,7 @@ export default function Contenteditable(props) {
         }
       }}
       className={cn(
-        "border border-dashed border-gray-500  rounded-lg",
+        "border border-dashed border-gray-500  rounded-lg w-min h-min",
         props.className
       )}
     />

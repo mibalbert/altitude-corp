@@ -11,7 +11,7 @@ import { Input } from "../ui/input";
 const ContactUsServices = ({ data }) => {
   return (
     <section className="w-full py-12  ">
-      <div className="container grid grid-cols-2     gap-4 px-4  md:px-6 lg:gap-20">
+      <div className="container grid grid-cols-1  lg:grid-cols-2  gap-16  md:gap-4 px-4  md:px-6 lg:gap-20">
         <div className=" col-span-1 space-y-5 ">
           <h2 className="text-3xl font-bold pb-10 text-blue-600 tracking-tighter sm:text-4xl md:text-5xl">
             {data?.servicesPageContactUsTitle}
@@ -30,7 +30,7 @@ const ContactUsServices = ({ data }) => {
           </p>
         </div>
 
-        <div className="col-span-1 flex flex-col justify-center space-y-4 max-w-2xl w-full px-5 mx-auto pb-32">
+        <div className="col-span-1 flex flex-col justify-center space-y-4 max-w-2xl w-full md:px-5 mx-auto pb-32">
           <div className="space-y-2">
             <h1 className="text-2xl font-bold tracking-tighter sm:text-3xl md:text-4xl/none">
               {data?.servicesPageContactUsMinTitle}

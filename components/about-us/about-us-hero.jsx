@@ -11,15 +11,15 @@ import { Spotlight } from "../ui/spotlight";
 
 const AboutUsHero = () => {
   return (
-    <section className="h-[40rem] w-full rounded-md flex md:items-center md:justify-center bg-blue-600 antialiased bg-dot-white/[0.6] relative overflow-hidden">
+    <section className="h-[60vh] mt-10 md:mt-0 lg:h-[40rem] w-full rounded-md flex md:items-center md:justify-center bg-blue-600 antialiased bg-dot-white/[0.6] relative overflow-hidden">
       {/* Radial gradient for the container to give a faded look */}
       <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-blue-600 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
 
       <Spotlight
-        className="-top-40 left-0 md:left-60 md:-top-20"
+        className="-top-10 left-0 md:left-60 md:-top-20"
         fill="white"
       />
-      <div className="container px-4 md:px-6">
+      <div className="container px-4 md:px-6 w-full h-full z-40 relative flex items-center justify-center">
         <div className="flex flex-col items-center space-y-4 text-center">
           <div className="space-y-2">
             <h1 className="text-3xl font-bold tracking-tighter text-white sm:text-4xl md:text-5xl lg:text-6xl/none">

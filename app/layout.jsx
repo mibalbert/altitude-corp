@@ -29,11 +29,11 @@ export default async function RootLayout({ children }) {
         <NextAuthProvider>
           <Toaster position="bottom-center" />
           <MainNav session={session} />
-          <>{children}</>
+          <div className="-top-14 relative">{children}</div>
           <Footer />
         </NextAuthProvider>
-        <Analytics />
-        <SpeedInsights />
+        {/* <Analytics />
+        <SpeedInsights /> */}
       </body>
     </html>
   );

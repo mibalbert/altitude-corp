@@ -12,6 +12,7 @@ import {
   changeBlogPageTitle,
 } from "@/app/actions/edit-web-pages/edit-blogs-page/_blogs-actions";
 import { useIsSavingPagesEdit } from "@/hooks/use-is-saving-pages-edit";
+import { Input } from "@/components/ui/input";
 
 const BlogsPageHero = ({ data }) => {
   const [blogPageTitle, setBlogPageTitle] = useState(data?.blogPageTitle || "");
@@ -33,8 +34,9 @@ const BlogsPageHero = ({ data }) => {
   }, 300);
 
   const handleBlogPageTitleChange = (e) => {
-    setBlogPageTitle(e);
-    debounceChangeBlogPageTitle(e);
+    setBlogPageTitle(e.target.value);
+    debounceChangeBlogPageTitle(e.target.value);
+    console.log(e.target.value);
   };
   const handleBlogPageSubtitleChange = (e) => {
     setBlogPageSubtitle(e);
@@ -46,12 +48,17 @@ const BlogsPageHero = ({ data }) => {
       <div className="py-12 md:py-16 lg:py-20 xl:py-24">
         <div className="container px-4 md:px-6">
           <div className="text-center space-y-4">
-            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-5xl lg:text-6xl/none">
-              <Contenteditable
+            {/* <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-5xl lg:text-6xl/none"> */}
+            {/* <Contenteditable
                 value={blogPageTitle}
                 onChange={handleBlogPageTitleChange}
-              />
-            </h1>
+              /> */}
+            <textarea
+              defaultValue={blogPageTitle}
+              onChange={handleBlogPageTitleChange}
+              className="text-4xl font-bold tracking-tighter text-center sm:text-5xl md:text-5xl lg:text-6xl/none"
+            />
+            {/* </h1> */}
             <div className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
               <Contenteditable
                 value={blogPageSubtitle}

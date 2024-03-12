@@ -12,14 +12,41 @@ import NavItems from "./nav-bits/nav-items";
 import Link from "next/link";
 import { MobileNav } from "./mobile-nav";
 import { cn } from "@/lib/utils";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { Icons } from "../ui/incons";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { getSession } from "next-auth/react";
 
 const MainNav = ({ session }) => {
   // const router = useRouter();
+  const [isSticky, setIsSticky] = useState(false);
+
+  const isAdmin = session?.user.role === "ADMIN";
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const offset = window.scrollY;
+      if (offset > 0) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const pathname = usePathname();
+
+  const searchParams = useSearchParams();
+  const editors = searchParams.get("editorMode");
+
   // if (pathname.includes("/admin") || pathname.includes("/summary")) {
   //   return <></>;
   // }
@@ -35,26 +62,17 @@ const MainNav = ({ session }) => {
     );
   }
 
+  const whiteTextPaths = ["/blog", "/services"];
+
   return (
     <section
       className={cn(
-        `dark:supports-backdrop-blur:bg-black/30 supports-backdrop-blur:bg-white/30 
-     z-[999] m-0 flex h-14 items-center   p-0 shadow-gray-500/30 shadow-sm backdrop-blur-md
-      dark:border-gray-800 dark:shadow-none lg:w-full`,
-        "sticky top-0",
-        { "bg-blue-600 text-white": pathname.includes("/contact-us") }
-        // {
-        //   "bg-blue-600 text-white shadow-none border-b-0": pathname === "/",
-        // }
-        // {
-        //   "bg-[url('https://assets.codepen.io/721952/sky.jpg')] bg-cover bg-center":
-        //     pathname === "/",
-        // }
-        // { "bg-blue-700 text-white border-none": pathname === "/" },
-        // { "sticky top-0": pathname !== "/" }
-        // { "absolute  top-0 left": pathname !== "/" },
-
-        // { "sticky top-0": pathname !== "/" }
+        "h-14 top-0 left-0 w-full sticky z-[99] supports-backdrop-blur:bg-white/70 bg-white/70  backdrop-blur-lg transition-all duration-200",
+        {
+          "text-white bg-transparent":
+            !isSticky && whiteTextPaths.includes(pathname),
+          hidden: isAdmin && editors,
+        }
       )}
     >
       <div
@@ -105,3 +123,29 @@ const MainNav = ({ session }) => {
 };
 
 export default MainNav;
+
+// <section
+//   className={cn(
+//     `dark:supports-backdrop-blur:bg-black/30 supports-backdrop-blur:bg-white/30
+//  z-[999] m-0 flex h-14 items-center   p-0 shadow-gray-500/30 shadow-sm backdrop-blur-md
+//   `,
+//     // "sticky top-0",
+//     { "bg-blue-600 text-white": pathname.includes("/contact-us") },
+//     {
+//       "bg-blue-600 text-white shadow-none border-none":
+//         pathname.includes("/services"),
+//     }
+//     // {
+//     //   "bg-blue-600 text-white shadow-none border-b-0": pathname === "/",
+//     // }
+//     // {
+//     //   "bg-[url('https://assets.codepen.io/721952/sky.jpg')] bg-cover bg-center":
+//     //     pathname === "/",
+//     // }
+//     // { "bg-blue-700 text-white border-none": pathname === "/" },
+//     // { "sticky top-0": pathname !== "/" }
+//     // { "absolute  top-0 left": pathname !== "/" },
+
+//     // { "sticky top-0": pathname !== "/" }
+//   )}
+// >

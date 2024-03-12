@@ -12,17 +12,17 @@ import ALotOfBlogPosts from "@/components/admin/editor-mode/edit-blog-page/blogs
 import SubscribeToNewsletter from "@/components/admin/editor-mode/edit-blog-page/blogs-page/subscribe-to-newsletter";
 import SavingState from "@/components/admin/editor-mode/edit-blog-page/blogs-page/saving-status";
 
-const EditBlog = async () => {
+const EditBlog = async ({ searchParams }) => {
   const data = await prisma.blogPage.findMany();
 
   return (
     <div className="p-4 pb-44 ">
-      <div className="px-5 pb-5  space-y-10 py-10 border-2 border-dashed border-gray-300 rounded-xl">
+      {/* <div className="px-5 pb-5  space-y-10 py-10 border-2 border-dashed border-gray-300 rounded-xl">
         <div className="w-full flex items-center justify-between h-20">
-          <div>EditBlog</div>
+          <div className="w">EditBlog</div>
           <SavingState />
         </div>
-        <section>
+        <section> */}
           <BlogsPageHero data={data[0]} />
           <FeaturedBlogList data={data[0]} />
           <CategBlogList data={data[0]} />
@@ -31,8 +31,8 @@ const EditBlog = async () => {
             <hr></hr>
           </div>
           <SubscribeToNewsletter data={data[0]} />
-        </section>
-      </div>
+        {/* </section>
+      </div> */}
     </div>
   );
 };

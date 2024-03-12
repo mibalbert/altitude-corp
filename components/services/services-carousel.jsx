@@ -13,7 +13,47 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 import { createRef, useRef } from "react";
+import ServicesSecSection from "./services-sec-section";
+
+// const servicesData = [
+//   {
+//     id: 1,
+//     title: "ASDASIDNA LSndlas nd",
+//     desc: "asdhA L SAdlka snkldn alksndklasnkdlnasdnaslkdn lkasd",
+//     imgUrl:
+//       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+//   },
+//   {
+//     id: 2,
+//     title: "TAEAS DAS LSndlas nd",
+//     desc: "asdhA L SAdlka snkldn alksndklasnkdlnasdnaslkdn lkasd",
+//     imgUrl:
+//       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+//   },
+//   {
+//     id: 3,
+//     title: "NBOPM K:ASMD LSndlas nd",
+//     desc: "asdhA L SAdlka snkldn alksndklasnkdlnasdnaslkdn lkasd",
+//     imgUrl:
+//       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+//   },
+//   {
+//     id: 4,
+//     title: "ASDASIlkansd lksnDNA LSndlas nd",
+//     desc: "asdhA L SAdlka snkldn alksndklasnkdlnasdnaslkdn lkasd",
+//     imgUrl:
+//       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+//   },
+//   {
+//     id: 5,
+//     title: "ASDASIDNA LSndlas nd",
+//     desc: "asdhA L SAdlka snkldn alksndklasnkdlnasdnaslkdn lkasd",
+//     imgUrl:
+//       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+//   },
+// ];
 
 const ServicesCarousel = ({ servicesData }) => {
   const refs = useRef(Array.from({ length: 6 }, () => createRef()));
@@ -63,14 +103,51 @@ const ServicesCarousel = ({ servicesData }) => {
         <CarouselPrevious className="-top-10 left-0" />
         <CarouselNext className="-top-10 left-10" />
       </Carousel>
+      <div className="h-[70vh]">KJASDBkjasb jkabsjkd bas</div>
       <div className="">
-        {servicesData.map((_, index) => (
+        {servicesData.map((service, index) => (
           <div
             key={index}
             ref={refs.current[index]}
-            className="h-[40vh] bg-orange-500"
+            className={cn(
+              "h-[40vh] lg:h-[60vh] w-full    transition-all duration-200  ",
+              index % 2 ? "bg-white " : "bg-gray-50"
+            )}
           >
-            JKASBDKJASBDJKB
+            <div className="grid grid-cols-2 max-w-screen-xl mx-auto w-full h-full py-20 gap-10">
+              <div
+                className={cn(
+                  "col-span-2 lg:col-span-1 col-start-1 z-50 px-5 py-10 flex flex-col justify-between h-full space-y-5"
+                )}
+              >
+                <div
+                  className={cn(
+                    "text-3xl"
+                    // index % 2 ? "text-end" : "text-start"
+                  )}
+                >
+                  {service.title}
+                </div>
+                <div
+                  className={cn(
+                    "line-clamp-5"
+                    // index % 2 ? "text-end" : "text-start"
+                  )}
+                >
+                  {service.desc}
+                </div>
+              </div>
+              <div
+                className={cn("col-span-2  lg:col-span-1 relative bg-sky-900")}
+              >
+                {/* <Image
+                  src={service.imgUrl}
+                  alt={service.title + "Image"}
+                  fill
+                  className="object-cover object-center z-0"
+                /> */}
+              </div>
+            </div>
           </div>
         ))}
       </div>

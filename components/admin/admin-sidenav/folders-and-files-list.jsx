@@ -25,13 +25,13 @@ const RecursiveFolders = ({  parentFolder = null, level = 0 , className}) => {
         { cache: "no-store" }
       );
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
       setFolders(data.folders);
     };
     getData();
   }, [parentFolder, params]);
 
-  console.log(folders)
+  // console.log(folders)
 
   return (
     <div className={cn("",className)}>

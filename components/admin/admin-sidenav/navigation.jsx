@@ -52,8 +52,8 @@ export const Navigation = () => {
           <aside
             ref={sidebarRef}
             className={cn(
-              `transition-all ease-in-out duration-300 overflow-hidden sticky top-16 pb-32
-            group/sidebar h-full  min-h-[calc(100vh-3.5rem)] bg-secondary overflow-y-auto  pt-16   flex w-60 flex-col z-[99]`,
+              `transition-all ease-in-out duration-300 overflow-hidden sticky top-16 
+            group/sidebar h-min  bg-secondary overflow-y-auto  pt-16   flex w-52 flex-col z-[99]`,
               // isResetting && "transition-all ease-in-out duration-300",
               {
                 "w-full h-full px-5 absolute top-14 left-0 bg-white z-50":

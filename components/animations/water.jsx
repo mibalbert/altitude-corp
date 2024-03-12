@@ -355,14 +355,14 @@ const Waves = () => {
 
           <motion.div
             style={{ y: transformTextY, x: "-50%" }}
-            className="z-10  absolute  left-1/2 top-0  flex"
+            className="z-[98]  absolute  left-1/2 top-0  flex"
             // className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/3 z-0 flex lg:max-h-[200px] h-full gap-2 lg:gap-5 lg:items-end "
           >
-            <div className="flex flex-col justify-center lg:justify-end  w-full max-w-[90%]">
+            <div className="flex flex-col justify-center  lg:justify-end  w-full max-w-[90%]">
               <h1 className="text-4xl md:text-5xl lg:text-6xl 2xl:text-8xl whitespace-nowrap font-extrabold text-center  text-white">
                 Services{" "}
               </h1>
-              <h3 className=" text-2xl lg:text-4xl font-semibold text-center text-gray-200">
+              <h3 className=" text-2xl lg:text-4xl font-semibold   leading-none text-gray-200">
                 Here to guide you to success
               </h3>
             </div>
@@ -371,7 +371,7 @@ const Waves = () => {
               width={70}
               height={170}
               alt="lighthouse"
-              className="object-contain pb-1.5 fill-white text-white"
+              className="object-contain pb-1.5 fill-white  text-white"
             />
           </motion.div>
         </div>

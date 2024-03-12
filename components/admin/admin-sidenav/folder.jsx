@@ -31,6 +31,7 @@ import {
   MoreVertical,
   Plus,
   Trash,
+  Folder as FolderIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
@@ -76,39 +77,67 @@ export const Folder = ({ folder, level }) => {
     <div className="flex flex-col ">
       <div
         className={cn(
-          "grid grid-cols-5 items-center justify-center  gap-2 p-1  w-52   hover:bg-gray-100 rounded-lg",
+          // "grid grid-cols-5 items-center justify-center  gap-2 p-1  w-full   hover:bg-gray-100 rounded-lg",
+          "flex items-center gap-1 p-1 group w-full   hover:bg-gray-100 rounded-lg",
           { "w-full": isMobile }
         )}
       >
         <button
           onClick={toggleCollapse}
+          className="flex items-center  justify-center hover:bg-slate-200  py-1.5 px-1.5 h-full rounded-md"
+        >
+          {collapsed ? (
+            <ChevronRight className="flex items-center justify-center w-4 h-4 " />
+          ) : (
+            <ChevronDown className="flex w-4 h-4 items-center justify-center " />
+          )}
+        </button>
+        <Link
+          href={`/admin/folders/${folder.id}`}
+          className="flex items-center gap-1 w-full truncate"
+        >
+          <FolderIcon className="w-4 h-4" /> {folder.title}
+        </Link>
+        <DropIt
+          className={"hidden group-hover:block"}
+          handleCreateFolder={handleCreateFolder}
+          handleCreatePostUnderFolder={handleCreatePostUnderFolder}
+        />
+
+        {/* 
+        <button
+          onClick={toggleCollapse}
           className="col-span-1 flex items-center justify-center hover:bg-slate-200 w-full py-1.5 h-full rounded-md"
         >
           {collapsed ? (
-            <ChevronRight className="flex items-center justify-center w-5 h-5 " />
+            <ChevronRight className="flex items-center justify-center w-4 h-4 " />
           ) : (
-            <ChevronDown className="flex w-5 h-5 items-center justify-center " />
+            <ChevronDown className="flex w-4 h-4 items-center justify-center " />
           )}
         </button>
-        <Link href={`/admin/folders/${folder.id}`} className="col-span-3">
-          {folder.title}
+        <Link
+          href={`/admin/folders/${folder.id}`}
+          className="col-span-3 flex items-center gap-1 truncate"
+        >
+          <FolderIcon className="w-4 h-4" /> {folder.title}
         </Link>
         <DropIt
           handleCreateFolder={handleCreateFolder}
           className="col-span-1"
           handleCreatePostUnderFolder={handleCreatePostUnderFolder}
-        />
+        /> */}
       </div>
       {!collapsed && (
         <div
           className="flex flex-col    "
-          style={{ paddingLeft: `${(level - 1) * 12 + 25}px` }}
+          // style={{ paddingLeft: `${(level - 1) * 12 + 25}px` }}
+          style={{ paddingLeft: `25px` }}
         >
           {sortedPosts.map((post, idx) => (
             <Suspense key={idx} fallback={ItemSkeleton}>
               <div
                 className={cn(
-                  "grid grid-cols-5 items-center justify-center  w-52  p-1  gap-2 hover:bg-gray-100 rounded-lg",
+                  "grid grid-cols-5 items-center justify-center  w-42  p-1  gap-2 hover:bg-gray-100 rounded-lg",
                   { "w-full": isMobile }
                 )}
               >
@@ -136,13 +165,17 @@ export const Folder = ({ folder, level }) => {
           <div
             type="button"
             onClick={handleCreatePostUnderFolder}
-            className="grid grid-cols-5 items-center justify-center   p-1  gap-2   hover:cursor-pointer hover:bg-gray-100 rounded-lg "
+            // className="grid grid-cols-5 items-center justify-center   p-1  gap-2   hover:cursor-pointer hover:bg-gray-100 rounded-lg "
+            className="flex items-center   p-1  gap-1   hover:cursor-pointer hover:bg-gray-100 rounded-lg "
           >
-            <div className=" flex items-center justify-center col-span-1">
+            <Plus className="w-4 h-4 " />
+            <div className="col-span-3">Post</div>
+
+            {/* <div className=" flex items-center justify-center col-span-1">
               <Plus className="w-4 h-4 " />
             </div>
             <div className="col-span-3">Post</div>
-            <div className="col-span-1"></div>
+            <div className="col-span-1"></div> */}
           </div>
           <RecursiveFolders parentFolder={folder.id} level={level + 1} />
         </div>
@@ -206,7 +239,7 @@ const DropIt = ({
         <MoreVertical className="h-4 w-4 text-muted-foreground" />
       </DropdownMenuTrigger>
       <DropdownMenuContent
-        className="w-50 z-[102]"
+        className="w-40 z-[102]"
         align="start"
         side="bottom"
         forceMount
@@ -280,7 +313,7 @@ const DropItPost = ({ postId, postTitle, currentPath, className }) => {
             onClick={handleDeletePost}
             className="px-2 flex items-center gap-1"
           >
-            <Minus className="w-5 h-5" />
+            <Minus className="w-4 h-4" />
             <span>Delete</span>
           </div>
         </DropdownMenuItem>

@@ -32,7 +32,7 @@ const UnderNav = ({ data }) => {
             {/* <a href="/">Jp</a> */}
           </Link>
         ) : (
-          <div className="flex items-center   px-1.5">
+          <div className="flex items-center whitespace-nowrap  px-1.5">
             <Dot className={"text-gray-500 h-8 w-8"} />
             Not Live
           </div>
