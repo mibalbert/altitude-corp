@@ -3,8 +3,9 @@
  */
 
 "use client";
+import { motion, AnimatePresence } from "framer-motion";
 
-import { ChevronsLeft, Home, MenuIcon } from "lucide-react";
+import { ChevronsLeft, ChevronsRight, Home, MenuIcon } from "lucide-react";
 import { useLayoutEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useSearch } from "@/hooks/use-search";
@@ -47,65 +48,74 @@ export const Navigation = () => {
 
   return (
     <>
-      {!pathname.startsWith("/admin/preview") ? (
-        isOpen ? (
-          <aside
-            ref={sidebarRef}
-            className={cn(
-              `transition-all ease-in-out duration-300 overflow-hidden sticky top-16 
-            group/sidebar h-min  bg-secondary overflow-y-auto  pt-16   flex w-52 flex-col z-[99]`,
-              // isResetting && "transition-all ease-in-out duration-300",
-              {
-                "w-full h-full px-5 absolute top-14 left-0 bg-white z-50":
-                  isMobile,
-              }
-            )}
-          >
-            <div
-              onClick={setToClosed}
-              role="button"
+      <AnimatePresence>
+        {" "}
+        {!pathname.startsWith("/admin/preview") ? (
+          isOpen ? (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ x: -208, opacity: 0 }}
+              // transition={{ ease: "easeOut", duration: 2 }}
+              ref={sidebarRef}
               className={cn(
-                "h-6 w-6 text-muted-foreground rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600 absolute top-3 right-2 group-hover/sidebar:opacity-100 transition"
-                // isMobile && "opacity-100"
+                `transition-all ease-in-out duration-300 overflow-hidden pt-7  relative 
+            group/sidebar h-min  bg-secondary overflow-y-auto  flex  min-w-52 max-w-64 flex-col z-[99]`
+                // isResetting && "transition-all ease-in-out duration-300",
+                // {
+                //   "w-full h-full px-5 absolute top-14 left-0 bg-white z-50":
+                //     isMobile,
+                // }
               )}
             >
-              <ChevronsLeft className="h-6 w-6" />
-            </div>
-            <div>
-              <Link href={"/admin"} className="flex items-center gap-2 px-3">
-                <Home className="h-4 w-4" /> Dashboard
-              </Link>
-            </div>
-            <hr className={cn("my-4 w-52", { "w-full ": isMobile })} />
-            <div className=" h-full   ">
-              <FoldersAndFiles
+              <div
+                onClick={setToClosed}
+                role="button"
                 className={cn(
-                  "w-54 h-full overflow-auto overflow-y-auto max-h-[50vh]",
-                  { "w-full ": isMobile }
+                  "text-muted-foreground absolute  p-1.5 top-0 right-0  z-[999]   rounded-lg hover:bg-neutral-300 dark:hover:bg-neutral-600  transition"
+                  // isMobile && "opacity-100"
                 )}
-              />
-              <CreateFolderButton
-                className={cn(
-                  "flex items-center my-2 rounded-lg  gap-2 border w-52 min-h-[27px] text-sm py-2 px-3 hover:bg-gray-100 text-muted-foreground font-medium active:bg-primary/5 active:text-primary",
-                  { "w-full ": isMobile }
-                )}
-              />
+              >
+                <ChevronsLeft className="w-4 h-4" />
+              </div>
+              <div>
+                <Link href={"/admin"} className="flex items-center gap-2 px-3">
+                  <Home className="h-4 w-4" /> Dashboard
+                </Link>
+              </div>
+              <hr className={cn("my-4 ", { "w-full ": isMobile })} />
+              <div className="h-full">
+                <h1 className="px-3 text-gray-300/40 pb-1 ">Blog Posts</h1>
+                <FoldersAndFiles
+                  className={cn("w-full h-full overflow-auto ", {
+                    "w-full ": isMobile,
+                  })}
+                />
+                <CreateFolderButton
+                  className={cn(
+                    "flex items-center my-2 rounded-lg  gap-2 border w-full min-h-[27px] text-sm py-2 px-3 hover:bg-gray-100 text-muted-foreground font-medium active:bg-primary/5 active:text-primary",
+                    { "w-full ": isMobile }
+                  )}
+                />
+              </div>
+              <hr className={cn("my-4 w-full")} />
+              <div>
+                <WebsitePages />
+              </div>
+            </motion.div>
+          ) : (
+            <div className="relative w-0 h-0">
+              <div
+                role="button"
+                onClick={setToOpen}
+                className=" absolute p-1.5 top-0 left-0 w-[1.625rem] rounded-lg hover:bg-neutral-300 dark:hover:bg-neutral-600  transition"
+              >
+                <ChevronsRight className="h-4 w-4" />
+              </div>
             </div>
-            <hr className={cn("my-4 w-52", { "w-full ": isMobile })} />
-            <div>
-              <WebsitePages />
-            </div>
-          </aside>
-        ) : (
-          <div className=" absolute w-full h-7 top-14 left-0">
-            <MenuIcon
-              role="button"
-              onClick={setToOpen}
-              className="h-6 w-6 sticky top-24  text-muted-foreground"
-            />
-          </div>
-        )
-      ) : null}
+          )
+        ) : null}
+      </AnimatePresence>
     </>
   );
 };

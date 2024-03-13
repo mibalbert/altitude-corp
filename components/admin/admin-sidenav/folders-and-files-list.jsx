@@ -10,7 +10,7 @@ import { useLayoutEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { cn } from "@/lib/utils";
 
-const RecursiveFolders = ({  parentFolder = null, level = 0 , className}) => {
+const RecursiveFolders = ({ parentFolder = null, level = 0, className }) => {
   const [folders, setFolders] = useState([]);
   const params = useParams();
 
@@ -34,7 +34,7 @@ const RecursiveFolders = ({  parentFolder = null, level = 0 , className}) => {
   // console.log(folders)
 
   return (
-    <div className={cn("",className)}>
+    <div className={cn("", className)}>
       <div>
         {/* {folders.data.length === 0 ? ( */}
         {folders?.length === 0 ? (

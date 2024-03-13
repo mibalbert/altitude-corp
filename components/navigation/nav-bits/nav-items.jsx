@@ -37,8 +37,8 @@ const NavItems = ({ session }) => {
         </Link>
         <DropdownMenu>
           <DropdownMenuTrigger className="text-sm flex px-2  items-center gap-1">
-            Website Pages
             <ChevronsUpDown className="h-4 w-4" />
+            Website Pages
           </DropdownMenuTrigger>
           <DropdownMenuContent className="z-[9999]">
             {/* <DropdownMenuLabel>{session.user.email}</DropdownMenuLabel> */}

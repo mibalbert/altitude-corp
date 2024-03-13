@@ -21,7 +21,7 @@ const FrameComp = ({ srcUrl, linkUrl }) => {
 
   return (
     // <AspectRatio ratio={16 / 9}>
-    <>
+    <div className="bg-dot-black/[0.25] py-5 px-10">
       <div className=" pb-6 w-full  mx-auto px-5 flex items-center justify-between">
         <h1 className="text-md">Edit Home page</h1>
         <div className="flex items-end gap-3">
@@ -37,7 +37,7 @@ const FrameComp = ({ srcUrl, linkUrl }) => {
 
       <div
         className={cn(
-          " border  w-full rounded-md bg-dot-black/[0.25] p-10  h-[80vh]  overflow-hidden"
+          " border  w-full rounded-md   h-[77vh]  overflow-hidden"
         )}
       >
         <iframe
@@ -59,7 +59,7 @@ const FrameComp = ({ srcUrl, linkUrl }) => {
           )}
         ></iframe>
       </div>
-    </>
+    </div>
     // </AspectRatio>
   );
 };

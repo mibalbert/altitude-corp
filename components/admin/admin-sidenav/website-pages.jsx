@@ -10,7 +10,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import { ChevronsUpDown } from "lucide-react";
+import { ChevronsUpDown, Edit } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -20,8 +20,9 @@ const WebsitePages = () => {
 
   return (
     <Collapsible>
-      <CollapsibleTrigger className="line-clamp-1 flex items-center gap-1 w-52 rounded-lg hover:bg-gray-100 px-3 py-2  bg-gray-50">
-        Edit Website Pages <ChevronsUpDown className="h-4 w-4" />
+      <CollapsibleTrigger className="truncate flex items-center gap-1 w-full text-md  rounded-lg hover:bg-gray-100 px-3 py-2  bg-gray-50">
+        <Edit className="h-4 w-4" />
+        Edit Site Pages
       </CollapsibleTrigger>
       <CollapsibleContent className="flex flex-col ">
         <Link

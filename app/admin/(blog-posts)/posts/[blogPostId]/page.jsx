@@ -28,7 +28,7 @@ const BlogPost = async ({ params }) => {
 
 
   return (
-    <section className="pb-[10vh] pt-3 px-5">
+    <section className="pb-[10vh]  px-3">
       <UnderNav data={data} />
       {/* <PostCoverImage
         postId={params.blogPostId}
@@ -43,7 +43,7 @@ const BlogPost = async ({ params }) => {
           <PostTitle postId={params.blogPostId} initialTitle={data.title} />
         </div>
       </section> */}
-      <section className="w-full py-5 ">
+      <section className="w-full py-5">
         <div className="w-full max-w-2xl mx-auto ">
           <PostEditor
             postId={params.blogPostId}

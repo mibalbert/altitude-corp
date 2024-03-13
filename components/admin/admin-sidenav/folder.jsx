@@ -77,14 +77,13 @@ export const Folder = ({ folder, level }) => {
     <div className="flex flex-col ">
       <div
         className={cn(
-          // "grid grid-cols-5 items-center justify-center  gap-2 p-1  w-full   hover:bg-gray-100 rounded-lg",
-          "flex items-center gap-1 p-1 group w-full   hover:bg-gray-100 rounded-lg",
+          "flex items-center gap-1 p-1 group w-full  overflow-x-auto   hover:bg-gray-100 rounded-lg",
           { "w-full": isMobile }
         )}
       >
         <button
           onClick={toggleCollapse}
-          className="flex items-center  justify-center hover:bg-slate-200  py-1.5 px-1.5 h-full rounded-md"
+          className="flex items-center justify-center  hover:bg-slate-200  p-1 h-full rounded-md"
         >
           {collapsed ? (
             <ChevronRight className="flex items-center justify-center w-4 h-4 " />
@@ -96,115 +95,60 @@ export const Folder = ({ folder, level }) => {
           href={`/admin/folders/${folder.id}`}
           className="flex items-center gap-1 w-full truncate"
         >
-          <FolderIcon className="w-4 h-4" /> {folder.title}
+          <div className=" py-1.5 px-1.5">
+            <FolderIcon className="w-4 h-4" />
+          </div>
+          <div className="min-w-16">{folder.title}</div>
         </Link>
+        {/* <div className={"hidden group-hover:block"}> */}
         <DropIt
-          className={"hidden group-hover:block"}
           handleCreateFolder={handleCreateFolder}
           handleCreatePostUnderFolder={handleCreatePostUnderFolder}
         />
-
-        {/* 
-        <button
-          onClick={toggleCollapse}
-          className="col-span-1 flex items-center justify-center hover:bg-slate-200 w-full py-1.5 h-full rounded-md"
-        >
-          {collapsed ? (
-            <ChevronRight className="flex items-center justify-center w-4 h-4 " />
-          ) : (
-            <ChevronDown className="flex w-4 h-4 items-center justify-center " />
-          )}
-        </button>
-        <Link
-          href={`/admin/folders/${folder.id}`}
-          className="col-span-3 flex items-center gap-1 truncate"
-        >
-          <FolderIcon className="w-4 h-4" /> {folder.title}
-        </Link>
-        <DropIt
-          handleCreateFolder={handleCreateFolder}
-          className="col-span-1"
-          handleCreatePostUnderFolder={handleCreatePostUnderFolder}
-        /> */}
+        {/* </div> */}
       </div>
       {!collapsed && (
-        <div
-          className="flex flex-col    "
-          // style={{ paddingLeft: `${(level - 1) * 12 + 25}px` }}
-          style={{ paddingLeft: `25px` }}
-        >
+        <div className="flex flex-col" style={{ paddingLeft: `26px` }}>
           {sortedPosts.map((post, idx) => (
-            <Suspense key={idx} fallback={ItemSkeleton}>
-              <div
-                className={cn(
-                  "grid grid-cols-5 items-center justify-center  w-42  p-1  gap-2 hover:bg-gray-100 rounded-lg",
-                  { "w-full": isMobile }
-                )}
+            <div
+              key={idx}
+              className={cn(
+                "flex items-center w-full  group p-1 gap-1 hover:bg-gray-100 rounded-lg",
+                { "w-full": isMobile }
+              )}
+            >
+              <Link
+                key={post.id}
+                href={`/admin/posts/${post.id}`}
+                className=" flex items-center gap-1 w-full truncate text-nowrap"
               >
-                <div className=" flex items-center justify-center col-span-1">
-                  <File className="w-4 h-4 " />
+                <div className=" py-1.5 px-1.5">
+                  <File className="w-4 h-4  " />
                 </div>
-                <Link
-                  key={post.id}
-                  href={`/admin/posts/${post.id}`}
-                  className=" flex items-center  line-clamp-1 text-nowrap  col-span-3 py-1  rounded-lg"
-                >
-                  {post.title}
-                </Link>
-                <div className="col-span-1">
-                  <DropItPost
-                    // className={"col-span-1"}
-                    router={router}
-                    postId={post.id}
-                    postTitle={post.title}
-                  />
-                </div>
-              </div>
-            </Suspense>
+                <div className="min-w-16">{post.title}</div>
+              </Link>
+              {/* <div className={"hidden group-hover:block"}> */}
+              <DropItPost
+                router={router}
+                postId={post.id}
+                postTitle={post.title}
+              />
+              {/* </div> */}
+            </div>
           ))}
           <div
             type="button"
             onClick={handleCreatePostUnderFolder}
-            // className="grid grid-cols-5 items-center justify-center   p-1  gap-2   hover:cursor-pointer hover:bg-gray-100 rounded-lg "
-            className="flex items-center   p-1  gap-1   hover:cursor-pointer hover:bg-gray-100 rounded-lg "
+            className="flex items-center gap-1 p-1  w-full hover:cursor-pointer hover:bg-gray-100 rounded-lg "
           >
-            <Plus className="w-4 h-4 " />
-            <div className="col-span-3">Post</div>
-
-            {/* <div className=" flex items-center justify-center col-span-1">
+            <div className=" py-1.5 px-1.5">
               <Plus className="w-4 h-4 " />
             </div>
-            <div className="col-span-3">Post</div>
-            <div className="col-span-1"></div> */}
+            <div className="min-w-16">Post</div>
           </div>
           <RecursiveFolders parentFolder={folder.id} level={level + 1} />
         </div>
       )}
-    </div>
-  );
-};
-
-{
-  /* <div>
-              <Item
-                label="Search"
-                icon={Search}
-                isSearch
-                onClick={search.onOpen}
-              />
-            </div> */
-}
-
-const ItemSkeleton = () => {
-  return (
-    <div
-      // style={{
-      //   paddingLeft: level ? `${level * 12 + 25}px` : "12px",
-      // }}
-      className="flex gap-x-2 py-1 px-2"
-    >
-      <Skeleton className="h-4 w-4" />
-      <Skeleton className="h-4 w-[30%]" />
     </div>
   );
 };

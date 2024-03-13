@@ -67,11 +67,12 @@ const MainNav = ({ session }) => {
   return (
     <section
       className={cn(
-        "h-14 top-0 left-0 w-full sticky z-[99] supports-backdrop-blur:bg-white/70 bg-white/70  backdrop-blur-lg transition-all duration-200",
+        "h-14 top-0 left-0 w-full  z-[99] supports-backdrop-blur:bg-white/70 bg-white/70  backdrop-blur-lg transition-all duration-200",
         {
           "text-white bg-transparent":
             !isSticky && whiteTextPaths.includes(pathname),
           hidden: isAdmin && editors,
+          // "sticky": !pathname.startsWith('/admin')
         }
       )}
     >
@@ -85,18 +86,24 @@ const MainNav = ({ session }) => {
         )}
       >
         <div className="flex items-center">
-          <Link
-            href="/"
-            className="text-lg font-bold w-16 h-full sm:w-16 relative "
-          >
-            <Image
-              src={"/logo/logo-no-text.png"}
-              alt={"logo"}
-              width={100}
-              height={50}
-              className="object-cover object-center "
-            />
-          </Link>
+          {pathname.startsWith("/admin") ? (
+            <Link href={"/"} className="px-1.5">
+              ALTITUDE CORP.
+            </Link>
+          ) : (
+            <Link
+              href="/"
+              className="text-lg font-bold w-16 h-full sm:w-16 relative "
+            >
+              <Image
+                src={"/logo/logo-no-text.png"}
+                alt={"logo"}
+                width={100}
+                height={50}
+                className="object-cover object-center "
+              />
+            </Link>
+          )}
         </div>
         <div className="hidden h-full space-x-4 items-center lg:flex">
           <NavItems session={session} />
@@ -108,7 +115,7 @@ const MainNav = ({ session }) => {
             //   <SignInModal />
             //   <Button
             //     onClick={() => router.push("/auth/register")}
-            //     variant="outline"
+            //     variant="outline"w
             //     className="border-neutral-300"
             //   >
             //     Register
