@@ -391,6 +391,7 @@ model Post {
   @@index([folderId])
 }
 
+
 model FeaturedPost {
   id             Int      @id @default(autoincrement())
   posts         Post[]

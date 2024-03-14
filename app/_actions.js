@@ -93,14 +93,6 @@ export async function savePostTitleChange(postId, newTitle) {
 
 export async function savePostContentChange(postId, data) {
   try {
-    // const res = await prisma.post.update({
-    //   where: {
-    //     id: postId,
-    //   },
-    //   data: {
-    //     content: data,
-    //   },
-    // });
     const res = await prisma.post.update({
       where: {
         id: postId,
@@ -109,19 +101,16 @@ export async function savePostContentChange(postId, data) {
         content: data,
       },
     });
-    console.log("The res", res);
     if (res) {
-      // return "Success";
       revalidatePath(`/admin/posts/${postId}`);
-      return JSON.stringify({ message: "Data saved", ok: true });
+      return { message: "Data saved", ok: true };
     }
-    // return "Failed"
-    return JSON.stringify({ message: "Error saving the data", ok: false });
+    return { message: "Error saving the data", ok: false };
   } catch (error) {
     return "Error";
-    // return { message: error, ok: false };
   }
 }
+
 export async function changeVisibility(postId, changeTo) {
   try {
     const res = await prisma.post.update({

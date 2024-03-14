@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 import { Check, Timer } from "lucide-react";
 import { useSavingStatus } from "@/hooks/use-admin-saving-status";
 
-const Editor = ({ postId, initialContent }) => {
+const Editor = ({ postId, initialContent, className }) => {
   const setIsSaved = useSavingStatus((state) => state.setIsSaved);
 
   function debounce(func, timeout = 300) {
@@ -69,6 +69,7 @@ const Editor = ({ postId, initialContent }) => {
     <BlockNoteView
       editor={editor}
       theme={"light"}
+      className={cn(" ", className)}
       // className="border border-dashed rounded-xl transform transition-all duration-100 border-gray-300 py-5 hover:outline-none  hover:border-solid hover:border-gray-500 hover:ring-gray-500 hover:ring-1 "
     />
   );
