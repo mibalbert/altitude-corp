@@ -8,6 +8,9 @@ import Preview from "./preview";
 import Link from "next/link";
 import {
   ArrowUpRight,
+  Badge,
+  BadgeCheck,
+  BadgeMinus,
   Dot,
   File,
   Folder as FolderIcon,
@@ -19,12 +22,14 @@ import { getParentFolders } from "@/hooks/use-get-parent-folders";
 
 const UnderNav = async ({ data }) => {
   const op = await getParentFolders(data.folder.id);
-  console.log(op);
+  
+  // const savedStatus = 
+
 
   return (
-    <div className="w-full flex items-center justify-between ">
+    <div className="w-full flex items-center justify-between pr-9">
       {/* <SavedStatus /> */}
-      <div className="w-full  flex items-center gap-1  ">
+      <div className="w-full  flex items-center gap-1 ">
         <Link
           href={"/admin"}
           className="flex items-center gap-1 py-1 px-3 hover:bg-gray-100 rounded-lg "
@@ -47,24 +52,35 @@ const UnderNav = async ({ data }) => {
         </span>
       </div>
 
-      <div className="flex items-center divide-x">
-        <Preview className=" px-1.5" postId={data.id} />
+      <div className="flex items-center divide-x pr-[2px]">
+        <Preview className="px-3 gap-1" postId={data.id} />
         <Publish
-          className="px-1.5"
+          className="px-3 gap-1"
           postId={data.id}
           isPublished={data.isPublished}
         />
         {data.isPublished ? (
-          <Link href={`/blog/${data.id}`} className="flex items-center px-1.5">
-            <Dot className={"text-green-600 h-8 w-8"} />
+          <Link
+            href={`/blog/${data.id}`}
+            className="flex items-center gap-1 px-3"
+          >
+            <BadgeCheck
+              // strokeWidth={3}
+              // absoluteStrokeWidth
+              className={"text-green-600 h-4 w-4"}
+            />
             Live
             <ArrowUpRight className="h-4 w-4" />
             {/* <a href="/">Jp</a> */}
           </Link>
         ) : (
-          <div className="flex items-center whitespace-nowrap  px-1.5">
+          <div className="flex items-center whitespace-nowrap gap-1 px-3">
+            <BadgeMinus
+              // strokeWidth={3}
+              // absoluteStrokeWidth
+              className={"h-4 w-4"}
+            />
             Not Live
-            <Dot className={"text-gray-500 h-8 w-8"} />
           </div>
         )}
       </div>

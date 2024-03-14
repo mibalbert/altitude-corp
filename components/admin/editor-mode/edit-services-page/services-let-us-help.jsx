@@ -6,7 +6,7 @@
 
 import Image from "next/image";
 import React, { useState } from "react";
-import Contenteditable from "../edit-landing-page/content-editable-component";
+import Contenteditable from "../../../editor/content-editable";
 import {
   changeServicesPageLetUsHelpService1Desc,
   changeServicesPageLetUsHelpService1Title,

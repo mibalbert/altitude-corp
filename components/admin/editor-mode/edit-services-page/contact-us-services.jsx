@@ -17,7 +17,7 @@ import {
   changeServicesPageContactUsSubtitle,
   changeServicesPageContactUsTitle,
 } from "@/app/actions/edit-web-pages/edit-services-page/_services-actions";
-import Contenteditable from "../edit-landing-page/content-editable-component";
+import Contenteditable from "../../../editor/content-editable";
 
 const ContactUsServices = ({ data }) => {
   const [servicesPageContactUsTitle, setServicesPageContactUsTitle] = useState(

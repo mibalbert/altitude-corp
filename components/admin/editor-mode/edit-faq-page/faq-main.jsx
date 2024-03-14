@@ -6,7 +6,7 @@
 
 // import { ChevronDownIcon } from "lucide-react";
 import Link from "next/link";
-import Contenteditable from "../edit-landing-page/content-editable-component";
+import Contenteditable from "../../../editor/content-editable";
 import {
   changeFaqPageHelpEmail,
   changeFaqPageQuestion1Subtitle,

@@ -8,7 +8,7 @@ const navigationConfig = {
   guestTopNav: [
     {
       title: "Home",
-      href: "/home",
+      href: "/",
     },
     {
       title: "Blog",
@@ -75,7 +75,7 @@ const navigationConfig = {
   userTopNav: [
     {
       title: "Home",
-      href: "/home",
+      href: "/",
     },
     {
       title: "Dashboard",
@@ -178,7 +178,7 @@ const navigationConfig = {
     },
     {
       title: "Home",
-      href: "/home",
+      href: "/",
     },
     {
       title: "Blog",

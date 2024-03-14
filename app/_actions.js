@@ -3,6 +3,30 @@
 import prisma from "@/lib/prismadb";
 import { revalidatePath, revalidateTag } from "next/cache";
 
+export async function changeValueOfObj(objId, newValue) {
+  try {
+    const res = await prisma.pageObject.update({
+      where: {
+        id: objId,
+      },
+      data: {
+        value: newValue,
+      },
+    });
+
+    if (res) {
+      // revalidatePath(`/admin/posts/${postId}`);
+      return {
+        message: "Success",
+        ok: true,
+      };
+    }
+    return { message: "Failed to upload file", ok: false };
+  } catch (error) {
+    return { message: "Error", ok: false };
+  }
+}
+
 export async function savePostCoverImageUrl(postId, url) {
   try {
     const res = await prisma.post.update({
@@ -122,8 +146,7 @@ export async function changeVisibility(postId, changeTo) {
 
 export async function createPostUnderFolder(parentFolderId) {
   try {
-
-    console.log("fiaskjdn", parentFolderId)
+    console.log("fiaskjdn", parentFolderId);
     const res = await prisma.post.create({
       data: {
         title: "Untitled",
@@ -131,8 +154,8 @@ export async function createPostUnderFolder(parentFolderId) {
         isPublished: false,
       },
     });
-    console.log(res)
-    
+    console.log(res);
+
     if (res) {
       // revalidatePath(`/admin/posts/${res.id}`);
       revalidateTag("collection");
@@ -147,7 +170,7 @@ export async function createPostUnderFolder(parentFolderId) {
       ok: false,
     };
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return { message: "Could not create new post", ok: false };
   }
 }
@@ -301,8 +324,6 @@ export async function deleteFolder(folderId, folderTitle, currentPath) {
     };
   }
 }
-
-
 
 // export async function createNewUndefinedPost() {
 //   try {

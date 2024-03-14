@@ -6,7 +6,7 @@
 
 import Image from "next/image";
 import React, { useState } from "react";
-import Contenteditable from "./content-editable-component";
+import Contenteditable from "../../../editor/content-editable";
 import {
   changeElevatorFirstCompDesc,
   changeElevatorFirstCompTitle,
@@ -36,7 +36,6 @@ const Elevator = ({ data }) => {
     data?.elevatorSecCompDesc || ""
   );
 
-  
   const debounceChangeElevatorTitle = debounce(async (e) => {
     const res = await changeElevatorTitle(data.id, e);
     if (res.ok) {

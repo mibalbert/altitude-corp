@@ -27,34 +27,44 @@ export const metadata = {
 };
 
 const Blog = async ({ searchParams }) => {
-  const data = await prisma.blogPage.findMany();
-  const blogPosts = await prisma.post.findMany();
+  // const data = await prisma.blogPage.findMany();
 
-  const featuredBlogPosts = blogPosts.filter((el) => {
-    el.isFeatured;
+  const pageObj = await prisma.PageObject.findMany({
+    where: {
+      page: "blog",
+    },
   });
 
+  // console.log()
+
+  const blogPosts = await prisma.post.findMany();
+
+  const featuredBlogPosts = await prisma.featuredPost.findMany()
+  
   const latestBlogPosts = blogPosts.sort((a, b) => a.createdAt - b.createdAt);
 
   const session = await getServerSession(authOptions);
   const isEditable = session?.user.role === "ADMIN";
 
   return (
-    <section>
-      <div className="bg-gradient-to-br from-blue-400 from-[10%] via-blue-600 via-[40%] to-blue-500 to-[95%]  py-32 space-y-20">
+    <section className="">
+      <div className="bg-gradient-to-br from-blue-400  from-[10%] via-blue-600 via-[40%] to-blue-500 to-[95%]  py-32 space-y-20">
         <BlogsPageHero
-          data={data[0]}
-          editable={isEditable && searchParams.editorMode}
+          data={pageObj}
+          editable={isEditable && searchParams?.editorMode}
         />
-        <FeaturedBlogList data={featuredBlogPosts} />
+        <FeaturedBlogList
+          data={featuredBlogPosts}
+          editable={isEditable && searchParams?.editorMode}
+        />
       </div>
-      <LatestPostsIn data={data[0]} latestPostsIn={latestBlogPosts} />
-      <ALotOfBlogPosts data={data[0]} blogPosts={blogPosts} />
+      <LatestPostsIn data={null} latestPostsIn={latestBlogPosts} />
+      <ALotOfBlogPosts data={null} blogPosts={blogPosts} />
       <div className="container">
         <hr></hr>
       </div>
-      <SubscribeToNewsletter data={data[0]} />
-      <FreeResources data={data[0]} />
+      <SubscribeToNewsletter data={null} />
+      <FreeResources data={null} />
     </section>
   );
 };

@@ -6,7 +6,7 @@
 
 import { debounce } from "lodash";
 import { useState } from "react";
-import Contenteditable from "../edit-landing-page/content-editable-component";
+import Contenteditable from "../../../editor/content-editable";
 import {
   changeServicesPageSteps1Badge,
   changeServicesPageSteps1Subtitle,

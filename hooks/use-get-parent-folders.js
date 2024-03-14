@@ -11,7 +11,7 @@ export async function getParentFolders(folderId) {
         id: foId,
       },
     });
-    // console.log(res.parentFolder);
+    // console.log(res.parentFwolder);
     if (res.parentFolder !== null) {
       foldersArr.push(res.parentFolder);
       getFolderParent(res.parentFolder);

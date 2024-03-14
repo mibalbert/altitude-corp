@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import React, { useEffect, useState } from "react";
-import Contenteditable from "../admin/editor-mode/edit-landing-page/content-editable-component";
+import Contenteditable from "../editor/content-editable";
 import {
   changeReviewAuthor,
   changeReviewCompany,

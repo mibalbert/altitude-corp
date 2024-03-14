@@ -31,12 +31,16 @@ const NavItems = ({ session }) => {
 
   if (session?.user) {
     return (
-      <section className="flex items-center divide-x ">
-        <Link href={"/admin"} className="text-sm px-2   ">
+      <section className="flex items-center h-full ">
+        <Link
+          href={"/admin"}
+          className="text-sm px-3  rounded-lg items-center gap-1 py-2 supports-backdrop-blur:bg-white/70 hover:bg-white/70  hover:backdrop-blur-lg  "
+        >
           Dashboard
         </Link>
+        <div className="border-l mx-0.5 h-7"></div>
         <DropdownMenu>
-          <DropdownMenuTrigger className="text-sm flex px-2  items-center gap-1">
+          <DropdownMenuTrigger className="text-sm flex px-3 rounded-lg items-center gap-1 py-2 supports-backdrop-blur:bg-white/70 hover:bg-white/70  hover:backdrop-blur-lg">
             <ChevronsUpDown className="h-4 w-4" />
             Website Pages
           </DropdownMenuTrigger>

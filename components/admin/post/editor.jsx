@@ -69,7 +69,7 @@ const Editor = ({ postId, initialContent }) => {
     <BlockNoteView
       editor={editor}
       theme={"light"}
-      className="border border-dashed rounded-xl transform transition-all duration-100 border-gray-300 py-5 hover:outline-none  hover:border-solid hover:border-gray-500 hover:ring-gray-500 hover:ring-1 "
+      // className="border border-dashed rounded-xl transform transition-all duration-100 border-gray-300 py-5 hover:outline-none  hover:border-solid hover:border-gray-500 hover:ring-gray-500 hover:ring-1 "
     />
   );
 };

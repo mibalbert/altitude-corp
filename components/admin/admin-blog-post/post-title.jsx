@@ -7,7 +7,7 @@
 import { savePostTitleChange } from "@/app/_actions";
 import { useSavingStatus } from "@/hooks/use-admin-saving-status";
 import React, { useEffect, useState } from "react";
-import Contenteditable from "../editor-mode/edit-landing-page/content-editable-component";
+import Contenteditable from "../../editor/content-editable";
 import { debounce } from "lodash";
 
 const PostTitle = ({ postId, initialTitle }) => {

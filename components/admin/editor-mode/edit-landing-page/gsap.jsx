@@ -15,7 +15,7 @@ import {
   changeHeroTitle,
 } from "@/app/actions/edit-web-pages/edit-home/_home-actions";
 import { Check, Timer } from "lucide-react";
-import Contenteditable from "./content-editable-component";
+import Contenteditable from "../../../editor/content-editable";
 
 gsap.registerPlugin(ScrollTrigger);
 

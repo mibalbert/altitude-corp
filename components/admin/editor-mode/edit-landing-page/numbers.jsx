@@ -6,7 +6,7 @@
 
 import Image from "next/image";
 import React, { useState } from "react";
-import Contenteditable from "./content-editable-component";
+import Contenteditable from "../../../editor/content-editable";
 import { debounce } from "@/lib/utils";
 import {
   changeNumbersDesc,
@@ -23,8 +23,6 @@ import {
 } from "@/app/actions/edit-web-pages/edit-home/_home-actions";
 
 const Numbers = ({ data }) => {
-
-  
   const [numbersTitle, setNumbersTitle] = useState(data?.numbersTitle || "");
   const [numbersDesc, setNumbersDesc] = useState(data?.numbersDesc || "");
   const [numbersFirstCompTitle, setNumbersFirstCompTitle] = useState(

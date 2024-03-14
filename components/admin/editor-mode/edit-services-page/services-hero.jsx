@@ -10,7 +10,7 @@ import { AvatarImage, Avatar } from "@/components/ui/avatar";
 
 import React, { useState } from "react";
 import Image from "next/image";
-import Contenteditable from "../edit-landing-page/content-editable-component";
+import Contenteditable from "../../../editor/content-editable";
 import {
   changeServicesPageHeroSubtitle,
   changeServicesPageHeroTitle,

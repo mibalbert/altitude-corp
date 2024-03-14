@@ -3,7 +3,7 @@
  */
 
 import React from "react";
-import EditableBlogTitle from "../edit/blog/title";
+import ContentEditable from "../editor/content-editable";
 
 const BlogsPageHero = ({ data, editable }) => {
   return (
@@ -12,10 +12,12 @@ const BlogsPageHero = ({ data, editable }) => {
         <div className="text-center space-y-2">
           {!editable ? (
             <span className="text-4xl font-bold tracking-tighter font-serif text-center p-0 m-0 sm:text-5xl md:text-5xl lg:text-6xl bg-transparent ">
-              {data?.blogPageTitle}
+              {data?.find((el) => el.name === "hero-title").value}
             </span>
           ) : (
-            <EditableBlogTitle data={data} />
+            <ContentEditable
+              data={data?.find((el) => el.name === "hero-title")}
+            />
           )}
           <pre className="mx-auto max-w-[700px] text-gray-200 md:text-xl ">
             {data?.blogPageSubtitle}

@@ -5,7 +5,7 @@
 "use client";
 
 import { useState } from "react";
-import Contenteditable from "./content-editable-component";
+import Contenteditable from "../../../editor/content-editable";
 import { debounce } from "@/lib/utils";
 import {
   changeStepsFirstCompDesc,

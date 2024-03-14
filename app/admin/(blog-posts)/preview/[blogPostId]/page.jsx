@@ -16,7 +16,7 @@ const PreviewBlog = async ({ params }) => {
   );
   const data = await prisma.post.findFirst({
     where: {
-      id: params.blogPostId,
+      id: +params.blogPostId,
     },
   });
   return (

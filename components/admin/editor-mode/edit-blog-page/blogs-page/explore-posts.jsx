@@ -12,7 +12,7 @@ import { debounce } from "lodash";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import Contenteditable from "../../edit-landing-page/content-editable-component";
+import Contenteditable from "../../../../editor/content-editable";
 
 const ALotOfBlogPosts = ({ data }) => {
   const [blogPageExploreTitle, setBlogPageExploreTitle] = useState(

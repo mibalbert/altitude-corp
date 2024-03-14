@@ -19,13 +19,12 @@ const BlogPost = async ({ params }) => {
   );
   const data = await prisma.post.findFirst({
     where: {
-      id: params.blogPostId,
+      id: +params.blogPostId,
     },
     include: {
       folder: true,
     },
   });
-
 
   return (
     <section className="pb-[10vh]  px-3">

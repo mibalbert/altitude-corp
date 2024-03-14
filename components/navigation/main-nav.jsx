@@ -18,6 +18,7 @@ import { Icons } from "../ui/incons";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { getSession } from "next-auth/react";
+import { usePageEditorPreview } from "@/hooks/use-set-page-editor-preview";
 
 const MainNav = ({ session }) => {
   // const router = useRouter();
@@ -51,6 +52,8 @@ const MainNav = ({ session }) => {
   //   return <></>;
   // }
 
+  const { isPreview } = usePageEditorPreview();
+
   if (pathname.includes("/sign-in")) {
     return (
       <section className="px-5 pt-10 lg:px-20 lg:pt-10">
@@ -65,67 +68,80 @@ const MainNav = ({ session }) => {
   const whiteTextPaths = ["/blog", "/services"];
 
   return (
-    <section
-      className={cn(
-        "h-14 top-0 left-0 w-full  z-[99] supports-backdrop-blur:bg-white/70 bg-white/70  backdrop-blur-lg transition-all duration-200",
-        {
-          "text-white bg-transparent":
-            !isSticky && whiteTextPaths.includes(pathname),
-          hidden: isAdmin && editors,
-          // "sticky": !pathname.startsWith('/admin')
-        }
-      )}
-    >
-      <div
-        className={cn(
-          " flex h-full w-full items-center pl-3 pr-2 md:px-10 lg:px-12 justify-between ",
-          {
-            "w-full max-w-screen-2xl mx-auto md:px-7":
-              !pathname.startsWith("/admin"),
-          }
-        )}
-      >
-        <div className="flex items-center">
-          {pathname.startsWith("/admin") ? (
-            <Link href={"/"} className="px-1.5">
-              ALTITUDE CORP.
-            </Link>
-          ) : (
-            <Link
-              href="/"
-              className="text-lg font-bold w-16 h-full sm:w-16 relative "
-            >
-              <Image
-                src={"/logo/logo-no-text.png"}
-                alt={"logo"}
-                width={100}
-                height={50}
-                className="object-cover object-center "
-              />
-            </Link>
+    <>
+      {!isPreview && (
+        <section
+          className={cn(
+            "h-14 top-0 left-0 w-full absolute  z-[999]  transition-all duration-200",
+            // "h-14 top-0 left-0 w-full sticky z-[999]",
+            // isSticky ? "sticky" : "absolute",
+            // {
+            //   "supports-backdrop-blur:bg-white/70 bg-white/70  backdrop-blur-lg":
+            //     isSticky,
+            // },
+            {
+              sticky: pathname.startsWith("/admin"),
+            },
+            {
+              // hidden: isAdmin && editors,
+            },
+            {
+              "text-white": whiteTextPaths.includes(pathname),
+            }
           )}
-        </div>
-        <div className="hidden h-full space-x-4 items-center lg:flex">
-          <NavItems session={session} />
-          {session?.user ? (
-            <UserDropdown session={session} />
-          ) : (
-            <></>
-            // <div className="flex space-x-2">
-            //   <SignInModal />
-            //   <Button
-            //     onClick={() => router.push("/auth/register")}
-            //     variant="outline"w
-            //     className="border-neutral-300"
-            //   >
-            //     Register
-            //   </Button>
-            // </div>
-          )}
-        </div>
-        <MobileNav session={session} />
-      </div>
-    </section>
+        >
+          <div
+            className={cn(
+              " flex h-full w-full items-center pl-3 pr-2 md:px-10 lg:px-12 justify-between ",
+              {
+                "w-full max-w-screen-2xl mx-auto md:px-7":
+                  !pathname.startsWith("/admin"),
+              }
+            )}
+          >
+            <div className="flex items-center">
+              {pathname.startsWith("/admin") ? (
+                <Link href={"/"} className="px-1.5">
+                  ALTITUDE CORP.
+                </Link>
+              ) : (
+                <Link
+                  href="/"
+                  className="text-lg font-bold w-16 h-full sm:w-16 relative "
+                >
+                  <Image
+                    src={"/logo/logo-no-text.png"}
+                    alt={"logo"}
+                    width={100}
+                    height={50}
+                    className="object-cover object-center "
+                  />
+                </Link>
+              )}
+            </div>
+            <div className="hidden h-full space-x-4 items-center lg:flex">
+              <NavItems session={session} />
+              {session?.user ? (
+                <UserDropdown session={session} />
+              ) : (
+                <></>
+                // <div className="flex space-x-2">
+                //   <SignInModal />
+                //   <Button
+                //     onClick={() => router.push("/auth/register")}
+                //     variant="outline"w
+                //     className="border-neutral-300"
+                //   >
+                //     Register
+                //   </Button>
+                // </div>
+              )}
+            </div>
+            <MobileNav session={session} />
+          </div>
+        </section>
+      )}{" "}
+    </>
   );
 };
 

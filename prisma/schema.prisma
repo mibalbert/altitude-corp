@@ -1,3 +1,273 @@
+// // This is your Prisma schema file,
+// // learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// generator client {
+//   provider = "prisma-client-js"
+// }
+
+// datasource db {
+//   // provider = "mysql"
+//   // url = env("DATABASE_URL")
+//   // relationMode = "prisma"
+//   provider = "sqlite"
+//   url = env("./db-file")
+//   relationMode = "prisma"
+// }
+
+// model Account {
+//   id   String @id @default(uuid())
+//   userId           String? 
+//   type             String?
+//   provider         String?
+//   providerAccountId String?
+//   refresh_token    String? 
+//   access_token     String? 
+//   expires_at       Int?
+//   token_type       String?
+//   scope            String?
+//   id_token         String? 
+//   session_state    String?
+
+//   user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+//   @@unique([provider, providerAccountId])
+//   @@index([userId])
+// }
+
+// model Session {
+//   id   String @id @default(uuid())
+//   sessionToken  String?   @unique
+//   userId       String?   
+//   expires      DateTime?
+//   user         User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+//   @@index([userId])
+// }
+
+// model User {
+//   id   String @id @default(uuid())
+//   username      String? @db.VarChar(255)
+//   name          String? 
+//   email         String?   @unique
+//   emailVerified DateTime?
+//   password      String?
+//   role          String?
+//   image         String?
+//   accounts      Account[]
+//   sessions      Session[]
+//   posts         Post[]
+// }
+
+// model VerificationToken {
+//   id   String @id @default(uuid())
+//   identifier String?
+//   token      String?  @unique
+//   expires    DateTime?
+
+//   @@unique([identifier, token])
+// }
+
+// model Home {
+//   id               Int       @id @default(autoincrement())
+//   heroTitle        String?  
+//   heroSubtitle     String?  
+//   heroButton       String?
+//   heroQuote        String?   @db.Text
+//   reviews          Review[]  @relation("HomeToReview")
+//   elevatorTitle    String?   
+//   elevatorSubtitle String?   @db.Text
+//   elevatorFirstCompTitle String?   
+//   elevatorFirstCompDesc String?   @db.Text
+//   elevatorSecCompTitle String?   
+//   elevatorSecCompDesc String?   @db.Text
+//   peaceOfMindTitle String?  
+//   peaceOfMindDesc String? @db.Text
+//   peaceOfMindFirstCompTitle String? 
+//   peaceOfMindFirstCompDesc String? 
+//   peaceOfMindSecCompTitle String? 
+//   peaceOfMindSecCompDesc String? 
+//   numbersTitle String?
+//   numbersDesc String? @db.Text
+//   numbersFirstCompTitle String? 
+//   numbersFirstCompNumbers String?
+//   numbersFirstCompDesc String?
+//   numbersSecCompTitle String?
+//   numbersSecCompNumbers String?
+//   numbersSecCompDesc String?
+//   numbersThirdCompTitle String?
+//   numbersThirdCompNumbers String?
+//   numbersThirdCompDesc String?
+//   stepsTitle String?
+//   stepsDesc String? @db.Text
+//   stepsFirstCompTitle String?
+//   stepsFirstCompDesc String?
+//   stepsSecCompTitle String?
+//   stepsSecCompDesc String?
+//   stepsThirdCompTitle String?
+//   stepsThirdCompDesc String?
+//   landingFooterTitle String?
+//   landingFooterDesc String? @db.Text
+//   landingFooterButton String? 
+//   landingFooterItem1 String?
+//   landingFooterItem2 String?
+//   landingFooterItem3 String?
+//   landingFooterItem4 String?
+//   landingFooterItem5 String?
+//   landingFooterItem6 String?
+//   landingFooterItem7 String?
+//   landingFooterItem8 String?
+//   landingFooterItem9 String?
+//   landingFooterItem10 String?
+
+// }
+
+
+// model Review {
+//   id            Int       @id @default(autoincrement())
+//   author        String?
+//   quote String?   @db.Text
+//   company String?
+//   home          Home?     @relation("HomeToReview", fields: [homeId], references: [id])
+//   homeId        Int?
+
+//   @@index([homeId])
+// }
+
+// model BlogPage {
+//   id               Int       @id @default(autoincrement())
+//   blogPageTitle        String?  
+//   blogPageSubtitle     String?  @db.Text
+//   blogPageLatestTitle    String?
+//   blogPageLatestSubtitle  String?
+//   blogPageExploreTitle    String?
+//   blogPageExploreSubtitle    String? @db.Text
+//   blogPageSubscribeTitle     String?
+//   blogPageSubscribeSubtitle       String?
+//   blogPageSubscribeMinSubtitle    String? 
+
+// }
+
+// model ServicesPage {
+//   id               Int       @id @default(autoincrement())
+//   servicesPageHeroTitle        String?  
+//   servicesPageHeroSubtitle     String?  @db.Text
+//   servicesPageLetUsHelpTitle    String?
+//   servicesPageLetUsHelpSubtitle  String?
+//   servicesPageLetUsHelpService1Title  String?
+//   servicesPageLetUsHelpService1Desc  String?
+//   servicesPageLetUsHelpService2Title  String?
+//   servicesPageLetUsHelpService2Desc  String?
+//   servicesPageLetUsHelpService3Title  String?
+//   servicesPageLetUsHelpService3Desc  String?
+//   servicesPageStepsBadge    String?
+//   servicesPageStepsTitle    String?
+//   servicesPageSteps1Badge    String?
+//   servicesPageSteps1Title    String?
+//   servicesPageSteps1Subtitle    String? @db.Text
+//   servicesPageSteps2Badge    String?
+//   servicesPageSteps2Title    String?
+//   servicesPageSteps2Subtitle    String? @db.Text
+//   servicesPageSteps3Badge    String?
+//   servicesPageSteps3Title    String?
+//   servicesPageSteps3Subtitle    String? @db.Text
+//   servicesPageSteps4Badge    String?
+//   servicesPageSteps4Title    String?
+//   servicesPageSteps4Subtitle    String? @db.Text
+//   servicesPageSteps5Badge    String?
+//   servicesPageSteps5Title    String?
+//   servicesPageSteps5Subtitle    String? @db.Text
+//   servicesPageContactUsTitle     String?
+//   servicesPageContactUsSubtitle       String?
+//   servicesPageContactUsMinTitle    String? 
+//   servicesPageContactUsMinSubtitle    String? @db.Text
+
+// }
+
+// model FaqPage {
+//   id             Int      @id @default(autoincrement())
+//   faqPageTitle       String?  
+//   faqPageSubtitle    String?
+//   faqPageHelpEmail    String?
+//   faqPageQuestion1Title    String?  @db.Text
+//   faqPageQuestion1Subtitle String?  @db.Text
+//   faqPageQuestion2Title    String?  @db.Text
+//   faqPageQuestion2Subtitle String?  @db.Text 
+//   faqPageQuestion3Title    String?  @db.Text
+//   faqPageQuestion3Subtitle String?  @db.Text
+//   faqPageQuestion4Title    String?  @db.Text
+//   faqPageQuestion4Subtitle String?  @db.Text
+//   faqPageQuestion5Title    String?  @db.Text
+//   faqPageQuestion5Subtitle String?  @db.Text
+// }
+
+// // model QA {
+// //   id              Int      @id @default(autoincrement())
+// //   faq             FaqPage?    @relation(fields: [faqId], references: [id])
+// //   faqId           Int?
+// //   qAPageQuestion1    String?  @db.Text
+// //   qAPageQuestion1Answ String?  @db.Text
+// //   qAPageQuestion2    String?  @db.Text
+// //   qAPageQuestion2Answ String?  @db.Text 
+// //   qAPageQuestion3    String?  @db.Text
+// //   qAPageQuestion3Answ String?  @db.Text
+// //   qAPageQuestion4    String?  @db.Text
+// //   qAPageQuestion4Answ String?  @db.Text
+// //   qAPageQuestion5    String?  @db.Text
+// //   qAPageQuestion5Answ String?  @db.Text
+
+// //   @@index([faqId])
+// // }
+
+// model Folder {
+//   id             Int      @id @default(autoincrement())
+//   title          String?
+//   userId         String?
+//   icon           String?
+//   posts          Post[]
+//   parentFolder   Int?
+//   // folders         Folder[] @relation("folders")
+//   // foldersRelation Folder[] @relation("folders")
+
+// }
+
+
+// model Post {
+//   id             Int      @id @default(autoincrement())
+//   title        String?
+//   content      String? @db.Text
+//   coverImage   String?
+//   isArchived   Boolean?
+//   isPublished  Boolean
+//   publicId     String?
+//   folder       Folder?   @relation(fields: [folderId], references: [id], onDelete: Cascade)
+//   folderId     Int?   
+//   author       User?     @relation(fields: [authorEmail], references: [email])
+//   authorEmail  String?
+//   createdAt    DateTime  @default(now())
+//   updatedAt    DateTime  @updatedAt
+
+//   featuredPost       FeaturedPost?   @relation(fields: [featuredPostId], references: [id], onDelete: Cascade)
+//   featuredPostId     Int?   
+
+//   @@index([authorEmail])
+//   @@index([featuredPostId])
+//   @@index([folderId])
+// }
+
+// model FeaturedPost {
+//   id             Int      @id @default(autoincrement())
+//   posts         Post[]
+// }
+
+
+
+// model PageObject {
+//   id             Int      @id @default(autoincrement())
+//   type String? 
+//   className String?
+//   page String?
+
+// }
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
@@ -6,8 +276,11 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url = env("DATABASE_URL")
+  // provider = "mysql"
+  // url = env("DATABASE_URL")
+  // relationMode = "prisma"
+  provider = "sqlite"
+  url = "file:./db-file"
   relationMode = "prisma"
 }
 
@@ -43,7 +316,7 @@ model Session {
 
 model User {
   id   String @id @default(uuid())
-  username      String? @db.VarChar(255)
+  username      String? 
   name          String? 
   email         String?   @unique
   emailVerified DateTime?
@@ -66,63 +339,14 @@ model VerificationToken {
 
 model Home {
   id               Int       @id @default(autoincrement())
-  heroTitle        String?  
-  heroSubtitle     String?  
-  heroButton       String?
-  heroQuote        String?   @db.Text
   reviews          Review[]  @relation("HomeToReview")
-  elevatorTitle    String?   
-  elevatorSubtitle String?   @db.Text
-  elevatorFirstCompTitle String?   
-  elevatorFirstCompDesc String?   @db.Text
-  elevatorSecCompTitle String?   
-  elevatorSecCompDesc String?   @db.Text
-  peaceOfMindTitle String?  
-  peaceOfMindDesc String? @db.Text
-  peaceOfMindFirstCompTitle String? 
-  peaceOfMindFirstCompDesc String? 
-  peaceOfMindSecCompTitle String? 
-  peaceOfMindSecCompDesc String? 
-  numbersTitle String?
-  numbersDesc String? @db.Text
-  numbersFirstCompTitle String? 
-  numbersFirstCompNumbers String?
-  numbersFirstCompDesc String?
-  numbersSecCompTitle String?
-  numbersSecCompNumbers String?
-  numbersSecCompDesc String?
-  numbersThirdCompTitle String?
-  numbersThirdCompNumbers String?
-  numbersThirdCompDesc String?
-  stepsTitle String?
-  stepsDesc String? @db.Text
-  stepsFirstCompTitle String?
-  stepsFirstCompDesc String?
-  stepsSecCompTitle String?
-  stepsSecCompDesc String?
-  stepsThirdCompTitle String?
-  stepsThirdCompDesc String?
-  landingFooterTitle String?
-  landingFooterDesc String? @db.Text
-  landingFooterButton String? 
-  landingFooterItem1 String?
-  landingFooterItem2 String?
-  landingFooterItem3 String?
-  landingFooterItem4 String?
-  landingFooterItem5 String?
-  landingFooterItem6 String?
-  landingFooterItem7 String?
-  landingFooterItem8 String?
-  landingFooterItem9 String?
-  landingFooterItem10 String?
-
 }
 
 
 model Review {
   id            Int       @id @default(autoincrement())
   author        String?
-  quote String?   @db.Text
+  quote String?   
   company String?
   home          Home?     @relation("HomeToReview", fields: [homeId], references: [id])
   homeId        Int?
@@ -130,90 +354,6 @@ model Review {
   @@index([homeId])
 }
 
-model BlogPage {
-  id               Int       @id @default(autoincrement())
-  blogPageTitle        String?  
-  blogPageSubtitle     String?  @db.Text
-  blogPageLatestTitle    String?
-  blogPageLatestSubtitle  String?
-  blogPageExploreTitle    String?
-  blogPageExploreSubtitle    String? @db.Text
-  blogPageSubscribeTitle     String?
-  blogPageSubscribeSubtitle       String?
-  blogPageSubscribeMinSubtitle    String? 
-
-}
-
-model ServicesPage {
-  id               Int       @id @default(autoincrement())
-  servicesPageHeroTitle        String?  
-  servicesPageHeroSubtitle     String?  @db.Text
-  servicesPageLetUsHelpTitle    String?
-  servicesPageLetUsHelpSubtitle  String?
-  servicesPageLetUsHelpService1Title  String?
-  servicesPageLetUsHelpService1Desc  String?
-  servicesPageLetUsHelpService2Title  String?
-  servicesPageLetUsHelpService2Desc  String?
-  servicesPageLetUsHelpService3Title  String?
-  servicesPageLetUsHelpService3Desc  String?
-  servicesPageStepsBadge    String?
-  servicesPageStepsTitle    String?
-  servicesPageSteps1Badge    String?
-  servicesPageSteps1Title    String?
-  servicesPageSteps1Subtitle    String? @db.Text
-  servicesPageSteps2Badge    String?
-  servicesPageSteps2Title    String?
-  servicesPageSteps2Subtitle    String? @db.Text
-  servicesPageSteps3Badge    String?
-  servicesPageSteps3Title    String?
-  servicesPageSteps3Subtitle    String? @db.Text
-  servicesPageSteps4Badge    String?
-  servicesPageSteps4Title    String?
-  servicesPageSteps4Subtitle    String? @db.Text
-  servicesPageSteps5Badge    String?
-  servicesPageSteps5Title    String?
-  servicesPageSteps5Subtitle    String? @db.Text
-  servicesPageContactUsTitle     String?
-  servicesPageContactUsSubtitle       String?
-  servicesPageContactUsMinTitle    String? 
-  servicesPageContactUsMinSubtitle    String? @db.Text
-
-}
-
-model FaqPage {
-  id             Int      @id @default(autoincrement())
-  faqPageTitle       String?  
-  faqPageSubtitle    String?
-  faqPageHelpEmail    String?
-  faqPageQuestion1Title    String?  @db.Text
-  faqPageQuestion1Subtitle String?  @db.Text
-  faqPageQuestion2Title    String?  @db.Text
-  faqPageQuestion2Subtitle String?  @db.Text 
-  faqPageQuestion3Title    String?  @db.Text
-  faqPageQuestion3Subtitle String?  @db.Text
-  faqPageQuestion4Title    String?  @db.Text
-  faqPageQuestion4Subtitle String?  @db.Text
-  faqPageQuestion5Title    String?  @db.Text
-  faqPageQuestion5Subtitle String?  @db.Text
-}
-
-// model QA {
-//   id              Int      @id @default(autoincrement())
-//   faq             FaqPage?    @relation(fields: [faqId], references: [id])
-//   faqId           Int?
-//   qAPageQuestion1    String?  @db.Text
-//   qAPageQuestion1Answ String?  @db.Text
-//   qAPageQuestion2    String?  @db.Text
-//   qAPageQuestion2Answ String?  @db.Text 
-//   qAPageQuestion3    String?  @db.Text
-//   qAPageQuestion3Answ String?  @db.Text
-//   qAPageQuestion4    String?  @db.Text
-//   qAPageQuestion4Answ String?  @db.Text
-//   qAPageQuestion5    String?  @db.Text
-//   qAPageQuestion5Answ String?  @db.Text
-
-//   @@index([faqId])
-// }
 
 model Folder {
   id             Int      @id @default(autoincrement())
@@ -229,9 +369,9 @@ model Folder {
 
 
 model Post {
-  id           String    @id @default(uuid())
+  id             Int      @id @default(autoincrement())
   title        String?
-  content      String? @db.Text
+  content      String? 
   coverImage   String?
   isArchived   Boolean?
   isPublished  Boolean
@@ -255,3 +395,17 @@ model FeaturedPost {
   id             Int      @id @default(autoincrement())
   posts         Post[]
 }
+
+
+model PageObject {
+  id        Int      @id @default(autoincrement())
+  page      String?
+  type      String?
+  name      String?
+  className String?
+  value     String?
+
+  @@map("page_object") // Specify the database table name if needed
+}
+
+

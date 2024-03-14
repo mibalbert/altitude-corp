@@ -10,7 +10,8 @@ import FrameComp from "./frame-component";
 const EditPages = async ({ params }) => {
   const session = await getServerSession(authOptions);
   if (!session) redirect("/");
-  const url = params.srcUrl;
+  let url = params.srcUrl;
+  if (url === "home") url = "";
   return (
     <div className="w-full h-full overflow-hidden">
       <FrameComp linkUrl={url} srcUrl={`/${url}?editorMode=true`} />
