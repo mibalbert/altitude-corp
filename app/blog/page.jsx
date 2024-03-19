@@ -27,20 +27,16 @@ export const metadata = {
 };
 
 const Blog = async ({ searchParams }) => {
-  // const data = await prisma.blogPage.findMany();
-
   const pageObj = await prisma.PageObject.findMany({
     where: {
       page: "blog",
     },
   });
 
-  // console.log()
-
   const blogPosts = await prisma.post.findMany();
 
-  const featuredBlogPosts = await prisma.featuredPost.findMany()
-  
+  const featuredBlogPosts = blogPosts.filter((el) => el.isFeatured === true);
+
   const latestBlogPosts = blogPosts.sort((a, b) => a.createdAt - b.createdAt);
 
   const session = await getServerSession(authOptions);

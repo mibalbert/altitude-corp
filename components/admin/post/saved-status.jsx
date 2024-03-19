@@ -13,7 +13,7 @@ const SavedStatus = () => {
   return (
     <div
       className={cn(
-        "text-xs border px-2 py-0.5 rounded-full",
+        "text-xs border px-2 mx-3 py-0.5 rounded-full",
         { "bg-green-600 border-green-400 text-green-100": isSaved },
         { "bg-gray-300 border-gray-500 text-gray-100": !isSaved }
       )}

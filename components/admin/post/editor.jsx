@@ -4,19 +4,28 @@
 
 "use client";
 
+import { useState } from "react";
 import { BlockNoteView, useBlockNote } from "@blocknote/react";
 import "@blocknote/react/style.css";
-import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
-import { savePostContentChange, savePostCoverImageUrl } from "@/app/_actions";
-import { cn } from "@/lib/utils";
-import { Check, Timer } from "lucide-react";
+import { savePostContentChange } from "@/app/_actions";
 import { useSavingStatus } from "@/hooks/use-admin-saving-status";
+import { cn } from "@/lib/utils";
 
-const Editor = ({ postId, initialContent, className }) => {
+const PostEditor = ({ postId, initialContent, className }) => {
   const setIsSaved = useSavingStatus((state) => state.setIsSaved);
+  const [editorContent, setEditorContent] = useState(
+    initialContent ? JSON.parse(initialContent) : null
+  );
 
-  function debounce(func, timeout = 300) {
+  const saveInput = async (data) => {
+    const stringifiedData = JSON.stringify(data);
+
+    setIsSaved(false);
+    await savePostContentChange(postId, stringifiedData);
+    setIsSaved(true);
+  };
+
+  const debounce = (func, timeout = 700) => {
     let timer;
     return (...args) => {
       clearTimeout(timer);
@@ -24,22 +33,14 @@ const Editor = ({ postId, initialContent, className }) => {
         func.apply(this, args);
       }, timeout);
     };
-  }
+  };
 
-  const saveInput = debounce(async (data) => {
-    const stringifiedData = JSON.stringify(data);
-
-    setIsSaved(false);
-    const res = await savePostContentChange(postId, stringifiedData);
-    console.log(res);
-    if (res.ok) {
-      console.log(res.ok);
-    }
-    setIsSaved(true); // Move this line here
-  });
+  const saveInputDebounced = debounce(saveInput);
 
   const onEditorContentChange = (editor) => {
-    saveInput(editor.topLevelBlocks);
+    console.log(JSON.stringify(editor.topLevelBlocks))
+    setEditorContent(editor.topLevelBlocks);
+    saveInputDebounced(editor.topLevelBlocks);
   };
 
   const handleUpload = async (file) => {
@@ -60,7 +61,7 @@ const Editor = ({ postId, initialContent, className }) => {
 
   const editor = useBlockNote({
     editable: true,
-    initialContent: initialContent ? JSON.parse(initialContent) : undefined,
+    initialContent: editorContent,
     onEditorContentChange: onEditorContentChange,
     uploadFile: handleUpload,
   });
@@ -75,4 +76,5 @@ const Editor = ({ postId, initialContent, className }) => {
   );
 };
 
-export default Editor;
+export default PostEditor;
+ 

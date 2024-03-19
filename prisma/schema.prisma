@@ -373,8 +373,10 @@ model Post {
   title        String?
   content      String? 
   coverImage   String?
-  isArchived   Boolean?
-  isPublished  Boolean
+  isArchived   Boolean?  @default(false)
+  isPublished  Boolean  @default(false)
+  isFeatured   Boolean?  @default(false)
+  position        Int?
   publicId     String?
   folder       Folder?   @relation(fields: [folderId], references: [id], onDelete: Cascade)
   folderId     Int?   
@@ -382,21 +384,21 @@ model Post {
   authorEmail  String?
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
-
-  featuredPost       FeaturedPost?   @relation(fields: [featuredPostId], references: [id], onDelete: Cascade)
-  featuredPostId     Int?   
+ 
+  featListId  Int?
+  featList    FeatList?     @relation(fields: [featListId], references: [id])
 
   @@index([authorEmail])
-  @@index([featuredPostId])
   @@index([folderId])
+  @@index([featListId])
 }
 
-
-model FeaturedPost {
-  id             Int      @id @default(autoincrement())
-  posts         Post[]
+model FeatList {
+  id        Int      @id @default(autoincrement())
+  list      Post[]
+  // order   String[]
+  order     String?
 }
-
 
 model PageObject {
   id        Int      @id @default(autoincrement())
@@ -408,5 +410,4 @@ model PageObject {
 
   @@map("page_object") // Specify the database table name if needed
 }
-
 

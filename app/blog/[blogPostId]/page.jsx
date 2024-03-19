@@ -14,14 +14,14 @@ export const metadata = {
   title: "ALTITUDE CORP | Blog-Post",
   description: "Best company to help you grow",
 };
+const LiveEditor = dynamic(
+  () => import("../../../components/admin/live-post/live-editor"),
+  {
+    ssr: false,
+  }
+);
 
 const BlogPost = async ({ params }) => {
-  const LiveEditor = dynamic(
-    () => import("../../../components/admin/live-post/live-editor"),
-    {
-      ssr: false,
-    }
-  );
   const data = await prisma.post.findFirst({
     where: {
       id: +params.blogPostId,

@@ -6,6 +6,8 @@ import UnderNav from "@/components/admin/admin-blog-post/undernav";
 import prisma from "@/lib/prismadb";
 import React from "react";
 import dynamic from "next/dynamic";
+import { redirect } from "next/navigation";
+import MakeFeatured from "./make-featured";
 
 const BlogPost = async ({ params }) => {
   const PostEditor = dynamic(
@@ -22,13 +24,14 @@ const BlogPost = async ({ params }) => {
       folder: true,
     },
   });
-
-
+  if (!data) {
+    redirect("/admin");
+  }
 
   return (
-    <section className="pb-[10vh] ">
+    <section className="pb-[10vh] pr-14">
       <UnderNav data={data} />
-      <div className="flex w-full">
+      <div className="flex w-full relative">
         <section className="w-full max-w-2xl relative mx-auto py-10">
           <PostEditor
             postId={params.blogPostId}
@@ -36,11 +39,9 @@ const BlogPost = async ({ params }) => {
           />
           {/* <div className="border lg:min-w-[290px] min-h-[450px] rounded-lg"> */}
         </section>
-        <div className="border  w-[290px] max-h-[400px] rounded-lg mt-5 mr-14">
+        <div className="border absolute top-0 right-0  w-[290px] max-h-[400px] rounded-lg mt-5 ">
           <div>Editor</div>
-          <button className="w-full py-2 hover:bg-gray-100">
-            Make Featured Blog Post
-          </button>
+          <MakeFeatured postId={data.id} featuredStatus={data.isFeatured} />
         </div>
       </div>
     </section>

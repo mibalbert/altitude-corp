@@ -75,7 +75,7 @@ export const Navigation = () => {
                   onClick={setToClosed}
                   role="button"
                   className={cn(
-                    "text-muted-foreground absolute  p-1.5 top-0 right-0  z-[999]   rounded-lg hover:bg-neutral-300 dark:hover:bg-neutral-600  transition"
+                    "text-muted-foreground absolute  p-1.5 top-0.5 right-0  z-[999]   rounded-lg hover:bg-neutral-300 dark:hover:bg-neutral-600  transition"
                     // isMobile && "opacity-100"
                   )}
                 >

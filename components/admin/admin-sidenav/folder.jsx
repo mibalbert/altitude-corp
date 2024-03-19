@@ -5,8 +5,7 @@
 "use client";
 
 import Link from "next/link";
-
-import { Suspense, useState } from "react";
+import { useState } from "react";
 import {
   createFolder,
   createPostUnderFolder,
@@ -24,27 +23,23 @@ import {
 import {
   ChevronDown,
   ChevronRight,
-  ChevronUp,
   File,
   Minus,
-  MoreHorizontal,
   MoreVertical,
   Plus,
-  Trash,
   Folder as FolderIcon,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import RecursiveFolders from "./folders-and-files-list";
-import PostTitle from "../admin-blog-post/post-title";
 import { cn } from "@/lib/utils";
 import { useMediaQuery } from "usehooks-ts";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 export const Folder = ({ folder, level }) => {
   const [collapsed, setCollapsed] = useState(true);
-  const pathname = usePathname();
   const router = useRouter();
+
+  console.log("fodeller", folder);
 
   const isMobile = useMediaQuery("(max-width: 768px)");
 
@@ -100,12 +95,10 @@ export const Folder = ({ folder, level }) => {
           </div>
           <div className="min-w-16">{folder.title}</div>
         </Link>
-        {/* <div className={"hidden group-hover:block"}> */}
         <DropIt
           handleCreateFolder={handleCreateFolder}
           handleCreatePostUnderFolder={handleCreatePostUnderFolder}
         />
-        {/* </div> */}
       </div>
       {!collapsed && (
         <div className="flex flex-col" style={{ paddingLeft: `26px` }}>
@@ -127,13 +120,12 @@ export const Folder = ({ folder, level }) => {
                 </div>
                 <div className="min-w-16">{post.title}</div>
               </Link>
-              {/* <div className={"hidden group-hover:block"}> */}
               <DropItPost
+                folderId={folder.id}
                 router={router}
                 postId={post.id}
                 postTitle={post.title}
               />
-              {/* </div> */}
             </div>
           ))}
           <div
@@ -154,6 +146,7 @@ export const Folder = ({ folder, level }) => {
 };
 
 const DropIt = ({
+  router,
   handleCreateFolder,
   folderId,
   folderTitle,
@@ -163,6 +156,7 @@ const DropIt = ({
 }) => {
   const handleDeleteFolder = async () => {
     //Create pop up asking the user if they are sure
+
     const res = await deleteFolder(folderId, folderTitle, currentPath);
     if (res.ok) {
       router.push(res.url);
@@ -209,14 +203,25 @@ const DropIt = ({
           </div>
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <div
-            type="button"
-            onClick={handleDeleteFolder}
-            className="px-2 flex items-center gap-1"
-          >
-            <Minus className="w-4 h-4" />
-            <span>Delete Folder</span>
-          </div>
+          <Dialog>
+            <DialogTrigger className="flex items-center gap-1">
+              <Minus className="w-4 h-4" />
+              <span>Delete Folder</span>
+            </DialogTrigger>
+            <DialogContent>
+              <div>
+                {`  Are you sure you want to delete the Folder '${folderTitle}'?`}
+              </div>
+              <div
+                type="button"
+                onClick={handleDeleteFolder}
+                className="px-2 flex items-center gap-1"
+              >
+                <Minus className="w-4 h-4" />
+                <span>Delete Folder</span>
+              </div>
+            </DialogContent>
+          </Dialog>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <div className="text-xs text-muted-foreground p-2">Last edited at:</div>
@@ -225,9 +230,16 @@ const DropIt = ({
   );
 };
 
-const DropItPost = ({ postId, postTitle, currentPath, className }) => {
+const DropItPost = ({
+  router,
+  folderId,
+  postId,
+  postTitle,
+  currentPath,
+  className,
+}) => {
   const handleDeletePost = async () => {
-    const res = await deletePost(postId, postTitle, currentPath);
+    const res = await deletePost(postId, postTitle, folderId, currentPath);
     if (res.ok) {
       router.push(res.url);
       toast.success(res.message);

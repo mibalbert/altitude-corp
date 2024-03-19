@@ -14,15 +14,13 @@ import {
   Folder as FolderIcon,
   Home,
 } from "lucide-react";
-import { getParentFolders } from "@/hooks/use-get-parent-folders";
-import SavingButton from "./saving-button";
 import SavedStatus from "../post/saved-status";
 
 const UnderNav = async ({ data }) => {
   return (
-    <div className="w-full flex items-center justify-between pr-12">
+    <div className="w-full flex items-center justify-between ">
       <div className="w-full  flex items-center gap-1 ">
-        <Link
+        {/* <Link
           href={"/admin"}
           className="flex items-center gap-1 py-1 px-3 hover:bg-gray-100 rounded-lg "
         >
@@ -37,19 +35,14 @@ const UnderNav = async ({ data }) => {
           <FolderIcon className="h-4 w-4" />
           {data.folder.title}
         </Link>
-        <span>/</span>
-        <span className="truncate flex items-center gap-1 p-1">
+        <span>/</span> */}
+        <span className="truncate flex items-center gap-1 ml-10">
           <File className="w-4 h-4  " />
           {data.id}
         </span>
       </div>
 
       <div className="flex items-center divide-x pr-[2px]">
-        {/* <SavingButton
-          initContent={data.content}
-          className="px-3 gap-1"
-          postId={data.id}
-        /> */}
         <SavedStatus />
         <Preview className="px-3 gap-1" postId={data.id} />
         <Publish

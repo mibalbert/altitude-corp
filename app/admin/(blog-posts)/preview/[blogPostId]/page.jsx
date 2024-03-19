@@ -21,13 +21,6 @@ const PreviewBlog = async ({ params }) => {
   });
   return (
     <section className="pb-[10vh] pt-10">
-      {/* {data.coverImage && (
-        <div className="w-full relative h-[40vh]">
-          <PreviewPostCoverImage coverImage={data.coverImage} />
-        </div>
-      )}
-      <PreviewTitle title={data.title} />
-      <hr className="my-5 w-full max-w-2xl mx-auto" /> */}
       <PreviewPostEditor content={data.content} />
     </section>
   );

@@ -1,9 +1,19 @@
-/**
- * components/featured-blog-list.jsx
- */
-
+"use client";
 "use client";
 
+import { DndContext, closestCenter } from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { useState } from "react";
+import { SortableItem } from "./sortable-item";
+
+// const LiveEditor = dynamic(() => import("./live-editor"), {
+//   ssr: false,
+// });
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import {
   CarouselItem,
@@ -24,6 +34,10 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command";
+import DNDCont from "./dnd-context";
+import prisma from "@/lib/prismadb";
+import { toast } from "sonner";
+import { changeFeatListOrder } from "../_actions";
 
 const svgs = [
   {
@@ -32,9 +46,45 @@ const svgs = [
   },
 ];
 
-const FeaturedBlogList = ({ data, editable }) => {
-  // const editFeaturedBlogs = await prisma.
+const Carouse = ({ data, featListId, editable }) => {
+  const [languages, setLanguages] = useState(data);
+  // const da = languages.map((el) => el.id);
 
+  async function handleDragEnd(event) {
+    // console.log("eeee", event);
+    // console.log("Drag end called");
+    const { active, over } = event;
+    // console.log("ACTIVE: " + active.id);
+    // console.log("OVER :" + over.id);
+
+    if (active.id !== over.id) {
+      setLanguages((items) => {
+        const activeIndex = items.findIndex((item) => item.id === active.id);
+        const overIndex = items.findIndex((item) => item.id === over.id);
+        // return arrayMove(items, activeIndex, overIndex);
+        // const activeIndex = items.indexOf(active.id);
+        // const overIndex = items.indexOf(over.id);
+        // console.log(arrayMove(items, activeIndex, overIndex));
+        // console.log();
+        // const newOrder = arrayMove(items, activeIndex, overIndex);
+
+        const op = async () => {
+          const newOrder = arrayMove(items, activeIndex, overIndex)
+            .map((el) => el.id)
+            .toString();
+
+          const res = await changeFeatListOrder(featListId, newOrder);
+          if (res.ok) {
+            toast("Yeyyy");
+          }
+        };
+        op();
+        return arrayMove(items, activeIndex, overIndex);
+        // items: [2, 3, 1]   0  -> 2
+        // [1, 2, 3] oldIndex: 0 newIndex: 2  -> [2, 3, 1]
+      });
+    }
+  }
   return (
     <Carousel className="relative  w-full max-w-6xl mx-auto px-12 border border-dashed">
       {editable && (
@@ -42,21 +92,47 @@ const FeaturedBlogList = ({ data, editable }) => {
           <DialogTrigger className="absolute -top-10 right-0 rounded-full border bg-gray-900 px-3 py-1">
             Edit Blog List
           </DialogTrigger>
-          <DialogContent>
-            <Command>
-              <CommandInput placeholder="Type a command or search..." />
-              <div className="my-4 px-2">Select max 3 blog posts</div>
-              <CommandList>
-                {!data.length && (
-                  <div className="p-5 text-center">
-                    No featured Blog posts found!
-                  </div>
-                )}
-                {data?.map((el, idx) => {
-                  return <CommandItem key={idx}>{el.title}</CommandItem>;
-                })}
-              </CommandList>
-            </Command>
+          <DialogContent className="w-[90%] max-w-xl min-h-min p-10">
+            <div>Arange how the featured Post should appear</div>
+            <DndContext
+              collisionDetection={closestCenter}
+              onDragEnd={handleDragEnd}
+            >
+              <div>
+                {/* <h3>The best programming languages!</h3> */}
+                <SortableContext
+                  // items={languages}
+                  items={languages.map((language) => language.id)}
+                  strategy={verticalListSortingStrategy}
+                >
+                  {/* We need components that use the useSortable hook */}
+                  {languages.map((language) => (
+                    <SortableItem
+                      key={language.id}
+                      id={language.id}
+                      title={language.title || "aaaa"}
+                      className="border my-2 p-3 truncate"
+                    />
+                  ))}
+                </SortableContext>
+              </div>
+            </DndContext>
+
+            {/* {
+                  JSON.parse(post.content).find((el) => el.type === "heading")
+                    ?.content[0]?.text
+                } */}
+            {/* {data?.map((post, idx) => {
+                  return (
+                    <CommandItem key={idx} className="truncate line-clamp-1">
+                      {
+                        JSON.parse(post.content).find(
+                          (el) => el.type === "heading"
+                        )?.content[0]?.text
+                      }
+                    </CommandItem>
+                  );
+                })} */}
           </DialogContent>
         </Dialog>
       )}
@@ -145,4 +221,4 @@ const FeaturedBlogList = ({ data, editable }) => {
   );
 };
 
-export default FeaturedBlogList;
+export default Carouse;

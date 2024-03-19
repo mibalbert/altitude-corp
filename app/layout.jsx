@@ -29,7 +29,7 @@ export default async function RootLayout({ children }) {
         <NextAuthProvider>
           <Toaster position="bottom-center" />
           <MainNav session={session} />
-          <div className="relative">{children}</div>
+          <div className="relative ">{children}</div>
           <Footer />
         </NextAuthProvider>
         {/* <Analytics />
