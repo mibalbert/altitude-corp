@@ -59,7 +59,7 @@ export default function SignInForm() {
       // redirect: false,
     });
 
-    if (res.error) {
+    if (!res) {
       setNumTries((state) => state + 1);
       setError(res.error.split(": ")[1]);
       setPending(false);
