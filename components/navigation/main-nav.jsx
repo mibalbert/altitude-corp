@@ -46,13 +46,13 @@ const MainNav = ({ session }) => {
   const pathname = usePathname();
 
   const searchParams = useSearchParams();
-  const editors = searchParams.get("editorMode");
+  const editorMode = searchParams.get("editorMode") && isAdmin;
 
   // if (pathname.includes("/admin") || pathname.includes("/summary")) {
   //   return <></>;
   // }
 
-  const { isPreview } = usePageEditorPreview();
+  // const { isPreview } = usePageEditorPreview();
 
   if (pathname.includes("/sign-in")) {
     return (
@@ -69,7 +69,7 @@ const MainNav = ({ session }) => {
 
   return (
     <>
-      {!isPreview && (
+      {!editorMode && (
         <section
           className={cn(
             "h-14 top-0 left-0 w-full absolute  z-[999]  transition-all duration-200",

@@ -5,10 +5,10 @@ import Image from "next/image";
 import EditableComp from "../editableComp";
 
 const Hero = ({ data, isEditable }) => {
-  // const images = useMemo(
-  //   () => ["mountBg", "mountMg", "cloud2", "mountFg", "cloud1", "cloud3"],
-  //   []
-  // );
+  const images = useMemo(
+    () => ["mountBg", "mountMg", "cloud2", "mountFg", "cloud1", "cloud3"],
+    []
+  );
 
   const heroTitle = data.find((el) => el.compName === "hero-title");
   const heroSubtitle = data.find((el) => el.compName === "hero-subtitle");
@@ -16,6 +16,17 @@ const Hero = ({ data, isEditable }) => {
   return (
     <div className="lg:mb-12 px-3 sm:px-8 lg:px-12">
       <div className="relative w-full h-[75vh] overflow-hidden rounded-xl bg-blue-600 max-w-[1600px] mx-auto bg-dot-white/[0.6]">
+        {images.map((imageName, index) => (
+          <div key={index} className="absolute w-full h-full">
+            <Image
+              alt={imageName}
+              src={`https://assets.codepen.io/721952/${imageName}.png`}
+              className="object-cover object-center z-[99]"
+              width={1600}
+              height={600}
+            />
+          </div>
+        ))}
         <div className="abosolute top-1/3 w-full h-full left-0 z-50 flex flex-col items-center justify-center">
           <EditableComp isEditable={isEditable} comp={heroTitle} />
           <EditableComp isEditable={isEditable} comp={heroSubtitle} />
