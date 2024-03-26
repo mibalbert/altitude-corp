@@ -1,30 +1,34 @@
-"use client";
+// "use client";
 
 import { useMemo } from "react";
 import Image from "next/image";
+import EditableComp from "../editableComp";
 
 const Hero = ({ data }) => {
-  const images = useMemo(
-    () => ["mountBg", "mountMg", "cloud2", "mountFg", "cloud1", "cloud3"],
-    []
-  );
+  // const images = useMemo(
+  //   () => ["mountBg", "mountMg", "cloud2", "mountFg", "cloud1", "cloud3"],
+  //   []
+  // );
+
+  const heroTitle = data.find((el) => el.compName === "hero-title");
+  const heroSubtitle = data.find((el) => el.compName === "hero-subtitle");
 
   return (
     <div className="lg:mb-12 px-3 sm:px-8 lg:px-12">
       <div className="relative w-full h-[75vh] overflow-hidden rounded-xl bg-blue-600 max-w-[1600px] mx-auto bg-dot-white/[0.6]">
-        {/* <div className="absolute inset-0 flex items-center justify-center bg-blue-600 mask-image:radial-gradient(ellipse_at_center, transparent_20%,black)"></div> */}
-        <div className="abosolute top-1/3 w-full h-full left-0  z-50 flex items-center justify-center">
-          <div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl 2xl:text-8xl whitespace-nowrap font-extrabold text-center text-white">
-              {data?.heroTitle}
-            </h1>
-            <h3 className="text-2xl lg:text-4xl font-semibold text-center text-gray-200">
-              {data?.heroSubtitle}
-            </h3>
-          </div>
+        <div className="abosolute top-1/3 w-full h-full left-0 z-50 flex flex-col items-center justify-center">
+          <EditableComp isEditable={false} comp={heroTitle} />
+          <EditableComp isEditable={false} comp={heroSubtitle} />
         </div>
+      </div>
+    </div>
+  );
+};
 
-        {/* {images.map((imageName, index) => (
+export default Hero;
+
+{
+  /* {images.map((imageName, index) => (
           <div key={index} className="absolute w-full h-full">
             <Image
               alt={imageName}
@@ -34,14 +38,8 @@ const Hero = ({ data }) => {
               height={600}
             />
           </div>
-        ))} */}
-      </div>
-    </div>
-  );
-};
-
-export default Hero;
-
+        ))} */
+}
 // /**
 //  * gsap.jsx
 //  */

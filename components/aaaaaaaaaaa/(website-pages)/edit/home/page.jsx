@@ -12,6 +12,7 @@ import Plans from "@/components/admin/editor-mode/edit-landing-page/plans";
 import { InfiniteMovingCardsDemo } from "@/components/admin/editor-mode/edit-landing-page/rev";
 import Reviews from "@/components/admin/editor-mode/edit-landing-page/reviews";
 import TheSteps from "@/components/admin/editor-mode/edit-landing-page/the-steps";
+import prisma from "@/lib/prismadb";
 
 const EditHome = async () => {
   const data = await prisma.home.findMany({

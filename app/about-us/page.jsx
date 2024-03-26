@@ -19,7 +19,7 @@ import React from "react";
 // </section>
 
 const AboutUs = async () => {
-  const data = await prisma.servicesPage.findMany({});
+  // const data = await prisma.servicesPage.findMany({});
 
   return (
     <>
@@ -27,7 +27,8 @@ const AboutUs = async () => {
       <MissionStatement />
       <Values />
       <ClientsVision />
-      <ContactUsServices data={data[0]} />
+      {/* <ContactUsServices data={data[0]} /> */}
+      <ContactUsServices  />
       {/* <ContactUsInsidePage /> */}
     </>
   );

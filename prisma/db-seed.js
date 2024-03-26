@@ -13,37 +13,38 @@ async function seed() {
     await prisma.folder.deleteMany({});
     await prisma.post.deleteMany({});
     await prisma.featList.deleteMany({});
+    await prisma.pageObject.deleteMany({});
 
-    const blogPageObj = [
-      {
-        page: "blog",
-        type: "h1",
-        name: "hero-title",
-        className: "text-7xl font-serif",
-        value: "Welcome to Our Blog",
-      },
-      {
-        page: "blog",
-        type: "h3",
-        name: "hero-subtitle",
-        className: "text-lg font-sans",
-        value:
-          "Discover a world of baking delights, culinary adventures, and more.",
-      },
-      {
-        page: "blog",
-        type: "h3",
-        name: "latest-posts-title",
-        className: "text-lg font-sans",
-        value: "Here are our latest posts",
-      },
-    ];
+    // const blogPageObj = [
+    //   {
+    //     page: "blog",
+    //     type: "h1",
+    //     name: "hero-title",
+    //     className: "text-7xl font-serif",
+    //     value: "Welcome to Our Blog",
+    //   },
+    //   {
+    //     page: "blog",
+    //     type: "h3",
+    //     name: "hero-subtitle",
+    //     className: "text-lg font-sans",
+    //     value:
+    //       "Discover a world of baking delights, culinary adventures, and more.",
+    //   },
+    //   {
+    //     page: "blog",
+    //     type: "h3",
+    //     name: "latest-posts-title",
+    //     className: "text-lg font-sans",
+    //     value: "Here are our latest posts",
+    //   },
+    // ];
 
-    for (let item of blogPageObj) {
-      await prisma.pageObject.create({
-        data: item,
-      });
-    }
+    // for (let item of blogPageObj) {
+    //   await prisma.pageObject.create({
+    //     data: item,
+    //   });
+    // }
 
     await prisma.featList.create({
       data: {
@@ -173,6 +174,322 @@ async function seed() {
           ...postData,
           featList: { connect: { id: 1 } },
         },
+      });
+    }
+
+    const compObjs = [
+      {
+        page: "home",
+        type: "h1",
+        title: "ALTITUDE",
+        compName: "hero-title",
+        parentComp: "Hero",
+        className:
+          "text-4xl md:text-5xl lg:text-6xl 2xl:text-8xl whitespace-nowrap font-extrabold text-center text-white",
+      },
+      {
+        page: "home",
+        type: "h3",
+        title: "Climb Higher",
+        compName: "hero-subtitle",
+        parentComp: "Hero",
+        className:
+          "text-2xl lg:text-4xl font-semibold text-center text-gray-200",
+      },
+      {
+        page: "home",
+        type: "h2",
+        title: "Climb Higher",
+        compName: "elevator-title",
+        parentComp: "Elevator",
+        className:
+          "mb-7 text-3xl md:text-4xl xl:text-5xl text-white font-bold tracking-px-n leading-tight",
+      },
+      {
+        page: "home",
+        type: "p",
+        title: "Climb Higher",
+        compName: "elevator-subtitle",
+        parentComp: "Elevator",
+        className: "text-white text-opacity-80",
+      },
+      {
+        page: "home",
+        type: "p",
+        title: "Lorem",
+        compName: "elevator-img-title",
+        parentComp: "Elevator",
+        className:
+          "mb-3 font-sans inline-block px-3.5 py-1.5 text-xs text-white font-semibold bg-red-500 uppercase tracking-px rounded-full",
+      },
+      {
+        page: "home",
+        type: "p",
+        title: "Lorem ipsum dolor sit amet.",
+        compName: "elevator-img-subtitle",
+        parentComp: "Elevator",
+        className: "mb-3 text-xl font-bold font-heading",
+      },
+      {
+        page: "home",
+        type: "p",
+        title: "4096 nihil tenetur libero.",
+        compName: "elevator-img-bottom-text",
+        parentComp: "Elevator",
+        className: "text-sm text-gray-600 font-semibold",
+      },
+      {
+        page: "home",
+        type: "h3",
+        title: "Adipisicing elit.",
+        compName: "elevator-right-first-title",
+        parentComp: "Elevator",
+        className: "mb-5 text-2xl text-white font-bold leading-snug",
+      },
+      {
+        page: "home",
+        type: "p",
+        title: `Amet minim mollit non deserunt ullamco est sit aliqua
+        dolor do amet sint. Velit officia consequat duis enim
+        velit mollit.`,
+        compName: "elevator-right-first-subtitle",
+        parentComp: "Elevator",
+        className: "text-white text-opacity-70 font-medium leading-relaxed",
+      },
+      {
+        page: "home",
+        type: "h3",
+        title: "Adipisicing elit.",
+        compName: "elevator-right-sec-title",
+        parentComp: "Elevator",
+        className: "mb-5 text-2xl text-white font-bold leading-snug",
+      },
+      {
+        page: "home",
+        type: "p",
+        title: `Amet minim mollit non deserunt ullamco est sit aliqua
+        dolor do amet sint. Velit officia consequat duis enim
+        velit mollit.`,
+        compName: "elevator-right-sec-subtitle",
+        parentComp: "Elevator",
+        className: "text-white text-opacity-70 font-medium leading-relaxed",
+      },
+      {
+        page: "home",
+        type: "h3",
+        title: "24/7 Access",
+        compName: "elevator-right-third-title",
+        parentComp: "Elevator",
+        className: "mb-5 text-2xl text-white font-bold leading-snug",
+      },
+      {
+        page: "home",
+        type: "p",
+        title: `Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.`,
+        compName: "elevator-right-third-subtitle",
+        parentComp: "Elevator",
+        className: "text-white text-opacity-70 font-medium leading-relaxed",
+      },
+      {
+        page: "home",
+        type: "h2",
+        title: `  Enjoy peace of mind`,
+        compName: "peace-of-mind-title",
+        parentComp: "PeaceOfMind",
+        className:
+          "mb-20 text-3xl md:text-4xl xl:text-5xl font-bold font-heading tracking-px-n leading-none",
+      },
+      {
+        page: "home",
+        type: "h3",
+        title: ` Amet minim mollit non deserunt ullamco est sit aliqua dolor do
+        amet sint. Velit officia consequat duis enim velit mollit.
+        Exercitation veniam consequat.
+      `,
+        compName: "peace-of-mind-subtitle",
+        parentComp: "PeaceOfMind",
+        className: "text-lg font-semibold md:max-w-lg",
+      },
+      {
+        page: "home",
+        type: "h3",
+        title: `24/7 Secure Access`,
+        compName: "peace-of-mind-right-first-title",
+        parentComp: "PeaceOfMind",
+        className: "mb-4 text-lg text-blue-600 font-semibold",
+      },
+      {
+        page: "home",
+        type: "p",
+        title: `Amet minim mollit non deserunt ullamco est sit aliqua
+        dolor do amet sint.`,
+        compName: "peace-of-mind-right-first-subtitle",
+        parentComp: "PeaceOfMind",
+        className: "text-gray-900 font-medium",
+      },
+      {
+        page: "home",
+        type: "h3",
+        title: `Access Logs`,
+        compName: "peace-of-mind-right-sec-title",
+        parentComp: "PeaceOfMind",
+        className: "mb-4 text-lg text-blue-600 font-semibold",
+      },
+      {
+        page: "home",
+        type: "p",
+        title: `Amet minim mollit non deserunt ullamco est sit aliqua
+        dolor do amet sint.`,
+        compName: "peace-of-mind-right-sec-subtitle",
+        parentComp: "PeaceOfMind",
+        className: "text-gray-900 font-medium",
+      },
+      {
+        page: "home",
+        type: "p",
+        title: `Suscipit sunt facilis aliquam.`,
+        compName: "numbers-title",
+        parentComp: "Numbers",
+        className:
+          "pb-16 text-3xl md:text-4xl xl:text-5xl text-white font-bold tracking-px-n leading-none md:max-w-3xl",
+      },
+      {
+        page: "home",
+        type: "p",
+        title: `Satisfied Clients`,
+        compName: "numbers-first-title",
+        parentComp: "Numbers",
+        className: "mb-6 text-gray-200 font-semibold leading-normal",
+      },
+      {
+        page: "home",
+        type: "h3",
+        title: `84,900`,
+        compName: "numbers-first-number",
+        parentComp: "Numbers",
+        className:
+          "mb-4 text-3xl md:text-4xl xl:text-5xl text-white font-bold tracking-px-n leading-none",
+      },
+      {
+        page: "home",
+        type: "p",
+        title: `    Qui iure voluptatem quam 15k+ users.`,
+        compName: "numbers-first-desc",
+        parentComp: "Numbers",
+        className: "text-gray-300 font-medium leading-relaxed md:w-56",
+      },
+      {
+        page: "home",
+        type: "p",
+        title: `Satisfied Clients`,
+        compName: "numbers-sec-title",
+        parentComp: "Numbers",
+        className: "mb-6 text-gray-200 font-semibold leading-normal",
+      },
+      {
+        page: "home",
+        type: "h3",
+        title: `3.2M+`,
+        compName: "numbers-sec-number",
+        parentComp: "Numbers",
+        className:
+          "mb-4 text-3xl md:text-4xl xl:text-5xl text-white font-bold tracking-px-n leading-none",
+      },
+      {
+        page: "home",
+        type: "p",
+        title: `  Qui iure voluptatem quam 15k+ users.`,
+        compName: "numbers-sec-desc",
+        parentComp: "Numbers",
+        className: "text-gray-300 font-medium leading-relaxed md:w-56",
+      },
+      {
+        page: "home",
+        type: "p",
+        title: `Customer Reviews`,
+        compName: "numbers-third-title",
+        parentComp: "Numbers",
+        className: "mb-6 text-gray-200 font-semibold leading-normal",
+      },
+      {
+        page: "home",
+        type: "h3",
+        title: `21,394`,
+        compName: "numbers-third-number",
+        parentComp: "Numbers",
+        className:
+          "mb-4 text-3xl md:text-4xl xl:text-5xl text-white font-bold tracking-px-n leading-none",
+      },
+      {
+        page: "home",
+        type: "p",
+        title: `Qui iure voluptatem quam 15k+ users.`,
+        compName: "numbers-third-desc",
+        parentComp: "Numbers",
+        className: "text-gray-300 font-medium leading-relaxed md:w-56",
+      },
+      {
+        page: "home",
+        type: "h1",
+        title: `   Start protecting your bussiness reveneue`,
+        compName: "landing-footer-title",
+        parentComp: "LandingFooter",
+        className:
+          "mb-16 text-3xl md:text-4xl lg:text-5xl text-white font-bold tracking-px-n leading-tight",
+      },
+      {
+        page: "home",
+        type: "p",
+        title: `Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+        Voluptatem quis nam tenetur itaque.`,
+        compName: "landing-footer-text",
+        parentComp: "LandingFooter",
+        className:
+          "text-sm text-white text-opacity-50 font-medium leading-relaxed",
+      },
+    ];
+
+    for (const item of compObjs) {
+      await prisma.pageObject.create({
+        data: item,
+      });
+    }
+    const rev = [
+      {
+        author: "John Snow",
+        quote: "A fantastic product!",
+        company: "Winterfell Co.",
+      },
+      {
+        author: "Jack Sparrow",
+        quote: "The best I've ever used, matey!",
+        company: "Black Pearl Ltd.",
+      },
+      {
+        author: "Koko Banana",
+        quote: "Absolutely delicious and nutritious!",
+        company: "Fruit Kingdom Inc.",
+      },
+      {
+        author: "Opopo Iousef",
+        quote: "Changed my life, highly recommend.",
+        company: "Tech Innovations",
+      },
+      {
+        author: "Julien King",
+        quote: "Incredible service and quality.",
+        company: "Royal Enterprises",
+      },
+      {
+        author: "Wharp Fute",
+        quote: "Superb craftsmanship, exceeded my expectations.",
+        company: "Artisan Works",
+      },
+    ];
+
+    for (let review of rev) {
+      await prisma.reviews.create({
+        data: review,
       });
     }
 

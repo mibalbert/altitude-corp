@@ -12,11 +12,11 @@ const BlogsPageHero = ({ data, editable }) => {
         <div className="text-center space-y-2">
           {!editable ? (
             <span className="text-4xl font-bold tracking-tighter font-serif text-center p-0 m-0 sm:text-5xl md:text-5xl lg:text-6xl bg-transparent ">
-              {data?.find((el) => el.name === "hero-title").value}
+              {data?.find((el) => el.compName === "hero-title")}
             </span>
           ) : (
             <ContentEditable
-              data={data?.find((el) => el.name === "hero-title")}
+              data={data?.find((el) => el.compName === "hero-title")}
             />
           )}
           <pre className="mx-auto max-w-[700px] text-gray-200 md:text-xl ">

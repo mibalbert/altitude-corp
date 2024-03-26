@@ -1,7 +1,15 @@
 import Image from "next/image";
 import React from "react";
+import EditableComp from "../editableComp";
 
-const LandingFooter = () => {
+const LandingFooter = ({ data }) => {
+  const landingFooterTitle = data?.find(
+    (el) => el.compName === "landing-footer-title"
+  );
+  const landingFooterText = data?.find(
+    (el) => el.compName === "landing-footer-text"
+  );
+
   return (
     <section className="relative pt-28 pb-32 bg-blue-600 overflow-hidden px-8 md:px-10">
       <Image
@@ -15,9 +23,7 @@ const LandingFooter = () => {
         <div className="flex flex-wrap -m-8">
           <div className="w-full sm:w-1/2 xl:w-2/3">
             <div className="lg:max-w-sm">
-              <h2 className="mb-16 text-3xl md:text-4xl lg:text-5xl text-white font-bold tracking-px-n leading-tight">
-                Start protecting your bussiness reveneue
-              </h2>
+              <EditableComp isEditable={false} comp={landingFooterTitle} />
               <div className="md:inline-block">
                 <button
                   className="py-4 px-6 w-full text-blue-600 font-semibold rounded-xl shadow-4xl focus:ring focus:ring-blue-300 bg-white hover:bg-gray-50 transition ease-in-out duration-200"
@@ -33,104 +39,69 @@ const LandingFooter = () => {
               <div className="w-full sm:w-1/3 p-8">
                 <ul>
                   <li className="mb-3.5">
-                    <a
-                      className="text-white hover:text-gray-200 font-medium leading-relaxed"
-                      href="#"
-                    >
+                    <h3 className="text-white hover:text-gray-200 font-medium leading-relaxed">
                       Germany
-                    </a>
+                    </h3>
                   </li>
                   <li className="mb-3.5">
-                    <a
-                      className="text-white hover:text-gray-200 font-medium leading-relaxed"
-                      href="#"
-                    >
+                    <h3 className="text-white hover:text-gray-200 font-medium leading-relaxed">
                       United Kingdom
-                    </a>
+                    </h3>
                   </li>
                   <li className="mb-3.5">
-                    <a
-                      className="text-white hover:text-gray-200 font-medium leading-relaxed"
-                      href="#"
-                    >
+                    <h3 className="text-white hover:text-gray-200 font-medium leading-relaxed">
                       Spain
-                    </a>
+                    </h3>
                   </li>
                   <li>
-                    <a
-                      className="text-white hover:text-gray-200 font-medium leading-relaxed"
-                      href="#"
-                    >
+                    <h3 className="text-white hover:text-gray-200 font-medium leading-relaxed">
                       United States
-                    </a>
+                    </h3>
                   </li>
                 </ul>
               </div>
               <div className="w-full sm:w-1/3 p-8">
                 <ul>
                   <li className="mb-3.5">
-                    <a
-                      className="text-white hover:text-gray-200 font-medium leading-relaxed"
-                      href="#"
-                    >
+                    <h3 className="text-white hover:text-gray-200 font-medium leading-relaxed">
                       Italy
-                    </a>
+                    </h3>
                   </li>
                   <li className="mb-3.5">
-                    <a
-                      className="text-white hover:text-gray-200 font-medium leading-relaxed"
-                      href="#"
-                    >
+                    <h3 className="text-white hover:text-gray-200 font-medium leading-relaxed">
                       Morocco
-                    </a>
+                    </h3>
                   </li>
                   <li>
-                    <a
-                      className="text-white hover:text-gray-200 font-medium leading-relaxed"
-                      href="#"
-                    >
+                    <h3 className="text-white hover:text-gray-200 font-medium leading-relaxed">
                       Malaga
-                    </a>
+                    </h3>
                   </li>
                 </ul>
               </div>
               <div className="w-full sm:w-1/3 p-8">
                 <ul>
                   <li className="mb-3.5">
-                    <a
-                      className="text-white hover:text-gray-200 font-medium leading-relaxed"
-                      href="#"
-                    >
+                    <h3 className="text-white hover:text-gray-200 font-medium leading-relaxed">
                       Indonesia
-                    </a>
+                    </h3>
                   </li>
                   <li className="mb-3.5">
-                    <a
-                      className="text-white hover:text-gray-200 font-medium leading-relaxed"
-                      href="#"
-                    >
+                    <h3 className="text-white hover:text-gray-200 font-medium leading-relaxed">
                       {" "}
                       Japan
-                    </a>
+                    </h3>
                   </li>
                   <li>
-                    <a
-                      className="text-white hover:text-gray-200 font-medium leading-relaxed"
-                      href="#"
-                    >
+                    <h3 className="text-white hover:text-gray-200 font-medium leading-relaxed">
                       Canada
-                    </a>
+                    </h3>
                   </li>
                 </ul>
               </div>
             </div>
-            <a
-              className="text-sm text-white text-opacity-50 font-medium leading-relaxed"
-              href="https://www.pixelrocket.store"
-            >
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Voluptatem quis nam tenetur itaque.
-            </a>
+            <EditableComp isEditable={false} comp={landingFooterText} />
+           
           </div>
         </div>
       </div>

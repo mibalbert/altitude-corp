@@ -12,10 +12,12 @@ const ServicesSecSection = ({ data }) => {
         <div className="grid lg:grid-cols-6   items-center w-full h-full ">
           <div className="space-y-6 py-6 flex w-full h-full  flex-col justify-center  col-span-6 lg:col-span-3">
             <h1 className="text-3xl md:text-6xl font-bold">
-              {data?.servicesPageHeroTitle}
+              {/* {data?.servicesPageHeroTitle} */}
+              Servoces
             </h1>
             <p className="text-lg md:text-xl">
-              {data?.servicesPageHeroSubtitle}
+              {/* {data?.servicesPageHeroSubtitle} */}
+              Lorem ipsum dolor sit amet.
             </p>
           </div>
           <div className=" col-span-6 lg:col-span-3   mx-auto w-full    md:max-w-[100%]">

@@ -1,7 +1,35 @@
 import Image from "next/image";
 import React from "react";
+import EditableComp from "../editableComp";
 
-const Numbers = () => {
+const Numbers = ({ data }) => {
+  const numbersTitle = data?.find((el) => el.compName === "numbers-title");
+  const numbersFirstTitle = data?.find(
+    (el) => el.compName === "numbers-first-title"
+  );
+  const numbersFirstNumber = data?.find(
+    (el) => el.compName === "numbers-first-number"
+  );
+  const numbersFirstDesc = data?.find(
+    (el) => el.compName === "numbers-first-desc"
+  );
+  const numbersSecTitle = data?.find(
+    (el) => el.compName === "numbers-sec-title"
+  );
+  const numbersSecNumber = data?.find(
+    (el) => el.compName === "numbers-sec-number"
+  );
+  const numbersSecDesc = data?.find((el) => el.compName === "numbers-sec-desc");
+  const numbersThirdTitle = data?.find(
+    (el) => el.compName === "numbers-third-title"
+  );
+  const numbersThirdNumber = data?.find(
+    (el) => el.compName === "numbers-third-number"
+  );
+  const numbersThirdDesc = data?.find(
+    (el) => el.compName === "numbers-third-desc"
+  );
+
   return (
     <section className="relative pt-28 pb-32 bg-blue-600 overflow-hidden">
       <Image
@@ -13,43 +41,24 @@ const Numbers = () => {
       />
       <div className="relative z-10 container px-4 mx-auto">
         <div className="mb-16 border-b border-white border-opacity-30">
-          <h2 className="pb-16 text-3xl md:text-4xl xl:text-5xl text-white font-bold tracking-px-n leading-none md:max-w-3xl">
-            Suscipit sunt facilis aliquam.
-          </h2>
+          {" "}
+          <EditableComp isEditable={false} comp={numbersTitle} />
         </div>
         <div className="flex flex-wrap -m-8">
           <div className="w-full md:w-1/3 p-8">
-            <p className="mb-6 text-gray-200 font-semibold leading-normal">
-              Satisfied Clients
-            </p>
-            <h3 className="mb-4 text-3xl md:text-4xl xl:text-5xl text-white font-bold tracking-px-n leading-none">
-              84,900
-            </h3>
-            <p className="text-gray-300 font-medium leading-relaxed md:w-56">
-              Qui iure voluptatem quam 15k+ users.
-            </p>
+            <EditableComp isEditable={false} comp={numbersFirstTitle} />
+            <EditableComp isEditable={false} comp={numbersFirstNumber} />
+            <EditableComp isEditable={false} comp={numbersFirstDesc} />
           </div>
           <div className="w-full md:w-1/3 p-8">
-            <p className="mb-6 text-gray-200 font-semibold leading-normal">
-              Libero sunt
-            </p>
-            <h3 className="mb-4 text-3xl md:text-4xl xl:text-5xl text-white font-bold tracking-px-n leading-none">
-              3.2M+
-            </h3>
-            <p className="text-gray-300 font-medium leading-relaxed md:w-56">
-              Qui iure voluptatem quam 15k+ users.
-            </p>
+            <EditableComp isEditable={false} comp={numbersSecTitle} />
+            <EditableComp isEditable={false} comp={numbersSecNumber} />
+            <EditableComp isEditable={false} comp={numbersSecDesc} />
           </div>
           <div className="w-full md:w-1/3 p-8">
-            <p className="mb-6 text-gray-200 font-semibold leading-normal">
-              Customer Reviews
-            </p>
-            <h3 className="mb-4 text-3xl md:text-4xl xl:text-5xl text-white font-bold tracking-px-n leading-none">
-              21,394
-            </h3>
-            <p className="text-gray-300 font-medium leading-relaxed md:w-56">
-              Qui iure voluptatem quam 15k+ users.
-            </p>
+            <EditableComp isEditable={false} comp={numbersThirdTitle} />
+            <EditableComp isEditable={false} comp={numbersThirdNumber} />
+            <EditableComp isEditable={false} comp={numbersThirdDesc} />
           </div>
         </div>
       </div>

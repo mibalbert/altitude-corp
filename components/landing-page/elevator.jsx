@@ -1,19 +1,50 @@
 import Image from "next/image";
 import React from "react";
+import EditableComp from "../editableComp";
 
 const Elevator = ({ data }) => {
+  const elevatorTitle = data?.find((el) => el.compName === "elevator-title");
+  const elevatorSubtitle = data?.find(
+    (el) => el.compName === "elevator-subtitle"
+  );
+  const elevatorImgTitle = data?.find(
+    (el) => el.compName === "elevator-img-title"
+  );
+  const elevatorImgSubtitle = data?.find(
+    (el) => el.compName === "elevator-img-subtitle"
+  );
+  const elevatorImgBottomText = data?.find(
+    (el) => el.compName === "elevator-img-bottom-text"
+  );
+  // const elevatorSubtitle = data.find(el=>el.compName === "elevator-subtitle")
+
+  const elevatorRightFirstTitle = data?.find(
+    (el) => el.compName === "elevator-right-first-title"
+  );
+  const elevatorRightFirstSubtitle = data?.find(
+    (el) => el.compName === "elevator-right-first-subtitle"
+  );
+  const elevatorRightSecTitle = data?.find(
+    (el) => el.compName === "elevator-right-sec-title"
+  );
+  const elevatorRightSecSubtitle = data?.find(
+    (el) => el.compName === "elevator-right-sec-subtitle"
+  );
+  const elevatorRightThirdTitle = data?.find(
+    (el) => el.compName === "elevator-right-third-title"
+  );
+  const elevatorRightThirdSubtitle = data?.find(
+    (el) => el.compName === "elevator-right-third-subtitle"
+  );
+
   return (
     <section className="py-[10rem] bg-blue-600 overflow-hidden">
       <div className="container px-4 mx-auto">
         <div className="flex flex-wrap -m-8">
           <div className="w-full md:w-1/2 lg:w-1/3 p-8">
             <div className="xl:pt-12">
-              <h2 className="mb-7 text-3xl md:text-4xl xl:text-5xl text-white font-bold tracking-px-n leading-tight">
-                {data.elevatorTitle}
-              </h2>
-              <p className="text-white text-opacity-80">
-                {data.elevatorSubtitle}
-              </p>
+              <EditableComp isEditable={false} comp={elevatorTitle} />
+              <EditableComp isEditable={false} comp={elevatorSubtitle} />
             </div>
           </div>
           <div className="w-full md:w-1/2 lg:w-1/3 p-8">
@@ -29,15 +60,12 @@ const Elevator = ({ data }) => {
                   className="absolute bottom-0 left-0 bg-white bg-opacity-30 backdrop-blur-xl py-8 px-9"
                   style={{ backdropFilter: "blur(10px)" }}
                 >
-                  <p className="mb-3 font-sans inline-block px-3.5 py-1.5 text-xs text-white font-semibold bg-red-500 uppercase tracking-px rounded-full">
-                    Lorem
-                  </p>
-                  <h3 className="mb-3 text-xl font-bold font-heading">
-                    Lorem ipsum dolor sit amet.
-                  </h3>
-                  <p className="text-sm text-gray-600 font-semibold">
-                    4096 nihil tenetur libero.
-                  </p>
+                  <EditableComp isEditable={false} comp={elevatorImgTitle} />
+                  <EditableComp isEditable={false} comp={elevatorImgSubtitle} />
+                  <EditableComp
+                    isEditable={false}
+                    comp={elevatorImgBottomText}
+                  />
                 </div>
               </div>
             </div>
@@ -47,14 +75,14 @@ const Elevator = ({ data }) => {
               <div className="flex flex-wrap self-end -m-10">
                 <div className="w-full p-10">
                   <div className="md:max-w-sm">
-                    <h3 className="mb-5 text-2xl text-white font-bold leading-snug">
-                      Adipisicing elit.
-                    </h3>
-                    <p className="text-white text-opacity-70 font-medium leading-relaxed">
-                      Amet minim mollit non deserunt ullamco est sit aliqua
-                      dolor do amet sint. Velit officia consequat duis enim
-                      velit mollit.
-                    </p>
+                    <EditableComp
+                      isEditable={false}
+                      comp={elevatorRightFirstTitle}
+                    />
+                    <EditableComp
+                      isEditable={false}
+                      comp={elevatorRightFirstSubtitle}
+                    />
                   </div>
                 </div>
                 <div className="w-full px-10">
@@ -62,14 +90,14 @@ const Elevator = ({ data }) => {
                 </div>
                 <div className="w-full p-10">
                   <div className="md:max-w-sm">
-                    <h3 className="mb-5 text-2xl text-white font-bold leading-snug">
-                      Adipisicing elit.
-                    </h3>
-                    <p className="text-white text-opacity-70 font-medium leading-relaxed">
-                      Amet minim mollit non deserunt ullamco est sit aliqua
-                      dolor do amet sint. Velit officia consequat duis enim
-                      velit mollit.
-                    </p>
+                    <EditableComp
+                      isEditable={false}
+                      comp={elevatorRightSecTitle}
+                    />
+                    <EditableComp
+                      isEditable={false}
+                      comp={elevatorRightSecSubtitle}
+                    />
                   </div>
                 </div>
                 <div className="w-full px-10">
@@ -77,14 +105,14 @@ const Elevator = ({ data }) => {
                 </div>
                 <div className="w-full p-10">
                   <div className="md:max-w-sm">
-                    <h3 className="mb-5 text-2xl text-white font-bold leading-snug">
-                      24/7 Access
-                    </h3>
-                    <p className="text-white text-opacity-70 font-medium leading-relaxed">
-                      Amet minim mollit non deserunt ullamco est sit aliqua
-                      dolor do amet sint. Velit officia consequat duis enim
-                      velit mollit.
-                    </p>
+                    <EditableComp
+                      isEditable={false}
+                      comp={elevatorRightThirdTitle}
+                    />
+                    <EditableComp
+                      isEditable={false}
+                      comp={elevatorRightThirdSubtitle}
+                    />
                   </div>
                 </div>
               </div>

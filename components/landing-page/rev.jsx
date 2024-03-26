@@ -7,7 +7,7 @@
 import { useMediaQuery } from "usehooks-ts";
 import { InfiniteMovingCards } from "../ui/infinite-moving-cards";
 
-export function InfiniteMovingReviewCards({ reviews }) {
+export function InfiniteMovingReviewCards({ data }) {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   return (
@@ -17,14 +17,16 @@ export function InfiniteMovingReviewCards({ reviews }) {
       </h1>
       <div className="h-[30rem] lg:h-auto   w-full mx-auto     flex flex-col antialiased bg-white   items-center justify-center relative overflow-hidden">
         <InfiniteMovingCards
-          items={reviews}
+          items={data}
           direction="right"
-          speed={isMobile ? "fast" : "slow"}
+          speed={"slow"}
+          // speed={isMobile ? "fast" : "slow"}
         />
         <InfiniteMovingCards
-          items={reviews}
+          items={data}
           direction="left"
-          speed={isMobile ? "fast" : "slow"}
+          speed={"slow"}
+          // speed={isMobile ? "fast" : "slow"}
         />
       </div>
     </div>

@@ -276,12 +276,12 @@ generator client {
 }
 
 datasource db {
-  // provider = "mysql"
-  // url = env("DATABASE_URL")
+  provider = "postgres"
+  url = env("DATABASE_URL")
   // relationMode = "prisma"
-  provider = "sqlite"
-  url = "file:./db-file"
-  relationMode = "prisma"
+  // provider = "sqlite"
+  // url = "file:./db-file"
+  // relationMode = "prisma"
 }
 
 model Account {
@@ -337,21 +337,13 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-model Home {
-  id               Int       @id @default(autoincrement())
-  reviews          Review[]  @relation("HomeToReview")
-}
 
 
-model Review {
+model Reviews {
   id            Int       @id @default(autoincrement())
   author        String?
   quote String?   
   company String?
-  home          Home?     @relation("HomeToReview", fields: [homeId], references: [id])
-  homeId        Int?
-
-  @@index([homeId])
 }
 
 
@@ -404,9 +396,12 @@ model PageObject {
   id        Int      @id @default(autoincrement())
   page      String?
   type      String?
-  name      String?
+  title     String?
+  compName   String?
   className String?
   value     String?
+  parentComp String? 
+
 
   @@map("page_object") // Specify the database table name if needed
 }

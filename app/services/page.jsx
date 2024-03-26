@@ -71,16 +71,16 @@ const servicesData = [
 ];
 
 const Services = async () => {
-  const data = await prisma.servicesPage.findMany({});
+  // const data = await prisma.servicesPage.findMany({});
   return (
     // <div className="bg-white pt-12 xl:pt-16  2xl:pt-20   ">
     <div className="">
       {/* <Waves /> */}
       <ServicesHero />
-      <ServicesSecSection data={data[0]} />
-      <ServicesCarousel servicesData={servicesData} data={data[0]} />
-      <Steps data={data[0]} />
-      <ContactUsServices data={data[0]} />
+      <ServicesSecSection />
+      <ServicesCarousel servicesData={servicesData} />
+      <Steps />
+      <ContactUsServices />
     </div>
   );
 };

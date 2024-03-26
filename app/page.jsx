@@ -33,21 +33,29 @@ export default async function Home() {
       page: "home",
     },
   });
+  const reviews = await prisma.reviews.findMany();
 
+  const heroComp = compObj.filter((el) => el.parentComp === "Hero");
+  const elevatorComp = compObj.filter((el) => el.parentComp === "Elevator");
+  const peaceOfMindComp = compObj.filter(
+    (el) => el.parentComp === "PeaceOfMind"
+  );
+  const numbersComp = compObj.filter((el) => el.parentComp === "Numbers");
+  // const stepsComp = compObj.filter((el) => el.parentComp === "Steps");
+  const plansComp = compObj.filter((el) => el.parentComp === "Plans");
+  const landingFooterComp = compObj.filter(
+    (el) => el.parentComp === "LandingFooter"
+  );
   return (
     <section className="bg-white pt-16  xl:pt-20 ">
-      {/* <Hero data={data[0]} /> */}
-      {/* <NewHero /> */}
-      {/* <HomeLatestPosts /> */}
-      {/* <InfiniteMovingReviewCards reviews={data[0].reviews} />
-      <Elevator data={data[0]} />
-      <PeaceOfMind data={data[0]} />
-      <Numbers data={data[0]} />
-      <TheSteps data={data[0]} /> */}
-      {/* <Plans data={data[0]} /> */}
-      {/* <Reviews data={data[0]} /> */}
-      {/* <LandingFooter data={data[0]} />
-       */}
+      <Hero data={heroComp} />
+      <InfiniteMovingReviewCards data={reviews} />
+      <Elevator data={elevatorComp} />
+      <PeaceOfMind data={peaceOfMindComp} />
+      <Numbers data={numbersComp} />
+      {/* <TheSteps data={stepsComp} /> */}
+      <Plans data={plansComp} />
+      <LandingFooter data={landingFooterComp} />
       <ContactUsInsidePage />
     </section>
   );
