@@ -32,12 +32,12 @@ const svgs = [
   },
 ];
 
-const FeaturedBlogList = ({ data, editable }) => {
+const FeaturedBlogList = ({ data, isEditable }) => {
   // const editFeaturedBlogs = await prisma.
 
   return (
     <Carousel className="relative  w-full max-w-6xl mx-auto px-12 border border-dashed">
-      {editable && (
+      {isEditable && (
         <Dialog>
           <DialogTrigger className="absolute -top-10 right-0 rounded-full border bg-gray-900 px-3 py-1">
             Edit Blog List

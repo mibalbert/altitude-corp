@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import Image from "next/image";
 import EditableComp from "../editableComp";
 
-const Hero = ({ data }) => {
+const Hero = ({ data, isEditable }) => {
   // const images = useMemo(
   //   () => ["mountBg", "mountMg", "cloud2", "mountFg", "cloud1", "cloud3"],
   //   []
@@ -17,8 +17,8 @@ const Hero = ({ data }) => {
     <div className="lg:mb-12 px-3 sm:px-8 lg:px-12">
       <div className="relative w-full h-[75vh] overflow-hidden rounded-xl bg-blue-600 max-w-[1600px] mx-auto bg-dot-white/[0.6]">
         <div className="abosolute top-1/3 w-full h-full left-0 z-50 flex flex-col items-center justify-center">
-          <EditableComp isEditable={false} comp={heroTitle} />
-          <EditableComp isEditable={false} comp={heroSubtitle} />
+          <EditableComp isEditable={isEditable} comp={heroTitle} />
+          <EditableComp isEditable={isEditable} comp={heroSubtitle} />
         </div>
       </div>
     </div>

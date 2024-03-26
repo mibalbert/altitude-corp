@@ -14,19 +14,31 @@ import Plans from "@/components/landing-page/plans";
 import { InfiniteMovingReviewCards } from "@/components/landing-page/rev";
 import Reviews from "@/components/landing-page/reviews";
 import TheSteps from "@/components/landing-page/the-steps";
+import { authOptions } from "@/lib/auth-options";
 import prisma from "@/lib/prismadb";
+import { getServerSession } from "next-auth";
 
 export const metadata = {
   title: "ALTITUDE CORP | Home",
   description: "Best company to help you grow",
 };
 
-export default async function Home() {
+export default async function Home({ searchParams }) {
   // const data = await prisma.home.findMany({
   //   include: {
   //     reviews: true,
   //   },
   // });
+
+  let isEditable = false;
+
+  console.log("Search Params", searchParams.editorMode);
+
+  const session = await getServerSession(authOptions);
+
+  if (session?.user?.role === "ADMIN" && searchParams.editorMode) {
+    isEditable = true;
+  }
 
   const compObj = await prisma.pageObject.findMany({
     where: {
@@ -46,9 +58,10 @@ export default async function Home() {
   const landingFooterComp = compObj.filter(
     (el) => el.parentComp === "LandingFooter"
   );
+
   return (
     <section className="bg-white pt-16  xl:pt-20 ">
-      <Hero data={heroComp} />
+      <Hero data={heroComp} isEditable={isEditable} />
       <InfiniteMovingReviewCards data={reviews} />
       <Elevator data={elevatorComp} />
       <PeaceOfMind data={peaceOfMindComp} />

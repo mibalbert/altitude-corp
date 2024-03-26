@@ -10,7 +10,7 @@ export async function changeValueOfObj(objId, newValue) {
         id: objId,
       },
       data: {
-        value: newValue,
+        title: newValue,
       },
     });
 

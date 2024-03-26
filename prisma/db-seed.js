@@ -447,6 +447,15 @@ async function seed() {
         className:
           "text-sm text-white text-opacity-50 font-medium leading-relaxed",
       },
+      {
+        page: "blog",
+        type: "h1",
+        title: `View Our Latest Blogs`,
+        compName: "hero-title",
+        parentComp: "Hero",
+        className:
+          "text-4xl font-bold tracking-tighter font-serif text-center p-0 m-0 sm:text-5xl md:text-5xl lg:text-6xl bg-transparent ",
+      },
     ];
 
     for (const item of compObjs) {

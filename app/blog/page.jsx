@@ -27,7 +27,7 @@ export const metadata = {
 };
 
 const Blog = async ({ searchParams }) => {
-  const pageObj = await prisma.PageObject.findMany({
+  const pageObj = await prisma.pageObject.findMany({
     where: {
       page: "blog",
     },
@@ -42,16 +42,18 @@ const Blog = async ({ searchParams }) => {
   const session = await getServerSession(authOptions);
   const isEditable = session?.user.role === "ADMIN";
 
+  const heroData = pageObj.filter((el) => el.parentComp === "Hero");
+  // const
   return (
     <section className="">
       <div className="bg-gradient-to-br from-blue-400  from-[10%] via-blue-600 via-[40%] to-blue-500 to-[95%]  py-32 space-y-20">
         <BlogsPageHero
-          data={pageObj}
-          editable={isEditable && searchParams?.editorMode}
+          data={heroData}
+          isEditable={isEditable && searchParams?.editorMode}
         />
         <FeaturedBlogList
           data={featuredBlogPosts}
-          editable={isEditable && searchParams?.editorMode}
+          isEditable={isEditable && searchParams?.editorMode}
         />
       </div>
       <LatestPostsIn data={null} latestPostsIn={latestBlogPosts} />
