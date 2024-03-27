@@ -1,13 +1,14 @@
 import React from "react";
 import EditComp from "./edit-comp";
+import { cn } from "@/lib/utils";
 
-const EditableComp = ({ isEditable, comp }) => {
+const EditableComp = ({ isEditable, comp , className}) => {
   return (
     <>
       {isEditable ? (
-        <EditComp data={comp} />
+        <EditComp data={comp} className={className}/>
       ) : comp ? (
-        <comp.type className={comp.className}>{comp.title}</comp.type>
+        <comp.type className={cn(comp.className, className)}>{comp.title}</comp.type>
       ) : null}
     </>
   );

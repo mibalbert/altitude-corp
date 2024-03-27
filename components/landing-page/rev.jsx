@@ -11,7 +11,7 @@ export function InfiniteMovingReviewCards({ data }) {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   return (
-    <div className="py-20 space-y-10">
+    <div className="py-20 space-y-5">
       <h1 className="text-2xl md:text-3xl lg:text-4xl whitespace-nowrap font-extrabold text-center  text-blue-600">
         What our customers say?
       </h1>

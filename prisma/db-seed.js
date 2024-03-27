@@ -181,11 +181,11 @@ async function seed() {
       {
         page: "home",
         type: "h1",
-        title: "ALTITUDE",
+        title: "ALTITUDE CORP",
         compName: "hero-title",
         parentComp: "Hero",
         className:
-          "text-4xl md:text-5xl lg:text-6xl 2xl:text-8xl whitespace-nowrap font-extrabold text-center text-white",
+          "text-4xl md:text-5xl  lg:text-6xl 2xl:text-8xl whitespace-nowrap font-extrabold text-center ",
       },
       {
         page: "home",
@@ -194,7 +194,7 @@ async function seed() {
         compName: "hero-subtitle",
         parentComp: "Hero",
         className:
-          "text-2xl lg:text-4xl font-semibold text-center text-gray-200",
+          "text-2xl lg:text-4xl font-semibold text-center ",
       },
       {
         page: "home",
@@ -208,7 +208,8 @@ async function seed() {
       {
         page: "home",
         type: "p",
-        title: "Climb Higher",
+        title:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus quaerat unde aliquid temporibus, vel labore magnam minima cupiditate optio repellendus!",
         compName: "elevator-subtitle",
         parentComp: "Elevator",
         className: "text-white text-opacity-80",
@@ -297,7 +298,7 @@ async function seed() {
         compName: "peace-of-mind-title",
         parentComp: "PeaceOfMind",
         className:
-          "mb-20 text-3xl md:text-4xl xl:text-5xl font-bold font-heading tracking-px-n leading-none",
+          "text-3xl md:text-4xl xl:text-5xl font-bold font-heading tracking-px-n leading-none",
       },
       {
         page: "home",

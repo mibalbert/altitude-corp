@@ -6,7 +6,7 @@ import { changeValueOfObj } from "@/app/_actions";
 import { cn } from "@/lib/utils";
 import { useEffect, useRef } from "react";
 
-const EditComp = ({ data }) => {
+const EditComp = ({ data, className }) => {
   const contentEditableRef = useRef(null);
 
   const handleValueChange = async (e) => {
@@ -36,7 +36,8 @@ const EditComp = ({ data }) => {
       }}
       className={cn(
         "border border-dashed border-gray-500  rounded-lg ",
-        data.className
+        data.className,
+        className
       )}
     />
   );

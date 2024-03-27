@@ -55,7 +55,7 @@ export const InfiniteMovingCards = ({
       } else if (speed === "normal") {
         containerRef.current.style.setProperty("--animation-duration", "40s");
       } else {
-        containerRef.current.style.setProperty("--animation-duration", "320s");
+        containerRef.current.style.setProperty("--animation-duration", "1320s");
       }
     }
   };
@@ -68,19 +68,22 @@ export const InfiniteMovingCards = ({
         className
       )}
     >
-      <div className="absolute top-0 left-0 w-[10%] h-full bg-gradient-to-r from-white/50 to-transparent z-50 "></div>
-      <div className="absolute top-0 right-0 w-[10%] h-full bg-gradient-to-l from-white/50 to-transparent z-50 "></div>
+      {/* <div className="absolute top-0 left-0 w-[10%] h-full bg-gradient-to-r from-white/50 to-transparent z-50 "></div>
+      <div className="absolute top-0 right-0 w-[10%] h-full bg-gradient-to-l from-white/50 to-transparent z-50 "></div> */}
       <ul
         ref={scrollerRef}
         className={cn(
-          " flex min-w-full shrink-0 gap-4 py-2 w-max flex-nowrap",
+          " flex min-w-full shrink-0 gap-4 py-2 w-max flex-nowrap items-center",
           start && "animate-scroll ",
           pauseOnHover && "hover:[animation-play-state:paused]"
         )}
       >
         {items.map((item, idx) => (
           <li
-            className="w-[350px] shadow-lg my-3 shadow-gray-400 max-w-full  min-h-[200px] relative rounded-2xl border border-b-0 flex-shrink-0 border-blue-700 px-8 py-6 md:w-[450px]"
+            className={cn(
+              "w-[350px] shadow-md  shadow-gray-500 max-w-full  h-[200px] relative rounded-2xl border border-b-0 flex-shrink-0 border-blue-700 px-8 py-6 md:w-[450px]"
+              // { "h-[400px]": idx % 2 }
+            )}
             style={{
               background:
                 "linear-gradient(180deg, var(--blue-600), var(--blue-700)",
