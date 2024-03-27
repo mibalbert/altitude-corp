@@ -193,8 +193,7 @@ async function seed() {
         title: "Climb Higher",
         compName: "hero-subtitle",
         parentComp: "Hero",
-        className:
-          "text-2xl lg:text-4xl font-semibold text-center ",
+        className: "text-2xl lg:text-4xl font-semibold text-center ",
       },
       {
         page: "home",
@@ -456,6 +455,39 @@ async function seed() {
         parentComp: "Hero",
         className:
           "text-4xl font-bold tracking-tighter font-serif text-center p-0 m-0 sm:text-5xl md:text-5xl lg:text-6xl bg-transparent ",
+      },
+      {
+        page: "services",
+        type: "h1",
+        title: `SERVICES`,
+        compName: "hero-title",
+        parentComp: "Hero",
+        className:
+          "text-4xl md:text-5xl  lg:text-6xl 2xl:text-8xl whitespace-nowrap font-extrabold text-center ",
+      },
+      {
+        page: "services",
+        type: "h3",
+        title: `Let's adventure together`,
+        compName: "hero-subtitle",
+        parentComp: "Hero",
+        className: "text-2xl lg:text-4xl font-semibold text-center ",
+      },
+      {
+        page: "services",
+        type: "h1",
+        title: `We cover it all`,
+        compName: "services-sec-title",
+        parentComp: "ServicesSec",
+        className: "text-3xl md:text-6xl font-bold",
+      },
+      {
+        page: "services",
+        type: "p",
+        title: `From the most basic tasks to the most challanging.....`,
+        compName: "services-sec-subtitle",
+        parentComp: "ServicesSec",
+        className: "text-lg md:text-xl",
       },
     ];
 

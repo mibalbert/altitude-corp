@@ -19,6 +19,8 @@ import prisma from "@/lib/prismadb";
 import ContactUsServices from "@/components/services/contact-us-services";
 import Waves from "@/components/animations/water";
 import ServicesHero from "@/components/services/services-hero";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth-options";
 
 export const metadata = {
   title: "ALTITUDE CORP | Services",
@@ -70,14 +72,32 @@ const servicesData = [
   },
 ];
 
-const Services = async () => {
+const Services = async ({ searchParams }) => {
   // const data = await prisma.servicesPage.findMany({});
+
+  const compObj = await prisma.pageObject.findMany({
+    where: {
+      page: "services",
+    },
+  });
+
+  let isEditable = false;
+
+  const session = await getServerSession(authOptions);
+
+  if (session?.user?.role === "ADMIN" && searchParams.editorMode) {
+    isEditable = true;
+  }
+  const heroData = compObj.filter((el) => el.parentComp === "Hero");
+  const servicesSecData = compObj.filter(
+    (el) => el.parentComp === "ServicesSec"
+  );
+
   return (
-    // <div className="bg-white pt-12 xl:pt-16  2xl:pt-20   ">
-    <div className="">
-      {/* <Waves /> */}
-      <ServicesHero />
-      <ServicesSecSection />
+    <div className=" pt-12 xl:pt-16  2xl:pt-20   ">
+      <Waves data={heroData} isEditable={isEditable} />
+      {/* <ServicesHero /> */}
+      <ServicesSecSection data={servicesSecData} isEditable={isEditable} />
       <ServicesCarousel servicesData={servicesData} />
       <Steps />
       <ContactUsServices />

@@ -39,13 +39,13 @@ const Elevator = ({ data }) => {
   );
 
   return (
-    <section className="py-20  bg-blue-600 overflow-hidden">
-      <div className="max-w-7xl mx-auto w-full h-full lg:flex lg:justify-between">
+    <section className="py-20 px-10 2xl:px-0 bg-blue-600 overflow-hidden">
+      <div className="max-w-7xl mx-auto space-y-10 lg:space-y-0 w-full h-full lg:flex lg:justify-between">
         <div className="w-full lg:w-1/2">
           <div className="flex flex-wrap h-full ">
             <div className="flex flex-wrap self-end -m-10">
               <div className="w-full p-10">
-                <div className="md:max-w-sm">
+                <div className="lg:max-w-sm">
                   <EditableComp
                     isEditable={false}
                     comp={elevatorRightFirstTitle}
@@ -57,10 +57,10 @@ const Elevator = ({ data }) => {
                 </div>
               </div>
               <div className="w-full px-10">
-                <div className="h-px bg-blue-500 md:max-w-sm" />
+                <div className="h-px bg-blue-500 lg:max-w-sm" />
               </div>
               <div className="w-full p-10">
-                <div className="md:max-w-sm">
+                <div className="lg:max-w-sm">
                   <EditableComp
                     isEditable={false}
                     comp={elevatorRightSecTitle}
@@ -72,10 +72,10 @@ const Elevator = ({ data }) => {
                 </div>
               </div>
               <div className="w-full px-10">
-                <div className="h-px bg-blue-500 md:max-w-sm" />
+                <div className="h-px bg-blue-500 lg:max-w-sm" />
               </div>
               <div className="w-full p-10">
-                <div className="md:max-w-sm ">
+                <div className="lg:max-w-sm ">
                   <EditableComp
                     isEditable={false}
                     comp={elevatorRightThirdTitle}
@@ -90,7 +90,7 @@ const Elevator = ({ data }) => {
           </div>
         </div>
         <div className="w-full lg:w-1/2 h-full flex flex-col justify-between space-y-10">
-          <div className="space-y-4 px-3">
+          <div className="space-y-4 lg:px-3 ">
             <EditableComp isEditable={false} comp={elevatorTitle} />
             <EditableComp isEditable={false} comp={elevatorSubtitle} />
           </div>
@@ -102,7 +102,7 @@ const Elevator = ({ data }) => {
               width={600}
               height={600}
             /> */}
-            <div className="flex flex-col items-center justify-center  h-[400px]">
+            <div className="flex flex-col items-center justify-center w-full h-[400px]">
               <h3 className="text-2xl font-semibold text-white mb-4">Chart</h3>
               <AreaChartComponent />
             </div>

@@ -82,12 +82,12 @@ const MainNav = ({ session }) => {
             {
               sticky: pathname.startsWith("/admin"),
             },
-            {
+            // {
               // hidden: isAdmin && editors,
-            },
-            {
-              "text-white": whiteTextPaths.includes(pathname),
-            }
+            // },
+            // {
+            //   "text-white": whiteTextPaths.includes(pathname),
+            // }
           )}
         >
           <div

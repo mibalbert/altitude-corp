@@ -61,7 +61,8 @@ export default function SignInForm() {
 
     if (!res) {
       setNumTries((state) => state + 1);
-      setError(res.error.split(": ")[1]);
+      setError("Errrorrr");
+      // setError(res.error.split(": ")[1]);
       setPending(false);
     } else {
       toast.success("Succesfully logged in!");

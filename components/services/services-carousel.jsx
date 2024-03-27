@@ -67,43 +67,49 @@ const ServicesCarousel = ({ servicesData }) => {
   };
 
   return (
-    <>
-      <Carousel
-        opts={{
-          align: "start",
-          // dragFree: true,
-          // skipSnaps: true,
-          loog: false,
-          // containScroll: true,
-        }}
-        className="w-[90%] 2xl:max-w-screen-2xl mx-auto my-20 "
-      >
-        <CarouselContent>
-          {Array.from({ length: 6 }).map((_, index) => (
-            <CarouselItem
-              key={index}
-              className={cn(
-                // "md:basis-1/2 lg:basis-1/4   lg:hover:basis-1/3 hover:cursor-pointer   transition-all duration-700"
-                "md:basis-1/2 lg:basis-1/4 "
-              )}
-            >
-              <div className="p-1">
-                <Card
-                  className="rounded-none"
-                  onClick={() => executeScroll(index)}
+    <section>
+      <div className="flex justify-end">
+        <div className="flex w-full  max-w-[1560px]  py-24">
+          <div className="w-1/4">aklsndlkasdddddddddddddddddddddddd</div>
+          <Carousel
+            opts={{
+              align: "start",
+              // dragFree: true,
+              // skipSnaps: true,
+              loog: false,
+              // containScroll: true,
+            }}
+            className="w-3/4"
+          >
+            <CarouselContent>
+              {Array.from({ length: 6 }).map((_, index) => (
+                <CarouselItem
+                  key={index}
+                  className={cn(
+                    // "md:basis-1/2 lg:basis-1/4   lg:hover:basis-1/3 hover:cursor-pointer   transition-all duration-700"
+                    "md:basis-1/2 lg:basis-1/4 "
+                  )}
                 >
-                  <CardContent className="h-[50vh] hover:bg-blue-600 active:bg-blue-500 text-white flex aspect-square items-center justify-center p-6  transition-all duration-500">
-                    <span className="text-3xl font-semibold">{index + 1}</span>
-                  </CardContent>
-                </Card>
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        <CarouselPrevious className="-top-10 left-0" />
-        <CarouselNext className="-top-10 left-10" />
-      </Carousel>
-      <div className="h-[70vh]">KJASDBkjasb jkabsjkd bas</div>
+                  <div className="p-1">
+                    <Card
+                      className="rounded-none"
+                      onClick={() => executeScroll(index)}
+                    >
+                      <CardContent className="h-[50vh] hover:bg-blue-600 active:bg-blue-500 text-white flex aspect-square items-center justify-center p-6  transition-all duration-500">
+                        <span className="text-3xl font-semibold">
+                          {index + 1}
+                        </span>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="-top-10 left-0" />
+            <CarouselNext className="-top-10 left-10" />
+          </Carousel>
+        </div>
+      </div>
       <div className="">
         {servicesData.map((service, index) => (
           <div
@@ -114,7 +120,7 @@ const ServicesCarousel = ({ servicesData }) => {
               index % 2 ? "bg-white " : "bg-gray-50"
             )}
           >
-            <div className="grid grid-cols-2 max-w-screen-xl mx-auto w-full h-full py-20 gap-10">
+            <div className="grid grid-cols-2 max-w-7xl mx-auto w-full h-full py-20 gap-10">
               <div
                 className={cn(
                   "col-span-2 lg:col-span-1 col-start-1 z-50 px-5 py-10 flex flex-col justify-between h-full space-y-5"
@@ -151,7 +157,7 @@ const ServicesCarousel = ({ servicesData }) => {
           </div>
         ))}
       </div>
-    </>
+    </section>
   );
 };
 export default ServicesCarousel;

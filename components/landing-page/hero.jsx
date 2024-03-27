@@ -24,6 +24,8 @@ const Hero = ({ data, isEditable }) => {
   return (
     <div className="lg:mb-12 px-3 sm:px-8 lg:px-12">
       <div className="relative w-full h-[75vh] overflow-hidden rounded-xl bg-blue-600 max-w-[1600px] mx-auto bg-dot-white/[0.6]">
+      <div className="absolute pointer-events-none  inset-0 flex items-center justify-center   bg-gradient-to-t from-transparent   to-blue-600 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+
         {/* {images.map((imageName, index) => (
           <div key={index} className="absolute w-full  flex items-end  h-full"> */}
         <Image

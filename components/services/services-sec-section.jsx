@@ -4,32 +4,38 @@
 
 import React from "react";
 import Image from "next/image";
+import EditableComp from "../editableComp";
 
-const ServicesSecSection = ({ data }) => {
+const ServicesSecSection = ({ data, isEditable }) => {
+  const servicesSecTitle = data.find(
+    (el) => el.compName === "services-sec-title"
+  );
+  const servicesSecSubtitle = data.find(
+    (el) => el.compName === "services-sec-subtitle"
+  );
+
   return (
-    <section className="relative">
-      <div className="max-w-screen-xl  w-full mx-auto  py-12 md:py-24 px-5  sm:px-16 md:px-24 lg:px-5">
-        <div className="grid lg:grid-cols-6   items-center w-full h-full ">
-          <div className="space-y-6 py-6 flex w-full h-full  flex-col justify-center  col-span-6 lg:col-span-3">
-            <h1 className="text-3xl md:text-6xl font-bold">
-              {/* {data?.servicesPageHeroTitle} */}
+    <section className="bg-blue-600 w-full py-24 lg:py-16">
+      <div className="max-w-7xl  w-full mx-auto px-10 xl:px-0  flex ">
+        <div className="space-y-3 flex flex-col  w-full md:w-1/2 h-full text-white">
+          <EditableComp comp={servicesSecTitle} isEditable={isEditable} />
+          <EditableComp comp={servicesSecSubtitle} isEditable={isEditable} />
+          {/* <h1 className="text-3xl md:text-6xl font-bold">
               Servoces
             </h1>
             <p className="text-lg md:text-xl">
-              {/* {data?.servicesPageHeroSubtitle} */}
               Lorem ipsum dolor sit amet.
-            </p>
-          </div>
-          <div className=" col-span-6 lg:col-span-3   mx-auto w-full    md:max-w-[100%]">
-            <div className="relative w-full h-full flex items-center justify-end">
-              <Image
-                src={"/placeholder.svg"}
-                alt="placeholder"
-                width={500}
-                height={500}
-                className="object-cover object-center"
-              />
-            </div>
+            </p> */}
+        </div>
+        <div className="w-full md:w-1/2">
+          <div className="relative w-full h-full flex items-center justify-end">
+            <Image
+              src={"/placeholder.svg"}
+              alt="placeholder"
+              width={500}
+              height={500}
+              className="object-cover object-center"
+            />
           </div>
         </div>
       </div>
