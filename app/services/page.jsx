@@ -93,12 +93,20 @@ const Services = async ({ searchParams }) => {
     (el) => el.parentComp === "ServicesSec"
   );
 
+  const servicesCarData = compObj.filter(
+    (el) => el.parentComp === "ServicesCar"
+  );
+
   return (
     <div className=" pt-12 xl:pt-16  2xl:pt-20   ">
       <Waves data={heroData} isEditable={isEditable} />
       {/* <ServicesHero /> */}
       <ServicesSecSection data={servicesSecData} isEditable={isEditable} />
-      <ServicesCarousel servicesData={servicesData} />
+      <ServicesCarousel
+        data={servicesCarData}
+        carouselData={servicesData}
+        isEditable={isEditable}
+      />
       <Steps />
       <ContactUsServices />
     </div>

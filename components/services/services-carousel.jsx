@@ -16,6 +16,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { createRef, useRef } from "react";
 import ServicesSecSection from "./services-sec-section";
+import EditableComp from "../editableComp";
 
 // const servicesData = [
 //   {
@@ -55,7 +56,14 @@ import ServicesSecSection from "./services-sec-section";
 //   },
 // ];
 
-const ServicesCarousel = ({ servicesData }) => {
+const ServicesCarousel = ({ data, isEditable, carouselData }) => {
+  const servicesCarTitle = data.find(
+    (el) => el.compName === "services-car-title"
+  );
+  const servicesCarSubtitle = data.find(
+    (el) => el.compName === "services-car-subtitle"
+  );
+
   const refs = useRef(Array.from({ length: 6 }, () => createRef()));
 
   const executeScroll = (index) => {
@@ -68,9 +76,12 @@ const ServicesCarousel = ({ servicesData }) => {
 
   return (
     <section>
-      <div className="flex justify-end">
-        <div className="flex w-full  max-w-[1560px]  py-24">
-          <div className="w-1/4">aklsndlkasdddddddddddddddddddddddd</div>
+      <div className="flex justify-end overflow-hidden">
+        <div className="flex w-full space-x-10    max-w-[1560px]  py-24 overflow-hidden">
+          <div className="w-1/4 pt-20 space-y-5">
+            <EditableComp comp={servicesCarTitle} isEditable={isEditable} />
+            <EditableComp comp={servicesCarSubtitle} isEditable={isEditable} />
+          </div>
           <Carousel
             opts={{
               align: "start",
@@ -87,7 +98,7 @@ const ServicesCarousel = ({ servicesData }) => {
                   key={index}
                   className={cn(
                     // "md:basis-1/2 lg:basis-1/4   lg:hover:basis-1/3 hover:cursor-pointer   transition-all duration-700"
-                    "md:basis-1/2 lg:basis-1/4 "
+                    "md:basis-1/2 lg:basis-1/3 "
                   )}
                 >
                   <div className="p-1">
@@ -95,8 +106,9 @@ const ServicesCarousel = ({ servicesData }) => {
                       className="rounded-none"
                       onClick={() => executeScroll(index)}
                     >
-                      <CardContent className="h-[50vh] hover:bg-blue-600 active:bg-blue-500 text-white flex aspect-square items-center justify-center p-6  transition-all duration-500">
-                        <span className="text-3xl font-semibold">
+                      {/* <CardContent className="h-[50vh] hover:bg-blue-600 active:bg-blue-500 text-white flex aspect-square items-center justify-center p-6  transition-all duration-500"> */}
+                      <CardContent className="h-[50vh] hover:bg-blue-500 relative active:bg-blue-500 bg-blue-600 text-white flex aspect-square items-center justify-center p-6  transition-all duration-500">
+                        <span className="text-xl font-semibold absolute bottom-10 left-10  ">
                           {index + 1}
                         </span>
                       </CardContent>
@@ -105,13 +117,15 @@ const ServicesCarousel = ({ servicesData }) => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="-top-10 left-0" />
-            <CarouselNext className="-top-10 left-10" />
+            <div className="absolute flex items-center  top-3/4 -left-60 ">
+              <CarouselPrevious />
+              <CarouselNext />
+            </div>
           </Carousel>
         </div>
       </div>
       <div className="">
-        {servicesData.map((service, index) => (
+        {carouselData?.map((service, index) => (
           <div
             key={index}
             ref={refs.current[index]}

@@ -476,10 +476,10 @@ async function seed() {
       {
         page: "services",
         type: "h1",
-        title: `We cover it all`,
+        title: `Our partners`,
         compName: "services-sec-title",
         parentComp: "ServicesSec",
-        className: "text-3xl md:text-6xl font-bold",
+        className: "text-2xl md:text-4xl font-bold",
       },
       {
         page: "services",
@@ -487,7 +487,23 @@ async function seed() {
         title: `From the most basic tasks to the most challanging.....`,
         compName: "services-sec-subtitle",
         parentComp: "ServicesSec",
-        className: "text-lg md:text-xl",
+        className: "text-md md:text-lg",
+      },
+      {
+        page: "services",
+        type: "h1",
+        title: `LOrem insdasdasnd asnd laksn dlaksnd lkasndkn aslkda`,
+        compName: "services-car-title",
+        parentComp: "ServicesCar",
+        className: "text-2xl md:text-4xl font-bold",
+      },
+      {
+        page: "services",
+        type: "p",
+        title: `Asdn aksdn wi askldnqwio asiodn oiwan doisnd oaisd`,
+        compName: "services-car-subtitle",
+        parentComp: "ServicesCar",
+        className: "text-md md:text-lg",
       },
     ];
 
