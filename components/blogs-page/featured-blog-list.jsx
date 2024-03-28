@@ -34,9 +34,33 @@ const svgs = [
 
 const FeaturedBlogList = ({ data, isEditable }) => {
   // const editFeaturedBlogs = await prisma.
+  const curatedPosts = data.reduce((acc, el, idx) => {
+    try {
+      const parsedContent = JSON.parse(el.content);
+      if (parsedContent && parsedContent.length > 0) {
+        const heading = parsedContent.find((item) => item.type === "heading");
+        const description = parsedContent.find(
+          (item) => item.type === "paragraph"
+        );
+        if (heading && description) {
+          acc.push({
+            id: el.id,
+            heading: heading.content[0]?.text || "No heading found",
+            description: description.content[0]?.text || "No description found",
+          });
+        }
+      }
+    } catch (error) {
+      console.error(
+        `Error parsing content for element at index ${idx}: ${error}`
+      );
+    }
+    return acc;
+  }, []);
 
+  console.log(curatedPosts);
   return (
-    <Carousel className="relative  w-full max-w-6xl mx-auto px-12 border border-dashed">
+    <Carousel className="relative  w-[90%] xl:w-full max-w-6xl mx-auto px-12 ">
       {isEditable && (
         <Dialog>
           <DialogTrigger className="absolute -top-10 right-0 rounded-full border bg-gray-900 px-3 py-1">
@@ -61,7 +85,7 @@ const FeaturedBlogList = ({ data, isEditable }) => {
         </Dialog>
       )}
       <CarouselContent>
-        {data?.map((post, idx) => {
+        {curatedPosts?.map((post, idx) => {
           return (
             <CarouselItem key={idx}>
               <div className="grid items-start md:grid-cols-2 gap-12">
@@ -72,17 +96,17 @@ const FeaturedBlogList = ({ data, isEditable }) => {
                     </div>
                     <Link
                       href={"#"}
-                      className="text-2xl font-bold tracking-tight sm:text-3xl"
+                      className="text-2xl font-bold tracking-tight sm:text-3xl text-white"
                     >
-                      {post?.title}
+                      {post?.heading}
                     </Link>
-                    <p className="text-gray-200 ">{post?.subtitle}</p>
+                    <p className="text-gray-200 ">{post?.description}</p>
                   </div>
                   <div className="flex items-center space-x-2">
                     <div className="text-sm font-medium leading-none">
-                      <span className="block">{post?.writtenBy}</span>
+                      {/* <span className="block">{post?.writtenBy}</span> */}
                       <span className="block text-gray-300">
-                        {post?.datePosted}
+                        {/* {post?.datePosted} */}
                       </span>
                     </div>
                   </div>

@@ -136,8 +136,6 @@ export async function changeVisibility(postId, changeTo) {
 
 export async function changeFeatListOrder(featListId, newOrder) {
   try {
-    console.log(featListId);
-    console.log("KKKKKKKKKKKKKKKKKKKKk", newOrder);
     const res = await prisma.featList.update({
       where: {
         id: featListId,

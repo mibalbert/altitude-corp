@@ -20,18 +20,18 @@ const Testing2 = async () => {
   });
 
   // const op = data[0]?.list?.map((el) => el.id);
+  // console.log(op);
 
-  const res = await prisma.featList.update({
-    where: {
-      id: data[0].id,
-    },
-    data: {
-      // order: op.toString(),
-      order: "57",
-    },
-  });
+  // const res = await prisma.featList.update({
+  //   where: {
+  //     id: data[0].id,
+  //   },
+  //   data: {
+  //     order: op.toString(),
+  //     // order: "57",
+  //   },
+  // });
 
-  console.log(res);
   const orderArr = data[0]?.order?.split(",");
   const orderArrInt = orderArr.map((el) => +el);
 
@@ -47,19 +47,23 @@ const Testing2 = async () => {
     ...data[0]?.list?.filter((item) => !orderArrInt.includes(item.id)),
   ];
 
-  const finalData = finalArray.map((post) => {
+  const formattedData = finalArray.map((post) => {
+    const parsedContent = post?.content ? JSON.parse(post.content) : null;
+    const headingText = parsedContent?.find((el) => el.type === "heading")
+      ?.content[0]?.text;
     return {
-      id: post.id,
-      title: JSON.parse(post.content).find((el) => el.type === "heading")
-        ?.content[0]?.text,
+      id: post?.id,
+      title: headingText || "Untitled", // Provide a default title if heading text is undefined
     };
   });
-  console.log(finalData);
+
+  console.log(formattedData);
+  // console.log(finalData);
   // console.log(orderArr);
 
   return (
     <div className="h-[80vh] flex flex-col items-center justify-center">
-      <Carouse data={finalData} featListId={data[0].id} editable={true} />
+      <Carouse data={formattedData} featListId={data[0].id} editable={true} />
     </div>
   );
 };

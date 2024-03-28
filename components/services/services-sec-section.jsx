@@ -16,7 +16,7 @@ const ServicesSecSection = ({ data, isEditable }) => {
 
   return (
     <section className=" w-full py-24 lg:py-16 px-10 xl:px-0 space-y-10">
-      <div className="text-center">
+      <div className="text-center flex flex-col">
         <EditableComp comp={servicesSecTitle} isEditable={isEditable} />
         <EditableComp comp={servicesSecSubtitle} isEditable={isEditable} />
       </div>

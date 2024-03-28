@@ -5,19 +5,31 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import EditableComp from "../editableComp";
 
-const SubscribeToNewsletter = ({ data }) => {
+const SubscribeToNewsletter = ({ editableComp, isEditable }) => {
+  const subNewsTitle = editableComp?.find(
+    (el) => el.compName === "blog-page-news-title"
+  );
+  const subNewsSubtitle = editableComp?.find(
+    (el) => el.compName === "blog-page-news-subtitle"
+  );
+
+  // console.log(editableComp);
+
   return (
     <>
       <section className="w-full py-12 md:py-24  ">
-        <div className="container grid items-center gap-4 px-4 md:px-6  ">
-          <div className="space-y-3">
-            <h2 className="text-4xl font-bold tracking-tighter md:text-6xl/relaxed text-blue-500">
+        <div className="w-full max-w-7xl mx-auto grid items-center gap-4 px-4 md:px-6  ">
+          <div className="space-y-3 flex flex-col">
+            <EditableComp comp={subNewsTitle} isEditable={isEditable} />
+            <EditableComp comp={subNewsSubtitle} isEditable={isEditable} />
+            {/* <h2 className="text-4xl font-bold tracking-tighter md:text-6xl/relaxed text-blue-500">
               {data?.blogPageSubscribeTitle}
             </h2>
             <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
               {data?.blogPageSubscribeSubtitle}{" "}
-            </p>
+            </p> */}
           </div>
           <div className="w-full max-w-sm space-y-2">
             <form className="flex space-x-2">
@@ -32,7 +44,7 @@ const SubscribeToNewsletter = ({ data }) => {
               </Button>
             </form>
             <p className="text-xs text-gray-500 dark:text-gray-400">
-              {data?.blogPageSubscribeMinSubtitle}
+              {/* {data?.blogPageSubscribeMinSubtitle} */}
               <Link className="underline underline-offset-2" href="#">
                 Privacy Policy
               </Link>

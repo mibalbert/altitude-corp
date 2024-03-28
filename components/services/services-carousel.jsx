@@ -17,51 +17,25 @@ import Image from "next/image";
 import { createRef, useRef } from "react";
 import ServicesSecSection from "./services-sec-section";
 import EditableComp from "../editableComp";
+import ServicesMockup from "./services-mockup";
+import NewMockup from "./new-mockup";
 
-// const servicesData = [
-//   {
-//     id: 1,
-//     title: "ASDASIDNA LSndlas nd",
-//     desc: "asdhA L SAdlka snkldn alksndklasnkdlnasdnaslkdn lkasd",
-//     imgUrl:
-//       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-//   },
-//   {
-//     id: 2,
-//     title: "TAEAS DAS LSndlas nd",
-//     desc: "asdhA L SAdlka snkldn alksndklasnkdlnasdnaslkdn lkasd",
-//     imgUrl:
-//       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-//   },
-//   {
-//     id: 3,
-//     title: "NBOPM K:ASMD LSndlas nd",
-//     desc: "asdhA L SAdlka snkldn alksndklasnkdlnasdnaslkdn lkasd",
-//     imgUrl:
-//       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-//   },
-//   {
-//     id: 4,
-//     title: "ASDASIlkansd lksnDNA LSndlas nd",
-//     desc: "asdhA L SAdlka snkldn alksndklasnkdlnasdnaslkdn lkasd",
-//     imgUrl:
-//       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-//   },
-//   {
-//     id: 5,
-//     title: "ASDASIDNA LSndlas nd",
-//     desc: "asdhA L SAdlka snkldn alksndklasnkdlnasdnaslkdn lkasd",
-//     imgUrl:
-//       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-//   },
-// ];
-
-const ServicesCarousel = ({ data, isEditable, carouselData }) => {
+const ServicesCarousel = ({ data, isEditable }) => {
   const servicesCarTitle = data.find(
     (el) => el.compName === "services-car-title"
   );
   const servicesCarSubtitle = data.find(
     (el) => el.compName === "services-car-subtitle"
+  );
+
+  const carTitleData = data.filter(
+    (el) => el.compName === "services-car-comp-title"
+  );
+
+  // console.log(carTitleData)
+
+  const carSubtitleData = data.filter(
+    (el) => el.compName === "services-car-comp-subtitle"
   );
 
   const refs = useRef(Array.from({ length: 6 }, () => createRef()));
@@ -77,8 +51,8 @@ const ServicesCarousel = ({ data, isEditable, carouselData }) => {
   return (
     <section>
       <div className="flex justify-end overflow-hidden">
-        <div className="flex w-full space-x-10    max-w-[1560px]  py-24 overflow-hidden">
-          <div className="w-1/4 pt-20 space-y-5">
+        <div className="block lg:flex  w-full space-x-10  md:px-20 lg:px-10 2xl:px-0   max-w-[1560px] pb-20  md:pb-10 md:py-20 space-y-16 lg:space-y-0  lg:py-24 overflow-hidden">
+          <div className="w-full lg:w-1/4 pt-5 text-center px-10 lg:text-left  xl:pt-20 space-y-10 md:space-y-5 flex flex-col">
             <EditableComp comp={servicesCarTitle} isEditable={isEditable} />
             <EditableComp comp={servicesCarSubtitle} isEditable={isEditable} />
           </div>
@@ -90,7 +64,7 @@ const ServicesCarousel = ({ data, isEditable, carouselData }) => {
               loog: false,
               // containScroll: true,
             }}
-            className="w-3/4"
+            className="w-full  lg:w-3/4  "
           >
             <CarouselContent>
               {Array.from({ length: 6 }).map((_, index) => (
@@ -98,7 +72,7 @@ const ServicesCarousel = ({ data, isEditable, carouselData }) => {
                   key={index}
                   className={cn(
                     // "md:basis-1/2 lg:basis-1/4   lg:hover:basis-1/3 hover:cursor-pointer   transition-all duration-700"
-                    "md:basis-1/2 lg:basis-1/3 "
+                    "basis-3/4 sm:basis-2/3 md:basis-1/3 "
                   )}
                 >
                   <div className="p-1">
@@ -117,15 +91,19 @@ const ServicesCarousel = ({ data, isEditable, carouselData }) => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <div className="absolute flex items-center  top-3/4 -left-60 ">
+            {/* <div className="absolute flex items-center  -top-10 left-0  lg:bottom-10   xl:bottom-0 xl:top-3/4 lg-left-36 xl:-left-48 2xl:-left-60 "> */}
+            <div className="absolute flex items-center max-w-[10px]  w-full -bottom-10 left-16">
               <CarouselPrevious />
               <CarouselNext />
             </div>
           </Carousel>
         </div>
       </div>
+      <NewMockup />
+      {/* <ServicesMockup /> */}
+
       <div className="">
-        {carouselData?.map((service, index) => (
+        {Array.from({ length: 6 }).map((_, index) => (
           <div
             key={index}
             ref={refs.current[index]}
@@ -135,18 +113,17 @@ const ServicesCarousel = ({ data, isEditable, carouselData }) => {
             )}
           >
             <div className="grid grid-cols-2 max-w-7xl mx-auto w-full h-full py-20 gap-10">
-              <div
-                className={cn(
-                  "col-span-2 lg:col-span-1 col-start-1 z-50 px-5 py-10 flex flex-col justify-between h-full space-y-5"
-                )}
-              >
+              <div className="space-y-10 pt-10 lg:px-10 ">
                 <div
                   className={cn(
                     "text-3xl"
                     // index % 2 ? "text-end" : "text-start"
                   )}
                 >
-                  {service.title}
+                  <EditableComp
+                    comp={carTitleData[index]}
+                    isEditable={isEditable}
+                  />
                 </div>
                 <div
                   className={cn(
@@ -154,7 +131,10 @@ const ServicesCarousel = ({ data, isEditable, carouselData }) => {
                     // index % 2 ? "text-end" : "text-start"
                   )}
                 >
-                  {service.desc}
+                  <EditableComp
+                    comp={carSubtitleData[index]}
+                    isEditable={isEditable}
+                  />
                 </div>
               </div>
               <div

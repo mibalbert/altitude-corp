@@ -27,6 +27,9 @@ export const metadata = {
 };
 
 const Blog = async ({ searchParams }) => {
+  const session = await getServerSession(authOptions);
+  const isEditable = session?.user.role === "ADMIN";
+
   const pageObj = await prisma.pageObject.findMany({
     where: {
       page: "blog",
@@ -35,15 +38,23 @@ const Blog = async ({ searchParams }) => {
 
   const blogPosts = await prisma.post.findMany();
 
-  const featuredBlogPosts = blogPosts.filter((el) => el.isFeatured === true);
+  const featuredBlogPosts = blogPosts
+    .filter((el) => el.isFeatured === true)
+    .splice(0, 3);
 
   const latestBlogPosts = blogPosts.sort((a, b) => a.createdAt - b.createdAt);
 
-  const session = await getServerSession(authOptions);
-  const isEditable = session?.user.role === "ADMIN";
-
   const heroData = pageObj.filter((el) => el.parentComp === "Hero");
-  // const
+
+  const blogPageLatest = pageObj.filter(
+    (el) => el.parentComp === "BlogPageLatest"
+  );
+  const blogPageLots = pageObj.filter((el) => el.parentComp === "BlogPageLots");
+  const blogPageNews = pageObj.filter((el) => el.parentComp === "BlogPageNews");
+  const blogPageFreeRes = pageObj.filter(
+    (el) => el.parentComp === "BlogPageFreeResources"
+  );
+
   return (
     <section className="">
       <div className="bg-gradient-to-br from-blue-400  from-[10%] via-blue-600 via-[40%] to-blue-500 to-[95%]  py-32 space-y-20">
@@ -56,13 +67,29 @@ const Blog = async ({ searchParams }) => {
           isEditable={isEditable && searchParams?.editorMode}
         />
       </div>
-      <LatestPostsIn data={null} latestPostsIn={latestBlogPosts} />
-      <ALotOfBlogPosts data={null} blogPosts={blogPosts} />
-      <div className="container">
+      <LatestPostsIn
+        data={latestBlogPosts}
+        editableData={blogPageLatest}
+        isEditable={isEditable && searchParams?.editorMode}
+      />
+      <ALotOfBlogPosts
+        data={blogPosts}
+        editableContent={blogPageLots}
+        isEditable={isEditable && searchParams?.editorMode}
+        // blogPosts={blogPosts}
+      />
+      {/* <div className="container">
         <hr></hr>
-      </div>
-      <SubscribeToNewsletter data={null} />
-      <FreeResources data={null} />
+      </div> */}
+
+      <SubscribeToNewsletter
+        editableComp={blogPageNews}
+        isEditable={isEditable && searchParams?.editorMode}
+      />
+      <FreeResources
+        data={blogPageFreeRes}
+        isEditable={isEditable && searchParams?.editorMode}
+      />
     </section>
   );
 };

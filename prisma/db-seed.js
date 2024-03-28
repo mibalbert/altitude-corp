@@ -471,7 +471,8 @@ async function seed() {
         title: `Let's adventure together`,
         compName: "hero-subtitle",
         parentComp: "Hero",
-        className: "text-2xl lg:text-4xl font-semibold text-center ",
+        className:
+          "text-2xl lg:text-3xl xl:text-4xl font-semibold text-center ",
       },
       {
         page: "services",
@@ -504,6 +505,233 @@ async function seed() {
         compName: "services-car-subtitle",
         parentComp: "ServicesCar",
         className: "text-md md:text-lg",
+      },
+      {
+        page: "services",
+        type: "h1",
+        title: `Financial Planning`,
+        compName: "services-car-comp-title",
+        parentComp: "ServicesCar",
+        className: "text-2xl md:text-4xl font-bold",
+      },
+      {
+        page: "services",
+        type: "p",
+        title: `Our financial planning service is designed to help you create a comprehensive strategy tailored to your unique financial goals and circumstances. We analyze your current financial situation, develop personalized recommendations, and provide ongoing guidance to help you achieve financial security and success.`,
+        compName: "services-car-comp-subtitle",
+        parentComp: "ServicesCar",
+        className: "text-md md:text-lg",
+      },
+      {
+        page: "services",
+        type: "h1",
+        title: `Investment Management        `,
+        compName: "services-car-comp-title",
+        parentComp: "ServicesCar",
+        className: "text-2xl md:text-4xl font-bold",
+      },
+      {
+        page: "services",
+        type: "p",
+        title: `With our investment management service, we work closely with you to develop an investment portfolio aligned with your objectives, risk tolerance, and time horizon. We continually monitor and adjust your portfolio to capitalize on opportunities and mitigate risks, aiming to maximize returns while managing volatility.        `,
+        compName: "services-car-comp-subtitle",
+        parentComp: "ServicesCar",
+        className: "text-md md:text-lg",
+      },
+      {
+        page: "services",
+        type: "h1",
+        title: `Retirement Planning`,
+        compName: "services-car-comp-title",
+        parentComp: "ServicesCar",
+        className: "text-2xl md:text-4xl font-bold",
+      },
+      {
+        page: "services",
+        type: "p",
+        title: `Planning for retirement is essential to ensure financial independence and security during your golden years. Our retirement planning service helps you define your retirement goals, assess your retirement income needs, and develop a strategy to achieve them. We consider factors such as pensions, Social Security, and investment income to create a sustainable retirement plan.`,
+        compName: "services-car-comp-subtitle",
+        parentComp: "ServicesCar",
+        className: "text-md md:text-lg",
+      },
+      {
+        page: "services",
+        type: "h1",
+        title: `Tax Advisory        `,
+        compName: "services-car-comp-title",
+        parentComp: "ServicesCar",
+        className: "text-2xl md:text-4xl font-bold",
+      },
+      {
+        page: "services",
+        type: "p",
+        title: `Navigating the complexities of tax laws and regulations can be challenging. Our tax advisory service provides expert guidance on tax planning, optimization, and compliance. We help you minimize tax liabilities, identify tax-saving opportunities, and ensure adherence to relevant tax laws, ultimately maximizing your after-tax wealth.        `,
+        compName: "services-car-comp-subtitle",
+        parentComp: "ServicesCar",
+        className: "text-md md:text-lg",
+      },
+      {
+        page: "services",
+        type: "h1",
+        title: `Estate Planning`,
+        compName: "services-car-comp-title",
+        parentComp: "ServicesCar",
+        className: "text-2xl md:text-4xl font-bold",
+      },
+      {
+        page: "services",
+        type: "p",
+        title: `Estate planning is crucial for preserving your wealth and ensuring a smooth transfer of assets to your heirs. Our estate planning service helps you create a comprehensive plan that addresses asset distribution, minimizes estate taxes, and establishes mechanisms for managing your affairs in the event of incapacity. We work closely with legal professionals to implement your estate plan effectively.`,
+        compName: "services-car-comp-subtitle",
+        parentComp: "ServicesCar",
+        className: "text-md md:text-lg",
+      },
+      {
+        page: "services",
+        type: "h1",
+        title: `Risk Management`,
+        compName: "services-car-comp-title",
+        parentComp: "ServicesCar",
+        className: "text-2xl md:text-4xl font-bold",
+      },
+      {
+        page: "services",
+        type: "p",
+        title: `Effective risk management is essential for safeguarding your financial well-being against unexpected events. Our risk management service assesses potential risks to your financial security, such as market volatility, longevity risk, and unforeseen expenses. We develop strategies to mitigate these risks through diversification, insurance solutions, and contingency planning, providing you with peace of mind.        `,
+        compName: "services-car-comp-subtitle",
+        parentComp: "ServicesCar",
+        className: "text-md md:text-lg",
+      },
+      {
+        page: "services",
+        type: "h1",
+        title: `Contact Us`,
+        compName: "services-contact-title",
+        parentComp: "ServicesContact",
+        className:
+          "text-3xl font-bold  text-white tracking-tighter sm:text-4xl md:text-5xl",
+      },
+      {
+        page: "services",
+        type: "p",
+        title: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi
+        fuga est beatae porro magnam pariatur recusandae aliquam tempora
+        inventore quibusdam harum, blanditiis quas! `,
+        compName: "services-contact-subtitle-1",
+        parentComp: "ServicesContact",
+        className:
+          "max-w-xl text-white md:text-xl/relaxed lg:text-md/relaxed xl:text-md/relaxed ",
+      },
+      {
+        page: "services",
+        type: "p",
+        title: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi
+        fuga est beatae porro magnam pariatur recusandae aliquam tempora
+        inventore quibusdam harum, blanditiis quas! `,
+        compName: "services-contact-subtitle-2",
+        parentComp: "ServicesContact",
+        className:
+          "max-w-xl text-white md:text-xl/relaxed lg:text-md/relaxed xl:text-md/relaxed ",
+      },
+      {
+        page: "services",
+        type: "h2",
+        title: `              Contact Form        `,
+        compName: "services-contact-form-title",
+        parentComp: "ServicesContact",
+        className:
+          "text-2xl font-bold tracking-tighter sm:text-3xl md:text-4xl/none",
+      },
+      {
+        page: "services",
+        type: "p",
+        title: `  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        Accusantium assu`,
+        compName: "services-contact-form-subtitle",
+        parentComp: "ServicesContact",
+        className:
+          "text-white md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed",
+      },
+      {
+        page: "blog",
+        type: "h1",
+        title: `View Our latest posts`,
+        compName: "blog-page-latest-title",
+        parentComp: "BlogPageLatest",
+        className: "text-3xl font-bold tracking-tight sm:text-4xl",
+      },
+      {
+        page: "blog",
+        type: "p",
+        title: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        Accusantium assu`,
+        compName: "blog-page-latest-subtitle",
+        parentComp: "BlogPageLatest",
+        className: "text-gray-500 dark:text-gray-400",
+      },
+      {
+        page: "blog",
+        type: "h1",
+        title: `View All our Blogs`,
+        compName: "blog-page-lots-title",
+        parentComp: "BlogPageLots",
+        className: "text-3xl font-bold tracking-tight sm:text-4xl",
+      },
+      {
+        page: "blog",
+        type: "p",
+        title: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        Accusantium assu`,
+        compName: "blog-page-lots-subtitle",
+        parentComp: "BlogPageLots",
+        className: "text-gray-500 dark:text-gray-400",
+      },
+      {
+        page: "blog",
+        type: "h1",
+        title: `Do you want to learn more?`,
+        compName: "blog-page-news-title",
+        parentComp: "BlogPageNews",
+        className: "text-3xl font-bold tracking-tight sm:text-4xl",
+      },
+      {
+        page: "blog",
+        type: "p",
+        title: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        Accusantium assu`,
+        compName: "blog-page-news-subtitle",
+        parentComp: "BlogPageNews",
+        className: "text-gray-500 dark:text-gray-400",
+      },
+      {
+        page: "blog",
+        type: "h1",
+        title: `   Check Out the Free Resources
+        `,
+        compName: "blog-page-free-resources-title",
+        parentComp: "BlogPageFreeResources",
+        className: "text-3xl  font-bold tracking-tighter sm:text-5xl text-left",
+      },
+      {
+        page: "blog",
+        type: "p",
+        title: ` Access free books, articles, and more. Expand your knowledge with
+        our curated collection of resources.
+      `,
+        compName: "blog-page-free-resources-subtitle-1",
+        parentComp: "BlogPageFreeResources",
+        className:
+          "max-w-xl w-full text-gray-200 md:text-xl/relaxed lg:text-base/relaxed xl:text-lg/relaxed dark:text-gray-200",
+      },
+      {
+        page: "blog",
+        type: "p",
+        title: ` Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam
+        magnam tenetur natus iusto similique, numquam ipsum autem odit
+        iste recusandae?`,
+        compName: "blog-page-free-resources-subtitle-2",
+        parentComp: "BlogPageFreeResources",
+        className: "text-md max-w-xl w-full",
       },
     ];
 

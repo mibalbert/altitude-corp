@@ -17,8 +17,8 @@ const EditComp = ({ data, className }) => {
   };
 
   useEffect(() => {
-    if (contentEditableRef.current.innerText !== data.title) {
-      contentEditableRef.current.innerText = data.title;
+    if (contentEditableRef.current.innerText !== data?.title) {
+      contentEditableRef.current.innerText = data?.title;
     }
   });
 
@@ -36,7 +36,7 @@ const EditComp = ({ data, className }) => {
       }}
       className={cn(
         "border border-dashed border-gray-500  rounded-lg ",
-        data.className,
+        data?.className,
         className
       )}
     />

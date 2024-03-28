@@ -6,14 +6,28 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { ExternalLinkIcon } from "lucide-react";
+import EditableComp from "../editableComp";
 
-export default function FreeResources() {
+export default function FreeResources({ data, isEditable }) {
+  const freeResTitle = data.find(
+    (el) => el.compName === "blog-page-free-resources-title"
+  );
+  const freeResSubtitleOne = data.find(
+    (el) => el.compName === "blog-page-free-resources-subtitle-1"
+  );
+  const freeResSubtitleTwo = data.find(
+    (el) => el.compName === "blog-page-free-resources-subtitle-2"
+  );
+
   return (
     <section className="w-full py-6 md:py-12 xl:py-32 mb-32 bg-blue-600 text-white">
-      <div className="container grid items-center gap-4 px-4 text-left md:gap-10 md:px-6">
+      <div className="w-full max-w-7xl mx-auto   grid items-center gap-4 px-4 text-left md:gap-10 md:px-6">
         <div className="grid gap-20 md:grid-cols-2 ">
           <div className="space-y-5">
-            <h2 className="text-3xl  font-bold tracking-tighter sm:text-5xl text-left">
+            <EditableComp comp={freeResTitle} isEditable={isEditable} />
+            <EditableComp comp={freeResSubtitleOne} isEditable={isEditable} />
+            <EditableComp comp={freeResSubtitleTwo} isEditable={isEditable} />
+            {/* <h2 className="text-3xl  font-bold tracking-tighter sm:text-5xl text-left">
               Check Out the Free Resources
             </h2>
             <p className="max-w-xl w-full text-gray-200 md:text-xl/relaxed lg:text-base/relaxed xl:text-lg/relaxed dark:text-gray-200">
@@ -24,7 +38,7 @@ export default function FreeResources() {
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam
               magnam tenetur natus iusto similique, numquam ipsum autem odit
               iste recusandae?
-            </p>
+            </p> */}
             <Link
               href="/resources"
               className="flex items-center gap-1 underline underline-offset-2"
@@ -55,14 +69,15 @@ export default function FreeResources() {
                 </p>
                 {/* <p className="text-xs text-gray-200">{date}</p> */}
                 <p className="text-xs text-gray-200">20.01.2024</p>
-                <Button
+                <Link
+                  href=""
                   // className={`px-2 py-1 rounded-md ${buttonColor} ${buttonTextColor}`}
                   className={`px-2 py-1 rounded-md `}
                   size="sm"
                 >
-                  Download
+                  View
                   {/* {buttonText} */}
-                </Button>
+                </Link>
               </div>
             </div>
           </div>
