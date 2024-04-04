@@ -4,35 +4,43 @@ import "./new-mockup.css";
 const NewMockup = () => {
   return (
     <>
-      {" "}
       <section className="relative w-full h-[60vh] flex items-center justify-center overflow-hidden">
-        <div class="iphonex">
-          <div class="front">
-            <div class="screen">
-              <div class="screen__view">
-                <div class="dribbbleLogo">
-                  <span></span>
+        <div className="shadow-[inset_0_-5px_14px_rgba(0,0,0,0.1)] absolute top-0 left-0 w-full h-full"></div>
+        <div className="absolute top-0 left-0 w-full z-0 h-full flex items-end justify-center">
+          <h1 className="text-[350px] font-bold text-blue-600/20 ">
+            ALTITUDE
+          </h1>
+        </div>
+        <div className="iphonex group">
+          <div className="front">
+            <div className="screen">
+              <div className=" screen__view">
+                <div className="altitudeLogo ">
+                  {/* <span></span> */}
+                  {/* <div>AJSKD</div> */}
                 </div>
-                <div class="hello">
-                  <p>Hello </p>
-                  <div class="dribbbleLogo white">
-                    <span></span>
+                <div className="hello">
+                  <div className="text-center leading-tight">
+                    We can get you there
                   </div>
+                  {/* <div className="dribbbleLogo white ">
+                    <span></span>
+                  </div> */}
                 </div>
               </div>
-              <div class="screen__front">
-                <div class="screen__front-speaker"></div>
-                <div class="screen__front-camera"></div>
+              <div className="screen__front">
+                <div className="screen__front-speaker"></div>
+                <div className="screen__front-camera"></div>
               </div>
             </div>
-            <div class="front__line"></div>
-            <div class="front__line front__line-second"></div>
+            <div className="front__line"></div>
+            <div className="front__line front__line-second"></div>
           </div>
-          <div class="phoneButtons phoneButtons-right"></div>
-          <div class="phoneButtons phoneButtons-left"></div>
-          <div class="phoneButtons phoneButtons-left2"></div>
-          <div class="phoneButtons phoneButtons-left3"></div>
-          <div class="back"></div>
+          <div className="phoneButtons phoneButtons-right"></div>
+          <div className="phoneButtons phoneButtons-left"></div>
+          <div className="phoneButtons phoneButtons-left2"></div>
+          <div className="phoneButtons phoneButtons-left3"></div>
+          <div className="back"></div>
         </div>
 
         {/* <div class="title">

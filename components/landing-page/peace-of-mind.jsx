@@ -40,9 +40,7 @@ const PeaceOfMind = ({ data }) => {
               height={500}
               alt=""
               className="object-cover object-bottom w-full h-full"
-              // className="w-full transform hover:scale-105 transition ease-in-out duration-1000"
-              // src="/images/video.png"
-              src="/new-piece-of-mind.png"
+              src="https://mongo-blog.s3.eu-central-1.amazonaws.com/home/new-piece-of-mind.webp"
             />
           </div>
         </div>

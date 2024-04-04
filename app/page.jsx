@@ -3,10 +3,11 @@
  */
 
 import ContactUsInsidePage from "@/components/contact-us/contact-us-inside-page";
+import ContactUsHome from "@/components/landing-page/contact-us-home";
 import Elevator from "@/components/landing-page/elevator";
 import Hero from "@/components/landing-page/hero";
 import HomeLatestPosts from "@/components/landing-page/home-latest-posts";
-import LandingFooter from "@/components/landing-page/landing-footer";
+// import WorldWide from "@/components/landing-page/world-wide";
 import NewHero from "@/components/landing-page/new-hero";
 import Numbers from "@/components/landing-page/numbers";
 import PeaceOfMind from "@/components/landing-page/peace-of-mind";
@@ -14,9 +15,18 @@ import Plans from "@/components/landing-page/plans";
 import { InfiniteMovingReviewCards } from "@/components/landing-page/rev";
 import Reviews from "@/components/landing-page/reviews";
 import TheSteps from "@/components/landing-page/the-steps";
+import ContactUs from "@/components/shared/contact-us";
 import { authOptions } from "@/lib/auth-options";
 import prisma from "@/lib/prismadb";
 import { getServerSession } from "next-auth";
+import dynamic from "next/dynamic";
+
+const WorldWide = dynamic(
+  () => import("../components/landing-page/world-wide"),
+  {
+    ssr: false,
+  }
+);
 
 export const metadata = {
   title: "ALTITUDE CORP | Home",
@@ -59,6 +69,10 @@ export default async function Home({ searchParams }) {
     (el) => el.parentComp === "LandingFooter"
   );
 
+  const homeContactData = compObj.filter(
+    (el) => el.parentComp === "ContactUsHome"
+  );
+
   return (
     <section className="bg-white pt-16  xl:pt-20 ">
       <Hero data={heroComp} isEditable={isEditable} />
@@ -68,8 +82,9 @@ export default async function Home({ searchParams }) {
       <Numbers data={numbersComp} />
       {/* <TheSteps data={stepsComp} /> */}
       <Plans data={plansComp} />
-      <LandingFooter data={landingFooterComp} />
-      <ContactUsInsidePage />
+      <WorldWide data={landingFooterComp} />
+      {/* <ContactUsInsidePage /> */}
+      <ContactUsHome data={homeContactData} isEditable={isEditable} />
     </section>
   );
 }

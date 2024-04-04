@@ -45,6 +45,7 @@ const ServicesCarousel = ({ data, isEditable }) => {
       behavior: "smooth",
       block: "center",
       inline: "nearest",
+      
     });
   };
 
@@ -59,8 +60,8 @@ const ServicesCarousel = ({ data, isEditable }) => {
           <Carousel
             opts={{
               align: "start",
-              // dragFree: true,
-              // skipSnaps: true,
+              dragFree: true,
+              skipSnaps: true,
               loog: false,
               // containScroll: true,
             }}
@@ -81,7 +82,31 @@ const ServicesCarousel = ({ data, isEditable }) => {
                       onClick={() => executeScroll(index)}
                     >
                       {/* <CardContent className="h-[50vh] hover:bg-blue-600 active:bg-blue-500 text-white flex aspect-square items-center justify-center p-6  transition-all duration-500"> */}
-                      <CardContent className="h-[50vh] hover:bg-blue-500 relative active:bg-blue-500 bg-blue-600 text-white flex aspect-square items-center justify-center p-6  transition-all duration-500">
+                      <CardContent className="h-[50vh] hover:cursor-pointer hover:bg-blue-700 relative active:bg-blue-500 bg-blue-600 text-white flex aspect-square items-center justify-center p-6  transition-all duration-500">
+                        <div className="space-y-5   lg:px-10 ">
+                          <div
+                            className={cn(
+                              "text-3xl line-clamp-3"
+                              // index % 2 ? "text-end" : "text-start"
+                            )}
+                          >
+                            <EditableComp
+                              comp={carTitleData[index]}
+                              isEditable={isEditable}
+                            />
+                          </div>
+                          <div
+                            className={cn(
+                              "line-clamp-4"
+                              // index % 2 ? "text-end" : "text-start"
+                            )}
+                          >
+                            <EditableComp
+                              comp={carSubtitleData[index]}
+                              isEditable={isEditable}
+                            />
+                          </div>
+                        </div>{" "}
                         <span className="text-xl font-semibold absolute bottom-10 left-10  ">
                           {index + 1}
                         </span>
@@ -100,7 +125,6 @@ const ServicesCarousel = ({ data, isEditable }) => {
         </div>
       </div>
       <NewMockup />
-      {/* <ServicesMockup /> */}
 
       <div className="">
         {Array.from({ length: 6 }).map((_, index) => (

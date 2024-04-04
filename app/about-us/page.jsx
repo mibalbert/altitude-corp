@@ -4,6 +4,7 @@
 
 import AboutUsHero from "@/components/about-us/about-us-hero";
 import ClientsVision from "@/components/about-us/clients-vision";
+import ContactUs from "@/components/about-us/contact-us";
 import MissionStatement from "@/components/about-us/mission-statement";
 import Values from "@/components/about-us/values";
 import ContactUsInsidePage from "@/components/contact-us/contact-us-inside-page";
@@ -28,7 +29,7 @@ const AboutUs = async () => {
       <Values />
       <ClientsVision />
       {/* <ContactUsServices data={data[0]} /> */}
-      <ContactUsServices  />
+      <ContactUs  />
       {/* <ContactUsInsidePage /> */}
     </>
   );

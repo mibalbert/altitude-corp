@@ -12,7 +12,7 @@ async function seed() {
     await prisma.user.deleteMany({});
     await prisma.folder.deleteMany({});
     await prisma.post.deleteMany({});
-    await prisma.featList.deleteMany({});
+    // await prisma.featList.deleteMany({});
     await prisma.pageObject.deleteMany({});
 
     // const blogPageObj = [
@@ -46,12 +46,12 @@ async function seed() {
     //   });
     // }
 
-    await prisma.featList.create({
-      data: {
-        id: 1,
-        order: "46,47,48,49,50",
-      },
-    });
+    // await prisma.featList.create({
+    //   data: {
+    //     id: 1,
+    //     order: "46,47,48,49,50",
+    //   },
+    // });
 
     // Create a hashed password using bcrypt
     const hashedPassword = await bcrypt.hash("123456", 10);
@@ -112,58 +112,63 @@ async function seed() {
     const postSeedData = [
       {
         title: "Post 1",
-        content: `[]`,
+        content: `[{"id":"38b36aa1-7668-4b54-9d99-d91c57261271","type":"heading","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left","level":2},"content":[{"type":"text","text":"Unlocking Financial Excellence: ALTITUDE CORP's Journey","styles":{"bold":true}}],"children":[]},{"id":"75495876-93b5-42fd-9a5b-97450917e31a","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]},{"id":"718f4799-5d4f-4507-b2e7-480ceba9fd34","type":"image","props":{"backgroundColor":"default","textAlignment":"left","url":"https://mongo-blog.s3.eu-central-1.amazonaws.com/blog/fulllogo_transparent_nobuffer.png","caption":"","width":512},"children":[]},{"id":"7e8532f7-5181-45cc-bbeb-43bf80ea4b0c","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]},{"id":"1eb583d8-4f4e-46fa-bc85-a0dd97e92748","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]},{"id":"6fa3a063-9f21-4ec0-b345-95682409a60d","type":"heading","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left","level":3},"content":[{"type":"text","text":"Visionary Leadership","styles":{"bold":true}}],"children":[]},{"id":"b710e08a-dc62-4820-a623-4c1bd0f03186","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[{"type":"text","text":"ALTITUDE CORP is guided by visionary leaders who prioritize innovation, strategic foresight, and sustainable growth. Their bold decisions and forward-thinking approach have propelled the company to new heights.","styles":{}}],"children":[]},{"id":"28b4a154-e60a-4c46-adb3-daf337499ef8","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]},{"id":"f982bcb7-a991-4a95-a256-7b4ff25d70e0","type":"heading","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left","level":3},"content":[{"type":"text","text":"Exceptional Financial Performance","styles":{"bold":true}},{"type":"text","text":" ","styles":{}}],"children":[]},{"id":"68f8ac96-1a0d-4ae3-aa46-71847851fd35","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[{"type":"text","text":"We consistently deliver exceptional financial results, showcasing our proficiency in resource management, investment optimization, and risk mitigation. Our robust financial strategies have garnered praise and trust from investors worldwide.","styles":{}}],"children":[]},{"id":"d985b8ca-1775-43b7-bf0a-43ffc9e0f554","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]},{"id":"684fd4b6-9509-430c-98ba-2f4893d19152","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]}]`,
         coverImage: "",
         isArchived: false,
         isPublished: true,
         isFeatured: false,
+        position: 1,
         publicId: "public_id_1",
-        folder: { connect: { id: 1 } }, // Use folder instead of folderId
-        featList: { connect: { id: 1 } }, // Assuming you have a FeatList with ID 1
+        folder: { connect: { id: 1 } },
+        // featList: { connect: { id: 1 } },
         // authorEmail: "author1@example.com",
       },
       {
         title: "Post 2",
-        content: `[]`,
+        content: `[{"id":"38b36aa1-7668-4b54-9d99-d91c57261271","type":"heading","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left","level":2},"content":[{"type":"text","text":"Unlocking Financial Excellence: ALTITUDE CORP's Journey","styles":{"bold":true}}],"children":[]},{"id":"75495876-93b5-42fd-9a5b-97450917e31a","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]},{"id":"718f4799-5d4f-4507-b2e7-480ceba9fd34","type":"image","props":{"backgroundColor":"default","textAlignment":"left","url":"https://mongo-blog.s3.eu-central-1.amazonaws.com/blog/fulllogo_transparent_nobuffer.png","caption":"","width":512},"children":[]},{"id":"7e8532f7-5181-45cc-bbeb-43bf80ea4b0c","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]},{"id":"1eb583d8-4f4e-46fa-bc85-a0dd97e92748","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]},{"id":"6fa3a063-9f21-4ec0-b345-95682409a60d","type":"heading","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left","level":3},"content":[{"type":"text","text":"Visionary Leadership","styles":{"bold":true}}],"children":[]},{"id":"b710e08a-dc62-4820-a623-4c1bd0f03186","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[{"type":"text","text":"ALTITUDE CORP is guided by visionary leaders who prioritize innovation, strategic foresight, and sustainable growth. Their bold decisions and forward-thinking approach have propelled the company to new heights.","styles":{}}],"children":[]},{"id":"28b4a154-e60a-4c46-adb3-daf337499ef8","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]},{"id":"f982bcb7-a991-4a95-a256-7b4ff25d70e0","type":"heading","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left","level":3},"content":[{"type":"text","text":"Exceptional Financial Performance","styles":{"bold":true}},{"type":"text","text":" ","styles":{}}],"children":[]},{"id":"68f8ac96-1a0d-4ae3-aa46-71847851fd35","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[{"type":"text","text":"We consistently deliver exceptional financial results, showcasing our proficiency in resource management, investment optimization, and risk mitigation. Our robust financial strategies have garnered praise and trust from investors worldwide.","styles":{}}],"children":[]},{"id":"d985b8ca-1775-43b7-bf0a-43ffc9e0f554","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]},{"id":"684fd4b6-9509-430c-98ba-2f4893d19152","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]}]`,
         coverImage: "",
         isArchived: false,
         isPublished: true,
         isFeatured: false,
+        position: 2,
         publicId: "public_id_2",
-        folder: { connect: { id: 1 } }, // Use folder instead of folderId
-        featList: { connect: { id: 1 } }, // Assuming you have a FeatList with ID 1
+        folder: { connect: { id: 1 } },
+        // featList: { connect: { id: 1 } },
         // authorEmail: "author2@example.com",
       },
       {
         title: "Post 3",
-        content: `[]`,
+        content: `[{"id":"38b36aa1-7668-4b54-9d99-d91c57261271","type":"heading","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left","level":2},"content":[{"type":"text","text":"Unlocking Financial Excellence: ALTITUDE CORP's Journey","styles":{"bold":true}}],"children":[]},{"id":"75495876-93b5-42fd-9a5b-97450917e31a","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]},{"id":"718f4799-5d4f-4507-b2e7-480ceba9fd34","type":"image","props":{"backgroundColor":"default","textAlignment":"left","url":"https://mongo-blog.s3.eu-central-1.amazonaws.com/blog/fulllogo_transparent_nobuffer.png","caption":"","width":512},"children":[]},{"id":"7e8532f7-5181-45cc-bbeb-43bf80ea4b0c","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]},{"id":"1eb583d8-4f4e-46fa-bc85-a0dd97e92748","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]},{"id":"6fa3a063-9f21-4ec0-b345-95682409a60d","type":"heading","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left","level":3},"content":[{"type":"text","text":"Visionary Leadership","styles":{"bold":true}}],"children":[]},{"id":"b710e08a-dc62-4820-a623-4c1bd0f03186","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[{"type":"text","text":"ALTITUDE CORP is guided by visionary leaders who prioritize innovation, strategic foresight, and sustainable growth. Their bold decisions and forward-thinking approach have propelled the company to new heights.","styles":{}}],"children":[]},{"id":"28b4a154-e60a-4c46-adb3-daf337499ef8","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]},{"id":"f982bcb7-a991-4a95-a256-7b4ff25d70e0","type":"heading","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left","level":3},"content":[{"type":"text","text":"Exceptional Financial Performance","styles":{"bold":true}},{"type":"text","text":" ","styles":{}}],"children":[]},{"id":"68f8ac96-1a0d-4ae3-aa46-71847851fd35","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[{"type":"text","text":"We consistently deliver exceptional financial results, showcasing our proficiency in resource management, investment optimization, and risk mitigation. Our robust financial strategies have garnered praise and trust from investors worldwide.","styles":{}}],"children":[]},{"id":"d985b8ca-1775-43b7-bf0a-43ffc9e0f554","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]},{"id":"684fd4b6-9509-430c-98ba-2f4893d19152","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]}]`,
         coverImage: "",
         isArchived: true,
         isPublished: false,
         isFeatured: true,
-        folder: { connect: { id: 1 } }, // Use folder instead of folderId
-        featList: { connect: { id: 1 } }, // Assuming you have a FeatList with ID 1
+        position: 3,
+        folder: { connect: { id: 1 } },
+        // featList: { connect: { id: 1 } },
         // authorEmail: "author3@example.com",
       },
       {
         title: "Post 4",
-        content: `[]`,
+        content: `[{"id":"38b36aa1-7668-4b54-9d99-d91c57261271","type":"heading","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left","level":2},"content":[{"type":"text","text":"Unlocking Financial Excellence: ALTITUDE CORP's Journey","styles":{"bold":true}}],"children":[]},{"id":"75495876-93b5-42fd-9a5b-97450917e31a","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]},{"id":"718f4799-5d4f-4507-b2e7-480ceba9fd34","type":"image","props":{"backgroundColor":"default","textAlignment":"left","url":"https://mongo-blog.s3.eu-central-1.amazonaws.com/blog/fulllogo_transparent_nobuffer.png","caption":"","width":512},"children":[]},{"id":"7e8532f7-5181-45cc-bbeb-43bf80ea4b0c","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]},{"id":"1eb583d8-4f4e-46fa-bc85-a0dd97e92748","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]},{"id":"6fa3a063-9f21-4ec0-b345-95682409a60d","type":"heading","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left","level":3},"content":[{"type":"text","text":"Visionary Leadership","styles":{"bold":true}}],"children":[]},{"id":"b710e08a-dc62-4820-a623-4c1bd0f03186","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[{"type":"text","text":"ALTITUDE CORP is guided by visionary leaders who prioritize innovation, strategic foresight, and sustainable growth. Their bold decisions and forward-thinking approach have propelled the company to new heights.","styles":{}}],"children":[]},{"id":"28b4a154-e60a-4c46-adb3-daf337499ef8","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]},{"id":"f982bcb7-a991-4a95-a256-7b4ff25d70e0","type":"heading","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left","level":3},"content":[{"type":"text","text":"Exceptional Financial Performance","styles":{"bold":true}},{"type":"text","text":" ","styles":{}}],"children":[]},{"id":"68f8ac96-1a0d-4ae3-aa46-71847851fd35","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[{"type":"text","text":"We consistently deliver exceptional financial results, showcasing our proficiency in resource management, investment optimization, and risk mitigation. Our robust financial strategies have garnered praise and trust from investors worldwide.","styles":{}}],"children":[]},{"id":"d985b8ca-1775-43b7-bf0a-43ffc9e0f554","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]},{"id":"684fd4b6-9509-430c-98ba-2f4893d19152","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]}]`,
         coverImage: "",
         isArchived: false,
         isPublished: true,
+        position: 4,
         publicId: "public_id_4",
         // authorEmail: "author1@example.com",
       },
       {
         title: "Post 5",
-        content: `[]`,
+        content: `[{"id":"38b36aa1-7668-4b54-9d99-d91c57261271","type":"heading","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left","level":2},"content":[{"type":"text","text":"Unlocking Financial Excellence: ALTITUDE CORP's Journey","styles":{"bold":true}}],"children":[]},{"id":"75495876-93b5-42fd-9a5b-97450917e31a","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]},{"id":"718f4799-5d4f-4507-b2e7-480ceba9fd34","type":"image","props":{"backgroundColor":"default","textAlignment":"left","url":"https://mongo-blog.s3.eu-central-1.amazonaws.com/blog/fulllogo_transparent_nobuffer.png","caption":"","width":512},"children":[]},{"id":"7e8532f7-5181-45cc-bbeb-43bf80ea4b0c","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]},{"id":"1eb583d8-4f4e-46fa-bc85-a0dd97e92748","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]},{"id":"6fa3a063-9f21-4ec0-b345-95682409a60d","type":"heading","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left","level":3},"content":[{"type":"text","text":"Visionary Leadership","styles":{"bold":true}}],"children":[]},{"id":"b710e08a-dc62-4820-a623-4c1bd0f03186","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[{"type":"text","text":"ALTITUDE CORP is guided by visionary leaders who prioritize innovation, strategic foresight, and sustainable growth. Their bold decisions and forward-thinking approach have propelled the company to new heights.","styles":{}}],"children":[]},{"id":"28b4a154-e60a-4c46-adb3-daf337499ef8","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]},{"id":"f982bcb7-a991-4a95-a256-7b4ff25d70e0","type":"heading","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left","level":3},"content":[{"type":"text","text":"Exceptional Financial Performance","styles":{"bold":true}},{"type":"text","text":" ","styles":{}}],"children":[]},{"id":"68f8ac96-1a0d-4ae3-aa46-71847851fd35","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[{"type":"text","text":"We consistently deliver exceptional financial results, showcasing our proficiency in resource management, investment optimization, and risk mitigation. Our robust financial strategies have garnered praise and trust from investors worldwide.","styles":{}}],"children":[]},{"id":"d985b8ca-1775-43b7-bf0a-43ffc9e0f554","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]},{"id":"684fd4b6-9509-430c-98ba-2f4893d19152","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]}]`,
         coverImage: "",
         isArchived: false,
         isPublished: true,
         isFeatured: true,
+        position: 5,
         publicId: "public_id_5",
-        folder: { connect: { id: 1 } }, // Use folder instead of folderId
-        featList: { connect: { id: 1 } }, // Assuming you have a FeatList with ID 1
+        folder: { connect: { id: 1 } },
+        // featList: { connect: { id: 1 } },
         // authorEmail: "author2@example.com",
       },
     ];
@@ -172,12 +177,62 @@ async function seed() {
       await prisma.post.create({
         data: {
           ...postData,
-          featList: { connect: { id: 1 } },
+          // featList: { connect: { id: 1 } },
         },
       });
     }
 
     const compObjs = [
+      {
+        page: "home",
+        type: "h1",
+        title: `Contact Us`,
+        compName: "contact-us-home-title",
+        parentComp: "ContactUsHome",
+        className:
+          "text-3xl font-bold  text-white tracking-tighter sm:text-4xl md:text-5xl",
+      },
+      {
+        page: "home",
+        type: "p",
+        title: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi
+        fuga est beatae porro magnam pariatur recusandae aliquam tempora
+        inventore quibusdam harum, blanditiis quas! `,
+        compName: "contact-us-home-subtitle-1",
+        parentComp: "ContactUsHome",
+        className:
+          "max-w-xl text-white md:text-xl/relaxed lg:text-md/relaxed xl:text-md/relaxed ",
+      },
+      {
+        page: "home",
+        type: "p",
+        title: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi
+        fuga est beatae porro magnam pariatur recusandae aliquam tempora
+        inventore quibusdam harum, blanditiis quas! `,
+        compName: "contact-us-home-subtitle-2",
+        parentComp: "ContactUsHome",
+        className:
+          "max-w-xl text-white md:text-xl/relaxed lg:text-md/relaxed xl:text-md/relaxed ",
+      },
+      {
+        page: "home",
+        type: "h2",
+        title: `Contact Form`,
+        compName: "contact-us-home-form-title",
+        parentComp: "ContactUsHome",
+        className:
+          "text-2xl font-bold text-white tracking-tighter sm:text-3xl md:text-4xl/none",
+      },
+      {
+        page: "home",
+        type: "p",
+        title: `  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        Accusantium assu`,
+        compName: "contact-us-home-form-subtitle",
+        parentComp: "ContactUsHome",
+        className:
+          "text-white md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed",
+      },
       {
         page: "home",
         type: "h1",
@@ -450,11 +505,11 @@ async function seed() {
       {
         page: "blog",
         type: "h1",
-        title: `View Our Latest Blogs`,
+        title: `Our Blog`,
         compName: "hero-title",
         parentComp: "Hero",
         className:
-          "text-4xl font-bold tracking-tighter font-serif text-center p-0 m-0 sm:text-5xl md:text-5xl lg:text-6xl bg-transparent ",
+          "text-4xl font-bold tracking-tighter font-serif  text-center p-0 m-0 sm:text-3xl md:text-4xl lg:text-6xl bg-transparent ",
       },
       {
         page: "services",
@@ -605,53 +660,44 @@ async function seed() {
       {
         page: "services",
         type: "h1",
-        title: `Contact Us`,
+        title: `Contact Us Now!`,
         compName: "services-contact-title",
-        parentComp: "ServicesContact",
-        className:
-          "text-3xl font-bold  text-white tracking-tighter sm:text-4xl md:text-5xl",
+        parentComp: "ServicesContactUs",
+        className: "text-2xl md:text-4xl font-bold text-white",
       },
       {
         page: "services",
         type: "p",
-        title: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi
-        fuga est beatae porro magnam pariatur recusandae aliquam tempora
-        inventore quibusdam harum, blanditiis quas! `,
+        title: `Effective risk management is essential for safeguarding your financial well-being against unexpected events. Our risk management service assesses potential risks to your financial security, such as market volatility, longevity risk, and unforeseen expenses. We develop strategies to mitigate these risks through diversification, insurance solutions, and contingency planning, providing you with peace of mind.        `,
         compName: "services-contact-subtitle-1",
-        parentComp: "ServicesContact",
-        className:
-          "max-w-xl text-white md:text-xl/relaxed lg:text-md/relaxed xl:text-md/relaxed ",
+        parentComp: "ServicesContactUs",
+        className: "text-md md:text-lg text-white",
       },
       {
         page: "services",
         type: "p",
-        title: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi
-        fuga est beatae porro magnam pariatur recusandae aliquam tempora
-        inventore quibusdam harum, blanditiis quas! `,
+        title: `Effective risk management is essential for safeguarding your financial well-being against unexpected events. Our risk management service assesses potential risks to your financial security, such as market volatility, longevity risk, and unforeseen expenses. We develop strategies to mitigate these risks through diversification, insurance solutions, and contingency planning, providing you with peace of mind.        `,
         compName: "services-contact-subtitle-2",
-        parentComp: "ServicesContact",
-        className:
-          "max-w-xl text-white md:text-xl/relaxed lg:text-md/relaxed xl:text-md/relaxed ",
+        parentComp: "ServicesContactUs",
+        className: "text-md md:text-lg text-white",
       },
       {
         page: "services",
-        type: "h2",
-        title: `              Contact Form        `,
+        type: "h1",
+        title: `Contact Form`,
         compName: "services-contact-form-title",
-        parentComp: "ServicesContact",
-        className:
-          "text-2xl font-bold tracking-tighter sm:text-3xl md:text-4xl/none",
+        parentComp: "ServicesContactUs",
+        className: "text-2xl md:text-4xl font-bold text-white",
       },
       {
         page: "services",
         type: "p",
-        title: `  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-        Accusantium assu`,
+        title: `Please fill in this contact form and we will get to you shortly.`,
         compName: "services-contact-form-subtitle",
-        parentComp: "ServicesContact",
-        className:
-          "text-white md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed",
+        parentComp: "ServicesContactUs",
+        className: "text-md md:text-lg text-white",
       },
+
       {
         page: "blog",
         type: "h1",

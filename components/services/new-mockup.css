@@ -130,7 +130,7 @@
   width: 50em;
   height: 50em;
   border-radius: 50%;
-  background: linear-gradient(110deg, #ab34b2, #d63776, #5d2b8b);
+  background: linear-gradient(110deg, #1e3a8a, #1e40af, #2563eb);
   bottom: 0;
 }
 .iphonex .screen .screen__view:after {
@@ -152,13 +152,28 @@
   transform: translateY(10%) scaleX(1.4);
   transition: all ease 0.9s 0.2s;
 }
-.iphonex .screen .screen__view .dribbbleLogo {
-  width: 8em;
+/* .iphonex .screen .screen__view .altitudeLogo {
+   width: 8em;
   height: 8em;
-  border: solid 0.7em #d33572;
-  border-radius: 50%;
+  border: solid 0.7em #3567d3;
+  border-radius: 50%; 
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-  background: #ea4c89;
+  background: #4c57ea;
+  position: absolute;
+  z-index: 10;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all ease 0.7s;
+} */
+.iphonex .screen .screen__view .altitudeLogo {
+  width: 12em;
+  height: 12em;
+  background-image: url("/fulllogo_transparent_nobuffer.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain; /* Updated property */
   position: absolute;
   z-index: 10;
   overflow: hidden;
@@ -167,7 +182,7 @@
   justify-content: center;
   transition: all ease 0.7s;
 }
-.iphonex .screen .screen__view .dribbbleLogo.white {
+/* .iphonex .screen .screen__view .altitudeLogo.white {
   width: 0.9em;
   height: 0.9em;
   border: solid 0.07em #fff;
@@ -175,14 +190,14 @@
   margin-left: 0.3em;
   background: transparent;
   box-sizing: border-box;
-}
-.iphonex .screen:hover .screen__view .dribbbleLogo:not(.white) {
+} */
+.iphonex .screen:hover .screen__view .altitudeLogo:not(.white) {
   transform: translateY(100%) translateZ(1px);
   transition: all ease 1s 0.1s;
 }
-.iphonex .screen .screen__view .dribbbleLogo:after,
-.iphonex .screen .screen__view .dribbbleLogo:before,
-.iphonex .screen .screen__view .dribbbleLogo span {
+/* .iphonex .screen .screen__view .altitudeLogo:after,
+.iphonex .screen .screen__view .altitudeLogo:before,
+.iphonex .screen .screen__view .altitudeLogo span {
   content: "";
   width: 100%;
   height: 100%;
@@ -190,26 +205,26 @@
   border: solid 0.45em #d33572;
   position: absolute;
 }
-.iphonex .screen .screen__view .dribbbleLogo.white:after,
-.iphonex .screen .screen__view .dribbbleLogo.white:before,
-.iphonex .screen .screen__view .dribbbleLogo.white span {
+.iphonex .screen .screen__view .altitudeLogo.white:after,
+.iphonex .screen .screen__view .altitudeLogo.white:before,
+.iphonex .screen .screen__view .altitudeLogo.white span {
   border: solid 0.04em #fff;
 }
-.iphonex .screen .screen__view .dribbbleLogo:after {
+.iphonex .screen .screen__view .altitudeLogo:after {
   bottom: 0;
   transform: translateY(63%) scaleY(1.65) scaleX(1.5) rotate(-30deg);
   transform-origin: top center;
 }
-.iphonex .screen .screen__view .dribbbleLogo:before {
+.iphonex .screen .screen__view .altitudeLogo:before {
   top: 0;
   transform: translateY(-62%) scaleY(1.65) scaleX(1.5) rotate(-30deg);
   transform-origin: bottom center;
 }
-.iphonex .screen .screen__view .dribbbleLogo span {
+.iphonex .screen .screen__view .altitudeLogo span {
   top: 0;
   transform: translateY(-50%) scaleY(1.85) scaleX(1.5) rotate(-63deg);
   transform-origin: bottom right;
-}
+} */
 .iphonex .screen .screen__view .hello {
   font-size: 2.5em;
   color: #fff;
@@ -245,7 +260,7 @@
   margin-top: 0.5em;
   z-index: 999;
 }
-/* .iphonex .screen .screen__front::after,
+.iphonex .screen .screen__front::after,
 .iphonex .screen .screen__front::before {
   content: "";
   width: 10%;
@@ -255,7 +270,7 @@
   top: -0.3em;
   border: solid 0.4em #191b1c;
   border-bottom: 0;
-} */
+}
 .iphonex .screen .screen__front::after {
   left: 0.4em;
   transform: translateX(-100%);

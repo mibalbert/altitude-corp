@@ -65,29 +65,20 @@ const MainNav = ({ session }) => {
     );
   }
 
-  const whiteTextPaths = ["/blog", "/services"];
+  const whiteTextPaths = ["/blog", "/contact-us", "/about-us"];
 
   return (
     <>
       {!editorMode && (
         <section
           className={cn(
-            "h-14 top-0 left-0 w-full absolute  z-[999]  transition-all duration-200",
-            // "h-14 top-0 left-0 w-full sticky z-[999]",
-            // isSticky ? "sticky" : "absolute",
-            // {
-            //   "supports-backdrop-blur:bg-white/70 bg-white/70  backdrop-blur-lg":
-            //     isSticky,
-            // },
+            "h-14  w-full   z-[998]  transition-all duration-200",
             {
               sticky: pathname.startsWith("/admin"),
             },
-            // {
-              // hidden: isAdmin && editors,
-            // },
-            // {
-            //   "text-white": whiteTextPaths.includes(pathname),
-            // }
+            {
+              "text-white bg-blue-600": whiteTextPaths.includes(pathname),
+            }
           )}
         >
           <div

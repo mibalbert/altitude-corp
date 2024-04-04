@@ -9,10 +9,6 @@ import {
 import { useState } from "react";
 import { SortableItem } from "./sortable-item";
 
-// const LiveEditor = dynamic(() => import("./live-editor"), {
-//   ssr: false,
-// });
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import {
   CarouselItem,
@@ -24,19 +20,10 @@ import {
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-  CommandSeparator,
-} from "@/components/ui/command";
-import DNDCont from "./dnd-context";
-import prisma from "@/lib/prismadb";
+import DNDCont from "../../app/testing2/dnd-context";
+
 import { toast } from "sonner";
-import { changeFeatListOrder } from "../_actions";
+import { changeFeatListOrder, setNewPositions } from "../../app/_actions";
 
 const svgs = [
   {
@@ -45,43 +32,34 @@ const svgs = [
   },
 ];
 
-const Carouse = ({ data, featListId, editable }) => {
-  const [languages, setLanguages] = useState(data);
-  // const da = languages.map((el) => el.id);
+const Carouse = ({ data, editable }) => {
+  const [postsArr, setPostsArr] = useState(data);
 
   async function handleDragEnd(event) {
-    // console.log("eeee", event);
-    // console.log("Drag end called");
     const { active, over } = event;
-    // console.log("ACTIVE: " + active.id);
-    // console.log("OVER :" + over.id);
 
     if (active.id !== over.id) {
-      setLanguages((items) => {
-        const activeIndex = items.findIndex((item) => item.id === active.id);
-        const overIndex = items.findIndex((item) => item.id === over.id);
-        // return arrayMove(items, activeIndex, overIndex);
-        // const activeIndex = items.indexOf(active.id);
-        // const overIndex = items.indexOf(over.id);
-        // console.log(arrayMove(items, activeIndex, overIndex));
-        // console.log();
-        // const newOrder = arrayMove(items, activeIndex, overIndex);
-
-        const op = async () => {
-          const newOrder = arrayMove(items, activeIndex, overIndex)
-            .map((el) => el.id)
-            .toString();
-
-          const res = await changeFeatListOrder(featListId, newOrder);
+      const activeIndex = postsArr.findIndex((el) => el.id === active.id);
+      const overIndex = postsArr.findIndex((el) => el.id === over.id);
+      const updatedPostsArr = arrayMove(postsArr, activeIndex, overIndex);
+      const newArr = updatedPostsArr.map((post, index) => ({
+        ...post,
+        position: index,
+      }));
+      setPostsArr(newArr);
+      try {
+        const proceed = async () => {
+          const res = await setNewPositions(newArr);
           if (res.ok) {
-            toast("Yeyyy");
+            toast("Success");
+          } else {
+            toast("Failed");
           }
         };
-        op();
-        return arrayMove(items, activeIndex, overIndex);
-        // items: [2, 3, 1]   0  -> 2
-        // [1, 2, 3] oldIndex: 0 newIndex: 2  -> [2, 3, 1]
-      });
+        proceed();
+      } catch (error) {
+        toast("Error");
+      }
     }
   }
   return (
@@ -98,40 +76,21 @@ const Carouse = ({ data, featListId, editable }) => {
               onDragEnd={handleDragEnd}
             >
               <div>
-                {/* <h3>The best programming languages!</h3> */}
                 <SortableContext
-                  // items={languages}
-                  items={languages.map((language) => language.id)}
+                  items={postsArr.map((post) => post.id)}
                   strategy={verticalListSortingStrategy}
                 >
-                  {/* We need components that use the useSortable hook */}
-                  {languages.map((language) => (
+                  {postsArr.map((post) => (
                     <SortableItem
-                      key={language.id}
-                      id={language.id}
-                      title={language.title || "aaaa"}
+                      key={post.id}
+                      id={post.id}
+                      title={post.heading}
                       className="border my-2 p-3 truncate"
                     />
                   ))}
                 </SortableContext>
               </div>
             </DndContext>
-
-            {/* {
-                  JSON.parse(post.content).find((el) => el.type === "heading")
-                    ?.content[0]?.text
-                } */}
-            {/* {data?.map((post, idx) => {
-                  return (
-                    <CommandItem key={idx} className="truncate line-clamp-1">
-                      {
-                        JSON.parse(post.content).find(
-                          (el) => el.type === "heading"
-                        )?.content[0]?.text
-                      }
-                    </CommandItem>
-                  );
-                })} */}
           </DialogContent>
         </Dialog>
       )}
@@ -149,7 +108,7 @@ const Carouse = ({ data, featListId, editable }) => {
                       href={"#"}
                       className="text-2xl font-bold tracking-tight sm:text-3xl"
                     >
-                      {post?.title}
+                      {post?.heading}
                     </Link>
                     <p className="text-gray-200 ">{post?.subtitle}</p>
                   </div>
@@ -221,3 +180,16 @@ const Carouse = ({ data, featListId, editable }) => {
 };
 
 export default Carouse;
+
+// const op = async () => {
+// const newOrder = arrayMove(items, activeIndex, overIndex)
+//   .map((el) => el.id)
+//   .toString();
+
+// console.log(arrayMove(items, activeIndex, overIndex))
+// const res = await changeFeatListOrder(featListId, newOrder);
+// if (res.ok) {
+//   toast("Yeyyy");
+// }
+// };
+// op();

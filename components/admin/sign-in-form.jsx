@@ -52,25 +52,26 @@ export default function SignInForm() {
     setPending(true);
     e.preventDefault();
 
-    const res = await signIn("credentials", {
+    // const res =
+    await signIn("credentials", {
       email: e.target.email.value,
       password: e.target.password.value,
       callbackUrl: "/admin",
       // redirect: false,
     });
 
-    if (!res) {
-      setNumTries((state) => state + 1);
-      setError("Errrorrr");
-      // setError(res.error.split(": ")[1]);
-      setPending(false);
-    } else {
-      toast.success("Succesfully logged in!");
-      setPending(false);
-      // router.replace("/admin");
-      // router.replace("/admin");
-      // redirect("/admin");
-    }
+    // if (!res) {
+    //   setNumTries((state) => state + 1);
+    //   setError("Errrorrr");
+    // setError(res.error.split(": ")[1]);
+    //   setPending(false);
+    // } else {
+    //   toast.success("Succesfully logged in!");
+    //   setPending(false);
+    // router.replace("/admin");
+    // router.replace("/admin");
+    // redirect("/admin");
+    // }
   };
 
   return (

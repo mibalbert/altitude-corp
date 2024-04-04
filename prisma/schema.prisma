@@ -368,7 +368,7 @@ model Post {
   isArchived   Boolean?  @default(false)
   isPublished  Boolean  @default(false)
   isFeatured   Boolean?  @default(false)
-  position        Int?
+  position      Int?
   publicId     String?
   folder       Folder?   @relation(fields: [folderId], references: [id], onDelete: Cascade)
   folderId     Int?   
@@ -377,20 +377,20 @@ model Post {
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
  
-  featListId  Int?
-  featList    FeatList?     @relation(fields: [featListId], references: [id])
+  // featListId  Int?
+  // featList    FeatList?     @relation(fields: [featListId], references: [id])
 
   @@index([authorEmail])
   @@index([folderId])
-  @@index([featListId])
+  // @@index([featListId])
 }
 
-model FeatList {
-  id        Int      @id @default(autoincrement())
-  list      Post[]
-  // order   String[]
-  order     String?
-}
+// model FeatList {
+//   id        Int      @id @default(autoincrement())
+//   list      Post[]
+//   // order   String[]
+//   order     String?
+// }
 
 model PageObject {
   id        Int      @id @default(autoincrement())

@@ -21,7 +21,7 @@ const ContactUs = () => {
   // );
 
   return (
-    <section>
+    <section className="h-full w-full ">
       {/* <div>ContactUs</div>
       <div>Contact Form : Ensure it is simple and ecuourages inquires.</div>
       <div>

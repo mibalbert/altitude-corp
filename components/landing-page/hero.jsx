@@ -24,14 +24,15 @@ const Hero = ({ data, isEditable }) => {
   return (
     <div className="lg:mb-12 px-3 sm:px-8 lg:px-12">
       <div className="relative w-full h-[75vh] overflow-hidden rounded-xl bg-blue-600 max-w-[1600px] mx-auto bg-dot-white/[0.6]">
-      <div className="absolute pointer-events-none  inset-0 flex items-center justify-center   bg-gradient-to-t from-transparent   to-blue-600 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+        <div className="absolute pointer-events-none  inset-0 flex items-center justify-center   bg-gradient-to-t from-transparent   to-blue-600 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
 
         {/* {images.map((imageName, index) => (
           <div key={index} className="absolute w-full  flex items-end  h-full"> */}
         <Image
           alt={"mountBg"}
           // src={`https://assets.codepen.io/721952/${imageName}.png`}
-          src={`/land/mountBg.webp`}
+          // src={`/land/mountBg.webp`}
+          src={`https://mongo-blog.s3.eu-central-1.amazonaws.com/home/mountBg.webp`}
           className="object-cover  z-10"
           // width={1600}
           // height={600}
@@ -40,7 +41,8 @@ const Hero = ({ data, isEditable }) => {
         <Image
           alt={"mountMg"}
           // src={`https://assets.codepen.io/721952/${imageName}.png`}
-          src={`/land/mountMg.webp`}
+          // src={`/land/mountMg.webp`}
+          src={`https://mongo-blog.s3.eu-central-1.amazonaws.com/home/mountMg.webp`}
           className="object-cover z-[12]"
           // width={1600}
           // height={600}
@@ -49,7 +51,8 @@ const Hero = ({ data, isEditable }) => {
         <Image
           alt={"cloud2"}
           // src={`https://assets.codepen.io/721952/${imageName}.png`}
-          src={`/land/cloud2.webp`}
+          // src={`/land/cloud2.webp`}
+          src={`https://mongo-blog.s3.eu-central-1.amazonaws.com/home/cloud2.webp`}
           className="object-cover z-[13]"
           // width={1600}
           // height={600}
@@ -58,7 +61,8 @@ const Hero = ({ data, isEditable }) => {
         <Image
           alt={"mountFg"}
           // src={`https://assets.codepen.io/721952/${imageName}.png`}
-          src={`/land/mountFg.webp`}
+          // src={`/land/mountFg.webp`}
+          src={`https://mongo-blog.s3.eu-central-1.amazonaws.com/home/mountFg.webp`}
           className="object-cover z-[10]"
           // width={1600}
           // height={600}

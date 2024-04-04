@@ -28,6 +28,7 @@ const NavItems = ({ session }) => {
   // if (session?.user?.role === "USER" && pathname.startsWith("/user/")) {
   //   return;
   // }
+  const whiteTextPaths = ["/blog", "/contact-us", "/about-us"];
 
   if (session?.user) {
     return (
@@ -91,6 +92,9 @@ const NavItems = ({ session }) => {
             <div
               className={cn(
                 "absolute bottom-0 h-0.5 w-[100%] rounded-md bg-blue-600 hidden",
+                {
+                  "bg-white": whiteTextPaths.includes(pathname),
+                },
                 {
                   block: pathname === el.href,
                 }

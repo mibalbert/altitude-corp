@@ -2,68 +2,46 @@
  *
  */
 
-import Carouse from "./carousel";
+import Carouse from "../../components/blogs-page/carousel";
 import prisma from "@/lib/prismadb";
 
 const Testing2 = async () => {
-  const data = await prisma.featList.findMany({
+  const data = await prisma.post.findMany({
+    where: {
+      isFeatured: true,
+    },
     select: {
       id: true,
-      list: {
-        select: {
-          id: true,
-          content: true,
-        },
-      },
-      order: true,
+      content: true,
+      position: true,
+    },
+    orderBy: {
+      position: "asc",
     },
   });
 
-  // const op = data[0]?.list?.map((el) => el.id);
-  // console.log(op);
-
-  // const res = await prisma.featList.update({
-  //   where: {
-  //     id: data[0].id,
-  //   },
-  //   data: {
-  //     order: op.toString(),
-  //     // order: "57",
-  //   },
-  // });
-
-  const orderArr = data[0]?.order?.split(",");
-  const orderArrInt = orderArr.map((el) => +el);
-
-  const idToIndexMap = data[0]?.list?.reduce((acc, item, index) => {
-    acc[item.id] = index;
+  const curatedPosts = data?.reduce((acc, el, idx) => {
+    try {
+      const parsedContent = JSON.parse(el.content);
+      const heading = parsedContent.find((item) => item.type === "heading");
+      acc.push({
+        id: el.id,
+        heading: heading?.content[0]?.text || "No heading found",
+        position: el.position,
+      });
+    } catch (error) {
+      console.error(
+        `Error parsing content for element at index ${idx}: ${error}`
+      );
+    }
     return acc;
-  }, {});
+  }, []);
 
-  const sortedArray = orderArr.map((id) => data[0]?.list?.[idToIndexMap[id]]);
-
-  const finalArray = [
-    ...sortedArray,
-    ...data[0]?.list?.filter((item) => !orderArrInt.includes(item.id)),
-  ];
-
-  const formattedData = finalArray.map((post) => {
-    const parsedContent = post?.content ? JSON.parse(post.content) : null;
-    const headingText = parsedContent?.find((el) => el.type === "heading")
-      ?.content[0]?.text;
-    return {
-      id: post?.id,
-      title: headingText || "Untitled", // Provide a default title if heading text is undefined
-    };
-  });
-
-  console.log(formattedData);
-  // console.log(finalData);
-  // console.log(orderArr);
+  console.log("dddd", curatedPosts);
 
   return (
     <div className="h-[80vh] flex flex-col items-center justify-center">
-      <Carouse data={formattedData} featListId={data[0].id} editable={true} />
+      <Carouse data={curatedPosts} editable={true} />
     </div>
   );
 };

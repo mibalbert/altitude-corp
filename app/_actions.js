@@ -134,6 +134,30 @@ export async function changeVisibility(postId, changeTo) {
   }
 }
 
+export async function setNewPositions(postsArr) {
+  try {
+    const updateOperations = postsArr.map(async (post) => {
+      return prisma.post.update({
+        where: { id: post.id },
+        data: { position: post.position },
+      });
+    });
+
+    const results = await Promise.all(updateOperations);
+
+    // Check if all updates were successful
+    if (results.every((result) => result !== null && result !== undefined)) {
+      revalidatePath(`/testing2`);
+      return { message: "Status changed", ok: true };
+    } else {
+      throw new Error("Error updating positions");
+    }
+  } catch (error) {
+    console.error("Error updating positions:", error.message);
+    return { message: error.message, ok: false };
+  }
+}
+
 export async function changeFeatListOrder(featListId, newOrder) {
   try {
     const res = await prisma.featList.update({
@@ -157,30 +181,12 @@ export async function changeFeatListOrder(featListId, newOrder) {
 }
 export async function makeFeatured(postId, changeTo) {
   try {
-    // if (featList.p/.find(el=> el.))
-    const featList = await prisma.featList.findFirst({
-      where: {
-        id: 1,
-      },
-      include: {
-        list: {
-          select: {
-            id: true,
-          },
-        },
-      },
-    });
-    const isInList = featList?.list?.find((el) => el.id === postId);
-
     const res = await prisma.post.update({
       where: {
         id: postId,
       },
       data: {
         isFeatured: changeTo,
-        featList: isInList
-          ? { disconnect: { id: featList.id } }
-          : { connect: { id: featList.id } },
       },
     });
 
@@ -198,12 +204,22 @@ export async function makeFeatured(postId, changeTo) {
 export async function createPostUnderFolder(parentFolderId) {
   try {
     console.log("fiaskjdn", parentFolderId);
+    const posts = await prisma.post.findMany({
+      select: {
+        position: true,
+      },
+      orderBy: {
+        position: "desc",
+      },
+    });
+
     const res = await prisma.post.create({
       data: {
         title: "Untitled",
         folderId: +parentFolderId,
         isPublished: false,
         content: `[{"id":"38b36aa1-7668-4b54-9d99-d91c57261271","type":"heading","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left","level":2},"content":[{"type":"text","text":"Unlocking Financial Excellence: ALTITUDE CORP's Journey","styles":{"bold":true}}],"children":[]},{"id":"75495876-93b5-42fd-9a5b-97450917e31a","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]},{"id":"718f4799-5d4f-4507-b2e7-480ceba9fd34","type":"image","props":{"backgroundColor":"default","textAlignment":"left","url":"https://mongo-blog.s3.eu-central-1.amazonaws.com/blog/fulllogo_transparent_nobuffer.png","caption":"","width":512},"children":[]},{"id":"7e8532f7-5181-45cc-bbeb-43bf80ea4b0c","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]},{"id":"1eb583d8-4f4e-46fa-bc85-a0dd97e92748","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]},{"id":"6fa3a063-9f21-4ec0-b345-95682409a60d","type":"heading","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left","level":3},"content":[{"type":"text","text":"Visionary Leadership","styles":{"bold":true}}],"children":[]},{"id":"b710e08a-dc62-4820-a623-4c1bd0f03186","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[{"type":"text","text":"ALTITUDE CORP is guided by visionary leaders who prioritize innovation, strategic foresight, and sustainable growth. Their bold decisions and forward-thinking approach have propelled the company to new heights.","styles":{}}],"children":[]},{"id":"28b4a154-e60a-4c46-adb3-daf337499ef8","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]},{"id":"f982bcb7-a991-4a95-a256-7b4ff25d70e0","type":"heading","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left","level":3},"content":[{"type":"text","text":"Exceptional Financial Performance","styles":{"bold":true}},{"type":"text","text":" ","styles":{}}],"children":[]},{"id":"68f8ac96-1a0d-4ae3-aa46-71847851fd35","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[{"type":"text","text":"We consistently deliver exceptional financial results, showcasing our proficiency in resource management, investment optimization, and risk mitigation. Our robust financial strategies have garnered praise and trust from investors worldwide.","styles":{}}],"children":[]},{"id":"d985b8ca-1775-43b7-bf0a-43ffc9e0f554","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]},{"id":"684fd4b6-9509-430c-98ba-2f4893d19152","type":"paragraph","props":{"textColor":"default","backgroundColor":"default","textAlignment":"left"},"content":[],"children":[]}]`,
+        position: posts[0]?.position + 1 || 0,
       },
     });
     console.log(res);

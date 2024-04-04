@@ -43,11 +43,19 @@ const BlogPost = async ({ params }) => {
   }
 
   return (
-    <section className="max-w-screen-md mx-auto w-full pt-20 pb-[10vh] min-h-screen space-y-10">
-      <Link href={"/blog"} className="flex items-center gap-1 ">
-        <ArrowLeft className="h-4 w-4" /> All posts
-      </Link>
-      <LiveEditor content={data.content} />
+    <section className="pt-32">
+      <div
+        className="relative max-w-screen-md mx-auto w-full
+     pb-[10vh] min-h-screen"
+      >
+        <Link
+          href={"/blog"}
+          className="absolute top-3 pt-0.5 -left-10 flex items-center gap-1 "
+        >
+          <ArrowLeft className="h-4 w-4" /> All posts
+        </Link>
+        <LiveEditor content={data.content} />
+      </div>
     </section>
   );
 };

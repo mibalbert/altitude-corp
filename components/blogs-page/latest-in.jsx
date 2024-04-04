@@ -7,6 +7,7 @@ import Link from "next/link";
 import EditableComp from "../editableComp";
 
 const LatestPostsIn = ({ data, editableData, isEditable }) => {
+  
   const blogPageLatestTitle = editableData?.find(
     (el) => el.compName === "blog-page-latest-title"
   );
@@ -14,32 +15,6 @@ const LatestPostsIn = ({ data, editableData, isEditable }) => {
     (el) => el.compName === "blog-page-latest-subtitle"
   );
 
-  const curatedPosts = data?.reduce((acc, el, idx) => {
-    try {
-      const parsedContent = JSON.parse(el.content);
-      if (parsedContent && parsedContent.length > 0) {
-        const heading = parsedContent.find((item) => item.type === "heading");
-        const description = parsedContent.find(
-          (item) => item.type === "paragraph"
-        );
-        if (heading && description) {
-          acc.push({
-            id: el.id,
-            heading: heading.content[0]?.text || "No heading found",
-            description: description.content[0]?.text || "No description found",
-            // date: el.updatedAt,
-          });
-        }
-      }
-    } catch (error) {
-      console.error(
-        `Error parsing content for element at index ${idx}: ${error}`
-      );
-    }
-    return acc;
-  }, []);
-
-  console.log(curatedPosts);
   return (
     <section className="max-w-7xl w-full mx-auto px-6 xl:px-0">
       <div className="px-6 xl:px-0 py-6 md:py-12 xl:py-16">
@@ -50,22 +25,16 @@ const LatestPostsIn = ({ data, editableData, isEditable }) => {
               comp={blogPageLatestSubtitle}
               isEditable={isEditable}
             />
-            {/* <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              {data?.blogPageLatestTitle}
-            </h1>
-            <p className="text-gray-500 dark:text-gray-400">
-              {data?.blogPageLatestSubtitle}
-            </p> */}
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {/* <div className="grid items-start gap-6 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3"> */}
-            {curatedPosts?.map((post, idx) => {
+            {data?.map((post, idx) => {
               return (
                 <div key={idx}>
                   <div>
                     <Link
                       className="group inline-block"
-                      href={`/blog/${post.id}`}
+                      href={`/blog/${post?.id}`}
                     >
                       <Image
                         alt="Thumbnail"
@@ -74,14 +43,14 @@ const LatestPostsIn = ({ data, editableData, isEditable }) => {
                         src="/placeholder.svg"
                         width={600}
                       />
-                      <h2 className="mt-2 text-2xl font-bold leading-7">
-                        {post.heading}
+                      <h2 className="mt-2 text-2xl font-bold leading-7 line-clamp-3">
+                        {post?.heading}
                       </h2>
-                      <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-                        {/* {} */}
-                      </p>
-                      <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-                        {post.description}
+                      {/* <p className="mt-1 text-sm text-gray-500 dark:text-gray-400"> */}
+                      {/* {} */}
+                      {/* </p> */}
+                      <p className="mt-1 text-sm text-gray-500 dark:text-gray-400 line-clamp-2">
+                        {post?.description}
                       </p>
                     </Link>
                   </div>

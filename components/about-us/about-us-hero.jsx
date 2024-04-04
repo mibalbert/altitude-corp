@@ -11,27 +11,34 @@ import { Spotlight } from "../ui/spotlight";
 
 const AboutUsHero = () => {
   return (
-    <section className="h-[60vh] mt-10 md:mt-0 lg:h-[40rem] w-full rounded-md flex md:items-center md:justify-center bg-blue-600 antialiased bg-dot-white/[0.6] relative overflow-hidden">
-      {/* Radial gradient for the container to give a faded look */}
-      <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-blue-600 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
-
+    <>
       <Spotlight
-        className="-top-10 left-0 md:left-60 md:-top-20"
+        className="absolute  -top-10 left-0 md:left-44 md:-top-10"
         fill="white"
       />
-      <div className="container px-4 md:px-6 w-full h-full z-40 relative flex items-center justify-center">
-        <div className="flex flex-col items-center space-y-4 text-center">
-          <div className="space-y-2">
-            <h1 className="text-3xl font-bold tracking-tighter text-white sm:text-4xl md:text-5xl lg:text-6xl/none">
-              {/* <h1 className="text-4xl md:text-7xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50"> */}
-              The Web. Now. Yours.
-            </h1>
-            <p className="mx-auto max-w-[700px] text-gray-50 md:text-xl dark:text-gray-400">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore
-              ipsum officia quas.
-            </p>
-          </div>
-          {/* <div className="w-full max-w-sm space-y-2">
+      <section className=" h-[60vh] relative lg:h-[40rem] w-full  flex md:items-center md:justify-center bg-blue-600 antialiased bg-dot-white/[0.6]  overflow-hidden">
+        {/* Radial gradient for the container to give a faded look */}
+        <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-blue-600 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+        {/* <div className="z-[9999] bg-red-500 w-44 h-44 -top-10 left-0 absolute"></div> */}
+
+        {/* <Spotlight className="-top-10 left-0 md:left-44 md:top-44" fill="white" />
+      <div className="absolute top-0 left-0 bg-red-600 h-full w-full flex items-center justify-end">
+        <Spotlight className="bg-green-500" fill="white" />
+      </div>{" "}
+      */}
+        <div className="container px-4 md:px-6 w-full h-full z-40 relative flex items-center justify-center">
+          <div className="flex flex-col items-center space-y-4 text-center">
+            <div className="space-y-2">
+              <h1 className="text-3xl font-bold tracking-tighter text-white sm:text-4xl md:text-5xl lg:text-6xl/none">
+                {/* <h1 className="text-4xl md:text-7xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50"> */}
+                The Web. Now. Yours.
+              </h1>
+              <p className="mx-auto max-w-[700px] text-gray-50 md:text-xl dark:text-gray-400">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore
+                ipsum officia quas.
+              </p>
+            </div>
+            {/* <div className="w-full max-w-sm space-y-2">
             <form className="flex space-x-2">
               <Input
                 className="max-w-lg flex-1"
@@ -47,9 +54,10 @@ const AboutUsHero = () => {
               </Link>
             </p>
           </div> */}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 

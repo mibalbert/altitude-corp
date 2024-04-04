@@ -14,7 +14,8 @@ export default function Footer() {
 
   if (
     (pathname.includes("/admin") && !pathname.includes("/admin/preview")) ||
-    pathname.includes("/sign-in")
+    pathname.includes("/sign-in") ||
+    pathname.includes("/contact-us")
   ) {
     return <></>;
   }
