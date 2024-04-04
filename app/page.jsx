@@ -81,7 +81,7 @@ export default async function Home({ searchParams }) {
       <PeaceOfMind data={peaceOfMindComp} />
       <Numbers data={numbersComp} />
       {/* <TheSteps data={stepsComp} /> */}
-      <Plans data={plansComp} />
+      {/* <Plans data={plansComp} /> */}
       <WorldWide data={landingFooterComp} />
       {/* <ContactUsInsidePage /> */}
       <ContactUsHome data={homeContactData} isEditable={isEditable} />
