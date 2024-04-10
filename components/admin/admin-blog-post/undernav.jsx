@@ -44,7 +44,8 @@ const UnderNav = async ({ data }) => {
 
       <div className="flex items-center divide-x pr-[2px]">
         <SavedStatus />
-        <Preview className="px-3 gap-1" postId={data.id} />
+        <Preview className="px-3 gap-1" postId={data.id}           isPublished={data.isPublished}
+/>
         <Publish
           className="px-3 gap-1"
           postId={data.id}

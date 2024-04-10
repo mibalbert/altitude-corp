@@ -7,7 +7,7 @@ import Globe from "react-globe.gl";
 
 import * as THREE from "three";
 import geoJson from "./countries.json";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const WorldWide = () => {
   const markerSvg = (title) => `
@@ -41,6 +41,9 @@ const WorldWide = () => {
   ];
 
 
+  const [globeWidth, setGlobeWidth] = useState(1200)
+  const [globeHeight, setGlobeHeight] = useState(1200)
+
   const globeElement = useRef();
 
   const globeMaterial = new THREE.MeshPhongMaterial();
@@ -49,17 +52,36 @@ const WorldWide = () => {
     globeElement.current.controls().autoRotate = true;
     globeElement.current.controls().autoRotateSpeed = 2;
     globeElement.current.controls().enableZoom = false;
+
+
+
+
+
+    const onResize = () => {
+      // setGlobeWidth(window.innerWidth * 0.8)
+      setGlobeHeight(window.innerHeight * 0.8)
+    }
+
+    window.addEventListener('resize', onResize)
+
+    return () => {
+      window.removeEventListener('resize', onResize)
+    }
+
   }, []);
+
 
   return (
     <section className="h-[70vh] overflow-hidden relative">
-      <div className="absolute top-0 left-0 w-full h-full flex items-end">
-        <div className="text-[350px] font-bold text-blue-200">
+      <div className="absolute top-0 left-0 w-full h-full flex items-end justify-center text-center">
+        <div className="text-[60px] md:text-[170px] lg:text-[240px] xl:text-[350px]  font-bold text-blue-200">
           ALTITUDE
         </div>
       </div>
-      <div className="">
+      <div className="flex items-center justify-center">
         <Globe
+          width={globeWidth}
+          height={globeHeight}
           waitForGlobeReady={false}
           animateIn={false}
           globeMaterial={globeMaterial}

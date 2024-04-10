@@ -35,7 +35,8 @@ const EditComp = ({ data, className }) => {
         }
       }}
       className={cn(
-        "border border-dashed border-gray-500  rounded-lg ",
+        // "border border-dashed border-gray-500  rounded-lg ",
+        "rounded-lg ",
         data?.className,
         className
       )}

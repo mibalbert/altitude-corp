@@ -14,7 +14,61 @@ async function seed() {
     await prisma.post.deleteMany({});
     // await prisma.featList.deleteMany({});
     await prisma.pageObject.deleteMany({});
+    await prisma.resource.deleteMany({})
 
+
+
+    const resources = [
+      {
+        title: "The Alchemist",
+        description: "AJKSN jkasndkj",
+        coverImage: "/placeholder.svg",
+        isArchived: false,
+        isFeatured: false,
+        position: 0,
+
+      },
+      {
+        title: "To Kill a Mockingbird",
+        description: "AJKSN jkasndkj",
+        coverImage: "/placeholder.svg",
+        isArchived: false,
+        isFeatured: false,
+        position: 1,
+      },
+      {
+        title: "The Great Gatsby",
+        description: "AJKSN jkasndkj",
+        coverImage: "/placeholder.svg",
+        isArchived: false,
+        isFeatured: false,
+        position: 2,
+      },
+      {
+        title: "1984",
+        description: "AJKSN jkasndkj",
+        coverImage: "/placeholder.svg",
+        isArchived: true,
+        isFeatured: false,
+        position: 3,
+      },
+      {
+        title: "Pride and Prejudice",
+        description: "AJKSN jkasndkj",
+        coverImage: "/placeholder.svg",
+        isArchived: false,
+        isFeatured: true,
+        position: 4,
+      },
+    ];
+
+    for (const reso of resources) {
+      await prisma.resource.create({
+        data: {
+          ...reso,
+        },
+      });
+    }
     // const blogPageObj = [
     //   {
     //     page: "blog",
@@ -778,6 +832,23 @@ async function seed() {
         compName: "blog-page-free-resources-subtitle-2",
         parentComp: "BlogPageFreeResources",
         className: "text-md max-w-xl w-full",
+      },
+      {
+        page: "resources",
+        type: "h1",
+        title: `Resources`,
+        compName: "resources-hero-title",
+        parentComp: "ResourcesHero",
+        className: "text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl",
+      },
+      {
+        page: "resources",
+        type: "p",
+        title: `Introductory Guides. We offer downloadable content like eBooks or
+        guides relevant to your services.`,
+        compName: "resources-hero-subtitle",
+        parentComp: "ResourcesHero",
+        className: "mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400",
       },
     ];
 

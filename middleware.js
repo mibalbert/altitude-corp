@@ -2,59 +2,19 @@
  * middleware.js
  */
 
-export { default } from "next-auth/middleware"
+// export { default } from "next-auth/middleware"
 
-export const config = { matcher: ["/admin/:path*"] }
-
-
-// import { withAuth } from "next-auth/middleware";
-// import { NextResponse } from "next/server";
-
-// export default withAuth(
-
-//   function middleware(req) {
-//     // if (
-//     //   req.nextUrl.pathname.startsWith("/user") &&
-//     //   req.nextauth.token?.role !== "USER"
-//     // ) {
-//     //   return NextResponse.redirect(
-//     //     //Use this type of url if you want to extract the error message and display it
-//     //     // new URL("/auth/signIn?error=You_Are_Not_Authorized!&message2=Sign_In_with_the_proper_credentials_to_gain_access", req.url)
-//     //     new URL("/", req.url),
-//     //   );
-//     // }
-//     // if (
-//     //   req.nextUrl.pathname.startsWith("/writer") &&
-//     //   req.nextauth.token?.role !== "WRITER"
-//     // ) {
-//     //   return NextResponse.redirect(
-//     //     //Use this type of url if you want to extract the error message and display it
-//     //     // new URL("/auth/signIn?error=You_Are_Not_Authorized!&message2=Sign_In_with_the_proper_credentials_to_gain_access", req.url)
-//     //     new URL("/", req.url),
-//     //   );
-//     // }
-//     // if (
-//     //   req.nextUrl.pathname.startsWith("/admin") &&
-//     //   req.nextauth.token?.role !== "ADMIN"
-//     // ) {
-//     //   return NextResponse.redirect(
-//     //     //Use this type of url if you want to extract the error message and display it
-//     //     // new URL("/auth/signIn?error=You_Are_Not_Authorized!&message2=Sign_In_with_the_proper_credentials_to_gain_access", req.url)
-//     //     new URL("/", req.url),
-//     //   );
-//     // }
-//     return null;
-//   },
-//   {
-//     callbacks: {
-//       authorized: ({ token }) => {
-//         return !!token;
-//       },
-//     },
-//   }
-// );
+// export const config = { matcher: ["/admin/:path*"] }
 
 
-// export const config = {
-//   matcher: ["/admin/:path*"],
-// };
+
+import { chain } from '@/middlewares/chain'
+import { withMiddleware1 } from '@/middlewares/middleware1'
+import { withMiddleware2 } from '@/middlewares/middleware2'
+
+export default chain([withMiddleware1, withMiddleware2])
+// export default chain([withMiddleware1])
+
+export const config = {
+    matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)']
+}

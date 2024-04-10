@@ -134,6 +134,135 @@ export async function changeVisibility(postId, changeTo) {
   }
 }
 
+
+
+
+
+export async function addResourceImageUrl(resourceId, resourceImgUrl) {
+  try {
+    
+    const res = await prisma.resource.update({
+      where:{
+        id: resourceId
+      },
+      data:{
+        coverImage: resourceImgUrl
+      }
+    })
+    if(res){
+      revalidatePath(`/resources`);
+      return { message: "Cover Image changed", ok: true }
+    } else {
+      return {
+        message: "Failed to change cover image",
+        ok:falses
+      }
+    }
+  } catch (error) {
+    console.error("Error updating title:", error.message);
+    return { message: error.message, ok: false };
+  }
+}
+export async function updateResourceTitle(resourceId, newResourceTitle) {
+  try {
+    // Check if all updates were successful
+    
+    const res = await prisma.resource.update({
+      where:{
+        id: resourceId
+      },
+      data:{
+        title: newResourceTitle
+      }
+    })
+    if(res){
+      revalidatePath(`/resources`);
+      return { message: "Title changed", ok: true }
+    } else {
+      return {
+        message: "Failed to update title",
+        ok:falses
+      }
+    }
+  } catch (error) {
+    console.error("Error updating title:", error.message);
+    return { message: error.message, ok: false };
+  }
+}
+export async function updateResourceCoverImage(resourceId) {
+  try {
+    const res = await prisma.resource.update({
+      where: {
+          id: resourceId
+      },
+      data: {
+          coverImage: "/placeholder.svg"
+      }
+
+  })
+    if(res){
+      revalidatePath(`/resources`);
+      return { message: "Description changed", ok: true }
+    } else {
+      return {
+        message: "Failed to update description",
+        ok:falses
+      }
+    }
+  } catch (error) {
+    console.error("Error updating description:", error.message);
+    return { message: error.message, ok: false };
+  }
+}
+export async function updateResourceDescription(resourceId, newResourceDescription) {
+  try {
+    const res = await prisma.resource.update({
+      where:{
+        id: resourceId
+      },
+      data:{
+        description: newResourceDescription
+      }
+    })
+    if(res){
+      revalidatePath(`/resources`);
+      return { message: "Description changed", ok: true }
+    } else {
+      return {
+        message: "Failed to update description",
+        ok:falses
+      }
+    }
+  } catch (error) {
+    console.error("Error updating description:", error.message);
+    return { message: error.message, ok: false };
+  }
+}
+
+
+export async function setNewResourcesPositions(resourcesArr) {
+  try {
+    const updateOperations = resourcesArr.map(async (resource) => {
+      return prisma.resource.update({
+        where: { id: resource.id },
+        data: { position: resource.position },
+      });
+    });
+
+    const results = await Promise.all(updateOperations);
+
+    // Check if all updates were successful
+    if (results.every((result) => result !== null && result !== undefined)) {
+      revalidatePath(`/resources`);
+      return { message: "Status changed", ok: true };
+    } else {
+      throw new Error("Error updating positions");
+    }
+  } catch (error) {
+    console.error("Error updating positions:", error.message);
+    return { message: error.message, ok: false };
+  }
+}
 export async function setNewPositions(postsArr) {
   try {
     const updateOperations = postsArr.map(async (post) => {
@@ -320,6 +449,44 @@ export async function getFolders() {
   }
 }
 
+export async function changeFolderName(folderId, newFolderName) {
+  try {
+    const res = await prisma.folder.update({
+      where: {
+        id: folderId
+      },
+      data: {
+        title: newFolderName
+      }
+    });
+    if(res){
+      revalidatePath('/admin/folders')
+      return {
+        url: `/admin/folders/${folderId}`,
+        message: `Successfully changed folder name to: ${newFolderName}`,
+        ok: true,
+      };
+
+    } else{
+      return {
+        url: `/admin/folders/${folderId}`,
+        message: `Failed to change name for folder: ${folderId}`,
+        ok: false,
+      };
+    }
+  } catch (error) {
+    return {
+      url: `/admin/folders/${folderId}`,
+      message: `Server Error`,
+      ok: false,
+    };
+  }
+}
+
+
+
+
+
 export async function deletePost(postId, postTitle, folderId, currentPath) {
   try {
     const deletedPost = await prisma.post.delete({
@@ -354,48 +521,121 @@ export async function deletePost(postId, postTitle, folderId, currentPath) {
     };
   }
 }
-
 export async function deleteFolder(folderId, folderTitle, currentPath) {
   try {
-    const { parentFolder } = await prisma.folder.findMany({
-      where: {
-        parentFolder: folderId,
-      },
-    });
+    // Recursive function to delete folder and its contents
+    const deleteFolderAndContents = async (folderId) => {
+      // Find all subfolders of the current folder
+      const subFolders = await prisma.folder.findMany({
+        where: {
+          parentFolder: folderId,
+        },
+        select: {
+          id: true,
+        }
+      });
 
-    //Delete all child posts
-    parentFolder?.map(async (el) => {
+      // Recursively delete each subfolder and its contents
+      for (const subFolder of subFolders) {
+        await deleteFolderAndContents(subFolder.id);
+      }
+
+      // Delete all posts in the current folder
       await prisma.post.deleteMany({
         where: {
-          folderId: el.id,
+          folderId: folderId,
         },
       });
-    });
 
-    await prisma.folder.deleteMany({
-      where: {
-        parentFolder: folderId,
-      },
-    });
-    if (res) {
-      revalidatePath(currentPath);
-      return {
-        url: `/admin/folders/${folderId}`,
-        message: `Successfully deleted ${folderTitle} and the containing posts`,
-        ok: true,
-      };
-    }
+      // Delete the current folder
+      await prisma.folder.delete({
+        where: {
+          id: folderId,
+        },
+      });
+    };
+
+    // Call the recursive function to delete the folder and its contents
+    await deleteFolderAndContents(folderId);
+
+    // Revalidate the current path
+    revalidatePath(currentPath);
+
     return {
-      message: `Successfully deleted ${postTitle}`,
-      ok: false,
+      url: `/admin/folders/${folderId}`,
+      message: `Successfully deleted ${folderTitle} and all of its content`,
+      ok: true,
     };
   } catch (error) {
     return {
-      message: `Could not deleted ${postTitle}`,
+      message: `Could not delete ${folderTitle}`,
       ok: false,
     };
   }
 }
+
+// export async function deleteFolder(folderId, folderTitle, currentPath) {
+//   try {
+
+
+//     const subFolders = await prisma.folder.findMany({
+//       where: {
+//         parentFolder: folderId,
+//       },
+//       select: {
+//         id: true,
+//       }
+//     });
+
+//     if (subFolders.length) {
+            
+   
+//     } 
+    
+
+
+//     const res = await prisma.folder.delete({
+//       where: {
+//         id: folderId,
+//       },
+//     });
+
+//     console.log(res)
+
+//     // //Delete all child posts
+//     // parentFolder?.map(async (el) => {
+//     //   await prisma.post.deleteMany({
+//     //     where: {
+//     //       folderId: el.id,
+//     //     },
+//     //   });
+//     // });
+
+//     // await prisma.folder.deleteMany({
+//     //   where: {
+//     //     parentFolder: folderId,
+//     //   },
+//     // });
+//     if (res) {
+//       revalidatePath(currentPath);
+//       return {
+//         url: `/admin/folders/${folderId}`,
+//         message: `Successfully deleted ${folderTitle} and all of it's content`,
+//         ok: true,
+//       };
+//     }
+//     return {
+//       message: `Successfully deleted`,
+//       ok: false,
+//     };
+//   } catch (error) {
+//     return {
+//       // message: `Could not deleted ${folderTitle}`,
+//       message: `Could not deleted `,
+//       ok: false,
+//     };
+//   }
+// }
 
 // export async function createNewUndefinedPost() {
 //   try {

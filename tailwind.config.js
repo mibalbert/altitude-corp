@@ -1,3 +1,4 @@
+import { withUt } from "uploadthing/tw";
 const defaultTheme = require("tailwindcss/defaultTheme");
 const colors = require("tailwindcss/colors");
 const svgToDataUri = require("mini-svg-data-uri");
@@ -6,7 +7,8 @@ const {
   default: flattenColorPalette,
 } = require("tailwindcss/lib/util/flattenColorPalette");
 
-const config = {
+
+export default withUt({
   darkMode: ["class"],
   content: [
     "./pages/**/*.{js,jsx}",
@@ -123,9 +125,7 @@ const config = {
       );
     },
   ],
-};
-
-export default config;
+});
 
 // This plugin adds each Tailwind color as a global CSS variable, e.g. var(--gray-200).
 function addVariablesForColors({ addBase, theme }) {

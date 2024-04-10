@@ -2,46 +2,67 @@
  * components/resources/card.jsx
  */
 
-import React from "react";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
+"use client"
+
+import { cn } from "@/lib/utils";
+import { updateResourceDescription, updateResourceTitle } from "@/app/_actions";
+import { toast } from 'sonner';
+import ResourceImage from "@/components/resources/resource-img";
+import FileResource from "./file-resource";
 
 const ResourceCard = ({
-  title,
-  date,
-  image,
-  buttonText,
-  buttonColor,
-  buttonTextColor,
-}) => {
+  data,
+  isEditable }) => {
+
+  const handleChangeTitle = async (e) => {
+    e.preventDefault()
+    try {
+      const res = await updateResourceTitle(data.id, e.target.value)
+      if (res.ok) {
+        toast('Changed Title for Resource')
+      } else {
+        toast('Failed')
+      }
+    } catch (error) {
+      toast('Failed')
+    }
+  }
+  const handleChangeDescription = async (e) => {
+    e.preventDefault()
+    try {
+      const res = await updateResourceDescription(data.id, e.target.value)
+      if (res.ok) {
+        toast('Changed Title for Resource')
+      } else {
+        toast('Failed')
+      }
+    } catch (error) {
+      toast('Failed')
+    }
+  }
+
+
   return (
-    <div className="w-full max-w-2xl">
-      <div className="flex flex-row items-center gap-5">
-        <Image
-          alt="Resource Image"
-          className="object-cover w-1/2"
-          height={50}
-          src={image}
-          style={{
-            aspectRatio: "50/50",
-            objectFit: "cover",
-          }}
-          width={50}
-        />
-        <div className="flex flex-col justify-start items-start space-y-3">
-          <h3 className="text-lg font-semibold mt-2">{title}</h3>
-          <p className="text-left">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta,
-            tenetur?
-          </p>
-          <p className="text-xs text-gray-500">{date}</p>
-          <Button
-            className={`px-2 py-1 rounded-md ${buttonColor} ${buttonTextColor}`}
-            size="sm"
-          >
-            {buttonText}
-          </Button>
-        </div>
+    <div className={cn("w-full  flex items-center gap-5 h-[500px]", { "border border-dashed": isEditable })}>
+      {/* Image */}
+      <div className="w-1/2 h-full" >
+        <ResourceImage resourceId={data.id} resImage={data.coverImage} isEditable={isEditable} />
+      </div>
+      {/* Text */}
+      <div className="flex flex-col justify-start h-full items-start space-y-3 w-1/2 bg-green-500">
+        {
+          isEditable ? <input type="text" onBlur={handleChangeTitle} defaultValue={data.title} placeholder="Set the title" className="border p-2 line-clamp-3" /> :
+            <h3 className="text-xl font-semibold mt-2 line-clamp-4">{data?.title}</h3>
+        }
+        {
+          isEditable ? <textarea type="text" onBlur={handleChangeDescription} defaultValue={data.description} placeholder="Set the description" className="border p-2 line-clamp-6" />
+            :
+            <p className="text-left line-clamp-6">
+              {data?.description}
+            </p>
+        }
+
+        <FileResource resourceId={data.id} isEditable={isEditable} />
       </div>
     </div>
   );

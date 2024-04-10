@@ -48,16 +48,18 @@ const FrameComp = ({ srcUrl, linkUrl }) => {
           </button>
         </div>
       </div>
-      <div className={cn("max-w-[80%] mx-auto w-full")}>
+      {/* <div className={cn("max-w-[80%] mx-auto w-full")}> */}
+      <div className={cn("max-w-[96%] mx-auto w-full")}>
         <iframe
           ref={ref}
           id="myFrame"
           src={`${srcUrl}`}
           loading="lazy"
           className={cn(
-            "w-full min-h-[50vh] mx-auto h-full shadow-lg border border-gray-300 bg-white ",
+            "w-full min-h-[70vh] mx-auto h-full shadow-lg border border-gray-300 bg-white ",
             {
-              "max-w-[1280px] aspect-[16/9]": viewport === "web",
+              // "max-w-[1280px] aspect-[16/9]": viewport === "web",
+              "max-w-[1444px] aspect-[16/9]": viewport === "web",
               "max-w-[992px] aspect-[16/12]": viewport === "tablet",
               "max-w-[420px] aspect-[9/16]": viewport === "mobile",
             }

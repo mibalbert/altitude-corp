@@ -42,6 +42,8 @@ export default async function Home({ searchParams }) {
 
   let isEditable = false;
 
+
+
   console.log("Search Params", searchParams.editorMode);
 
   const session = await getServerSession(authOptions);

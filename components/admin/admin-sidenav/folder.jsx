@@ -7,6 +7,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import {
+  changeFolderName,
   createFolder,
   createPostUnderFolder,
   deleteFolder,
@@ -17,7 +18,9 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuPortal,
   DropdownMenuSeparator,
+  DropdownMenuSub,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
@@ -34,12 +37,12 @@ import RecursiveFolders from "./folders-and-files-list";
 import { cn } from "@/lib/utils";
 import { useMediaQuery } from "usehooks-ts";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { debounce } from "lodash";
+import { DropdownMenuSubContent } from "@radix-ui/react-dropdown-menu";
 
 export const Folder = ({ folder, level }) => {
   const [collapsed, setCollapsed] = useState(true);
   const router = useRouter();
-
-  console.log("fodeller", folder);
 
   const isMobile = useMediaQuery("(max-width: 768px)");
 
@@ -55,8 +58,9 @@ export const Folder = ({ folder, level }) => {
     e.preventDefault();
     const res = await createFolder(folder.id);
     if (res.ok) {
-      toast.success(res.message);
       router.push(res.url);
+      toast.success(res.message);
+      setCollapsed(false)
     }
   };
 
@@ -65,8 +69,34 @@ export const Folder = ({ folder, level }) => {
     if (res.ok) {
       router.push(res.url);
       toast.success(res.message);
+      setCollapsed(false)
     }
   };
+
+  const handleChangeFolderName = async (e) => {
+    e.preventDefault()
+    let newFolderName = e.target.value
+
+    const res = await changeFolderName(folder.id, newFolderName)
+    if (res.ok) {
+      toast.success(res.message);
+    } else {
+      toast.error(res.message)
+    }
+  }
+
+  const handleDeleteFolder = async () => {
+    const res = confirm(`Are you sure you want to delete the Folder '${folder.title}'?`)
+    if (res) {
+      const resp = await deleteFolder(folder.id, folder.title, '/admin/folders');
+      if (resp.ok) {
+        router.push(resp.url);
+        toast.success(resp.message);
+      } else {
+        toast.error(resp.message);
+      }
+    }
+  }
 
   return (
     <div className="flex flex-col ">
@@ -98,6 +128,10 @@ export const Folder = ({ folder, level }) => {
         <DropIt
           handleCreateFolder={handleCreateFolder}
           handleCreatePostUnderFolder={handleCreatePostUnderFolder}
+          handleDeleteFolder={handleDeleteFolder}
+          handleChangeFolderName={handleChangeFolderName}
+          folderTitle={folder.title}
+
         />
       </div>
       {!collapsed && (
@@ -122,6 +156,8 @@ export const Folder = ({ folder, level }) => {
               </Link>
               <DropItPost
                 folderId={folder.id}
+                folderTitle={folder.title}
+                currentPath={'/admin/folders'}
                 router={router}
                 postId={post.id}
                 postTitle={post.title}
@@ -146,25 +182,13 @@ export const Folder = ({ folder, level }) => {
 };
 
 const DropIt = ({
-  router,
   handleCreateFolder,
-  folderId,
-  folderTitle,
-  currentPath,
-  className,
   handleCreatePostUnderFolder,
+  handleDeleteFolder,
+  handleChangeFolderName,
+  folderTitle,
+  className,
 }) => {
-  const handleDeleteFolder = async () => {
-    //Create pop up asking the user if they are sure
-
-    const res = await deleteFolder(folderId, folderTitle, currentPath);
-    if (res.ok) {
-      router.push(res.url);
-      toast.success(res.message);
-    } else {
-      toast.error(res.message);
-    }
-  };
 
   return (
     <DropdownMenu>
@@ -181,7 +205,16 @@ const DropIt = ({
         align="start"
         side="bottom"
         forceMount
+
       >
+        <DropdownMenuSub className="">
+          <input
+            type="text"
+            defaultValue={folderTitle}
+            onBlur={handleChangeFolderName}
+            className="px-3 py-1.5 z-50 w-full h-full"
+          />
+        </DropdownMenuSub>
         <DropdownMenuItem>
           <div
             type="button"
@@ -203,28 +236,17 @@ const DropIt = ({
           </div>
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <Dialog>
-            <DialogTrigger className="flex items-center gap-1">
-              <Minus className="w-4 h-4" />
-              <span>Delete Folder</span>
-            </DialogTrigger>
-            <DialogContent>
-              <div>
-                {`  Are you sure you want to delete the Folder '${folderTitle}'?`}
-              </div>
-              <div
-                type="button"
-                onClick={handleDeleteFolder}
-                className="px-2 flex items-center gap-1"
-              >
-                <Minus className="w-4 h-4" />
-                <span>Delete Folder</span>
-              </div>
-            </DialogContent>
-          </Dialog>
+          <div
+            type="button"
+            onClick={handleDeleteFolder}
+            className="px-2 flex items-center gap-1"
+          >
+            <Minus className="w-4 h-4" />
+            <span>Delete Folder</span>
+          </div>
         </DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <div className="text-xs text-muted-foreground p-2">Last edited at:</div>
+        {/* <DropdownMenuSeparator />
+        <div className="text-xs text-muted-foreground p-2">Last edited at:</div> */}
       </DropdownMenuContent>
     </DropdownMenu>
   );

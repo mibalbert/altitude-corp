@@ -74,7 +74,7 @@ export const SearchCommand = () => {
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
         <CommandGroup heading="Documents">
-          {folders?.map((folder) => (
+          {/* {folders?.map((folder) => (
             <CommandItem
               key={folder.id}
               value={`${folder.id}-${folder.title}`}
@@ -88,7 +88,7 @@ export const SearchCommand = () => {
               )}
               <span>{folder.title}</span>
             </CommandItem>
-          ))}
+          ))} */}
         </CommandGroup>
       </CommandList>
     </CommandDialog>

@@ -20,7 +20,7 @@ const WebsitePages = () => {
 
   return (
     <Collapsible>
-      <CollapsibleTrigger className="truncate flex items-center gap-1 w-full text-md  rounded-lg hover:bg-gray-100 px-3 py-2  bg-gray-50">
+      <CollapsibleTrigger className="truncate flex items-center gap-1 w-full rounded-lg  px-3 py-1 border ">
         <Edit className="h-4 w-4" />
         Edit Site Pages
       </CollapsibleTrigger>
@@ -88,7 +88,20 @@ const WebsitePages = () => {
         >
           Contact Us
         </Link>
+        {/* <div className="py-1.5 text-sm">--Shared Components</div>
+        <Link
+          href="/admin/edit/contact-us"
+          className={cn("ml-4 px-2 py-1", {
+            "underline underline-offset-2 underline-blue-600 w-52 rounded-lg hover:bg-gray-100 my-1.5 bg-gray-50/50":
+              params.pageSlug === "contact-us",
+          })}
+        >
+          Contact Us
+        </Link>
+         */}
+
       </CollapsibleContent>
+
     </Collapsible>
   );
 };

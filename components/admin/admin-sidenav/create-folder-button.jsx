@@ -1,3 +1,7 @@
+/**
+ * create-folder-button.jsxs
+ */
+
 import { createFolder } from "@/app/_actions";
 import { cn } from "@/lib/utils";
 import { Plus, PlusCircleIcon } from "lucide-react";
@@ -6,7 +10,7 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import { toast } from "sonner";
 
-const CreateFolderButton = ({className}) => {
+const CreateFolderButton = ({ className }) => {
   const router = useRouter();
   const handleCreateFolder = async () => {
     try {
@@ -26,7 +30,7 @@ const CreateFolderButton = ({className}) => {
       type="button"
       onClick={handleCreateFolder}
       className={cn(
-      "", className)}
+        "", className)}
     >
       <PlusCircleIcon className="h-4 w-4 shrink-0 text-muted-foreground/50" />
       New Folder

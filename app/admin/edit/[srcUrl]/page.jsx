@@ -14,6 +14,7 @@ const EditPages = async ({ params }) => {
   if (url === "home") url = "";
   return (
     <div className="w-full h-full overflow-hidden">
+      
       <FrameComp linkUrl={url} srcUrl={`/${url}?editorMode=true`} />
     </div>
   );

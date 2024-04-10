@@ -12,6 +12,7 @@ const nextConfig = {
       "github.com",
       "assets.codepen.io",
       "images.unsplash.com",
+      "utfs.io"
     ],
   },
 };

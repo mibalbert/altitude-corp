@@ -1,5 +1,5 @@
 /**
- * s3-img-up/route.js
+ * s3-upload/route.js
  */
 
 import { NextResponse } from "next/server";
@@ -13,11 +13,12 @@ const s3Client = new S3Client({
   },
 });
 
-async function uploadFileToS3(fileBuffer, folderName, fileName, fileType) {
+async function uploadFileToS3(fileBuffer, folderName, fileName, fileType, resourceId) {
+
+  console.log("OoooooooOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO", `${folderName}/${resourceId}-${fileName}`)
   const params = {
     Bucket: process.env.AWS_BUCKET_NAME,
-    // Key: `${folderName}/${fileName}-${Date.now()}`, // Include the folder name in the Key
-    Key: `${folderName}/${fileName}`, // Include the folder name in the Key
+    Key: `${folderName}/${resourceId}-${fileName}`,
     Body: fileBuffer,
     ContentType: fileType,
   };
@@ -26,11 +27,16 @@ async function uploadFileToS3(fileBuffer, folderName, fileName, fileType) {
     const command = new PutObjectCommand(params);
     const res = await s3Client.send(command);
 
-    console.log("THE RES", res);
 
-    return {
-      url: `https://mongo-blog.s3.eu-central-1.amazonaws.com/${folderName}/${fileName}`,
-    };
+
+    if (res['$metadata'].
+      httpStatusCode === 200) {
+      return {
+
+        url: `https://mongo-blog.s3.eu-central-1.amazonaws.com/${folderName}/${resourceId}-${fileName}`,
+      };
+    }
+
   } catch (error) {
     console.error("Error uploading file to S3:", error);
     throw new Error("Failed to upload file to S3");
@@ -39,20 +45,27 @@ async function uploadFileToS3(fileBuffer, folderName, fileName, fileType) {
 
 export async function POST(request) {
   try {
+   
     const formData = await request.formData();
+
     const file = formData.get("file");
     const folderName = formData.get("folderName");
+    const resourceId = formData.get('resourceId')
+
+    
 
     if (!file) {
       return NextResponse.json({ error: "File is required." }, { status: 400 });
     }
 
     const buffer = Buffer.from(await file.arrayBuffer());
+
     const response = await uploadFileToS3(
       buffer,
       folderName,
       file.name,
-      file.type
+      file.type,
+      resourceId
     );
 
     return NextResponse.json({ success: true, url: response.url });
