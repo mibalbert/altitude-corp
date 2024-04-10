@@ -35,17 +35,13 @@ export const metadata = {
 
 
 export default async function Home({ searchParams }) {
-  // const data = await prisma.home.findMany({
-  //   include: {
-  //     reviews: true,
-  //   },
-  // });
+ 
+  
 
-  let isEditable = false;
 
 
 
-  console.log("Search Params", searchParams.editorMode);
+  let isEditable = false;
 
   const session = await getServerSession(authOptions);
 
