@@ -17,7 +17,6 @@ import { extractRouterConfig } from "uploadthing/server";
 
 import { ourFileRouter } from "@/app/api/uploadthing/core";
 
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {

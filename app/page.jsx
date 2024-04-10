@@ -33,6 +33,9 @@ export const metadata = {
   description: "Best company to help you grow",
 };
 
+
+export const dynamic = "force-static"
+
 export default async function Home({ searchParams }) {
   // const data = await prisma.home.findMany({
   //   include: {
