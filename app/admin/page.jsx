@@ -2,6 +2,8 @@
  * admin/page.jsx
  */
 
+import prisma from "@/lib/prismadb";
+
 export const metadata = {
   title: "ALTITUDE CORP | Admin | Home ",
   description: "Best company to help you grow",

@@ -6,6 +6,7 @@
 import EditableResources from "@/components/resources/editable-resources";
 import ResourcesHero from "@/components/resources/resources-hero";
 import { authOptions } from "@/lib/auth-options";
+import prisma from "@/lib/prismadb";
 import { getServerSession } from "next-auth";
 
 export const metadata = {
