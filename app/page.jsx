@@ -19,9 +19,9 @@ import ContactUs from "@/components/shared/contact-us";
 import { authOptions } from "@/lib/auth-options";
 import prisma from "@/lib/prismadb";
 import { getServerSession } from "next-auth";
-import dynamic from "next/dynamic";
+import { dynamic as dy } from "next/dynamic";
 
-const WorldWide = dynamic(
+const WorldWide = dy(
   () => import("../components/landing-page/world-wide"),
   {
     ssr: false,
@@ -34,7 +34,7 @@ export const metadata = {
 };
 
 
-export const dynamic = "force-static"
+// export const dynamic = "force-static"
 
 export default async function Home({ searchParams }) {
   // const data = await prisma.home.findMany({
