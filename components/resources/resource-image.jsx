@@ -32,10 +32,10 @@ const ResourceImageUpload = ({ resourceId, resImage, isEditable, className }) =>
         formData.append('folderName', 'resources');
         formData.append('resourceId', resourceId)
 
-        
+
         const res = await handleChangeResCoverImg(formData)
-        
-        
+
+
         //     if (uploadResult.ok) {
         //         const addImageUrlResult = await addResourceImageUrl(resourceId, uploadResult.url);
         //         if (addImageUrlResult.ok) {
@@ -97,34 +97,24 @@ const ResourceImageUpload = ({ resourceId, resImage, isEditable, className }) =>
 
     return (
         <div className={cn('relative h-full flex items-center justify-center', className)}>
-            {
-                isEditable &&
-                <>
+            {isEditable && (
+                <div>
                     <button className='absolute top-0 right-0 py-10 px-5 z-[9]' onClick={handleRemoveResCoverImage} disabled={uploading}><X /></button>
                     <div {...getRootProps()} className={`absolute top-0 left-0 z-[6] w-full h-full hover:cursor-pointer flex items-center justify-center text-center hover:bg-white/20 group`}>
                         <input {...getInputProps()} className='w-full h-full ' />
-                        {/* {isDragActive ? <p>Drop the files here...</p> : */}
-                        {
-                            !uploading &&
-                            <p className='group-hover:block hidden'> Drag 'n' drop some files here, <br /> or click to select files</p>
-                        }
-                        {/* }*/}
+                        {!uploading && <p className='group-hover:block hidden'>{`Drag 'n' drop some files here, `}<br /> or click to select files</p>}
                     </div>
-                </>
+                </div>
+            )}
+            {uploading ? <div>Loading...</div> :
+                <Image
+                    alt="Resource Image"
+                    className="object-contain w-full h-full"
+                    fill
+                    src={(resImage === "/placeholder.svg" ? "/fulllogo_transparent_nobuffer.png" : resImage) || '/placeholder.svg'}
+                />
             }
-            {
-                uploading ? <div>Loading...</div> :
-
-                    <Image
-                        alt="Resource Image"
-                        className="object-contain w-full h-full"
-                        fill
-                        src={'/placeholder.svg'}
-                        // src={(resImage === "/placeholder.svg" ? "/fulllogo_transparent_nobuffer.png" : resImage) || '/placeholder.svg'}
-                    // src={"/placeholder.svg"}
-                    />
-            }
-        </div >
+        </div>
     );
 };
 
