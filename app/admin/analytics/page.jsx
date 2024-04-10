@@ -1,5 +1,5 @@
 /**
- * 
+ * admin/analytics
  */
 
 import React from 'react'
@@ -61,7 +61,7 @@ const Page = async () => {
         }
     }
 
-    const topCountries = [...topCountriesMap.entries()].sort((a, b) => {
+    const topCountries = [...topCountriesMap?.entries()].sort((a, b) => {
         if (a[1] > b[1]) return -1
         else return 1
     }).slice(0, 5)

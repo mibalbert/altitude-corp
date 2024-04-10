@@ -17,8 +17,6 @@ export function withMiddleware2(middleware) {
     ) => {
         const pathname = new URL(request.url).pathname
 
-        console.log(request)
-
         // Check if request has user and user has id before tracking
         if (request.user && request.user.id && !uniqueVisitors.has(request.user.id)) {
             try {

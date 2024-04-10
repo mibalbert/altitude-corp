@@ -77,7 +77,7 @@ export default async function Home({ searchParams }) {
   );
 
   return (
-    <section className="bg-white pt-12 ">
+    <section className="bg-white ">
       <Hero data={heroComp} isEditable={isEditable} />
       <InfiniteMovingReviewCards data={reviews} />
       <Elevator data={elevatorComp} />

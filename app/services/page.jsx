@@ -56,7 +56,7 @@ const Services = async ({ searchParams }) => {
   );
 
   return (
-    <div className=" py-12   ">
+    <div className=" pb-12   ">
       <Waves data={heroData} isEditable={isEditable} />
       {/* <ServicesHero /> */}
       <ServicesSecSection data={servicesSecData} isEditable={isEditable} />
