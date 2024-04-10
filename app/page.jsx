@@ -56,11 +56,7 @@ export default async function Home({ searchParams }) {
   const compObj = await prisma.pageObject.findMany({
     where: {
       page: "home",
-    },
-    cacheStrategy: {
-      ttl: 300,
-      swr: 600,
-    },
+    }, 
   });
   const reviews = await prisma.reviews.findMany();
 
