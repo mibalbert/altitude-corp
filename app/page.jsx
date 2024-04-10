@@ -19,9 +19,9 @@ import ContactUs from "@/components/shared/contact-us";
 import { authOptions } from "@/lib/auth-options";
 import prisma from "@/lib/prismadb";
 import { getServerSession } from "next-auth";
-import { dynamic as dy } from "next/dynamic";
+import dynamic  from "next/dynamic";
 
-const WorldWide = dy(
+const WorldWide = dynamic(
   () => import("../components/landing-page/world-wide"),
   {
     ssr: false,
@@ -33,8 +33,6 @@ export const metadata = {
   description: "Best company to help you grow",
 };
 
-
-// export const dynamic = "force-static"
 
 export default async function Home({ searchParams }) {
   // const data = await prisma.home.findMany({
@@ -58,6 +56,10 @@ export default async function Home({ searchParams }) {
   const compObj = await prisma.pageObject.findMany({
     where: {
       page: "home",
+    },
+    cacheStrategy: {
+      ttl: 300,
+      swr: 600,
     },
   });
   const reviews = await prisma.reviews.findMany();
