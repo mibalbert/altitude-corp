@@ -13,9 +13,7 @@ export default async function AdminHome() {
 
 
   const postsData = await prisma.post.findMany()
-
-
-  console.log("not")
+ 
 
   return (
     <section>
