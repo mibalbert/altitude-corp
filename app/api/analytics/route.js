@@ -32,8 +32,7 @@ export async function POST(req) {
 
             }
         })
-
-        console.log(res)
+ 
 
         // const res = await prisma.analytics.upsert({
         //     where: { pathname: pathname },

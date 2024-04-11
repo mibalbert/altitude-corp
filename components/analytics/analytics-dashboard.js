@@ -38,15 +38,12 @@ const Badge = ({ percentage }) => {
 const AnalyticsDashboard = ({
     avgVisitorsPerDay,
     amtVisitorsToday,
-    timeseriesPageviews,
-    topCountries,
+    // timeseriesPageviews,
+    // topCountries,
 }) => {
 
 
-
-    console.log("The toppCountries", topCountries)
-
-
+ 
     return (
         <div className='flex flex-col gap-6'>
             <div className='grid w-full mx-auto grid-cols-1 sm:grid-cols-2 gap-6'>
@@ -77,7 +74,7 @@ const AnalyticsDashboard = ({
                 <h2 className='w-full text-dark-tremor-content-strong text-center sm:left-left font-semibold text-xl'>
                     This weeks top visitors:
                 </h2>
-                <div className='col-span-3 flex items-center justify-between flex-wrap gap-8'>
+                {/* <div className='col-span-3 flex items-center justify-between flex-wrap gap-8'>
                     {topCountries?.map(([countryCode, number]) => {
                         return (
                             <div key={countryCode} className='flex items-center gap-3 text-dark-tremor-content-strong'>
@@ -96,11 +93,11 @@ const AnalyticsDashboard = ({
                             </div>
                         )
                     })}
-                </div>
+                </div> */}
             </Card>
 
             <Card>
-                {timeseriesPageviews ? (
+                {/* {timeseriesPageviews ? (
                     <BarChart
                         allowDecimals={false}
                         showAnimation
@@ -113,7 +110,7 @@ const AnalyticsDashboard = ({
                         categories={['Visitors']}
                         index='name'
                     />
-                ) : null}
+                ) : null} */}
             </Card>
         </div>
     )
