@@ -20,36 +20,35 @@ export function withMiddleware2(middleware) {
 
 
         const { nextUrl: url, geo } = request
-        const country = geo.country || 'US'
-        const city = geo.city || 'San Francisco'
-        const region = geo.region || 'CA'
+        // const country = geo.country || 'US'
+        // const city = geo.city || 'San Francisco'
+        // const region = geo.region || 'CA'
 
-        const countryInfo = countries.find((x) => x.cca2 === country)
+        // const currencyCode = Object.keys(countryInfo.currencies)[0]
+        // const currency = countryInfo.currencies[currencyCode]
+        // const languages = Object.values(countryInfo.languages).join(', ')
 
-        const currencyCode = Object.keys(countryInfo.currencies)[0]
-        const currency = countryInfo.currencies[currencyCode]
-        const languages = Object.values(countryInfo.languages).join(', ')
-
-
-        console.log(country, city, region, currency, countryInfo)
 
         const pathname = new URL(request.url).pathname
 
-        // fetch('http://localhost:3000/api/fuck-it',
 
-        //     {
-        //         method: "POST",
-        //         body: JSON.stringify({
-        //             yo: "Bitch"
-        //         })
-        //     }
-        // )
+        console.log("AaaaaaaaaaaaAAAAAAAAAAAAAAAAAAAAAAAA",request.user)
 
-
+        fetch('http://localhost:3000/api/analytics',
+        {
+            method: "POST",
+            body: JSON.stringify({
+                pathname,
+                url,
+                geo
+            })
+        }
+    )
 
         // Check if request has user and user has id before tracking
         if (request.user && request.user.id && !uniqueVisitors.has(request.user.id)) {
             try {
+
                 await analytics.track('pageview', {
                     page: pathname,
                     country: request.geo?.country,
