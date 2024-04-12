@@ -30,17 +30,24 @@ export function withMiddleware2(middleware) {
 
 
         const pathname = new URL(request.url).pathname
-        
-        fetch('http://localhost:3000/api/analytics',
-            {
-                method: "POST",
-                body: JSON.stringify({
-                    pathname,
-                    url,
-                    geo
-                })
-            }
-        )
+
+        if (!pathname.split('/').includes('admin')) {
+
+            fetch('http://localhost:3000/api/analytics',
+                {
+                    method: "POST",
+                    // body: JSON.stringify({
+                    // pathname,
+                    // url,
+                    // geo
+
+                    // })
+                }
+            )
+        }
+
+
+
 
         // Check if request has user and user has id before tracking
         if (request.user && request.user.id && !uniqueVisitors.has(request.user.id)) {

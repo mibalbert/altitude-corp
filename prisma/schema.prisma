@@ -133,18 +133,24 @@ model Subscriber {
   subscribedAt DateTime @default(now())
 }
 
-model PathnameAnalytics {
-  id       Int       @id @default(autoincrement())
-  pathname String?   @unique
-  visitors Visitor[]
-}
+// model PathnameAnalytics {
+//   id       Int       @id @default(autoincrement())
+//   pathname String?   @unique
+//   visitors Visitor[]
+// }
+
+// model Visitor {
+//   id                Int                @id @default(autoincrement())
+//   visitorCountry    String?
+//   visitorCounty     String?
+//   visitorCity       String?
+//   viewedAt          DateTime           @default(now())
+//   pathnameId        Int?
+//   pathnameAnalytics PathnameAnalytics? @relation(fields: [pathnameId], references: [id])
+// }
+
 
 model Visitor {
-  id                Int                @id @default(autoincrement())
-  visitorCountry    String?
-  visitorCounty     String?
-  visitorCity       String?
-  viewedAt          DateTime           @default(now())
-  pathnameId        Int?
-  pathnameAnalytics PathnameAnalytics? @relation(fields: [pathnameId], references: [id])
+  id        Int      @id @default(autoincrement())
+  timestamp DateTime @default(now())
 }

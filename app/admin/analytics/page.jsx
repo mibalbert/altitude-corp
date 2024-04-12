@@ -72,8 +72,7 @@ const Page = async () => {
         include: { pathnameAnalytics: true }
     })
 
-    console.log("VAKLSNMDKANSDlk ", pages)
-
+    
     // const avgVisitorsPerDay = (totalPageviews / TRACKING_DAYS).toFixed(1)
     const avgVisitorsPerDay = 20
 
