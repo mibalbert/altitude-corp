@@ -67,7 +67,7 @@ export const Navigation = () => {
                   onClick={setToClosed}
                   role="button"
                   className={cn(
-                    "text-muted-foreground absolute  p-1.5 top-0.5 right-0  z-[999]   rounded-lg hover:bg-neutral-300 dark:hover:bg-neutral-600  transition"
+                    "text-muted-foreground absolute  p-1.5 top-0 right-5   z-[999]   rounded-lg hover:bg-neutral-300 dark:hover:bg-neutral-600  transition"
                     // isMobile && "opacity-100"
                   )}
                 >
@@ -80,7 +80,7 @@ export const Navigation = () => {
                 <div
                   role="button"
                   onClick={setToOpen}
-                  className=" absolute p-1.5 top-0 left-0 w-[1.625rem] rounded-lg hover:bg-neutral-300 dark:hover:bg-neutral-600  transition"
+                  className=" absolute p-1.5 top-0 left-2 w-[1.625rem] rounded-lg hover:bg-neutral-300 dark:hover:bg-neutral-600  transition"
                 >
                   <ChevronsRight className="h-4 w-4" />
                 </div>

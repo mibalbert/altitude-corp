@@ -2,21 +2,27 @@
  * admin/page.jsx
  */
 
-import prisma from "@/lib/prismadb";
+"use client"
 
-export const metadata = {
-  title: "ALTITUDE CORP | Admin | Home ",
-  description: "Best company to help you grow",
-};
-
-export default async function AdminHome() {
+import { useAdminSideNav } from "@/hooks/use-admin-sidebar";
+import { cn } from "@/lib/utils";
 
 
-  const postsData = await prisma.post.findMany()
+// export const metadata = {
+//   title: "ALTITUDE CORP | Admin | Home ",
+//   description: "Best company to help you grow",
+// };
+
+export default  function AdminHome() {
+
+
+
+  const isOpen = useAdminSideNav((state) => state.isOpen);
+  // const postsData = await prisma.post.findMany()
 
 
   return (
-    <section className=" w-full max-w-6xl mx-20">
+    <section className={cn("w-full max-w-6xl mx-20", { "mx-auto ": !isOpen })}>
       <div className="flex py-16">
         <h1>Dashboard</h1>
         <div>View Subscribers</div>
@@ -27,7 +33,7 @@ export default async function AdminHome() {
           <div className="h-2/3 w-full">
             <div className=" h-2/3 px-16 flex items-end justify-end">
               <div className="text-7xl">
-                {postsData?.length}</div>
+                7</div>
             </div>
             <div className="h-1/3 px-10 text-center w-full flex   items-end ">
               <div className="text-5xl">
@@ -42,7 +48,7 @@ export default async function AdminHome() {
           <div className="h-2/3 w-full">
             <div className=" h-2/3 px-16 flex items-end justify-end">
               <div className="text-7xl">
-                {postsData?.length}</div>
+                7</div>
             </div>
             <div className="h-1/3 px-10 text-center w-full flex   items-end ">
               <div className="text-5xl">
@@ -57,7 +63,7 @@ export default async function AdminHome() {
           <div className="h-2/3 w-full">
             <div className=" h-2/3 px-16 flex items-end justify-end">
               <div className="text-7xl">
-                {postsData?.length}</div>
+                7</div>
             </div>
             <div className="h-1/3 px-10 text-center w-full flex   items-end ">
               <div className="text-5xl">
@@ -70,11 +76,11 @@ export default async function AdminHome() {
         </div>
         {/* <div className="h-[400px]">
           <div>Total Subscribers</div>
-          <div className="">{postsData?.length}</div>
+          <div className="">7</div>
         </div>
         <div className="h-[400px]">
           <div>Total Views</div>
-          <div className="">{postsData?.length}</div>
+          <div className="">7</div>
         </div> */}
 
       </div>
