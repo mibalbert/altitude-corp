@@ -33,18 +33,18 @@ const Folder = async ({ params }) => {
   }
 
   return (
-    <section className="space-y-10 pt-0.5 pb-20">
+    <section className="space-y-10 pt-0.5 pb-20 pl-10">
       <div className="flex items-center gap-1 px-5 ">
         /
         <FolderIcon className="w-4 h-4" /> {folderDetails?.title}
       </div>
-      <div className="flex  flex-wrap  gap-12 px-5 mx-auto w-full">
+      <div className="flex  flex-wrap  gap-8 px-5 mx-auto w-full">
         {childFolders.map((folder, idx) => {
           return (
             <Link
               href={`/admin/folders/${folder.id}`}
               key={idx}
-              className="bg-white border rounded-lg shadow-md p-4 w-full md:w-[250px] md:h-[350px] relative"
+              className="bg-white border rounded-lg shadow-md p-4 w-full md:w-[250px] md:h-[320px] relative"
             >
               <div
                 className={
@@ -59,7 +59,7 @@ const Folder = async ({ params }) => {
           <Link
             href={`/admin/posts/${post.id}`}
             key={idx}
-            className="bg-white border rounded-lg shadow-md p-4 w-full md:w-[250px] md:h-[350px] "
+            className="bg-white border rounded-lg shadow-md p-4 w-full md:w-[250px] md:h-[320px] "
           >
             <h3 className="text-lg font-semibold mb-2">{post.title}</h3>
             {/* <p className="text-gray-600">{el.description}</p> */}

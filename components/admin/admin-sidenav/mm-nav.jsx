@@ -9,11 +9,11 @@ import WebsitePages from "./website-pages";
 
 const MNav = () => {
     return (
-        <>
+        <section className='space-y-1.5'>
             <MainRoutes />
             <BlogPostCollapsible />
             <WebsitePages />
-        </>
+        </section>
     )
 }
 

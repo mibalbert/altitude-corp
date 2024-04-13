@@ -128,8 +128,8 @@ model PageObject {
 
 model Subscriber {
   id           Int      @id @default(autoincrement())
-  name         String?
   email        String?
+  active       Boolean?
   subscribedAt DateTime @default(now())
 }
 
@@ -148,7 +148,6 @@ model Subscriber {
 //   pathnameId        Int?
 //   pathnameAnalytics PathnameAnalytics? @relation(fields: [pathnameId], references: [id])
 // }
-
 
 model Visitor {
   id        Int      @id @default(autoincrement())

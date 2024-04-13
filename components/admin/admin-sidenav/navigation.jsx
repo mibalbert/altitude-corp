@@ -59,15 +59,15 @@ export const Navigation = () => {
                 exit={{ x: -208, opacity: 0 }}
                 ref={sidebarRef}
                 className={cn(
-                  `transition-all ease-in-out duration-300 overflow-hidden pt-7  px-5 relative  
-                  group/sidebar h-min  bg-secondary overflow-y-auto   min-w-56 max-w-64 flex-col z-[99] lg:flex hidden`
+                  `transition-all ease-in-out duration-300 overflow-hidden pt-10  px-5 relative  
+                  group/sidebar h-min  bg-secondary overflow-y-auto   w-64 flex-col z-[99] lg:flex hidden pb-20`
                 )}
               >
                 <div
                   onClick={setToClosed}
                   role="button"
                   className={cn(
-                    "text-muted-foreground absolute  p-1.5 top-0 right-5   z-[999]   rounded-lg hover:bg-neutral-300 dark:hover:bg-neutral-600  transition"
+                    "text-muted-foreground absolute  p-2  border border-gray-400  top-0 right-5   z-[999]   rounded-lg hover:bg-neutral-300 dark:hover:bg-neutral-600  transition"
                     // isMobile && "opacity-100"
                   )}
                 >

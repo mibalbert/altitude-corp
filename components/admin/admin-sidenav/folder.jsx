@@ -5,7 +5,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   changeFolderName,
   createFolder,
@@ -18,7 +18,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuPortal,
   DropdownMenuSeparator,
   DropdownMenuSub,
   DropdownMenuTrigger,
@@ -36,13 +35,19 @@ import { toast } from "sonner";
 import RecursiveFolders from "./folders-and-files-list";
 import { cn } from "@/lib/utils";
 import { useMediaQuery } from "usehooks-ts";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { debounce } from "lodash";
-import { DropdownMenuSubContent } from "@radix-ui/react-dropdown-menu";
 
 export const Folder = ({ folder, level }) => {
   const [collapsed, setCollapsed] = useState(true);
   const router = useRouter();
+  const pathname = usePathname()
+
+
+  useEffect(() => {
+    const op = pathname.split('/')
+    if (folder?.posts?.find(el => el.id === +op[op.length - 1])) setCollapsed(false)
+    if (pathname.startsWith(`/admin/folders/${folder.id}`)) setCollapsed(false)
+
+  }, [pathname])
 
   const isMobile = useMediaQuery("(max-width: 768px)");
 
@@ -102,7 +107,8 @@ export const Folder = ({ folder, level }) => {
     <div className="flex flex-col ">
       <div
         className={cn(
-          "flex items-center gap-1 p-1 group w-full  overflow-x-auto   hover:bg-gray-100 rounded-lg",
+          "flex items-center gap-1 p-1 group w-full  overflow-x-auto  hover:bg-slate-200 rounded-lg",
+          { "bg-gray-200": pathname.startsWith(`/admin/folders/${folder.id}`) },
           { "w-full": isMobile }
         )}
       >
@@ -140,7 +146,8 @@ export const Folder = ({ folder, level }) => {
             <div
               key={idx}
               className={cn(
-                "flex items-center w-full  group p-1 gap-1 hover:bg-gray-100 rounded-lg",
+                "flex items-center w-full  group p-1 gap-1 hover:bg-slate-200 rounded-lg",
+                { "bg-gray-300": pathname === `/admin/posts/${post.id}` },
                 { "w-full": isMobile }
               )}
             >
@@ -167,7 +174,7 @@ export const Folder = ({ folder, level }) => {
           <div
             type="button"
             onClick={handleCreatePostUnderFolder}
-            className="flex items-center gap-1 p-1  w-full hover:cursor-pointer hover:bg-gray-100 rounded-lg "
+            className="flex items-center gap-1 p-1  w-full hover:cursor-pointer hover:bg-slate-200 rounded-lg "
           >
             <div className=" py-1.5 px-1.5">
               <Plus className="w-4 h-4 " />
@@ -176,8 +183,9 @@ export const Folder = ({ folder, level }) => {
           </div>
           <RecursiveFolders parentFolder={folder.id} level={level + 1} />
         </div>
-      )}
-    </div>
+      )
+      }
+    </div >
   );
 };
 
@@ -194,7 +202,7 @@ const DropIt = ({
     <DropdownMenu>
       <DropdownMenuTrigger
         className={cn(
-          "z-[101] flex items-center justify-center p-1.5 hover:bg-slate-200 rounded-md",
+          "z-[101] flex items-center justify-center p-1.5 hover:bg-slate-300 rounded-md",
           className
         )}
       >
@@ -273,7 +281,7 @@ const DropItPost = ({
     <DropdownMenu>
       <DropdownMenuTrigger
         className={cn(
-          "z-[101]  flex items-center p-1.5 rounded-md justify-center hover:bg-slate-200",
+          "z-[101]  flex items-center p-1.5 rounded-md justify-center hover:bg-slate-300",
           className
         )}
       >

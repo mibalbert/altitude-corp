@@ -85,14 +85,14 @@ const MainNav = ({ session }) => {
             className={cn(
               " flex h-full w-full items-center pl-3 pr-2 md:px-10 lg:px-12 justify-between ",
               {
-                "w-full max-w-screen-2xl mx-auto md:px-7":
+                "w-full max-w-screen-2xl mx-auto md:px-7 ":
                   !pathname.startsWith("/admin"),
               }
             )}
           >
             <div className="flex items-center">
               {pathname.startsWith("/admin") ? (
-                <Link href={"/"} className="px-1.5">
+                <Link href={"/"} className="ml-3.5">
                   ALTITUDE CORP.
                 </Link>
               ) : (

@@ -2,6 +2,8 @@
  * components/contact-us/contact-us-services.jsx
  */
 
+"use client"
+
 import { ArrowRightIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";

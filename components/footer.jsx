@@ -20,6 +20,15 @@ export default function Footer() {
     return <></>;
   }
 
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    // const res = await  registerNewSub()
+    const formData = new FormData(e.target);
+    console.log(formData.get("email"));
+  }
+
+
   return (
     <footer
       className={cn("bg-white", {
@@ -47,16 +56,16 @@ export default function Footer() {
             Want us to email you with the latest blockbuster news?
           </strong>
 
-          <form className="mt-6">
+          <form className="mt-6" onSubmit={handleSubmit}>
             <div className="relative max-w-lg">
               <label className="sr-only" htmlFor="email">
-                {" "}
-                Email{" "}
+                 Email 
               </label>
 
               <input
                 className="w-full rounded-full border-gray-200 bg-gray-100 p-4 pe-32 text-sm font-medium"
                 id="email"
+                name="email"
                 type="email"
                 placeholder="john@doe.com"
               />

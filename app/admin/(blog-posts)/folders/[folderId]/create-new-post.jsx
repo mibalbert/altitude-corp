@@ -27,7 +27,7 @@ const CreateNewPost = ({ folderId }) => {
   return (
     <button
       onClick={handleCreateNewPost}
-      className="flex items-center justify-center w-full md:w-[250px] md:h-[350px] border border-dashed rounded-lg"
+      className="flex items-center justify-center w-full md:w-[250px] md:h-[320px] border border-dashed rounded-lg"
     >
       +Add New Post
     </button>
