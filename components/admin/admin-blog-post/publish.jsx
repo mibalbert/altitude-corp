@@ -23,7 +23,8 @@ const Publish = ({ className, postId, isPublished }) => {
   };
 
   return (
-    <button onClick={handleChangePublish} className={cn("text-md", className)}>
+    <button onClick={handleChangePublish} className={cn(
+      "w-full py-2 hover:bg-gray-100", className)}>
       {isPublished ? (
         <div className="flex items-center gap-1">
           <ArrowDownToLine className="h-4 w-4" />

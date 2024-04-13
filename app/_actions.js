@@ -3,6 +3,40 @@
 import prisma from "@/lib/prismadb";
 import { revalidatePath, revalidateTag } from "next/cache";
 
+
+
+
+export async function registerNewSub(email) {
+  try {
+    const isAlreadyRegistered = await prisma.subscriber.findFirst({
+      where: {
+        email : email
+      }
+    })
+    if(!isAlreadyRegistered) {
+
+      const res = await prisma.subscriber.create({
+        data: {
+          email: email,
+        },
+      });
+      
+      if (res) {
+        return { message: "Subscriber added!", ok: true };
+      } 
+    }
+    return { message: "Email already registered", ok: false };
+  } catch (error) {
+    console.log(error);
+    return { message: error, ok: false };
+  }
+}
+
+
+
+
+
+
 export async function changeValueOfObj(objId, newValue) {
   try {
     const res = await prisma.pageObject.update({
@@ -321,7 +355,7 @@ export async function makeFeatured(postId, changeTo) {
 
     if (res) {
       revalidatePath(`/admin/posts/${postId}`);
-      return { message: "Status changed", ok: true };
+      return { message: `Status changed to: ${res.isFeatured}`, ok: true };
     }
     return { message: "Error", ok: false };
   } catch (error) {

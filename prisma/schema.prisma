@@ -129,7 +129,7 @@ model PageObject {
 model Subscriber {
   id           Int      @id @default(autoincrement())
   email        String?
-  active       Boolean?
+  active       Boolean? @default(true)
   subscribedAt DateTime @default(now())
 }
 

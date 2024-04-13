@@ -10,13 +10,13 @@ const Preview = ({ className, postId, isPublished }) => {
     <>
       {
         isPublished ?
-          <div title="You cannot preview the Blog Post if it is published." className={cn("text-md flex items-center gap-1 hover:cursor-default", className)}>
+          <div title="You cannot preview the Blog Post if it is published." className={cn("text-md w-full py-2 hover:bg-gray-100 flex items-center gap-1 hover:cursor-default", className)}>
             <EyeOff className="h-4 w-4" /> Preview
           </div> :
           <Link
             href={linkHref}
             title={"Preview the Blog Post before posting it."}
-            className={cn("text-md flex items-center gap-1", className)}
+            className={cn("text-md flex items-center gap-1 w-full py-2 hover:bg-gray-100", className)}
           >
             <Eye className="h-4 w-4" /> Preview
           </Link>

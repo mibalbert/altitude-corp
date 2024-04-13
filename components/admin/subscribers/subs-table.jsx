@@ -26,22 +26,22 @@ const SubsTable = ({ data }) => {
             <Table className="">
                 <TableHead>
                     <TableRow>
-                        <TableHeaderCell>Name</TableHeaderCell>
-                        <TableHeaderCell>Position</TableHeaderCell>
-                        <TableHeaderCell>Department</TableHeaderCell>
+                        <TableHeaderCell>Email</TableHeaderCell>
+                        <TableHeaderCell>Subscribed At</TableHeaderCell>
                         <TableHeaderCell>Status</TableHeaderCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {data?.map((sub) => (
-                        <TableRow key={sub.id}>
-                            <TableCell>{sub.email}</TableCell>
+                    {data?.map((el) => (
+                        <TableRow key={el.id}>
+                            <TableCell>{el.email}</TableCell>
                             <TableCell>
-                                {sub.subscribedAt}
+                                {el.subscribedAt.toISOString()}
+
                             </TableCell>
                             <TableCell>
-                                <Badge color="emerald" icon={RiFlag2Line}>
-                                    {sub.active}
+                                <Badge color={el.active ? "emerald" : "gray"} icon={RiFlag2Line}>
+                                    {el.active ? "Active" : "Unsubscribed"}
                                 </Badge>
                             </TableCell>
                         </TableRow>

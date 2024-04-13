@@ -15,6 +15,7 @@ import {
   Home,
 } from "lucide-react";
 import SavedStatus from "../post/saved-status";
+import MakeFeatured from "@/app/admin/(blog-posts)/posts/[blogPostId]/make-featured";
 
 const UnderNav = async ({ data }) => {
   return (
@@ -44,24 +45,26 @@ const UnderNav = async ({ data }) => {
 
       <div className="flex items-center divide-x pr-[2px]">
         <SavedStatus />
-        <Preview className="px-3 gap-1" postId={data.id}           isPublished={data.isPublished}
-/>
+        <Preview className="px-3 gap-1" postId={data.id} isPublished={data.isPublished}
+        />
+        <MakeFeatured postId={data.id} featuredStatus={data.isFeatured} />
         <Publish
           className="px-3 gap-1"
           postId={data.id}
           isPublished={data.isPublished}
         />
+
         {data.isPublished ? (
           <Link
             href={`/blog/${data.id}`}
-            className="flex items-center gap-1 px-3"
+            className="flex items-center gap-1 px-3 w-full py-2 hover:bg-gray-100"
           >
             <BadgeCheck className={"text-green-600 h-4 w-4"} />
             Live
             <ArrowUpRight className="h-4 w-4" />
           </Link>
         ) : (
-          <div className="flex items-center whitespace-nowrap gap-1 px-3">
+          <div className="flex items-center whitespace-nowrap gap-1 px-3 py-2 ">
             <BadgeMinus className={"h-4 w-4"} />
             Not Live
           </div>

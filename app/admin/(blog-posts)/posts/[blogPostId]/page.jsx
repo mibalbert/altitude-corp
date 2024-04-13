@@ -39,10 +39,10 @@ const BlogPost = async ({ params }) => {
           />
           {/* <div className="border lg:min-w-[290px] min-h-[450px] rounded-lg"> */}
         </section>
-        <div className="border absolute top-0 right-0  w-[290px] max-h-[400px] rounded-lg mt-5 ">
-          <div>Editor</div>
+        {/* <div className="border absolute top-0 right-0 py-5 w-[290px] max-h-[400px] rounded-lg mt-5 ">
+          <div className="text-center">Editor</div>
           <MakeFeatured postId={data.id} featuredStatus={data.isFeatured} />
-        </div>
+        </div> */}
       </div>
     </section>
   );

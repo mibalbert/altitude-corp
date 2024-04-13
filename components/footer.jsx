@@ -4,10 +4,11 @@
 
 "use client";
 
+import { registerNewSub } from "@/app/_actions";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { toast } from "sonner";
+
 
 export default function Footer() {
   const pathname = usePathname();
@@ -23,9 +24,11 @@ export default function Footer() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    // const res = await  registerNewSub()
     const formData = new FormData(e.target);
-    console.log(formData.get("email"));
+    const res = await registerNewSub(formData.get('email'))
+    if (res) {
+      toast(res.message)
+    }
   }
 
 
@@ -59,7 +62,7 @@ export default function Footer() {
           <form className="mt-6" onSubmit={handleSubmit}>
             <div className="relative max-w-lg">
               <label className="sr-only" htmlFor="email">
-                 Email 
+                Email
               </label>
 
               <input
