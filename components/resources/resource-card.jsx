@@ -43,7 +43,7 @@ const ResourceCard = ({
 
 
   return (
-    <div className={cn("w-full  flex items-center gap-5 h-[500px]", { "border border-dashed": isEditable })}>
+    <div className={cn("w-full  flex items-center gap-5 h-[300px]", { "border border-dashed": isEditable })}>
       {/* Image */}
       <div className="w-1/2 h-full" >
         <ResourceImage resourceId={data.id} resImage={data.coverImage} isEditable={isEditable} />

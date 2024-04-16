@@ -18,9 +18,10 @@ export default function FreeResources({ data, isEditable }) {
   const freeResSubtitleTwo = data.find(
     (el) => el.compName === "blog-page-free-resources-subtitle-2"
   );
+    
 
   return (
-    <section className="w-full py-6 md:py-12 xl:py-32 mb-32 bg-blue-600 text-white">
+    <section className="w-full py-6 md:py-12 xl:py-32  bg-blue-600 text-white">
       <div className="w-full max-w-7xl mx-auto   grid items-center gap-4 px-4 text-left md:gap-10 md:px-6">
         <div className="grid gap-20 md:grid-cols-2 ">
           <div className="space-y-5">

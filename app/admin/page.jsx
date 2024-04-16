@@ -2,6 +2,7 @@
 // import React from "react";
 
 import Dash from "@/components/admin/dashboards/dash";
+import prisma from "@/lib/prismadb";
 
 // import { AnimatePresence, motion } from "framer-motion";
 // import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";

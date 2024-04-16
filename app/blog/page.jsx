@@ -122,10 +122,10 @@ const Blog = async ({ searchParams }) => {
         editableContent={blogPageLots}
         isEditable={isEditable && searchParams?.editorMode}
       />
-      <SubscribeToNewsletter
+      {/* <SubscribeToNewsletter
         editableComp={blogPageNews}
         isEditable={isEditable && searchParams?.editorMode}
-      />
+      /> */}
       <FreeResources
         data={blogPageFreeRes}
         isEditable={isEditable && searchParams?.editorMode}
