@@ -1,14 +1,19 @@
+// generator client {
+//   provider        = "prisma-client-js"
+//   previewFeatures = ["driverAdapters"]
+// }
+
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  // provider = "postgres"
-  // url      = env("NEXT_PUBLIC_DATABASE_URL")
+  provider = "postgres"
+  url      = env("NEXT_PUBLIC_DATABASE_URL")
   // relationMode = "prisma"
-  provider = "sqlite"
-  url = "file:./db-file"
-  relationMode = "prisma"
+//   provider = "sqlite"
+//   url = "file:./db-file"
+//   relationMode = "prisma"
 }
 
 model Account {
