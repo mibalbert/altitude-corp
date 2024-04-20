@@ -3,12 +3,12 @@ generator client {
 }
 
 datasource db {
-  provider = "postgres"
-  url      = env("NEXT_PUBLIC_DATABASE_URL")
+  // provider = "postgres"
+  // url      = env("NEXT_PUBLIC_DATABASE_URL")
   // relationMode = "prisma"
-  // provider = "sqlite"
-  // url = "file:./db-file"
-  // relationMode = "prisma"
+  provider = "sqlite"
+  url = "file:./db-file"
+  relationMode = "prisma"
 }
 
 model Account {
