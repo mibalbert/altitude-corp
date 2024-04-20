@@ -27,53 +27,43 @@ export const metadata = {
   description: "Best company to help you grow",
 };
 
-
 export default async function Home({ searchParams }) {
-
-
   let isEditable = false;
 
   const session = await getServerSession(authOptions);
-
   if (session?.user?.role === "ADMIN" && searchParams.editorMode) {
     isEditable = true;
   }
 
-  const compObj = await prisma.pageObject.findMany({
-    where: {
-      page: "home",
-    },
-  });
-  const reviews = await prisma.reviews.findMany();
+  // Fetch all necessary data in parallel
+  const [compObj, reviews] = await Promise.all([
+    prisma.pageObject.findMany({
+      where: { page: "home" },
+    }),
+    prisma.reviews.findMany(),
+  ]);
 
-  const heroComp = compObj.filter((el) => el.parentComp === "Hero");
-  const elevatorComp = compObj.filter((el) => el.parentComp === "Elevator");
-  const peaceOfMindComp = compObj.filter(
-    (el) => el.parentComp === "PeaceOfMind"
-  );
-  const numbersComp = compObj.filter((el) => el.parentComp === "Numbers");
-  // const stepsComp = compObj.filter((el) => el.parentComp === "Steps");
-  const plansComp = compObj.filter((el) => el.parentComp === "Plans");
-  const landingFooterComp = compObj.filter(
-    (el) => el.parentComp === "LandingFooter"
-  );
-
-  const homeContactData = compObj.filter(
-    (el) => el.parentComp === "ContactUsHome"
-  );
+  // Group components by parentComp in a single pass
+  const componentsByParentComp = compObj.reduce((acc, el) => {
+    if (!acc[el.parentComp]) {
+      acc[el.parentComp] = [];
+    }
+    acc[el.parentComp].push(el);
+    return acc;
+  }, {});
 
   return (
-    <section className="bg-white ">
-      <Hero data={heroComp} isEditable={isEditable} />
+    <section className="bg-white">
+      <Hero data={componentsByParentComp["Hero"]} isEditable={isEditable} />
       <InfiniteMovingReviewCards data={reviews} />
-      <Elevator data={elevatorComp} />
-      <PeaceOfMind data={peaceOfMindComp} />
-      <Numbers data={numbersComp} />
-      {/* <TheSteps data={stepsComp} /> */}
-      {/* <Plans data={plansComp} /> */}
-      <WorldWide data={landingFooterComp} />
-      {/* <ContactUsInsidePage /> */}
-      <ContactUsHome data={homeContactData} isEditable={isEditable} />
+      <Elevator data={componentsByParentComp["Elevator"]} />
+      <PeaceOfMind data={componentsByParentComp["PeaceOfMind"]} />
+      <Numbers data={componentsByParentComp["Numbers"]} />
+      <WorldWide data={componentsByParentComp["LandingFooter"]} />
+      <ContactUsHome
+        data={componentsByParentComp["ContactUsHome"]}
+        isEditable={isEditable}
+      />
     </section>
   );
 }
