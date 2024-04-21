@@ -36,6 +36,7 @@ export default async function Home({ searchParams }) {
   }
 
   // Fetch all necessary data in parallel
+  // asd as
   const [compObj, reviews] = await Promise.all([
     prisma.pageObject.findMany({
       where: { page: "home" },
