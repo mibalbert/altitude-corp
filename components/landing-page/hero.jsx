@@ -1,6 +1,6 @@
 // "use client";
 
-import { useMemo } from "react";
+import { Suspense, useMemo } from "react";
 import Image from "next/image";
 import EditableComp from "../editableComp";
 
@@ -73,12 +73,14 @@ const Hero = ({ data, isEditable }) => {
         <div className="absolute top-0   w-full h-full left-0 z-[99] flex  items-center justify-center">
           <div className="p-5 lg:p-16 flex flex-col supports-backdrop-blur backdrop-blur-xl rounded-xl border bg-white/40 text-white border-blue-200 ">
             {/* <div className="p-5 lg:p-16 w-full flex flex-col supports-backdrop-blur backdrop-blur-xl  bg-white/40 text-white border-blue-200 "> */}
-            <EditableComp
-              isEditable={isEditable}
-              comp={heroTitle}
-              className={"drop-shadow-md shadow-gray-700"}
-            />
-            <EditableComp isEditable={isEditable} comp={heroSubtitle} />
+            <Suspense fallback="Loading...">
+              <EditableComp
+                isEditable={isEditable}
+                comp={heroTitle}
+                className={"drop-shadow-md shadow-gray-700"}
+              />
+              <EditableComp isEditable={isEditable} comp={heroSubtitle} />
+            </Suspense>
           </div>
         </div>
       </div>

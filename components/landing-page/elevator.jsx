@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import React, { Suspense } from "react";
 import EditableComp from "../editableComp";
 import AreaChartComponent from "./chart";
 
@@ -45,16 +45,18 @@ const Elevator = ({ data }) => {
           <div className="flex flex-wrap h-full ">
             <div className="flex flex-wrap self-end -m-10">
               <div className="w-full p-10">
-                <div className="lg:max-w-sm">
-                  <EditableComp
-                    isEditable={false}
-                    comp={elevatorRightFirstTitle}
-                  />
-                  <EditableComp
-                    isEditable={false}
-                    comp={elevatorRightFirstSubtitle}
-                  />
-                </div>
+                <Suspense fallback="Loading...">
+                  <div className="lg:max-w-sm">
+                    <EditableComp
+                      isEditable={false}
+                      comp={elevatorRightFirstTitle}
+                    />
+                    <EditableComp
+                      isEditable={false}
+                      comp={elevatorRightFirstSubtitle}
+                    />
+                  </div>
+                </Suspense>
               </div>
               <div className="w-full px-10">
                 <div className="h-px bg-blue-500 lg:max-w-sm" />
