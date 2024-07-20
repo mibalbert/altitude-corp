@@ -40,7 +40,7 @@ const PeaceOfMind = ({ data }) => {
               height={500}
               alt=""
               className="object-cover object-bottom w-full h-full"
-              src="https://mongo-blog.s3.eu-central-1.amazonaws.com/home/new-piece-of-mind.webp"
+              src="/peace-of-mind.jpg"
             />
           </div>
         </div>

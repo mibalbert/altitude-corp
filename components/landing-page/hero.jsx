@@ -31,8 +31,8 @@ const Hero = ({ data, isEditable }) => {
         <Image
           alt={"mountBg"}
           // src={`https://assets.codepen.io/721952/${imageName}.png`}
-          // src={`/land/mountBg.webp`}
-          src={`https://mongo-blog.s3.eu-central-1.amazonaws.com/home/mountBg.webp`}
+          src={`/land/mountBg.webp`}
+          // src={`https://mongo-blog.s3.eu-central-1.amazonaws.com/home/mountBg.webp`}
           className="object-cover  z-10"
           // width={1600}
           // height={600}
@@ -41,8 +41,8 @@ const Hero = ({ data, isEditable }) => {
         <Image
           alt={"mountMg"}
           // src={`https://assets.codepen.io/721952/${imageName}.png`}
-          // src={`/land/mountMg.webp`}
-          src={`https://mongo-blog.s3.eu-central-1.amazonaws.com/home/mountMg.webp`}
+          src={`/land/mountMg.webp`}
+          // src={`https://mongo-blog.s3.eu-central-1.amazonaws.com/home/mountMg.webp`}
           className="object-cover z-[12]"
           // width={1600}
           // height={600}
@@ -51,8 +51,8 @@ const Hero = ({ data, isEditable }) => {
         <Image
           alt={"cloud2"}
           // src={`https://assets.codepen.io/721952/${imageName}.png`}
-          // src={`/land/cloud2.webp`}
-          src={`https://mongo-blog.s3.eu-central-1.amazonaws.com/home/cloud2.webp`}
+          src={`/land/cloud2.webp`}
+          // src={`https://mongo-blog.s3.eu-central-1.amazonaws.com/home/cloud2.webp`}
           className="object-cover z-[13]"
           // width={1600}
           // height={600}
@@ -61,8 +61,8 @@ const Hero = ({ data, isEditable }) => {
         <Image
           alt={"mountFg"}
           // src={`https://assets.codepen.io/721952/${imageName}.png`}
-          // src={`/land/mountFg.webp`}
-          src={`https://mongo-blog.s3.eu-central-1.amazonaws.com/home/mountFg.webp`}
+          src={`/land/mountFg.webp`}
+          // src={`https://mongo-blog.s3.eu-central-1.amazonaws.com/home/mountFg.webp`}
           className="object-cover z-[10]"
           // width={1600}
           // height={600}
